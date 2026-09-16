@@ -1,3 +1,51 @@
-@use './styles/fonts';
 @use './styles/variables' as variables;
+@use './styles/functions' as *;
+@use './styles/fonts';
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: variables.$text-main-color;
+  font-family: variables.$font-family-primary;
+  font-style: normal;
+  font-size: rem(16);
+  font-weight: 400;
+  line-height: 160%;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+.container {
+  max-width: 1440px;
+  width: 100%;
+  padding: 0 rem(56);
+  margin: 0 auto;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  border: 0;
+}
