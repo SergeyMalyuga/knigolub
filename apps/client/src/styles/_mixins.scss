@@ -1,0 +1,18 @@
+@use "./variables" as variables;
+
+@mixin focus-ring(
+  $color: variables.$rich-black,
+  $width: 2px,
+  $offset: 5px
+) {
+  border-radius: 3px;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: $width solid $color;
+    outline-offset: $offset;
+  }
+}
