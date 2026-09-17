@@ -12,5 +12,5 @@ export enum Section {
 
 export const BREAKPOINTS = {
   TABLET: '(max-width: 980px)',
-  MOBILE: '(max-width: 780px)',
+  MOBILE: '(max-width: 855px)',
 } as const;

@@ -4,61 +4,66 @@
       <img class="header__logo-image" src="/assets/images/vector/logo-black.svg" width="155" height="24"
            alt="Логотип клуба"/>
     </a>
-    <nav class="header__nav" aria-label="Основная навигация">
-      <ul class="header__nav-links">
-        <li>
-          <a [ngClass]="{
+    <div class="header__menu">
+      <nav class="header__nav" aria-label="Основная навигация">
+        <ul class="header__nav-links">
+          <li>
+            <a [ngClass]="{
           'header__link': true,
             'header__link--nav': true,
           'active': isActive(Section.MAIN)
           }"
-             (click)="selectSection(Section.MAIN)"
-             href="#main">Главная</a>
-        </li>
-        <li>
-          <a [ngClass]="{
+               (click)="selectSection(Section.MAIN)"
+               href="#main">Главная</a>
+          </li>
+          <li>
+            <a [ngClass]="{
           'header__link': true,
             'header__link--nav': true,
           'active': isActive(Section.CATALOG)
           }"
-             (click)="selectSection(Section.CATALOG)"
-             href="#catalog">Каталог</a>
-        </li>
-        <li>
-          <a [ngClass]="{
+               (click)="selectSection(Section.CATALOG)"
+               href="#catalog">Каталог</a>
+          </li>
+          <li>
+            <a [ngClass]="{
           'header__link': true,
             'header__link--nav': true,
           'active': isActive(Section.COLLECTION)
           }"
-             (click)="selectSection(Section.COLLECTION)"
-             href="#collection">Подборки</a>
-        </li>
-        <li>
-          <a [ngClass]="{
+               (click)="selectSection(Section.COLLECTION)"
+               href="#collection">Подборки</a>
+          </li>
+          <li>
+            <a [ngClass]="{
           'header__link': true,
           'header__link--nav': true,
           'active': isActive(Section.COMMUNITY)
           }"
-             (click)="selectSection(Section.COMMUNITY)"
-             href="#community">Сообщество</a>
-        </li>
-        <li>
-          <a [ngClass]="{
+               (click)="selectSection(Section.COMMUNITY)"
+               href="#community">Сообщество</a>
+          </li>
+          <li>
+            <a [ngClass]="{
           'header__link': true,
             'header__link--nav': true,
           'active': isActive(Section.REVIEWS)
           }"
-             (click)="selectSection(Section.REVIEWS)"
-             href="#reviews">Отзывы</a>
-        </li>
-      </ul>
-    </nav>
-    <div class="header__actions">
-      <div class="header__search">
-        <label for="header-search" class="visually-hidden">Поиск: книга, автор, жанр</label>
-        <input id="header-search" class="header__input-search"  type="search" placeholder="{{isMobile() ? 'Поиск по каталогу' : 'Поиск: книга, автор, жанр'}}"/>
+               (click)="selectSection(Section.REVIEWS)"
+               href="#reviews">Отзывы</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="header__actions">
+        <div class="header__search">
+          <label for="header-search" class="visually-hidden">Поиск: книга, автор, жанр</label>
+          <input id="header-search" class="header__input-search"  type="search" placeholder="{{isMobile() ? 'Поиск по каталогу' : 'Поиск: книга, автор, жанр'}}"/>
+        </div>
+        <a class="header__link header__link--action" href="#">{{isMobile() ? 'Войти' : 'Присоединиться' }}</a>
       </div>
-      <a class="header__link header__link--action" href="#">{{isTablet() ? 'Войти' : 'Присоединиться' }}</a>
     </div>
+    <button class="header__burger">
+      <span></span>
+    </button>
   </div>
 </header>
