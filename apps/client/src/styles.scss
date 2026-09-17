@@ -37,6 +37,10 @@ body {
   width: 100%;
   padding: 0 rem(56);
   margin: 0 auto;
+
+  @media (width <= 855px) {
+    padding: 0 rem(32);
+  }
 }
 
 .visually-hidden {
