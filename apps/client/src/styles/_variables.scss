@@ -2,16 +2,25 @@
 $white: rgb(255 255 255);
 $white-smoke: rgb(245 245 245);
 $gray: rgb(102 102 102);
+$light-gray: rgb(224 224 224);
 $rich-black: rgb(17 17 17);
 
 /* text */
 $text-main-color: $gray;
+$text-light-color: $white;
 
-/* header-link */
+/* header */
 $header-link-active-color: $rich-black;
+$header-search-border: 1px solid $light-gray;
+$header-bottom-border: 1px solid $rich-black;
 
 /* focus */
 $focus-border-color: $rich-black;
+
+/* button */
+$button-border: 1px solid $rich-black;
+$button-background-dark: $rich-black;
+$button-background-light: $white;
 
 // ===== TYPOGRAPHY ===== //
 $font-family-primary: 'Inter', sans-serif;
