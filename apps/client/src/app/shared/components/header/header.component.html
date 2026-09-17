@@ -53,5 +53,12 @@
         </li>
       </ul>
     </nav>
+    <div class="header__actions">
+      <div class="header__search">
+        <label for="header-search" class="visually-hidden">Поиск: книга, автор, жанр</label>
+        <input id="header-search" class="header__input-search"  type="search" placeholder="{{isMobile() ? 'Поиск по каталогу' : 'Поиск: книга, автор, жанр'}}"/>
+      </div>
+      <a class="header__link header__link--action" href="#">{{isTablet() ? 'Войти' : 'Присоединиться' }}</a>
+    </div>
   </div>
 </header>

@@ -4,10 +4,13 @@
 
 .header {
   padding: rem(19.5) 0;
+  border-bottom: variables.$header-bottom-border;
 
   &__content {
+    position: relative;
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
 
   &__link {
@@ -45,6 +48,19 @@
         transition: transform 0.3s ease;
       }
     }
+
+    &--action {
+      @include mixins.button-base(variables.$text-light-color, variables.$rich-black, 165px, 10);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 165px;
+
+      @media (width <= 780px) {
+        width: 75px;
+      }
+    }
   }
 
   &__logo-image {
@@ -56,6 +72,59 @@
       display: flex;
       gap: 32px;
     }
+
+    @media (width <= 1390px) {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      left: 0;
+      bottom: -45px;
+    }
+  }
+
+  &__search {
+    display: flex;
+    gap: 10px;
+    padding: rem(11) rem(15);
+    border: variables.$header-search-border;
+    width: 265px;
+
+    &::before {
+      content: '';
+      display: block;
+      width: 16px;
+      height: 16px;
+      background-image: url('/assets/images/vector/search.svg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+
+    @media (width <= 780px) {
+      width: 180px;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 16px;
+  }
+
+  &__input-search {
+    border: none;
+    font-size: rem(13);
+    line-height: rem(16);
+    width: 100%;
+
+    @media (width <= 780px) {
+      font-size: rem(12);
+      line-height: rem(15);
+    }
+  }
+
+  @media (width <= 1390px) {
+    padding: rem(16) 0;
   }
 }
 
