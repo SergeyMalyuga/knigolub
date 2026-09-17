@@ -1,4 +1,5 @@
-@use "./variables" as variables;
+@use './variables' as variables;
+@use './functions' as *;
 
 @mixin focus-ring(
   $color: variables.$rich-black,
@@ -15,4 +16,17 @@
     outline: $width solid $color;
     outline-offset: $offset;
   }
+}
+
+@mixin button-base($text-color, $background, $width, $padding) {
+  max-width: $width;
+  width: 100%;
+  border: variables.$button-border;
+  background-color: $background;
+  padding: rem($padding) 0;
+  font-size: rem(14);
+  font-weight: 500;
+  line-height: rem(17);
+  color: $text-color;
+  text-align: center;
 }
