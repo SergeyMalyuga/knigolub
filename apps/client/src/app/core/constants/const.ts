@@ -9,3 +9,8 @@ export enum Section {
   COMMUNITY = 'community',
   REVIEWS = 'reviews',
 }
+
+export const BREAKPOINTS = {
+  TABLET: '(max-width: 980px)',
+  MOBILE: '(max-width: 780px)',
+} as const;
