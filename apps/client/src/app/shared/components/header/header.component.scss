@@ -21,6 +21,7 @@
       flex-direction: column;
       position: fixed;
       height: 100vh;
+      gap: 40px;
       top: 0;
       left: 0;
       right: 0;
@@ -81,6 +82,11 @@
         transform: scale(0);
         transition: transform 0.3s ease;
       }
+
+      @media (width <= 680px) {
+        width: max-content;
+        font-size: rem(20);
+      }
     }
 
     &--action {
@@ -94,6 +100,10 @@
       @media (width <= 855px) {
         width: 75px;
       }
+
+      @media (width <= 680px) {
+        width: 165px;
+      }
     }
   }
 
@@ -105,6 +115,11 @@
     &-links {
       display: flex;
       gap: 32px;
+
+      @media (width <= 680px) {
+        flex-direction: column;
+        align-items: center;
+      }
     }
 
     @media (width <= 1390px) {
@@ -141,6 +156,10 @@
 
     @media (width <= 855px) {
       width: 180px;
+    }
+
+    @media (width <= 680px) {
+      display: none;
     }
   }
 
