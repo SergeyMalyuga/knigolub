@@ -4,7 +4,7 @@
       <img class="header__logo-image" src="/assets/images/vector/logo-black.svg" width="155" height="24"
            alt="Логотип клуба"/>
     </a>
-    <div class="header__menu">
+    <div class="header__menu" [attr.aria-hidden]="!isMenuOpen()" [inert]="!isMenuOpen()">
       <nav class="header__nav" aria-label="Основная навигация">
         <ul class="header__nav-links">
           <li>

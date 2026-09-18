@@ -11,13 +11,14 @@
     justify-content: space-between;
     align-items: center;
     flex-grow: 1;
+    transition: transform 0.5s ease;
 
     @media (width <= 1390px) {
       justify-content: flex-end;
     }
 
     @media (width <= 680px) {
-      display: none;
+      transform: translateX(150%);
     }
   }
 
