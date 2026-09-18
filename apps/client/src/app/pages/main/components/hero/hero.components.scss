@@ -1,0 +1,22 @@
+@use "../../../../../styles/functions" as *;
+
+.hero {
+  padding-top: rem(82);
+
+  @media (width <= 680px) {
+    padding-top: rem(57);
+  }
+
+  &__content {
+    display: grid;
+    padding-top: rem(72);
+    padding-bottom: rem(72);
+    gap: 64px;
+    grid-template-columns: minmax(0, 724px) minmax(0, 540px);
+
+    @media (width <= 680px) {
+      padding-top: rem(48);
+      padding-bottom: rem(48);
+    }
+  }
+}
