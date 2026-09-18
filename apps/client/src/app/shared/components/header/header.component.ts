@@ -42,4 +42,8 @@ export class HeaderComponent {
   public selectSection(section: Section): void {
     this.activeSection.set(section);
   }
+
+  public toggleMenu() {
+    this.isMenuOpen.set(!this.isMenuOpen());
+  }
 }

@@ -18,7 +18,20 @@
     }
 
     @media (width <= 680px) {
+      flex-direction: column;
+      position: fixed;
+      height: 100vh;
+      top: 0;
+      left: 0;
+      right: 0;
+      justify-content: center;
       transform: translateX(150%);
+      background-color: variables.$overlay-bg;
+      backdrop-filter: blur(3px);
+
+      &--open {
+        transform: translateX(0);
+      }
     }
   }
 
@@ -102,6 +115,10 @@
       left: 0;
       bottom: -45px;
     }
+
+    @media (width <= 680px) {
+      position: static;
+    }
   }
 
   &__search {
@@ -145,6 +162,7 @@
   }
 
   &__burger {
+    position: relative;
     display: none;
     flex-direction: column;
     justify-content: space-between;
@@ -154,6 +172,7 @@
     width: 24px;
     height: 20px;
     cursor: pointer;
+    z-index: 100;
 
     &::before, &::after {
       content: '';
@@ -161,7 +180,7 @@
       width: 100%;
       height: 2px;
       background-color: black;
-      transition: width 0.3s ease;
+      transition: width 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
     }
 
     &::before {
@@ -178,7 +197,7 @@
       height: 2px;
       background-color: black;
       align-self: flex-end;
-      transition: width 0.3s ease;
+      transition: width 0.3s ease, opacity 0.3s ease;
     }
 
     &:hover {
@@ -188,6 +207,34 @@
 
       span {
         width: 75%;
+      }
+    }
+
+    &--close {
+      span {
+        opacity: 0;
+        transition: opacity 0s ease;
+      }
+
+      &::before, &::after {
+        position: absolute;
+        top: 50%;
+        left: 0;
+      }
+
+      &::before {
+        transform: rotate(45deg);
+      }
+
+      &::after {
+        transform: rotate(-45deg);
+      }
+
+      &:hover {
+        &::before, &::after {
+          background-color: variables.$burger-close-hover;
+          width: 100%;
+        }
       }
     }
 
