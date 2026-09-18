@@ -2,6 +2,7 @@
 
 // ===== COLOR ===== //
 $white: rgb(255 255 255);
+$black: rgb(0 0 0);
 $white-smoke: rgb(245 245 245);
 $gray: rgb(102 102 102);
 $light-gray: rgb(224 224 224);
@@ -24,6 +25,9 @@ $focus-border-color: $rich-black;
 $button-border: 1px solid $rich-black;
 $button-background-dark: $rich-black;
 $button-background-light: $white;
+
+/* burger */
+$burger-close-hover: color.scale($black, $lightness: 35%);
 
 /* overlay */
 $overlay-bg: color.scale($parchment, $alpha: -25%);
