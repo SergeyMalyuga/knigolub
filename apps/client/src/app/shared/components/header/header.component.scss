@@ -3,8 +3,13 @@
 @use '../../../../styles/functions' as *;
 
 .header {
+  position: fixed;
+  width: 100%;
   padding: rem(19.5) 0;
   border-bottom: variables.$header-bottom-border;
+  background-color: variables.$bg-color-main;
+  top: 0;
+  left: 0;
 
   &__menu {
     display: flex;
