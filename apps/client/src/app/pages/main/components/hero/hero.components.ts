@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {ChangeDetectionStrategy, Component, signal} from '@angular/core';
 
 @Component({
   selector: 'app-hero',
@@ -7,4 +7,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrl: './hero.components.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeroComponents {}
+export class HeroComponents {
+  public currentDate = signal<number>(new Date().getFullYear());
+}
