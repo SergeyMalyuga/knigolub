@@ -5,20 +5,28 @@ $white: rgb(255 255 255);
 $black: rgb(0 0 0);
 $white-smoke: rgb(245 245 245);
 $gray: rgb(102 102 102);
-$light-gray: rgb(224 224 224);
+$gray-middle: rgb(136 136 136);
+$gray-light: rgb(224 224 224);
 $rich-black: rgb(17 17 17);
 $parchment: rgb(245 238 220);
+$platinum: rgb(235 231 223);
 
 /* background */
 $bg-color-main: $white;
+$bg-color-accent: $rich-black;
+$bg-color-platinum: $platinum;
 
 /* text */
 $text-main-color: $gray;
 $text-light-color: $white;
+$text-dark-color: $rich-black;
+
+/* subtitle */
+$subtitle-main-color: $gray-middle;
 
 /* header */
 $header-link-active-color: $rich-black;
-$header-search-border: 1px solid $light-gray;
+$header-search-border: 1px solid $gray-light;
 $header-bottom-border: 1px solid $rich-black;
 
 /* focus */
