@@ -1,4 +1,6 @@
 @use "../../../../../styles/functions" as *;
+@use '../../../../../styles/mixins' as mixins;
+@use '../../../../../styles/variables' as variables;
 
 .hero {
   padding-top: rem(82);
@@ -17,6 +19,94 @@
     @media (width <= 680px) {
       padding-top: rem(48);
       padding-bottom: rem(48);
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  &__title {
+    color: variables.$text-dark-color;
+    font-family: variables.$font-family-accent;
+    font-size: rem(72);
+    font-weight: 400;
+    line-height: 105%;
+    letter-spacing: rem(-2);
+    text-align: left;
+  }
+
+  &__subtitle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    order: -1;
+
+    &::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background-color: variables.$button-background-dark;
+    }
+  }
+
+  &__text {
+    max-width: 560px;
+    width: 100%;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 16px;
+  }
+
+  &__link {
+    text-decoration: none;
+
+    &--catalog {
+      @include mixins.button-base(
+        $text-color: variables.$text-light-color,
+        $background: variables.$bg-color-accent,
+        $width: 199px,
+        $padding: 16)
+    }
+
+    &--login {
+      @include mixins.button-base(
+        $text-color: variables.$rich-black,
+        $background: variables.$bg-color-main,
+        $width: 245px,
+        $padding: 16)
+    }
+  }
+
+  &__stats {
+    display: flex;
+    gap: 48px;
+
+    &-item {
+      display: flex;
+      gap: 6px;
+      flex-direction: column;
+    }
+
+    &-value {
+      color: variables.$text-dark-color;
+      font-family: variables.$font-family-accent;
+      font-size: rem(36);
+      line-height: 100%;
+      margin: 0;
+    }
+
+    &-label {
+      color: variables.$subtitle-main-color;
+      font-size: rem(13);
+      line-height: rem(16);
+      text-align: left;
+      order: 1;
     }
   }
 }
