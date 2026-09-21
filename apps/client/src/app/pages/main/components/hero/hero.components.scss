@@ -42,6 +42,12 @@
     display: flex;
     align-items: center;
     gap: 12px;
+    color: variables.$subtitle-main-color;
+    font-size: rem(12);
+    font-weight: 500;
+    line-height: rem(15);
+    letter-spacing: rem(1.5);
+    text-transform: uppercase;
     order: -1;
 
     &::before {
@@ -108,5 +114,10 @@
       text-align: left;
       order: 1;
     }
+  }
+
+  &__club {
+    background-color: variables.$bg-color-platinum;
+    padding: rem(96) rem(24) rem(30);
   }
 }
