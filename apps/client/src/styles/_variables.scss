@@ -7,6 +7,7 @@ $white-smoke: rgb(245 245 245);
 $gray: rgb(102 102 102);
 $gray-middle: rgb(136 136 136);
 $gray-light: rgb(224 224 224);
+$earthy-taupe: rgb(138 133 124);
 $rich-black: rgb(17 17 17);
 $parchment: rgb(245 238 220);
 $platinum: rgb(235 231 223);
@@ -20,6 +21,9 @@ $bg-color-platinum: $platinum;
 $text-main-color: $gray;
 $text-light-color: $white;
 $text-dark-color: $rich-black;
+
+/* title */
+$title-accent-color: $earthy-taupe;
 
 /* subtitle */
 $subtitle-main-color: $gray-middle;
