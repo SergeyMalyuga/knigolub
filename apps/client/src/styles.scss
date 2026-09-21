@@ -42,6 +42,10 @@ body {
   @media (width <= 855px) {
     padding: 0 rem(32);
   }
+
+  @media (width <= 455px) {
+    padding: 0 rem(15);
+  }
 }
 
 .visually-hidden {
