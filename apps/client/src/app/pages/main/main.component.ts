@@ -1,12 +1,14 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {HeaderComponent} from '../../shared/components/header/header.component';
 import {HeroComponents} from './components/hero/hero.components';
+import {CatalogComponent} from './components/catalog/catalog.component';
 
 @Component({
   selector: 'app-main',
   imports: [
     HeaderComponent,
-    HeroComponents
+    HeroComponents,
+    CatalogComponent
   ],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss',
