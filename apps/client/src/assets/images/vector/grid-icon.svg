@@ -1,0 +1,7 @@
+<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16.000000" height="16.000000" fill="none" customFrame="#000000">
+	<rect id="layout-grid" width="16.000000" height="16.000000" x="0.000000" y="0.000000" />
+	<rect id="Прямоугольник 1" width="4.666667" height="4.666667" x="2.000000" y="2.000000" rx="0.666667" stroke="rgb(255,255,255)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.333333" />
+	<rect id="Прямоугольник 2" width="4.666667" height="4.666667" x="9.333374" y="2.000000" rx="0.666667" stroke="rgb(255,255,255)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.333333" />
+	<rect id="Прямоугольник 3" width="4.666667" height="4.666667" x="9.333374" y="9.333252" rx="0.666667" stroke="rgb(255,255,255)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.333333" />
+	<rect id="Прямоугольник 4" width="4.666667" height="4.666667" x="2.000000" y="9.333252" rx="0.666667" stroke="rgb(255,255,255)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.333333" />
+</svg>
