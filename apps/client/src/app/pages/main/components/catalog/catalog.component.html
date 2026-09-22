@@ -1,0 +1,20 @@
+<section id="{{Section.CATALOG}}" class="catalog">
+  <div class="catalog__top container">
+    <div class="catalog__wrapper-top">
+      <h2 class="catalog__title catalog__title--top">Что читаем сейчас</h2>
+      <button type="button" class="catalog__button-categories">Все категории</button>
+    </div>
+    <ul class="catalog__books-categories">
+      @for (category of categories; track category) {
+        <li>
+          <button type="button"
+                  [ngClass]="{
+                  'catalog__button-category': true,
+                  'catalog__button-category--active': isActive(category)
+                  }"
+                  >{{getCategoryLabel(category)}}</button>
+        </li>
+      }
+    </ul>
+  </div>
+</section>
