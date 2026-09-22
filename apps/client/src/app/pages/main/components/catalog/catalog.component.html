@@ -9,12 +9,40 @@
         <li>
           <button type="button"
                   [ngClass]="{
-                  'catalog__button-category': true,
-                  'catalog__button-category--active': isActive(category)
+                  'catalog__button': true,
+                  'catalog__button--category': true,
+                  'catalog__button--active': isActiveCategory(category)
                   }"
-                  >{{getCategoryLabel(category)}}</button>
+          >{{ getCategoryLabel(category) }}
+          </button>
         </li>
       }
     </ul>
+  </div>
+  <div class="catalog__content">
+    <div class="container">
+      <div class="catalog__content-top">
+        <div class="catalog__wrapper-content-title">
+          <h2 class="catalog__title catalog__title--content">Каталог книг</h2>
+          <p class="catalog__subtitle">128 книг в открытых подборках сообщества</p>
+        </div>
+      </div>
+      <ul class="catalog__views">
+        @for (view of views; track view) {
+          <li>
+            <button
+              [ngClass]= "{
+              'catalog__button': true,
+              'catalog__button--view': true,
+              'catalog__button--grid': view === View.GRID,
+              'catalog__button--list': view === View.LIST,
+              'catalog__button--slider': view === View.SLIDER,
+              'catalog__button--active': isActiveView(view)
+              }"
+                      type="button">{{getViewLabel(view)}}</button>
+          </li>
+        }
+      </ul>
+    </div>
   </div>
 </section>

@@ -4,15 +4,33 @@
 @use 'sass:color';
 
 .catalog {
+  &__top {
+    margin-bottom: rem(56);
+
+    @media (width <= 1250px) {
+      margin-bottom: rem(48);
+    }
+  }
+
   &__wrapper {
     &-top {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
+      margin-bottom: rem(20);
 
       @media (width <= 768px) {
-        margin-bottom: 16px;
+        margin-bottom: rem(16);
+      }
+    }
+
+    &-content-title {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      @media (width <= 768px) {
+        gap: 6px;
       }
     }
   }
@@ -31,9 +49,41 @@
         line-height: rem(32);
       }
     }
+
+    &--content {
+      font-size: rem(36);
+      line-height: 100%;
+
+      @media (width <= 768px) {
+        font-size: rem(26);
+        line-height: rem(35);
+      }
+    }
+  }
+
+  &__subtitle {
+    font-size: rem(14);
+    line-height: rem(17);
+
+    @media (width <= 768px) {
+      font-size: rem(13);
+      line-height: rem(16);
+    }
   }
 
   &__button {
+    @include mixins.button-base(
+      $text-color: variables.$gray-dark,
+      $background: variables.$bg-color-main,
+      $width: max-content,
+      $padding: 0
+    );
+
+    color: variables.$gray-dark;
+    cursor: pointer;
+    font-weight: 400;
+    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+
     &-categories {
       display: flex;
       align-items: center;
@@ -86,37 +136,78 @@
       }
     }
 
-    &-category {
-      @include mixins.button-base(
-        $text-color: variables.$gray-dark,
-        $background: variables.$bg-color-main,
-        $width: max-content,
-        $padding: 0
-      );
-
-      color: variables.$gray-dark;
+    &--category {
       font-size: rem(14);
-      font-weight: 500;
       line-height: rem(17);
       font-family: variables.$font-family-primary;
       padding: rem(9) rem(19);
-      cursor: pointer;
       border: 1px solid variables.$gray-light;
       text-wrap: nowrap;
-      transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+    }
 
-      &--active {
-        background-color: variables.$bg-color-accent;
-        border-color: variables.$rich-black;
-        color: variables.$text-light-color;
+    &--view {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: rem(10) rem(18);
+      border: none;
+      border-left: 1px solid variables.$gray-light;
+      max-width: none;
+      width: 120px;
+      font-family: variables.$font-family-primary;
+      font-size: rem(13);
+      line-height: rem(16);
 
-        &:hover {
-          background-color: color.scale(variables.$bg-color-accent, $lightness: 15%) ;
-        }
+      &::before {
+        content: '';
+        display: block;
+        width: 16px;
+        height: 16px;
+        background-color: variables.$rich-black;
+        mask-repeat: no-repeat;
+        mask-position: center;
+        mask-size: cover;
+      }
 
-        &:active {
-          background-color: color.scale(variables.$bg-color-accent, $lightness: 30%) ;
-        }
+      @media (width <= 410px) {
+        width: 220px;
+      }
+    }
+
+    &--grid {
+      &::before {
+        mask-image: url("/assets/images/vector/grid-icon.svg");
+      }
+    }
+
+    &--list {
+      &::before {
+        mask-image: url("/assets/images/vector/list-icon.svg");
+      }
+    }
+
+    &--slider {
+      &::before {
+        mask-image: url("/assets/images/vector/gallery-icon.svg");
+      }
+    }
+
+    &--active {
+      display: block;
+      background-color: variables.$bg-color-accent;
+      border-color: variables.$rich-black;
+      color: variables.$text-light-color;
+
+      &::before {
+        content: none;
+      }
+
+      &:hover {
+        background-color: color.scale(variables.$bg-color-accent, $lightness: 15%);
+      }
+
+      &:active {
+        background-color: color.scale(variables.$bg-color-accent, $lightness: 30%);
       }
     }
   }
@@ -125,5 +216,39 @@
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
+  }
+
+  &__content {
+    background-color: variables.$white-smoke;
+    padding: rem(56) 0;
+
+    @media (width <= 1250px) {
+      padding: rem(48) 0;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+
+      @media (width <= 780px) {
+        flex-direction: column;
+        gap: 16px;
+      }
+    }
+  }
+
+  &__views {
+    display: flex;
+    align-self: flex-end;
+
+    @media (width <= 780px) {
+      align-self: flex-start;
+    }
+
+    @media (width <= 410px) {
+      flex-direction: column;
+      gap: 10px;
+      align-self: center;
+    }
   }
 }
