@@ -104,6 +104,11 @@
       background-color: variables.$button-background-dark;
     }
 
+    &-card {
+      font-size: rem(12);
+      line-height: rem(15);
+    }
+
     @media (width <= 768px) {
       font-size: rem(11);
       line-height: rem(13);
