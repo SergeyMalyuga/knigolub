@@ -1,5 +1,6 @@
-import { Component, signal } from '@angular/core';
+import {Component, inject, OnInit, signal} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import {BookService} from './core/services/book.service';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,10 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
-export class App {
-  protected readonly title = signal('client');
+export class App implements OnInit {
+  private bookService = inject(BookService);
+
+  ngOnInit(): void {
+    this.bookService.getBooks().subscribe(books => console.log(books));
+  }
 }
