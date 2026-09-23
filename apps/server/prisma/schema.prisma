@@ -1,0 +1,25 @@
+generator client {
+  provider = "server-client"
+  output   = "../generated/server"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model book {
+  id          Int      @id @default(autoincrement())
+  title       String   @db.VarChar(255)
+  author      String   @db.VarChar(255)
+  coverUrl    String?  @db.VarChar(500)
+  publishYear Int?
+  pageCount   Int?
+  genres      Json?
+  description String?  @db.Text
+  externalId  String?  @db.VarChar(100)
+  createdAt   DateTime @default(now()) @db.Timestamp(0)
+  updatedAt   DateTime @default(now()) @db.Timestamp(0)
+
+  @@index([author], map: "idx_author")
+  @@index([title], map: "idx_title")
+}

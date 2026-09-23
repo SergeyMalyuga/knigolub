@@ -7,7 +7,7 @@ export interface Book {
   externalId?: string;
   genres: string[];
   pageCount?: number;
-  publishYear?: string;
+  publishYear?: number;
   title: string;
   updatedAt: string;
 }

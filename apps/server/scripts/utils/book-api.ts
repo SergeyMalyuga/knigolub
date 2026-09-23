@@ -1,6 +1,6 @@
 import {OPEN_LIBRARY_URL, OPEN_LIBRARY_COVERS_URL} from '../../constants/const.js'
 
-export async function searchBooks(query, limit = 20) {
+export async function searchBooks(query: string, limit = 20) {
     try {
         const url = new URL(OPEN_LIBRARY_URL);
 
@@ -17,11 +17,11 @@ export async function searchBooks(query, limit = 20) {
         const data = await response.json();
         return data.docs || [];
     } catch (error) {
-        console.error(`❌ Ошибка при поиске "${query}":`, error.message);
+        console.error(`❌ Ошибка при поиске "${query}":`, error);
         return [];
     }
 }
 
-export function getCoverUrl(coverId) {
+export function getCoverUrl(coverId: number) {
     return `${OPEN_LIBRARY_COVERS_URL}/${coverId}-L.jpg`;
 }
