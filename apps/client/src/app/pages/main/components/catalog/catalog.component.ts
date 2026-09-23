@@ -39,7 +39,11 @@ export class CatalogComponent {
     return this.currentView() === view
   }
 
-  public changeCategory(category: CategoryType) {
+  public selectCategory(category: CategoryType) {
     this.currentCategory.set(category);
+  }
+
+  public selectView(view: View) {
+    this.currentView.set(view);
   }
 }

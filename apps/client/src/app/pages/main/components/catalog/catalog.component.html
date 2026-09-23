@@ -8,7 +8,7 @@
       @for (category of categories; track category) {
         <li>
           <button type="button"
-                  (click)="changeCategory(category)"
+                  (click)="selectCategory(category)"
                   [ngClass]="{
                   'catalog__button': true,
                   'catalog__button--category': true,
@@ -32,6 +32,7 @@
         @for (view of views; track view) {
           <li>
             <button
+              (click)="selectView(view)"
               [ngClass]= "{
               'catalog__button': true,
               'catalog__button--view': true,

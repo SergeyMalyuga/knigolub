@@ -147,6 +147,7 @@
 
     &--view {
       display: flex;
+      justify-content: center;
       align-items: center;
       gap: 8px;
       padding: rem(10) rem(18);
@@ -193,13 +194,12 @@
     }
 
     &--active {
-      display: block;
       background-color: variables.$bg-color-accent;
       border-color: variables.$rich-black;
       color: variables.$text-light-color;
 
       &::before {
-        content: none;
+        background-color: white;
       }
 
       &:hover {
