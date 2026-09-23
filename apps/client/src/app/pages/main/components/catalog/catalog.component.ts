@@ -15,6 +15,7 @@ import {ViewKey} from '../../../../core/types/view-key';
 })
 export class CatalogComponent {
   protected readonly Section = Section;
+  protected readonly View = View;
 
   public currentCategory = signal<CategoryType>(CategoryType.ALL);
   public currentView = signal<View>(View.GRID);
@@ -38,5 +39,7 @@ export class CatalogComponent {
     return this.currentView() === view
   }
 
-  protected readonly View = View;
+  public changeCategory(category: CategoryType) {
+    this.currentCategory.set(category);
+  }
 }

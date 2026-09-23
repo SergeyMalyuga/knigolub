@@ -8,6 +8,7 @@
       @for (category of categories; track category) {
         <li>
           <button type="button"
+                  (click)="changeCategory(category)"
                   [ngClass]="{
                   'catalog__button': true,
                   'catalog__button--category': true,
