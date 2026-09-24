@@ -1,25 +1,28 @@
 generator client {
-  provider = "server-client"
-  output   = "../generated/server"
+  provider = "prisma-client"
+  output   = "../generated/prisma"
 }
 
 datasource db {
   provider = "mysql"
 }
 
-model book {
-  id          Int      @id @default(autoincrement())
-  title       String   @db.VarChar(255)
-  author      String   @db.VarChar(255)
-  coverUrl    String?  @db.VarChar(500)
-  publishYear Int?
+model Book {
+  id          String   @id @default(uuid())
+  googleId    String?  @unique // ID книги из Google Books API
+  title       String
+  authors     Json // Массив авторов
+  description String?  // Описание/аннотация
+  thumbnail   String?  // Ссылка на обложку
+  isbn10      String?  @unique
+  isbn13      String?  @unique
+  publisher   String?
+  publishedAt DateTime?
   pageCount   Int?
-  genres      Json?
-  description String?  @db.Text
-  externalId  String?  @db.VarChar(100)
-  createdAt   DateTime @default(now()) @db.Timestamp(0)
-  updatedAt   DateTime @default(now()) @db.Timestamp(0)
+  language    String?  @default("ru")
+  categories  Json // Жанры/категории
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
-  @@index([author], map: "idx_author")
-  @@index([title], map: "idx_title")
+  @@index([title])
 }
