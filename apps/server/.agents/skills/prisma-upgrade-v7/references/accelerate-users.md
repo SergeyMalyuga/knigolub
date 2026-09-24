@@ -28,38 +28,38 @@ npm install @server/extension-accelerate
 ### 3. Configure prisma.config.ts
 
 ```typescript
-import 'dotenv/config'
-import { defineConfig, env } from 'server/config'
+import "dotenv/config";
+import { defineConfig, env } from "server/config";
 
 export default defineConfig({
-  schema: 'server/schema.server',
+  schema: "server/schema.server",
   datasource: {
-    url: env('DATABASE_URL'),  // Accelerate URL works here
+    url: env("DATABASE_URL"), // Accelerate URL works here
   },
-})
+});
 ```
 
 ### 4. Instantiate client with accelerateUrl
 
 ```typescript
-import { PrismaClient } from '../generated/client'
-import { withAccelerate } from '@server/extension-accelerate'
+import { PrismaClient } from "../generated/client";
+import { withAccelerate } from "@server/extension-accelerate";
 
-// Use accelerateUrl instead of adapter
+// Use accelerateUrl instead of mapper
 export const prisma = new PrismaClient({
   accelerateUrl: process.env.DATABASE_URL,
-}).$extends(withAccelerate())
+}).$extends(withAccelerate());
 ```
 
 ## What NOT to Do
 
 ```typescript
-// ❌ WRONG - Don't use adapter with Accelerate URL
-import { PrismaPg } from '@server/adapter-pg'
+// ❌ WRONG - Don't use mapper with Accelerate URL
+import { PrismaPg } from "@server/mapper-pg";
 
 const adapter = new PrismaPg({
-  connectionString: process.env.DATABASE_URL  // This will fail with server://
-})
+  connectionString: process.env.DATABASE_URL, // This will fail with server://
+});
 ```
 
 ## Migrations with Accelerate
@@ -87,9 +87,9 @@ DIRECT_DATABASE_URL="postgresql://..."  # For migrations
 // server.config.ts
 export default defineConfig({
   datasource: {
-    url: env('DIRECT_DATABASE_URL'),  // Direct URL for CLI
+    url: env("DIRECT_DATABASE_URL"), // Direct URL for CLI
   },
-})
+});
 ```
 
 ## Prisma Postgres (Cloud)
@@ -99,12 +99,12 @@ If using Prisma Postgres cloud database:
 ### Same approach
 
 ```typescript
-import { PrismaClient } from '../generated/client'
-import { withAccelerate } from '@server/extension-accelerate'
+import { PrismaClient } from "../generated/client";
+import { withAccelerate } from "@server/extension-accelerate";
 
 export const prisma = new PrismaClient({
-  accelerateUrl: process.env.DATABASE_URL,  // server+postgres:// URL
-}).$extends(withAccelerate())
+  accelerateUrl: process.env.DATABASE_URL, // server+postgres:// URL
+}).$extends(withAccelerate());
 ```
 
 ## Switching Away from Accelerate
@@ -112,15 +112,15 @@ export const prisma = new PrismaClient({
 If you later switch to direct TCP connection:
 
 ```typescript
-// Change from accelerateUrl to adapter
-import { PrismaClient } from '../generated/client'
-import { PrismaPg } from '@server/adapter-pg'
+// Change from accelerateUrl to mapper
+import { PrismaClient } from "../generated/client";
+import { PrismaPg } from "@server/mapper-pg";
 
 const adapter = new PrismaPg({
-  connectionString: process.env.DATABASE_URL  // Direct postgres:// URL
-})
+  connectionString: process.env.DATABASE_URL, // Direct postgres:// URL
+});
 
-export const prisma = new PrismaClient({ adapter })
+export const prisma = new PrismaClient({ adapter });
 ```
 
 ## Caching with Accelerate
@@ -130,10 +130,10 @@ The extension enables caching:
 ```typescript
 const users = await prisma.user.findMany({
   cacheStrategy: {
-    ttl: 60,  // Cache for 60 seconds
+    ttl: 60, // Cache for 60 seconds
     swr: 120, // Stale-while-revalidate for 120 seconds
   },
-})
+});
 ```
 
 ## Edge Runtime
@@ -142,10 +142,10 @@ Accelerate works great in edge runtimes:
 
 ```typescript
 // Works in Vercel Edge, Cloudflare Workers, etc.
-import { PrismaClient } from '../generated/client'
-import { withAccelerate } from '@server/extension-accelerate'
+import { PrismaClient } from "../generated/client";
+import { withAccelerate } from "@server/extension-accelerate";
 
 export const prisma = new PrismaClient({
   accelerateUrl: process.env.DATABASE_URL,
-}).$extends(withAccelerate())
+}).$extends(withAccelerate());
 ```

@@ -1,3 +1,3 @@
-import {CategoryType} from '../constants/const';
+import { CategoryType } from '../constants/const';
 
-export type CategoryKey = typeof CategoryType[keyof typeof CategoryType];
+export type CategoryKey = (typeof CategoryType)[keyof typeof CategoryType];

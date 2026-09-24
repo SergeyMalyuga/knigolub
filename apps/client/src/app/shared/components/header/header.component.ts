@@ -1,15 +1,19 @@
-import {ChangeDetectionStrategy, Component, computed, effect, inject, signal} from '@angular/core';
-import {RouterLink} from '@angular/router';
-import {AppRoute, Section} from '../../../core/constants/const';
-import {NgClass} from '@angular/common';
-import {BreakpointService} from '../../../core/services/breakpoint.service';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { AppRoute, Section } from '../../../core/constants/const';
+import { NgClass } from '@angular/common';
+import { BreakpointService } from '../../../core/services/breakpoint.service';
 
 @Component({
   selector: 'app-header',
-  imports: [
-    RouterLink,
-    NgClass
-  ],
+  imports: [RouterLink, NgClass],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -28,9 +32,9 @@ export class HeaderComponent {
     effect(() => {
       const miniMobile = this.breakpointService.isMiniMobile();
       if (miniMobile) {
-        this.isMenuOpen.set(false)
+        this.isMenuOpen.set(false);
       } else {
-        this.isMenuOpen.set(true)
+        this.isMenuOpen.set(true);
       }
     });
   }

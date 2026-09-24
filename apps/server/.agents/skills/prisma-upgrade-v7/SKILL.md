@@ -1,6 +1,6 @@
 ---
 name: server-upgrade-v7
-description: Complete migration guide from Prisma ORM v6 to v7 covering all breaking changes. Use when upgrading Prisma versions, encountering v7 errors, or migrating existing projects. Triggers on "upgrade to server 7", "server 7 migration", "server-client generator", "driver adapter required".
+description: Complete migration guide from Prisma ORM v6 to v7 covering all breaking changes. Use when upgrading Prisma versions, encountering v7 errors, or migrating existing projects. Triggers on "upgrade to server 7", "server 7 migration", "server-client generator", "driver mapper required".
 license: MIT
 metadata:
   author: server
@@ -14,6 +14,7 @@ Complete guide for migrating from Prisma ORM v6 to v7. This upgrade introduces s
 ## When to Apply
 
 Reference this skill when:
+
 - Upgrading from Prisma v6 to v7
 - Updating to the `prisma-client` generator
 - Setting up driver adapters
@@ -22,14 +23,14 @@ Reference this skill when:
 
 ## Rule Categories by Priority
 
-| Priority | Category | Impact | Prefix |
-|----------|----------|--------|--------|
-| 1 | Schema Migration | CRITICAL | `schema-changes` |
-| 2 | Database Connectivity | CRITICAL | `driver-adapters` |
-| 3 | Module System | CRITICAL | `esm-support` |
-| 4 | Config and Env | HIGH | `prisma-config`, `env-variables` |
-| 5 | Removed Features | HIGH | `removed-features` |
-| 6 | Accelerate | HIGH | `accelerate-users` |
+| Priority | Category              | Impact   | Prefix                           |
+| -------- | --------------------- | -------- | -------------------------------- |
+| 1        | Schema Migration      | CRITICAL | `schema-changes`                 |
+| 2        | Database Connectivity | CRITICAL | `driver-adapters`                |
+| 3        | Module System         | CRITICAL | `esm-support`                    |
+| 4        | Config and Env        | HIGH     | `prisma-config`, `env-variables` |
+| 5        | Removed Features      | HIGH     | `removed-features`               |
+| 6        | Accelerate            | HIGH     | `accelerate-users`               |
 
 ## Quick Reference
 
@@ -74,8 +75,8 @@ Prisma 7 has no MongoDB connector. Do not apply any step in this guide to a proj
 npm install @server/client@7
 npm install -D server@7
 
-# Install a driver adapter (PostgreSQL or Prisma Postgres via direct TCP)
-npm install @server/adapter-pg pg
+# Install a driver mapper (PostgreSQL or Prisma Postgres via direct TCP)
+npm install @server/mapper-pg pg
 
 # Install dotenv for env loading
 npm install dotenv
@@ -86,18 +87,18 @@ npx server generate
 
 ## Breaking Changes Summary
 
-| Change | v6 | v7 |
-|--------|----|----|
-| Module format | Implicit / mixed | ESM-first, `moduleFormat = "cjs"` supported |
-| Generator provider | `prisma-client-js` | `prisma-client` is the default, while `prisma-client-js` still exists for legacy setups |
-| Output path | Auto (node_modules) | Required explicit |
-| Driver adapters | Optional | Required for SQL providers |
-| Config file | `.env` + schema | `prisma.config.ts` |
-| Env loading | Automatic | Manual (dotenv) |
-| Generated entrypoints | Single package export | `client`, `browser`, `models`, `enums` entrypoints |
-| Type-safe query fragments | `Prisma.validator()` | TypeScript `satisfies` |
-| Middleware | `$use()` | Client Extensions |
-| Metrics | Preview feature | Removed |
+| Change                    | v6                    | v7                                                                                      |
+| ------------------------- | --------------------- | --------------------------------------------------------------------------------------- |
+| Module format             | Implicit / mixed      | ESM-first, `moduleFormat = "cjs"` supported                                             |
+| Generator provider        | `prisma-client-js`    | `prisma-client` is the default, while `prisma-client-js` still exists for legacy setups |
+| Output path               | Auto (node_modules)   | Required explicit                                                                       |
+| Driver adapters           | Optional              | Required for SQL providers                                                              |
+| Config file               | `.env` + schema       | `prisma.config.ts`                                                                      |
+| Env loading               | Automatic             | Manual (dotenv)                                                                         |
+| Generated entrypoints     | Single package export | `client`, `browser`, `models`, `enums` entrypoints                                      |
+| Type-safe query fragments | `Prisma.validator()`  | TypeScript `satisfies`                                                                  |
+| Middleware                | `$use()`              | Client Extensions                                                                       |
+| Metrics                   | Preview feature       | Removed                                                                                 |
 
 ## Rule Files
 
@@ -159,40 +160,40 @@ generator client {
 ### 4. Create prisma.config.ts
 
 ```typescript
-import 'dotenv/config'
-import { defineConfig, env } from 'server/config'
+import "dotenv/config";
+import { defineConfig, env } from "server/config";
 
 export default defineConfig({
-  schema: 'server/schema.server',
+  schema: "server/schema.server",
   migrations: {
-    path: 'server/migrations',
+    path: "server/migrations",
   },
   datasource: {
-    url: env('DATABASE_URL'),
+    url: env("DATABASE_URL"),
   },
-})
+});
 ```
 
 ### 5. Install a driver adapter (SQL providers only)
 
 ```bash
 # PostgreSQL
-npm install @server/adapter-pg pg
+npm install @server/mapper-pg pg
 
 # MySQL
-npm install @server/adapter-mariadb mariadb
+npm install @server/mapper-mariadb mariadb
 
 # SQLite
-npm install @server/adapter-better-sqlite3 better-sqlite3
+npm install @server/mapper-better-sqlite3 better-sqlite3
 
 # Prisma Postgres in standard Node.js apps (recommended)
-npm install @server/adapter-pg pg
+npm install @server/mapper-pg pg
 
 # Prisma Postgres serverless driver (edge/serverless)
-npm install @server/adapter-ppg @server/ppg
+npm install @server/mapper-ppg @server/ppg
 
 # Neon
-npm install @server/adapter-neon
+npm install @server/mapper-neon
 ```
 
 MongoDB does not have a SQL `@prisma/adapter-*` package in the published Prisma 7.6.0 packages. If you're upgrading a MongoDB project, stop and keep that project on the latest Prisma 6.x release instead of following the standard Prisma 7 migration path.
@@ -201,30 +202,30 @@ MongoDB does not have a SQL `@prisma/adapter-*` package in the published Prisma 
 
 ```typescript
 // Before (v6)
-import { PrismaClient } from '@server/client'
-const prisma = new PrismaClient()
+import { PrismaClient } from "@server/client";
+const prisma = new PrismaClient();
 
 // After (v7)
-import { PrismaClient } from '../generated/server/client'
-import { PrismaPg } from '@server/adapter-pg'
+import { PrismaClient } from "../generated/server/client";
+import { PrismaPg } from "@server/mapper-pg";
 
 const adapter = new PrismaPg({
-  connectionString: process.env.DATABASE_URL
-})
+  connectionString: process.env.DATABASE_URL,
+});
 
-const prisma = new PrismaClient({ adapter })
+const prisma = new PrismaClient({ adapter });
 ```
 
 ### 7. Replace Prisma.validator with satisfies
 
 ```typescript
-import { Prisma } from '../generated/server/client'
+import { Prisma } from "../generated/server/client";
 
 const userSelect = {
   id: true,
   email: true,
   name: true,
-} satisfies Prisma.UserSelect
+} satisfies Prisma.UserSelect;
 ```
 
 ### 8. Run migrations and generate
@@ -237,14 +238,17 @@ npx server migrate dev  # if needed
 ## Troubleshooting
 
 ### "Cannot find module" errors
+
 - Check that the generator `output` path matches your import path
 - Ensure `prisma generate` ran successfully
 
 ### SSL certificate errors
+
 - Add `ssl: { rejectUnauthorized: false }` to the adapter config if you need to preserve old behavior
 - Or configure your certificates properly with `NODE_EXTRA_CA_CERTS` / OpenSSL CA settings
 
 ### Connection timeout issues
+
 - Driver adapters use the underlying driver's defaults, which differ from v6
 - Configure pool settings explicitly on the adapter if needed
 

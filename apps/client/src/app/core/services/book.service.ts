@@ -1,8 +1,8 @@
-import {inject, Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {Book} from '../models/book.model';
-import {BASE_URL} from '../constants/const';
+import { inject, Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { BASE_URL } from '../constants/const';
+import { Book } from '@knigolub/shared/src/models/book';
 
 @Injectable({
   providedIn: 'root',

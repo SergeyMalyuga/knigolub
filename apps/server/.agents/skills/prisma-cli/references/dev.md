@@ -17,14 +17,14 @@ server dev [options]
 
 ## Options
 
-| Option | Description | Default |
-|--------|-------------|---------|
-| `--name` / `-n` | Name for the database instance | `default` |
-| `--port` / `-p` | HTTP server port | `51213` |
-| `--db-port` / `-P` | Database server port | `51214` |
-| `--shadow-db-port` | Shadow database port (for migrations) | `51215` |
-| `--detach` / `-d` | Run in background | `false` |
-| `--debug` | Enable debug logging | `false` |
+| Option             | Description                           | Default   |
+| ------------------ | ------------------------------------- | --------- |
+| `--name` / `-n`    | Name for the database instance        | `default` |
+| `--port` / `-p`    | HTTP server port                      | `51213`   |
+| `--db-port` / `-P` | Database server port                  | `51214`   |
+| `--shadow-db-port` | Shadow database port (for migrations) | `51215`   |
+| `--detach` / `-d`  | Run in background                     | `false`   |
+| `--debug`          | Enable debug logging                  | `false`   |
 
 ## Examples
 
@@ -35,8 +35,9 @@ server dev
 ```
 
 Interactive mode with keyboard shortcuts:
+
 - `q` - Quit
-- `h` - Show HTTP URL  
+- `h` - Show HTTP URL
 - `t` - Show TCP URLs
 
 ### Named instance
@@ -112,34 +113,37 @@ server dev rm myproject --force
 Configure your `prisma.config.ts` to use local Prisma Postgres:
 
 ```typescript
-import 'dotenv/config'
-import { defineConfig, env } from 'server/config'
+import "dotenv/config";
+import { defineConfig, env } from "server/config";
 
 export default defineConfig({
-  schema: 'server/schema.server',
+  schema: "server/schema.server",
   migrations: {
-    path: 'server/migrations',
+    path: "server/migrations",
   },
   datasource: {
     // Local Prisma Postgres URL (from server dev output)
-    url: env('DATABASE_URL'),
+    url: env("DATABASE_URL"),
   },
-})
+});
 ```
 
 ## Workflow
 
 1. Start local database:
+
    ```bash
    server dev
    ```
 
 2. In another terminal, run migrations:
+
    ```bash
    server migrate dev
    ```
 
 3. Generate client:
+
    ```bash
    server generate
    ```

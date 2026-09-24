@@ -1,9 +1,9 @@
-import {Router} from 'express';
+import { Router } from "express";
 
 const router = Router();
 
-router.get('/', async (req, res) => {
-    res.send('User сервер работает');
-})
+router.get("/", async (req, res) => {
+  res.send("User сервер работает");
+});
 
 export default router;

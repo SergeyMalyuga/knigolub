@@ -7,7 +7,7 @@
     "start": "tsx index.ts",
     "dev": "nodemon --exec tsx index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "seed:books": "tsx scripts/seed-books.ts"
+    "seed:books": "tsx scripts/seed-books-google.ts"
   },
   "keywords": [],
   "author": "",
@@ -25,8 +25,10 @@
   "dependencies": {
     "@prisma/adapter-mariadb": "^7.10.0",
     "@prisma/client": "^7.10.0",
+    "axios": "^1.20.0",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "@knigolub/shared": "*"
   }
 }

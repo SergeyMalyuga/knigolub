@@ -1,4 +1,4 @@
-@use "../../../../../styles/functions" as *;
+@use '../../../../../styles/functions' as *;
 @use '../../../../../styles/mixins' as mixins;
 @use '../../../../../styles/variables' as variables;
 
@@ -141,7 +141,8 @@
         $text-color: variables.$text-light-color,
         $background: variables.$bg-color-accent,
         $width: 199px,
-        $padding: 16)
+        $padding: 16
+      );
     }
 
     &--login {
@@ -149,11 +150,13 @@
         $text-color: variables.$rich-black,
         $background: variables.$bg-color-main,
         $width: 245px,
-        $padding: 16)
+        $padding: 16
+      );
     }
 
     @media (width <= 455px) {
-      &--catalog, &--login {
+      &--catalog,
+      &--login {
         max-width: 250px;
         width: 100%;
         align-self: center;

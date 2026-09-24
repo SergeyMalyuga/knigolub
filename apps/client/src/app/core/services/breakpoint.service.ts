@@ -1,9 +1,9 @@
-import {DOCUMENT, inject, Injectable, PLATFORM_ID, signal, WritableSignal} from '@angular/core';
-import {isPlatformBrowser} from '@angular/common';
-import {BREAKPOINTS} from '../constants/const';
+import { DOCUMENT, inject, Injectable, PLATFORM_ID, signal, WritableSignal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { BREAKPOINTS } from '../constants/const';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BreakpointService {
   private document = inject(DOCUMENT);
@@ -17,15 +17,14 @@ export class BreakpointService {
   public readonly isMobile = signal<boolean>(false);
   public readonly isMiniMobile = signal<boolean>(false);
 
-
   public constructor() {
     if (isPlatformBrowser(this.platformId)) {
       this.tabletQuery = this.document.defaultView?.matchMedia(BREAKPOINTS.TABLET);
       this.mobileQuery = this.document.defaultView?.matchMedia(BREAKPOINTS.MOBILE);
       this.miniMobileQuery = this.document.defaultView?.matchMedia(BREAKPOINTS.MINI_MOBILE);
-        this.listen(this.tabletQuery, this.isTablet);
-        this.listen(this.mobileQuery, this.isMobile);
-        this.listen(this.miniMobileQuery, this.isMiniMobile);
+      this.listen(this.tabletQuery, this.isTablet);
+      this.listen(this.mobileQuery, this.isMobile);
+      this.listen(this.miniMobileQuery, this.isMiniMobile);
     }
   }
 

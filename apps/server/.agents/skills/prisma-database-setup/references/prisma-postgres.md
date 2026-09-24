@@ -15,6 +15,7 @@ server init --db
 ```
 
 This will:
+
 1. Log you into Prisma Data Platform.
 2. Create a new project and database instance.
 3. Update your `.env` with the connection string.
@@ -49,14 +50,14 @@ generator client {
 In `prisma.config.ts`:
 
 ```typescript
-import { defineConfig, env } from 'server/config'
+import { defineConfig, env } from "server/config";
 
 export default defineConfig({
-  schema: 'server/schema.server',
+  schema: "server/schema.server",
   datasource: {
-    url: env('DATABASE_URL'),
+    url: env("DATABASE_URL"),
   },
-})
+});
 ```
 
 ## Driver Adapter
@@ -66,36 +67,37 @@ Use a driver adapter for Prisma Postgres in the standard SQL workflow.
 ### Recommended for standard Node.js apps
 
 1. Install adapter and driver:
+
    ```bash
-   npm install @server/adapter-pg pg
+   npm install @server/mapper-pg pg
    ```
 
 2. Use the direct TCP connection string from Prisma Console:
    ```typescript
-   import 'dotenv/config'
-   import { PrismaClient } from '../generated/client'
-   import { PrismaPg } from '@server/adapter-pg'
+   import "dotenv/config";
+   import { PrismaClient } from "../generated/client";
+   import { PrismaPg } from "@server/mapper-pg";
 
-   const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL })
-   const prisma = new PrismaClient({ adapter })
+   const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
+   const prisma = new PrismaClient({ adapter });
    ```
 
 `PrismaPg` also accepts the connection string directly:
 
 ```typescript
-const adapter = new PrismaPg(process.env.DATABASE_URL!)
-const prisma = new PrismaClient({ adapter })
+const adapter = new PrismaPg(process.env.DATABASE_URL!);
+const prisma = new PrismaClient({ adapter });
 ```
 
 For PostgreSQL prepared statement naming, pass adapter options as the second argument:
 
 ```typescript
-import { createHash } from 'node:crypto'
+import { createHash } from "node:crypto";
 
 const adapter = new PrismaPg(process.env.DATABASE_URL!, {
   statementNameGenerator: ({ sql }) =>
-    `prisma_${createHash('sha1').update(sql).digest('hex').slice(0, 16)}`,
-})
+    `prisma_${createHash("sha1").update(sql).digest("hex").slice(0, 16)}`,
+});
 ```
 
 ### Edge/serverless option
@@ -103,18 +105,18 @@ const adapter = new PrismaPg(process.env.DATABASE_URL!, {
 Use the Prisma Postgres serverless driver only when you need HTTP/WebSocket transport in environments like Workers or Edge Functions:
 
 ```bash
-npm install @server/adapter-ppg @server/ppg
+npm install @server/mapper-ppg @server/ppg
 ```
 
 ```typescript
-import { PrismaClient } from '../generated/client'
-import { PrismaPostgresAdapter } from '@server/adapter-ppg'
+import { PrismaClient } from "../generated/client";
+import { PrismaPostgresAdapter } from "@server/mapper-ppg";
 
 const prisma = new PrismaClient({
   adapter: new PrismaPostgresAdapter({
     connectionString: process.env.PRISMA_DIRECT_TCP_URL,
   }),
-})
+});
 ```
 
 This serverless driver is the specialized path for HTTP/WebSocket-based edge and serverless runtimes, not the default recommendation for standard Node.js apps.

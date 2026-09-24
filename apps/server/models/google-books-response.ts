@@ -1,6 +1,6 @@
-import type {GoogleBookItem} from "models/google-book-item";
+import type { GoogleBookItem } from "models/google-book-item";
 
 export interface GoogleBooksResponse {
-    items?: GoogleBookItem[];
-    totalItems: number;
+  items?: GoogleBookItem[];
+  totalItems: number;
 }

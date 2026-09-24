@@ -1,4 +1,4 @@
-<section id="{{Section.CATALOG}}" class="catalog">
+<section id="{{ Section.CATALOG }}" class="catalog">
   <div class="catalog__top container">
     <div class="catalog__wrapper-top">
       <h2 class="catalog__title catalog__title--top">Что читаем сейчас</h2>
@@ -7,14 +7,16 @@
     <ul class="catalog__books-categories">
       @for (category of categories; track category) {
         <li>
-          <button type="button"
-                  (click)="selectCategory(category)"
-                  [ngClass]="{
-                  'catalog__button': true,
-                  'catalog__button--category': true,
-                  'catalog__button--active': isActiveCategory(category)
-                  }"
-          >{{ getCategoryLabel(category) }}
+          <button
+            type="button"
+            (click)="selectCategory(category)"
+            [ngClass]="{
+              catalog__button: true,
+              'catalog__button--category': true,
+              'catalog__button--active': isActiveCategory(category),
+            }"
+          >
+            {{ getCategoryLabel(category) }}
           </button>
         </li>
       }
@@ -33,15 +35,18 @@
           <li>
             <button
               (click)="selectView(view)"
-              [ngClass]= "{
-              'catalog__button': true,
-              'catalog__button--view': true,
-              'catalog__button--grid': view === View.GRID,
-              'catalog__button--list': view === View.LIST,
-              'catalog__button--slider': view === View.SLIDER,
-              'catalog__button--active': isActiveView(view)
+              [ngClass]="{
+                catalog__button: true,
+                'catalog__button--view': true,
+                'catalog__button--grid': view === View.GRID,
+                'catalog__button--list': view === View.LIST,
+                'catalog__button--slider': view === View.SLIDER,
+                'catalog__button--active': isActiveView(view),
               }"
-                      type="button">{{getViewLabel(view)}}</button>
+              type="button"
+            >
+              {{ getViewLabel(view) }}
+            </button>
           </li>
         }
       </ul>

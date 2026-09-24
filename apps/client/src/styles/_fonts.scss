@@ -1,7 +1,8 @@
 @font-face {
   font-family: Inter;
-  src: url('/assets/fonts/inter-regular.woff2') format('woff2'),
-  url('/assets/fonts/inter-regular.woff') format('woff');
+  src:
+    url('/assets/fonts/inter-regular.woff2') format('woff2'),
+    url('/assets/fonts/inter-regular.woff') format('woff');
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -9,8 +10,9 @@
 
 @font-face {
   font-family: Inter;
-  src: url('/assets/fonts/inter-medium.woff2') format('woff2'),
-  url('/assets/fonts/inter-medium.woff') format('woff');
+  src:
+    url('/assets/fonts/inter-medium.woff2') format('woff2'),
+    url('/assets/fonts/inter-medium.woff') format('woff');
   font-style: normal;
   font-weight: 500;
   font-display: swap;
@@ -18,8 +20,9 @@
 
 @font-face {
   font-family: Inter;
-  src: url('/assets/fonts/inter-semi-bold.woff2') format('woff2'),
-  url('/assets/fonts/inter-semi-bold.woff') format('woff');
+  src:
+    url('/assets/fonts/inter-semi-bold.woff2') format('woff2'),
+    url('/assets/fonts/inter-semi-bold.woff') format('woff');
   font-style: normal;
   font-weight: 600;
   font-display: swap;
@@ -27,8 +30,9 @@
 
 @font-face {
   font-family: 'Playfair Display';
-  src: url('/assets/fonts/playfair-display-regular.woff2') format('woff2'),
-  url('/assets/fonts/playfair-display-regular.woff') format('woff');
+  src:
+    url('/assets/fonts/playfair-display-regular.woff2') format('woff2'),
+    url('/assets/fonts/playfair-display-regular.woff') format('woff');
   font-style: normal;
   font-weight: 400;
   font-display: swap;

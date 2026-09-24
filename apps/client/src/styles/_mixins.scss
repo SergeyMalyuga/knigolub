@@ -2,11 +2,7 @@
 @use 'sass:color';
 @use './functions' as *;
 
-@mixin focus-ring(
-  $color: variables.$rich-black,
-  $width: 2px,
-  $offset: 5px
-) {
+@mixin focus-ring($color: variables.$rich-black, $width: 2px, $offset: 5px) {
   border-radius: 3px;
 
   &:focus {
@@ -34,19 +30,19 @@
 
   @if $background == variables.$bg-color-accent {
     &:hover {
-      background-color: color.scale($background, $lightness: 15%) ;
+      background-color: color.scale($background, $lightness: 15%);
     }
 
     &:active {
-      background-color: color.scale($background, $lightness: 30%) ;
+      background-color: color.scale($background, $lightness: 30%);
     }
   } @else {
     &:hover {
-      background-color: color.scale($background, $blackness: 15%) ;
+      background-color: color.scale($background, $blackness: 15%);
     }
 
     &:active {
-      background-color: color.scale($background, $blackness: 30%) ;
+      background-color: color.scale($background, $blackness: 30%);
     }
   }
 }

@@ -1,3 +1,3 @@
-import {View} from '../constants/const';
+import { View } from '../constants/const';
 
-export type ViewKey = typeof View[keyof typeof View];
+export type ViewKey = (typeof View)[keyof typeof View];

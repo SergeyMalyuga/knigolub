@@ -1,8 +1,8 @@
-import {CategoryKey} from '../types/category-key';
-import {ViewKey} from '../types/view-key';
+import { CategoryKey } from '../types/category-key';
+import { ViewKey } from '../types/view-key';
 
 export enum AppRoute {
-  MAIN = ''
+  MAIN = '',
 }
 
 export const BASE_URL = 'http://localhost:3000';
@@ -29,7 +29,7 @@ export enum CategoryType {
   DETECTIVES = 'detectives',
   CLASSIC = 'classic',
   POETRY = 'poetry',
-  CHILDREN = 'children'
+  CHILDREN = 'children',
 }
 
 export const CATEGORY_LABELS: Record<CategoryKey, string> = {
@@ -41,7 +41,7 @@ export const CATEGORY_LABELS: Record<CategoryKey, string> = {
   [CategoryType.CLASSIC]: 'Классика',
   [CategoryType.POETRY]: 'Поэзия',
   [CategoryType.CHILDREN]: 'Детям',
-}
+};
 
 export enum View {
   GRID = 'grid',
@@ -52,6 +52,5 @@ export enum View {
 export const VIEW_LABELS: Record<ViewKey, string> = {
   [View.GRID]: 'Сетка',
   [View.LIST]: 'Список',
-  [View.SLIDER]: 'Слайдер'
-}
-
+  [View.SLIDER]: 'Слайдер',
+};

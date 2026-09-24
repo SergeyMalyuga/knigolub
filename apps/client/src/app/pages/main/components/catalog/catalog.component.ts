@@ -1,14 +1,18 @@
-import {ChangeDetectionStrategy, Component, signal} from '@angular/core';
-import {CATEGORY_LABELS, CategoryType, Section, View, VIEW_LABELS} from '../../../../core/constants/const';
-import {CategoryKey} from '../../../../core/types/category-key';
-import {NgClass} from '@angular/common';
-import {ViewKey} from '../../../../core/types/view-key';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import {
+  CATEGORY_LABELS,
+  CategoryType,
+  Section,
+  View,
+  VIEW_LABELS,
+} from '../../../../core/constants/const';
+import { CategoryKey } from '../../../../core/types/category-key';
+import { NgClass } from '@angular/common';
+import { ViewKey } from '../../../../core/types/view-key';
 
 @Component({
   selector: 'app-catalog',
-  imports: [
-    NgClass
-  ],
+  imports: [NgClass],
   templateUrl: './catalog.component.html',
   styleUrl: './catalog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -28,7 +32,7 @@ export class CatalogComponent {
   }
 
   public getViewLabel(viewKey: ViewKey) {
-    return VIEW_LABELS[viewKey]
+    return VIEW_LABELS[viewKey];
   }
 
   public isActiveCategory(category: CategoryType) {
@@ -36,7 +40,7 @@ export class CatalogComponent {
   }
 
   public isActiveView(view: View) {
-    return this.currentView() === view
+    return this.currentView() === view;
   }
 
   public selectCategory(category: CategoryType) {
