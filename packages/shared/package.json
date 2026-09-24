@@ -1,0 +1,9 @@
+{
+  "name": "@knigolub/shared",
+  "version": "1.0.0",
+  "description": "Общие типы и DTO для клиента и сервера",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "type": "module",
+  "private": true
+}
