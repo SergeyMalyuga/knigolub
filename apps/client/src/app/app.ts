@@ -12,6 +12,6 @@ export class App implements OnInit {
   private bookService = inject(BookService);
 
   ngOnInit(): void {
-    this.bookService.getBooks().subscribe((books) => console.log(books));
+    this.bookService.getBooks(1).subscribe((books) => console.log(books));
   }
 }
