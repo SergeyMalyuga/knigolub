@@ -1,7 +1,7 @@
-import {Book} from "./book";
-import {PaginationMeta} from "./pagination-meta";
+import { Book } from "./book";
+import { PaginationMeta } from "./pagination-meta";
 
 export interface BookResponse {
-    books: Book[];
-    pagination: PaginationMeta;
+  books: Book[];
+  pagination: PaginationMeta;
 }

@@ -1,6 +1,6 @@
 import { CategoryKey } from '../types/category-key';
 import { ViewKey } from '../types/view-key';
-import {PaginationMeta} from '@knigolub/shared/src/models/pagination-meta';
+import { PaginationMeta } from '@knigolub/shared/src/models/pagination-meta';
 
 export enum AppRoute {
   MAIN = '',
@@ -64,4 +64,4 @@ export const DEFAULT_PAGINATION: PaginationMeta = {
   totalCount: 0,
   hasNextPage: false,
   hasPrevPage: false,
-}
+};
