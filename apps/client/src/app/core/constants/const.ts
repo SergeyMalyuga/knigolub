@@ -1,5 +1,6 @@
 import { CategoryKey } from '../types/category-key';
 import { ViewKey } from '../types/view-key';
+import {PaginationMeta} from '@knigolub/shared/src/models/pagination-meta';
 
 export enum AppRoute {
   MAIN = '',
@@ -54,3 +55,13 @@ export const VIEW_LABELS: Record<ViewKey, string> = {
   [View.LIST]: 'Список',
   [View.SLIDER]: 'Слайдер',
 };
+
+export const DEFAULT_PAGE = 1;
+
+export const DEFAULT_PAGINATION: PaginationMeta = {
+  currentPage: 1,
+  totalPages: 0,
+  totalCount: 0,
+  hasNextPage: false,
+  hasPrevPage: false,
+}

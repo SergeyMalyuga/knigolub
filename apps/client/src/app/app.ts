@@ -1,6 +1,9 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { BookService } from './core/services/book.service';
+import {Component, inject, OnInit} from '@angular/core';
+import {RouterOutlet} from '@angular/router';
+import {Store} from '@ngrx/store';
+import {AppState} from '../models/app.state';
+import {loadBooks} from '../store/book/actions/book.actions';
+import {DEFAULT_PAGE} from './core/constants/const';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +12,9 @@ import { BookService } from './core/services/book.service';
   styleUrl: './app.scss',
 })
 export class App implements OnInit {
-  private bookService = inject(BookService);
+  private store = inject(Store<AppState>);
 
   ngOnInit(): void {
-    this.bookService.getBooks(1).subscribe((books) => console.log(books));
+    this.store.dispatch(loadBooks({page: DEFAULT_PAGE}));
   }
 }
