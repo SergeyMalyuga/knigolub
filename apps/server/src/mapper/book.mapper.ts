@@ -1,4 +1,4 @@
-import type { Book as PrismaBook } from "../generated/prisma/client";
+import type { Book as PrismaBook } from "../../generated/prisma/client";
 import type { Book } from "@knigolub/shared/src/models/book";
 import { jsonToStringArray } from "../utils/json";
 

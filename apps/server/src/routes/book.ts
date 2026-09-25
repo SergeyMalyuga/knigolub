@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { prisma } from "../lib/prisma";
+import { prisma } from "../../lib/prisma";
 import { mapPrismaBookToShared } from "../mapper/book.mapper";
 
 const router = Router();
