@@ -11,5 +11,6 @@ export function mapPrismaBookToShared(book: PrismaBook): Book {
     description: book.description,
     thumbnail: book.thumbnail,
     pageCount: book.pageCount,
+    categories: jsonToStringArray(book.categories)
   };
 }

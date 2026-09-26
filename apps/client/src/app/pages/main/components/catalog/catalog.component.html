@@ -51,5 +51,13 @@
         }
       </ul>
     </div>
+    <ul>
+      @for (book of books(); track book.id) {
+        <li>
+          <app-book-card [book]="book"/>
+        </li>
+      }
+    </ul>
+
   </div>
 </section>
