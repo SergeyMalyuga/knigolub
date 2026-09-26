@@ -1,0 +1,8 @@
+@use '../../../../styles/functions' as *;
+@use '../../../../styles/variables' as variables;
+
+.card {
+  max-width: 314px;
+  width: 100%;
+  padding: rem(24) rem(20);
+}
