@@ -1,5 +1,5 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store';
-import { AppState } from '../../../models/app.state';
+import { AppState } from '../../../app/core/models/app.state';
 import { bookAdapter } from '../book.reducer';
 
 const selectBookState = createFeatureSelector<AppState['book']>('book');

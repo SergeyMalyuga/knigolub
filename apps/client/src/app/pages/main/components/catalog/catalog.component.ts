@@ -10,7 +10,7 @@ import {CategoryKey} from '../../../../core/types/category-key';
 import {NgClass} from '@angular/common';
 import {ViewKey} from '../../../../core/types/view-key';
 import {Store} from '@ngrx/store';
-import {AppState} from '../../../../../models/app.state';
+import {AppState} from '../../../../core/models/app.state';
 import {selectAllBooks, selectTotalCount} from '../../../../../store/book/selectors/book.selectors';
 import {BookCardComponent} from '../../../../shared/components/book-card/book-card.component';
 

@@ -12,6 +12,6 @@ export class BookService {
   private http = inject(HttpClient);
 
   public getBooks(page: number): Observable<BookResponse> {
-    return this.http.get<BookResponse>(`${BASE_URL}/books?page=${page}&limit=20`);
+    return this.http.get<BookResponse>(`${BASE_URL}/books?page=${page}&limit=8`);
   }
 }

@@ -11,7 +11,7 @@ const router = Router();
 router.get("/", async (req, res) => {
   try {
     const page = parseInt(req.query.page as string, 10) || 1;
-    const limit = parseInt(req.query.limit as string, 10) || 20;
+    const limit = parseInt(req.query.limit as string, 10) || 8;
     const skip = (page - 1) * limit;
 
     const [prismaBooks, totalCount] = await Promise.all([
