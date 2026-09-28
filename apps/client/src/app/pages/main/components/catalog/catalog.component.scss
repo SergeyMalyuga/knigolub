@@ -33,6 +33,18 @@
         gap: 6px;
       }
     }
+
+    &-content-top {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: rem(32);
+
+      @media (width <= 780px) {
+        flex-direction: column;
+        gap: 16px;
+        margin-bottom: rem(24);
+      }
+    }
   }
 
   &__title {
@@ -232,13 +244,13 @@
     }
 
     .container {
-      display: flex;
+/*      display: flex;
       justify-content: space-between;
 
       @media (width <= 780px) {
         flex-direction: column;
         gap: 16px;
-      }
+      }*/
     }
   }
 

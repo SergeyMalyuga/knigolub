@@ -24,18 +24,19 @@
   </div>
   <div class="catalog__content">
     <div class="container">
-      <div class="catalog__content-top">
-        <div class="catalog__wrapper-content-title">
-          <h2 class="catalog__title catalog__title--content">Каталог книг</h2>
-          <p class="catalog__subtitle">128 книг в открытых подборках сообщества</p>
+      <div class="catalog__wrapper-content-top">
+        <div class="catalog__content-top">
+          <div class="catalog__wrapper-content-title">
+            <h2 class="catalog__title catalog__title--content">Каталог книг</h2>
+            <p class="catalog__subtitle">128 книг в открытых подборках сообщества</p>
+          </div>
         </div>
-      </div>
-      <ul class="catalog__views">
-        @for (view of views; track view) {
-          <li>
-            <button
-              (click)="selectView(view)"
-              [ngClass]="{
+        <ul class="catalog__views">
+          @for (view of views; track view) {
+            <li>
+              <button
+                (click)="selectView(view)"
+                [ngClass]="{
                 catalog__button: true,
                 'catalog__button--view': true,
                 'catalog__button--grid': view === View.GRID,
@@ -43,21 +44,21 @@
                 'catalog__button--slider': view === View.SLIDER,
                 'catalog__button--active': isActiveView(view),
               }"
-              type="button"
-            >
-              {{ getViewLabel(view) }}
-            </button>
+                type="button"
+              >
+                {{ getViewLabel(view) }}
+              </button>
+            </li>
+          }
+        </ul>
+      </div>
+      <ul>
+        @for (book of books(); track book.id) {
+          <li>
+            <app-book-card [book]="book"/>
           </li>
         }
       </ul>
     </div>
-    <ul>
-      @for (book of books(); track book.id) {
-        <li>
-          <app-book-card [book]="book"/>
-        </li>
-      }
-    </ul>
-
   </div>
 </section>
