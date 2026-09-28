@@ -207,7 +207,7 @@ const users = await prisma.user.findMany({
 
 ## take & skip
 
-Pagination:
+PaginationService:
 
 ```typescript
 // First page

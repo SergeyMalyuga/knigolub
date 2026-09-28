@@ -28,7 +28,7 @@
         <div class="catalog__content-top">
           <div class="catalog__wrapper-content-title">
             <h2 class="catalog__title catalog__title--content">Каталог книг</h2>
-            <p class="catalog__subtitle">{{totalCount()}} книг в открытых подборках сообщества</p>
+            <p class="catalog__subtitle">{{ totalCount() }} книг в открытых подборках сообщества</p>
           </div>
         </div>
         <ul class="catalog__views">
@@ -59,6 +59,16 @@
           </li>
         }
       </ul>
+      <div class="catalog__books-contorls">
+        <p>Показано {{ shown() }} из {{ totalCount() }} книг</p>
+        @for (page of pages(); track page) {
+          @if (isPage(page)) {
+            <button type="button">{{page.value}}</button>
+          } @else {
+            <span> ... </span>
+          }
+        }
+      </div>
     </div>
   </div>
 </section>

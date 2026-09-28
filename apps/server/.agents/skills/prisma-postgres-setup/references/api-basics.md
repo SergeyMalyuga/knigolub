@@ -53,7 +53,7 @@ Every resource ID carries a type prefix:
 
 Always include the prefix when sending IDs in API requests.
 
-## Pagination
+## PaginationService
 
 Collection endpoints use cursor-based pagination:
 

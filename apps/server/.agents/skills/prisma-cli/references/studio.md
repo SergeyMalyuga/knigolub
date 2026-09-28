@@ -60,7 +60,7 @@ Useful for remote servers.
 ### View Records
 
 - See all records in table format
-- Pagination for large datasets
+- PaginationService for large datasets
 - Column sorting
 
 ### Filter Data
