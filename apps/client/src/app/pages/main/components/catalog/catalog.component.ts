@@ -11,7 +11,7 @@ import {NgClass} from '@angular/common';
 import {ViewKey} from '../../../../core/types/view-key';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../../../../models/app.state';
-import {selectAllBooks} from '../../../../../store/book/selectors/book.selectors';
+import {selectAllBooks, selectTotalCount} from '../../../../../store/book/selectors/book.selectors';
 import {BookCardComponent} from '../../../../shared/components/book-card/book-card.component';
 
 @Component({
@@ -30,6 +30,7 @@ export class CatalogComponent {
   public currentCategory = signal<CategoryType>(CategoryType.ALL);
   public currentView = signal<View>(View.GRID);
   public books = this.store.selectSignal(selectAllBooks);
+  public totalCount = this.store.selectSignal(selectTotalCount);
 
   public categories: CategoryKey[] = Object.values(CategoryType);
   public views: ViewKey[] = Object.values(View);
