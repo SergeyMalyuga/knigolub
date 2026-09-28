@@ -1,8 +1,16 @@
 <article class="card">
-  <img src="{{book.thumbnail}}" alt="{{book.title}}" loading="lazy"/>
+  <h2 class="visually-hidden">{{ book.title }}</h2>
+  <a class="card__link" href="#" aria-label="Открыть книгу {{ book.title }}">
+    <div class="card__preview">
+      <span class="card__preview-subtitle">Книголюб · {{ currentDate() }}</span>
+      <h3 class="card__preview-title" aria-hidden="true">{{ book.title }}</h3>
+      <span class="card__preview-subtitle">{{ book.authors.join(', ') }}</span>
+    </div>
+  </a>
   <div class="card__info">
-    <span>{{book.categories.join(', ')}}</span>
-    <h2>{{book.title}}</h2>
-    <span>{{book.authors.join(', ')}}</span>
+    <span>{{ book.categories.join(', ') }}</span>
+    <a class="card__link" href="#" aria-hidden="true" tabindex="-1">{{ book.title }}</a>
+    <span>{{ book.authors.join(', ') }}</span>
+    <a class="card__link" href="#">142 отзыва</a>
   </div>
 </article>

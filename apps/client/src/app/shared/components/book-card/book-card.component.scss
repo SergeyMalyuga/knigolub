@@ -2,7 +2,71 @@
 @use '../../../../styles/variables' as variables;
 
 .card {
+  display: flex;
+  flex-direction: column;
   max-width: 314px;
   width: 100%;
-  padding: rem(24) rem(20);
+  height: 100%;
+
+  &__link {
+    text-decoration: none;
+    color: variables.$earthy-taupe;
+  }
+
+  &__preview {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: rem(22) rem(16);
+    gap: 94.5px;
+    background-color: variables.$dark-olive-green;
+
+    &-subtitle {
+      font-size: rem(10);
+      font-weight: 500;
+      line-height: rem(12);
+      letter-spacing:rem(1.2);
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    &-title {
+      font-family: variables.$font-family-accent;
+      font-size: rem(24);
+      font-weight: 400;
+      line-height: 125%;
+      text-align: center;
+      width: 100%;
+      min-width: 0;
+      text-wrap: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  &__info {
+    background-color: variables.$bg-color-main;
+    padding: rem(18) rem(20) rem(20);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border: 1px solid variables.$gray-light;
+    border-top: none;
+    flex-grow: 1;
+  }
+
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05),
+  0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 8px 10px -6px rgba(0, 0, 0, 0.2);
+  }
+
+  @media (width <= 768px) {
+    max-width: 224px;
+  }
 }

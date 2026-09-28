@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, signal} from '@angular/core';
 import {Book} from '@knigolub/shared';
 
 @Component({
@@ -10,4 +10,6 @@ import {Book} from '@knigolub/shared';
 })
 export class BookCardComponent {
   @Input({required: true}) book!: Book;
+
+  public currentDate = signal<number>(new Date().getFullYear());
 }
