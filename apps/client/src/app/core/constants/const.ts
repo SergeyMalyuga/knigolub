@@ -64,4 +64,10 @@ export const DEFAULT_PAGINATION: PaginationMeta = {
   totalCount: 0,
   hasNextPage: false,
   hasPrevPage: false,
+  shown: 0
 };
+
+export enum PaginationType {
+  PAGE = 'page',
+  ELLIPSIS = 'ellipsis',
+}
