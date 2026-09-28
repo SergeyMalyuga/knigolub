@@ -4,4 +4,5 @@ export interface PaginationMeta {
   totalCount: number;
   hasNextPage: boolean;
   hasPrevPage: boolean;
+  shown: number;
 }
