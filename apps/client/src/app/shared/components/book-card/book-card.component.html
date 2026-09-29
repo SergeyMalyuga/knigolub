@@ -5,9 +5,18 @@
       <span class="card__preview-subtitle">Книголюб · {{ currentDate() }}</span>
       <h3 class="card__preview-title" aria-hidden="true">{{ book.title }}</h3>
       <span class="card__preview-subtitle">{{ book.authors.join(', ') }}</span>
-      <button class="card__button-favorite" type="button"></button>
     </div>
   </a>
+  <button
+    [ngClass]="{
+    'card__button': true,
+    'card__button--favorite': book.isFavorite
+    }"
+    class="card__button-favorite" type="button">
+    <svg width="24" height="24">
+      <use href="/assets/images/vector/heart.svg#heart"/>
+    </svg>
+  </button>
   <div class="card__info">
     <span>{{ book.categories.join(', ') }}</span>
     <a class="card__link" href="#" aria-hidden="true" tabindex="-1">{{ book.title }}</a>

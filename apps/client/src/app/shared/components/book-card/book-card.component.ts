@@ -1,9 +1,12 @@
 import {ChangeDetectionStrategy, Component, Input, signal} from '@angular/core';
 import {Book} from '@knigolub/shared';
+import {NgClass} from '@angular/common';
 
 @Component({
   selector: 'app-book-card',
-  imports: [],
+  imports: [
+    NgClass
+  ],
   templateUrl: './book-card.component.html',
   styleUrl: './book-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
