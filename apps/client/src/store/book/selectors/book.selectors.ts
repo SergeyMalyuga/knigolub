@@ -1,6 +1,6 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store';
-import { AppState } from '../../../app/core/models/app.state';
-import { bookAdapter } from '../book.reducer';
+import {AppState} from '../../../app/core/models/app.state';
+import {bookAdapter} from '../book.reducer';
 
 const selectBookState = createFeatureSelector<AppState['book']>('book');
 const bookSelectors = bookAdapter.getSelectors(selectBookState);
@@ -24,4 +24,14 @@ export const selectTotalPages = createSelector(
 export const selectCurrentPage = createSelector(
   selectBookState,
   state => state.pagination.currentPage
+)
+
+export const selectHasNextPage = createSelector(
+  selectBookState,
+  state => state.pagination.hasNextPage
+)
+
+export const selectHasPreviousPage = createSelector(
+  selectBookState,
+  state => state.pagination.hasPrevPage
 )
