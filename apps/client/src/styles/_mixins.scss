@@ -26,22 +26,22 @@
   line-height: rem(17);
   color: $text-color;
   text-align: center;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 
   @if $background == variables.$bg-color-accent {
-    &:hover {
+    &:hover:not(:disabled) {
       background-color: color.scale($background, $lightness: 15%);
     }
 
-    &:active {
+    &:active:not(:disabled) {
       background-color: color.scale($background, $lightness: 30%);
     }
   } @else {
-    &:hover {
+    &:hover:not(:disabled) {
       background-color: color.scale($background, $blackness: 15%);
     }
 
-    &:active {
+    &:active:not(:disabled) {
       background-color: color.scale($background, $blackness: 30%);
     }
   }
