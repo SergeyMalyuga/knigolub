@@ -7,4 +7,5 @@ export interface Book {
   thumbnail: string | null;
   pageCount: number | null;
   categories: string[];
+  isFavorite: boolean;
 }
