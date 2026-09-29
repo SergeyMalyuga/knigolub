@@ -8,21 +8,39 @@ datasource db {
 }
 
 model Book {
-  id          String   @id @default(uuid())
-  googleId    String?  @unique // ID книги из Google Books API
+  id          String     @id @default(uuid())
+  googleId    String?    @unique
   title       String
-  authors     Json // Массив авторов
-  description String?  // Описание/аннотация
-  thumbnail   String?  // Ссылка на обложку
-  isbn10      String?  @unique
-  isbn13      String?  @unique
+  authors     Json
+  description String?
+  thumbnail   String?
+  isbn10      String?    @unique
+  isbn13      String?    @unique
   publisher   String?
   publishedAt DateTime?
   pageCount   Int?
-  language    String?  @default("ru")
-  categories  Json // Жанры/категории
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  language    String?    @default("ru")
+  categories  Json
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  favorites   Favorite[]
 
   @@index([title])
+}
+
+model User {
+  id        String     @id @default(uuid())
+  email     String     @unique @db.VarChar(255)
+  password  String     @db.VarChar(255)
+  favorites Favorite[]
+}
+
+model Favorite {
+  userId String
+  bookId String
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  book Book @relation(fields: [bookId], references: [id], onDelete: Cascade)
+
+  @@id([userId, bookId])
 }
