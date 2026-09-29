@@ -3,6 +3,7 @@
   <nav class="pagination__nav" aria-label="Пагинация страниц с книгами">
     <button class="pagination__button pagination__button--actions pagination__button--prev"
             type="button"
+            (click)="changePageToPrev()"
             [disabled]="!hasPrevPage()"
             aria-label="Предыдущая страница"
     ></button>
@@ -20,6 +21,7 @@
     }
     <button class="pagination__button pagination__button--actions pagination__button--next"
             type="button"
+            (click)="changePageToNext()"
             [disabled]="!hasNextPage()"
             aria-label="Следующая страница"></button>
   </nav>

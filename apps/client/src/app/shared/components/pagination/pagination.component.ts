@@ -11,6 +11,7 @@ import {PaginationItem} from '../../../core/models/pagination-item';
 import {PaginationType} from '../../../core/constants/const';
 import {PaginationPage} from '../../../core/models/pagination-page';
 import {NgClass} from '@angular/common';
+import {loadBooks} from '../../../../store/book/actions/book.actions';
 
 @Component({
   selector: 'app-pagination',
@@ -61,6 +62,14 @@ export class PaginationComponent {
     console.log(items)
     return items;
   })
+
+  public changePageToNext() {
+    this.store.dispatch(loadBooks({page: this.currentPage() + 1}));
+  }
+
+  public changePageToPrev() {
+    this.store.dispatch(loadBooks({page: this.currentPage() - 1}));
+  }
 
   public isPage(item: PaginationItem): item is PaginationPage {
     return item.type === PaginationType.PAGE;
