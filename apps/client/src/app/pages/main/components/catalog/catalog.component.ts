@@ -32,11 +32,9 @@ export class CatalogComponent {
   protected readonly View = View;
 
   public currentCategory = signal<CategoryType>(CategoryType.ALL);
-  public currentView = signal<View>(View.GRID);
+  public viewMode = signal<View>(View.GRID);
   public books = this.store.selectSignal(selectAllBooks);
-  // public pagination = inject(PaginationService);
   public totalCount = this.store.selectSignal(selectTotalCount);
-  // public pages = this.pagination.pages;
   public shown = this.store.selectSignal(selectShown);
 
   public categories: CategoryKey[] = Object.values(CategoryType);
@@ -55,7 +53,7 @@ export class CatalogComponent {
   }
 
   public isActiveView(view: View) {
-    return this.currentView() === view;
+    return this.viewMode() === view;
   }
 
   public selectCategory(category: CategoryType) {
@@ -63,6 +61,6 @@ export class CatalogComponent {
   }
 
   public selectView(view: View) {
-    this.currentView.set(view);
+    this.viewMode.set(view);
   }
 }
