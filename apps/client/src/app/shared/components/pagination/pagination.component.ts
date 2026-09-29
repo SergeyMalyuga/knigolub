@@ -59,7 +59,6 @@ export class PaginationComponent {
     }
     items.push({type: PaginationType.PAGE, value: total});
 
-    console.log(items)
     return items;
   })
 
@@ -69,6 +68,10 @@ export class PaginationComponent {
 
   public changePageToPrev() {
     this.store.dispatch(loadBooks({page: this.currentPage() - 1}));
+  }
+
+  public changePage(page: number) {
+    this.store.dispatch(loadBooks({page}));
   }
 
   public isPage(item: PaginationItem): item is PaginationPage {

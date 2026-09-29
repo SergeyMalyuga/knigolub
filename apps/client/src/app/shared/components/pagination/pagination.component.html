@@ -7,13 +7,14 @@
             [disabled]="!hasPrevPage()"
             aria-label="Предыдущая страница"
     ></button>
-    @for (page of pages(); track page) {
+    @for (page of pages(); track $index) {
       @if (isPage(page)) {
         <button
           [ngClass]="{
           'pagination__button': true,
           'pagination__button--active': page.value === currentPage()
           }"
+          (click)="changePage(page.value)"
                 type="button" [attr.aria-current]="page.value === currentPage()">{{page.value}}</button>
       } @else {
         <span>...</span>

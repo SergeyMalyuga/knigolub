@@ -3,9 +3,6 @@ import { prisma } from "../../lib/prisma";
 import { mapPrismaBookToShared } from "../mapper/book.mapper";
 import type {PaginationMeta} from "@knigolub/shared/src/models/pagination-meta";
 
-
-
-
 const router = Router();
 
 router.get("/", async (req, res) => {
