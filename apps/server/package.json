@@ -16,6 +16,7 @@
   "devDependencies": {
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^26.6.2",
     "nodemon": "^3.1.14",
     "prisma": "^7.10.0",
@@ -23,12 +24,13 @@
     "typescript": "^7.0.2"
   },
   "dependencies": {
+    "@knigolub/shared": "*",
     "@prisma/adapter-mariadb": "^7.10.0",
     "@prisma/client": "^7.10.0",
     "axios": "^1.20.0",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
-    "@knigolub/shared": "*"
+    "jsonwebtoken": "^9.0.3"
   }
 }
