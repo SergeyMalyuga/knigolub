@@ -59,16 +59,7 @@
           </li>
         }
       </ul>
-      <div class="catalog__books-contorls">
-        <p>Показано {{ shown() }} из {{ totalCount() }} книг</p>
-        @for (page of pages(); track page) {
-          @if (isPage(page)) {
-            <button type="button">{{page.value}}</button>
-          } @else {
-            <span> ... </span>
-          }
-        }
-      </div>
+      <app-pagination/>
     </div>
   </div>
 </section>

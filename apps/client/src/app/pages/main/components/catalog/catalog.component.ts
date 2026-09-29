@@ -14,13 +14,13 @@ import {Store} from '@ngrx/store';
 import {AppState} from '../../../../core/models/app.state';
 import {selectAllBooks, selectShown, selectTotalCount} from '../../../../../store/book/selectors/book.selectors';
 import {BookCardComponent} from '../../../../shared/components/book-card/book-card.component';
-import {PaginationService} from '../../../../core/services/pagination.service';
 import {PaginationItem} from '../../../../core/models/pagination-item';
 import {PaginationPage} from '../../../../core/models/pagination-page';
+import {PaginationComponent} from '../../../../shared/components/pagination/pagination.component';
 
 @Component({
   selector: 'app-catalog',
-  imports: [NgClass, BookCardComponent],
+  imports: [NgClass, BookCardComponent, PaginationComponent],
   templateUrl: './catalog.component.html',
   styleUrl: './catalog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -34,9 +34,9 @@ export class CatalogComponent {
   public currentCategory = signal<CategoryType>(CategoryType.ALL);
   public currentView = signal<View>(View.GRID);
   public books = this.store.selectSignal(selectAllBooks);
-  public pagination = inject(PaginationService);
+  // public pagination = inject(PaginationService);
   public totalCount = this.store.selectSignal(selectTotalCount);
-  public pages = this.pagination.pages;
+  // public pages = this.pagination.pages;
   public shown = this.store.selectSignal(selectShown);
 
   public categories: CategoryKey[] = Object.values(CategoryType);
@@ -64,9 +64,5 @@ export class CatalogComponent {
 
   public selectView(view: View) {
     this.currentView.set(view);
-  }
-
-  public isPage(item: PaginationItem): item is PaginationPage {
-    return item.type === PaginationType.PAGE;
   }
 }
