@@ -37,13 +37,13 @@
               <button
                 (click)="selectView(view)"
                 [ngClass]="{
-                catalog__button: true,
-                'catalog__button--view': true,
-                'catalog__button--grid': view === View.GRID,
-                'catalog__button--list': view === View.LIST,
-                'catalog__button--slider': view === View.SLIDER,
-                'catalog__button--active': isActiveView(view),
-              }"
+                  catalog__button: true,
+                  'catalog__button--view': true,
+                  'catalog__button--grid': view === View.GRID,
+                  'catalog__button--list': view === View.LIST,
+                  'catalog__button--slider': view === View.SLIDER,
+                  'catalog__button--active': isActiveView(view),
+                }"
                 type="button"
               >
                 {{ getViewLabel(view) }}
@@ -54,18 +54,24 @@
       </div>
       <ul
         [ngClass]="{
-        'catalog__books': true,
-        'catalog__books--grid': viewMode() === View.GRID,
-        'catalog__books--list': viewMode() === View.LIST,
-        'catalog__books--slider': viewMode() === View.SLIDER
-        }">
-        @for (book of books(); track book.id;) {
+          catalog__books: true,
+          'catalog__books--grid': viewMode() === View.GRID,
+          'catalog__books--list': viewMode() === View.LIST,
+          'catalog__books--slider': viewMode() === View.SLIDER,
+        }"
+      >
+        @for (book of books(); track book.id) {
           <li>
-            <app-book-card [style.width.%]="100" [book]="book" [index]="$index" [viewMode]="viewMode()"/>
+            <app-book-card
+              [style.width.%]="100"
+              [book]="book"
+              [index]="$index"
+              [viewMode]="viewMode()"
+            />
           </li>
         }
       </ul>
-      <app-pagination/>
+      <app-pagination />
     </div>
   </div>
 </section>

@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, inject, signal} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import {
   CATEGORY_LABELS,
   CategoryType,
@@ -7,16 +7,20 @@ import {
   View,
   VIEW_LABELS,
 } from '../../../../core/constants/const';
-import {CategoryKey} from '../../../../core/types/category-key';
-import {NgClass} from '@angular/common';
-import {ViewKey} from '../../../../core/types/view-key';
-import {Store} from '@ngrx/store';
-import {AppState} from '../../../../core/models/app.state';
-import {selectAllBooks, selectShown, selectTotalCount} from '../../../../../store/book/selectors/book.selectors';
-import {BookCardComponent} from '../../../../shared/components/book-card/book-card.component';
-import {PaginationItem} from '../../../../core/models/pagination-item';
-import {PaginationPage} from '../../../../core/models/pagination-page';
-import {PaginationComponent} from '../../../../shared/components/pagination/pagination.component';
+import { CategoryKey } from '../../../../core/types/category-key';
+import { NgClass } from '@angular/common';
+import { ViewKey } from '../../../../core/types/view-key';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../../core/models/app.state';
+import {
+  selectAllBooks,
+  selectShown,
+  selectTotalCount,
+} from '../../../../../store/book/selectors/book.selectors';
+import { BookCardComponent } from '../../../../shared/components/book-card/book-card.component';
+import { PaginationItem } from '../../../../core/models/pagination-item';
+import { PaginationPage } from '../../../../core/models/pagination-page';
+import { PaginationComponent } from '../../../../shared/components/pagination/pagination.component';
 
 @Component({
   selector: 'app-catalog',

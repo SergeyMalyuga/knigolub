@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import bookRouter from "./routes/book";
-import {authMiddleware} from "./middleware/auth.middleware";
+import { authMiddleware } from "./middleware/auth.middleware";
 
 dotenv.config();
 

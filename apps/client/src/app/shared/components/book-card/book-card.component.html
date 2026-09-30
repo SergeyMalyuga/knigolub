@@ -1,13 +1,14 @@
 <article
   [ngClass]="{
-  'card': true,
-  'card--list': viewMode === View.LIST
-  }">
+    card: true,
+    'card--list': viewMode === View.LIST,
+  }"
+>
   <h2 class="visually-hidden">{{ book.title }}</h2>
   <a
     [ngClass]="{
-    'card__link': true,
-    'hidden': viewMode === View.LIST
+      card__link: true,
+      hidden: viewMode === View.LIST,
     }"
     href="#"
     aria-label="Открыть книгу {{ book.title }}"
@@ -22,84 +23,99 @@
   <button
     (click)="toggleFavorite()"
     [ngClass]="{
-    'card__button': true,
-       'card__button--favorite': isFavorite(),
-    'card__button--list': viewMode === View.LIST,
-    'hidden': viewMode === View.LIST,
+      card__button: true,
+      'card__button--favorite': isFavorite(),
+      'card__button--list': viewMode === View.LIST,
+      hidden: viewMode === View.LIST,
     }"
     [attr.aria-hidden]="viewMode !== View.LIST ? 'false' : 'true'"
     [attr.aria-label]="book.isFavorite ? 'Убрать из избранного' : 'Добавить в избранное'"
-    class="card__button-favorite" type="button">
+    class="card__button-favorite"
+    type="button"
+  >
     <svg width="24" height="24">
-      <use href="/assets/images/vector/heart.svg#heart"/>
+      <use href="/assets/images/vector/heart.svg#heart" />
     </svg>
   </button>
   <div
     [ngClass]="{
-    'card__info': true,
-    'card__info--list': viewMode === View.LIST
-    }">
-
+      card__info: true,
+      'card__info--list': viewMode === View.LIST,
+    }"
+  >
     <div
       [ngClass]="{
-      'card__wrapper-info': true,
-      'hidden': viewMode !== View.LIST
-      }">
-          <span
-            [ngClass]="{
-            'card__index': true,
-    'hidden': viewMode !== View.LIST
-    }"
-          >{{index + 1}}</span>
+        'card__wrapper-info': true,
+        hidden: viewMode !== View.LIST,
+      }"
+    >
+      <span
+        [ngClass]="{
+          card__index: true,
+          hidden: viewMode !== View.LIST,
+        }"
+        >{{ index + 1 }}</span
+      >
       <div
         [ngClass]="{
-      'card__wrapper-image': true,
-      'hidden': viewMode !== View.LIST
-      }">
-        <img src="{{book.thumbnail}}"/>
+          'card__wrapper-image': true,
+          hidden: viewMode !== View.LIST,
+        }"
+      >
+        <img src="{{ book.thumbnail }}" />
       </div>
       <div class="card__wrapper-link">
-        <a
-          class="card__link card__link--info" href="#" aria-hidden="true" tabindex="-1">{{ book.title }}</a>
-        <span
-          class="card__info-subtitle">
-            {{ book.authors.join(', ') }}
-          {{ book.categories.length > 0 ? book.categories.join(', ') : 'Литература' }}</span>
+        <a class="card__link card__link--info" href="#" aria-hidden="true" tabindex="-1">{{
+          book.title
+        }}</a>
+        <span class="card__info-subtitle">
+          {{ book.authors.join(', ') }}
+          {{ book.categories.length > 0 ? book.categories.join(', ') : 'Литература' }}</span
+        >
       </div>
     </div>
 
-
     <span
       [ngClass]="{
-      'card__info-subtitle': true,
-      'hidden': viewMode == View.LIST
-      }">{{ book.categories.length > 0 ? book.categories.join(', ') : 'Литература' }}</span>
+        'card__info-subtitle': true,
+        hidden: viewMode == View.LIST,
+      }"
+      >{{ book.categories.length > 0 ? book.categories.join(', ') : 'Литература' }}</span
+    >
     <a
       [ngClass]="{
-      'card__link card__link--info': true,
-      'hidden': viewMode == View.LIST
-      }" href="#" aria-hidden="true" tabindex="-1">{{ book.title }}</a>
+        'card__link card__link--info': true,
+        hidden: viewMode == View.LIST,
+      }"
+      href="#"
+      aria-hidden="true"
+      tabindex="-1"
+      >{{ book.title }}</a
+    >
     <span
       [ngClass]="{
-      'card__info-author': true,
-      'hidden': viewMode == View.LIST
-      }">{{ book.authors.join(', ') }}</span>
+        'card__info-author': true,
+        hidden: viewMode == View.LIST,
+      }"
+      >{{ book.authors.join(', ') }}</span
+    >
     <div class="card__wrapper-info">
-      <a
-        class="card__link card__link--review" href="#">142 отзыва</a>
+      <a class="card__link card__link--review" href="#">142 отзыва</a>
       <button
         (click)="toggleFavorite()"
         [ngClass]="{
-    'card__button': true,
-    'card__button--favorite': isFavorite(),
-    'card__button--list': viewMode === View.LIST,
-    'hidden': viewMode !== View.LIST,
-    }"
+          card__button: true,
+          'card__button--favorite': isFavorite(),
+          'card__button--list': viewMode === View.LIST,
+          hidden: viewMode !== View.LIST,
+        }"
         [attr.aria-hidden]="viewMode === View.LIST ? 'false' : 'true'"
         [attr.aria-label]="book.isFavorite ? 'Убрать из избранного' : 'Добавить в избранное'"
-        class="card__button-favorite" type="button">
+        class="card__button-favorite"
+        type="button"
+      >
         <svg width="24" height="24">
-          <use href="/assets/images/vector/heart.svg#heart"/>
+          <use href="/assets/images/vector/heart.svg#heart" />
         </svg>
       </button>
     </div>

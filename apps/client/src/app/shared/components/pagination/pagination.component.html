@@ -1,29 +1,36 @@
 <div class="pagination">
   <p>Показано {{ shown() }} из {{ totalCount() }} книг</p>
   <nav class="pagination__nav" aria-label="Пагинация страниц с книгами">
-    <button class="pagination__button pagination__button--actions pagination__button--prev"
-            type="button"
-            (click)="changePageToPrev()"
-            [disabled]="!hasPrevPage()"
-            aria-label="Предыдущая страница"
+    <button
+      class="pagination__button pagination__button--actions pagination__button--prev"
+      type="button"
+      (click)="changePageToPrev()"
+      [disabled]="!hasPrevPage()"
+      aria-label="Предыдущая страница"
     ></button>
     @for (page of pages(); track $index) {
       @if (isPage(page)) {
         <button
           [ngClass]="{
-          'pagination__button': true,
-          'pagination__button--active': page.value === currentPage()
+            pagination__button: true,
+            'pagination__button--active': page.value === currentPage(),
           }"
           (click)="changePage(page.value)"
-                type="button" [attr.aria-current]="page.value === currentPage()">{{page.value}}</button>
+          type="button"
+          [attr.aria-current]="page.value === currentPage()"
+        >
+          {{ page.value }}
+        </button>
       } @else {
         <span>...</span>
       }
     }
-    <button class="pagination__button pagination__button--actions pagination__button--next"
-            type="button"
-            (click)="changePageToNext()"
-            [disabled]="!hasNextPage()"
-            aria-label="Следующая страница"></button>
+    <button
+      class="pagination__button pagination__button--actions pagination__button--next"
+      type="button"
+      (click)="changePageToNext()"
+      [disabled]="!hasNextPage()"
+      aria-label="Следующая страница"
+    ></button>
   </nav>
 </div>

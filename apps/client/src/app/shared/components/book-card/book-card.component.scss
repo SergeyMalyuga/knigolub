@@ -9,9 +9,12 @@
   max-width: 314px;
   width: 100%;
   height: 100%;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05),
-  0 2px 4px -2px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.05),
+    0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 
   &__wrapper {
     &-image {
@@ -19,19 +22,18 @@
       height: 76px;
       flex-shrink: 0;
 
-
       img {
         width: 100%;
         height: 100%;
         object-fit: cover; // ✅ Ключевое свойство!
         object-position: center; // По умолчанию, можно менять
-        display: block;;
+        display: block;
       }
     }
 
     &-info {
       display: flex;
-     gap: 24px;
+      gap: 24px;
       align-items: center;
     }
 
@@ -78,7 +80,8 @@
       }
     }
 
-    &--review, &--info {
+    &--review,
+    &--info {
       &:hover {
         color: color.scale(variables.$text-dark-color, $lightness: 25%);
       }
@@ -158,8 +161,9 @@
   &:hover {
     transform: translateY(-4px);
 
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 8px 10px -6px rgba(0, 0, 0, 0.2);
+    box-shadow:
+      0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 8px 10px -6px rgba(0, 0, 0, 0.2);
   }
 
   &__button {
@@ -173,7 +177,9 @@
     padding: 0;
     background-color: transparent;
     color: transparent;
-    transition: transform 0.3s ease, color 0.3s ease;
+    transition:
+      transform 0.3s ease,
+      color 0.3s ease;
     cursor: pointer;
 
     &:hover {

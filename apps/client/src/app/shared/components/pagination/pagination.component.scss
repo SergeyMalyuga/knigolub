@@ -15,10 +15,10 @@
 
   &__button {
     @include mixins.button-base(
-          $text-color: variables.$text-main-color,
-          $background: variables.$bg-color-main,
-          $width: rem(36),
-          $padding: 0
+      $text-color: variables.$text-main-color,
+      $background: variables.$bg-color-main,
+      $width: rem(36),
+      $padding: 0
     );
 
     width: 36px;
@@ -81,5 +81,3 @@
     }
   }
 }
-
-

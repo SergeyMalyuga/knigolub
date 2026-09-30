@@ -1,5 +1,6 @@
-import {PaginationType} from '../constants/const';
+import { PaginationType } from '../constants/const';
 
 export interface PaginationPage {
-  type: PaginationType.PAGE; value: number
+  type: PaginationType.PAGE;
+  value: number;
 }
