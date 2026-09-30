@@ -1,6 +1,9 @@
 @use './styles/variables' as variables;
 @use './styles/functions' as *;
 @use './styles/fonts';
+@use 'swiper/css';
+@use 'swiper/css/navigation';
+@use 'swiper/css/pagination';
 
 *,
 *::before,
@@ -59,6 +62,39 @@ body {
 .hidden {
   display: none !important;
 }
+
+.swiper-slide {
+  width: 100%;
+  height: auto;
+}
+
+.swiper-pagination-bullet-active {
+  width: 24px;
+  height: 8px;
+  border-radius: 4px;
+  background: variables.$rich-black;
+}
+
+.swiper-button-next, .swiper-button-prev {
+  width: 54px;
+  height: 54px;
+  padding: 4px;
+  border-radius: 50%;
+  border: 1px solid #ffc44d;
+}
+
+.swiper-horizontal .swiper-button-next {
+  right: 10px;
+}
+
+.swiper-horizontal .swiper-button-prev {
+  left: 10px;
+}
+
+.swiper-button-prev, .swiper-button-next {
+  color: #ffc44d;
+}
+
 
 .visually-hidden {
   position: absolute;
