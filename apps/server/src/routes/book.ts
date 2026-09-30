@@ -11,7 +11,6 @@ router.get("/", async (req, res) => {
         const limit = parseInt(req.query.limit as string, 10) || 8;
         const userId = req.user?.id;
         const skip = (page - 1) * limit;
-        const shown = page * limit;
 
         const [prismaBooks, totalCount] = await Promise.all([
             prisma.book.findMany({
@@ -26,6 +25,8 @@ router.get("/", async (req, res) => {
             }),
             prisma.book.count(),
         ]);
+
+        const shown = Math.min(page * limit, totalCount);
 
         const books = prismaBooks.map((book) => ({
           ...mapPrismaBookToShared(book), isFavorite: userId ? book.favorites.length > 0 : false
