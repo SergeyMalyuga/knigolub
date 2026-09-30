@@ -21,10 +21,11 @@ import { BookCardComponent } from '../../../../shared/components/book-card/book-
 import { PaginationItem } from '../../../../core/models/pagination-item';
 import { PaginationPage } from '../../../../core/models/pagination-page';
 import { PaginationComponent } from '../../../../shared/components/pagination/pagination.component';
+import {SwiperComponent} from '../../../../shared/components/swiper/swiper.component';
 
 @Component({
   selector: 'app-catalog',
-  imports: [NgClass, BookCardComponent, PaginationComponent],
+  imports: [NgClass, BookCardComponent, PaginationComponent, SwiperComponent],
   templateUrl: './catalog.component.html',
   styleUrl: './catalog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -52,26 +52,42 @@
           }
         </ul>
       </div>
-      <ul
-        [ngClass]="{
+      @if (viewMode() === View.SLIDER) {
+        <div class="catalog__swiper">
+          <app-swiper>
+            @for (book of books(); track book.id) {
+              <div class="swiper-slide">
+                <app-book-card
+                  [book]="book"
+                  [index]="$index"
+                  [viewMode]="viewMode()"
+                />
+              </div>
+            }
+          </app-swiper>
+        </div>
+      } @else {
+        <ul
+          [ngClass]="{
           catalog__books: true,
           'catalog__books--grid': viewMode() === View.GRID,
           'catalog__books--list': viewMode() === View.LIST,
           'catalog__books--slider': viewMode() === View.SLIDER,
         }"
-      >
-        @for (book of books(); track book.id) {
-          <li>
-            <app-book-card
-              [style.width.%]="100"
-              [book]="book"
-              [index]="$index"
-              [viewMode]="viewMode()"
-            />
-          </li>
-        }
-      </ul>
-      <app-pagination />
+        >
+          @for (book of books(); track book.id) {
+            <li>
+              <app-book-card
+                [style.width.%]="100"
+                [book]="book"
+                [index]="$index"
+                [viewMode]="viewMode()"
+              />
+            </li>
+          }
+        </ul>
+        <app-pagination />
+      }
     </div>
   </div>
 </section>

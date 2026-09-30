@@ -32,7 +32,8 @@
     "@knigolub/shared": "*",
     "@ngrx/effects": "21.1.1",
     "@ngrx/entity": "21.1.1",
-    "@ngrx/store": "21.1.1"
+    "@ngrx/store": "21.1.1",
+    "swiper": "^14.3.0"
   },
   "devDependencies": {
     "@angular/build": "21.2.24",
