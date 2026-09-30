@@ -1,5 +1,6 @@
 @use '../../../../styles/functions' as *;
 @use '../../../../styles/variables' as variables;
+@use 'sass:color';
 
 .card {
   position: relative;
@@ -12,9 +13,80 @@
   0 2px 4px -2px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
+  &__wrapper {
+    &-image {
+      width: 56px;
+      height: 76px;
+      flex-shrink: 0;
+
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; // ✅ Ключевое свойство!
+        object-position: center; // По умолчанию, можно менять
+        display: block;;
+      }
+    }
+
+    &-info {
+      display: flex;
+     gap: 24px;
+      align-items: center;
+    }
+
+    &-link {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+    }
+  }
+
   &__link {
     text-decoration: none;
     color: variables.$earthy-taupe;
+    transition: color 0.3s ease;
+
+    &--info {
+      color: variables.$text-dark-color;
+      font-family: variables.$font-family-accent;
+      font-size: rem(17);
+      font-weight: 600;
+      line-height: 130%;
+      letter-spacing: 0px;
+    }
+
+    &--review {
+      display: flex;
+      align-items: center;
+      color: variables.$text-dark-color;
+      gap: 6px;
+      font-size: rem(12);
+      line-height: rem(15);
+      text-align: left;
+
+      &::before {
+        content: '';
+        display: block;
+        width: 14px;
+        height: 14px;
+        background-image: url('/assets/images/vector/star.svg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+    }
+
+    &--review, &--info {
+      &:hover {
+        color: color.scale(variables.$text-dark-color, $lightness: 25%);
+      }
+
+      &:active {
+        color: color.scale(variables.$text-dark-color, $lightness: 45%);
+      }
+    }
   }
 
   &__preview {
@@ -29,7 +101,7 @@
       font-size: rem(10);
       font-weight: 500;
       line-height: rem(12);
-      letter-spacing:rem(1.2);
+      letter-spacing: rem(1.2);
       text-align: center;
       text-transform: uppercase;
     }
@@ -53,10 +125,34 @@
     padding: rem(18) rem(20) rem(20);
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 8px;
     border: 1px solid variables.$gray-light;
     border-top: none;
     flex-grow: 1;
+
+    &--list {
+      flex-direction: row;
+    }
+
+    &-subtitle {
+      color: variables.$gray-middle;
+      text-transform: uppercase;
+      font-size: rem(11);
+      font-weight: 500;
+      line-height: rem(13);
+      letter-spacing: rem(1);
+      text-align: left;
+    }
+
+    &-author {
+      color: variables.$gray-middle;
+      font-size: rem(13);
+      font-weight: 400;
+      line-height: rem(16);
+      letter-spacing: 0px;
+      text-align: left;
+    }
   }
 
   &:hover {
@@ -91,9 +187,31 @@
     &--favorite {
       color: #ffc44d;
     }
+
+    &--list {
+      position: static;
+    }
   }
 
-  @media (width <= 768px) {
-    max-width: 224px;
+  &--list {
+    background-color: variables.$bg-color-main;
+    flex-direction: row;
+    max-width: 100%;
+    width: 100%;
+    border-bottom: 1px solid variables.$gray-dark;
+
+    .card__info {
+      border: none;
+      padding: rem(14) rem(20);
+      justify-content: space-between;
+      background-color: transparent;
+    }
+  }
+
+  &__index {
+    color: variables.$text-dark-color;
+    font-family: variables.$font-family-accent;
+    font-size: rem(24);
+    line-height: 100%;
   }
 }
