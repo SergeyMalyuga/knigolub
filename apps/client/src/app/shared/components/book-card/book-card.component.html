@@ -2,6 +2,8 @@
   [ngClass]="{
     card: true,
     'card--list': viewMode === View.LIST,
+    'card--slider': viewMode === View.SLIDER,
+    'card--grid': viewMode === View.GRID,
   }"
 >
   <h2 class="visually-hidden">{{ book.title }}</h2>

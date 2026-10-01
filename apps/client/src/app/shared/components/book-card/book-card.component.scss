@@ -214,6 +214,16 @@
     }
   }
 
+  &--slider {
+    max-width: 100%;
+  }
+
+  &--grid {
+    @media (width <= 1290px) {
+      max-width: 100%;
+    }
+  }
+
   &__index {
     color: variables.$text-dark-color;
     font-family: variables.$font-family-accent;
