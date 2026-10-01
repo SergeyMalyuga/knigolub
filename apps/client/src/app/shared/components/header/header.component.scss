@@ -43,7 +43,6 @@
   }
 
   &__content {
-    position: relative;
     display: flex;
     gap: 141px;
     align-items: center;
@@ -134,11 +133,20 @@
       justify-content: center;
       width: 100%;
       left: 0;
-      bottom: -45px;
+      bottom: 0;
+      transform: translateY(100%);
+      padding: 5px 0;
+      background-color: variables.$button-background-light;
+      border-top: 1px solid variables.$rich-black;
+      border-bottom: 1px solid variables.$rich-black;
     }
 
     @media (width <= 680px) {
       position: static;
+      transform: translateY(0);
+      padding: 0;
+      background-color: transparent;
+      border: none;
     }
   }
 
@@ -206,10 +214,9 @@
       width: 100%;
       height: 2px;
       background-color: black;
-      transition:
-        width 0.3s ease,
-        transform 0.3s ease,
-        background-color 0.3s ease;
+      transition: width 0.3s ease,
+      transform 0.3s ease,
+      background-color 0.3s ease;
     }
 
     &::before {
@@ -226,9 +233,8 @@
       height: 2px;
       background-color: black;
       align-self: flex-end;
-      transition:
-        width 0.3s ease,
-        opacity 0.3s ease;
+      transition: width 0.3s ease,
+      opacity 0.3s ease;
     }
 
     &:hover {
