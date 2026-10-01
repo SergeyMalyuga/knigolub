@@ -1,9 +1,11 @@
+@use '../../../../styles/functions' as *;
+
 .swiper {
   width: 100%;
 }
 
 .swiper-wrapper {
-  padding-bottom: 55px;
+  margin-bottom:rem(25);
 }
 
 .swiper-slide {
