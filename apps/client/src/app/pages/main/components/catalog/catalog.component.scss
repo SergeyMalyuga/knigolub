@@ -262,10 +262,6 @@
   &__books {
     margin-bottom: rem(32);
 
-    @media (width <= 780px) {
-      margin-bottom: rem(24);
-    }
-
     &--grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
