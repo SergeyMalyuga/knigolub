@@ -2,7 +2,7 @@
   <div class="catalog__top container">
     <div class="catalog__wrapper-top">
       <h2 class="catalog__title catalog__title--top">Что читаем сейчас</h2>
-      <button type="button" class="catalog__button-categories">Все категории</button>
+      <button type="button" class="button__more">Все категории</button>
     </div>
     <ul class="catalog__books-categories">
       @for (category of categories; track category) {
@@ -27,8 +27,8 @@
       <div class="catalog__wrapper-content-top">
         <div class="catalog__content-top">
           <div class="catalog__wrapper-content-title">
-            <h2 class="catalog__title catalog__title--content">Каталог книг</h2>
-            <p class="catalog__subtitle">{{ totalCount() }} книг в открытых подборках сообщества</p>
+            <h2 class="section__title">Каталог книг</h2>
+            <p class="section__subtitle">{{ totalCount() }} книг в открытых подборках сообщества</p>
           </div>
         </div>
         <ul class="catalog__views">
@@ -57,11 +57,7 @@
           <app-swiper>
             @for (book of books(); track book.id) {
               <div class="swiper-slide">
-                <app-book-card
-                  [book]="book"
-                  [index]="$index"
-                  [viewMode]="viewMode()"
-                />
+                <app-book-card [book]="book" [index]="$index" [viewMode]="viewMode()" />
               </div>
             }
           </app-swiper>
@@ -74,11 +70,11 @@
       } @else {
         <ul
           [ngClass]="{
-          catalog__books: true,
-          'catalog__books--grid': viewMode() === View.GRID,
-          'catalog__books--list': viewMode() === View.LIST,
-          'catalog__books--slider': viewMode() === View.SLIDER,
-        }"
+            catalog__books: true,
+            'catalog__books--grid': viewMode() === View.GRID,
+            'catalog__books--list': viewMode() === View.LIST,
+            'catalog__books--slider': viewMode() === View.SLIDER,
+          }"
         >
           @for (book of books(); track book.id) {
             <li>

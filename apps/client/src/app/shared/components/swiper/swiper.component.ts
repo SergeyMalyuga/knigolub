@@ -1,9 +1,17 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, effect, inject, OnDestroy, signal} from '@angular/core';
-import {Swiper} from 'swiper';
-import {Navigation, Pagination} from 'swiper/modules';
-import {Store} from '@ngrx/store';
-import {AppState} from '../../../core/models/app.state';
-import {selectCurrentPage} from '../../../../store/book/selectors/book.selectors';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+  OnDestroy,
+  signal,
+} from '@angular/core';
+import { Swiper } from 'swiper';
+import { Navigation, Pagination } from 'swiper/modules';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../core/models/app.state';
+import { selectCurrentPage } from '../../../../store/book/selectors/book.selectors';
 
 @Component({
   selector: 'app-swiper',
@@ -50,13 +58,13 @@ export class SwiperComponent implements AfterViewInit, OnDestroy {
           slidesPerView: 2,
         },
         1290: {
-          slidesPerView: 4
-        }
+          slidesPerView: 4,
+        },
       },
       on: {
-        init: () => this.isInitialized = true
-      }
-    })
+        init: () => (this.isInitialized = true),
+      },
+    });
   }
 
   public ngOnDestroy(): void {

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import {Section} from '../../../../core/constants/const';
+import { Section } from '../../../../core/constants/const';
 
 @Component({
   selector: 'app-collection',

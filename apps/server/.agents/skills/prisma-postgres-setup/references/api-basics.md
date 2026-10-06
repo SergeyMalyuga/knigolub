@@ -25,7 +25,7 @@ API documentation: https://api.prisma.io/v1/doc
 }
 ```
 
-### Collection
+### CollectionComponent
 
 ```json
 {
@@ -55,7 +55,7 @@ Always include the prefix when sending IDs in API requests.
 
 ## PaginationService
 
-Collection endpoints use cursor-based pagination:
+CollectionComponent endpoints use cursor-based pagination:
 
 ```
 GET /v1/projects?limit=10
