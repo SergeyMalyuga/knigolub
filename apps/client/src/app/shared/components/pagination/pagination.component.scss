@@ -5,17 +5,13 @@
 
 .pagination {
   position: relative;
+  display: flex;
+  justify-content: center;
 
   &__nav {
     display: flex;
     justify-content: center;
     gap: 8px;
-    position: absolute;
-    left: 0;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 100%;
   }
 
   &__button {
@@ -87,6 +83,12 @@
   }
 
   &__statistic {
+    position: absolute;
+    left: 0;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+
     @media (width <= 890px) {
       display: none;
     }
