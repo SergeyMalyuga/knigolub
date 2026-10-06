@@ -223,6 +223,8 @@
 
   &__wrapper {
     &-image {
+      position: relative;
+
       img {
         display: block;
         width: 100%;
