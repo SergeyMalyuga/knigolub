@@ -1,7 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import { Book } from '@knigolub/shared/src/models/book';
-import { PaginationMeta } from '@knigolub/shared/src/models/pagination-meta';
 import { HttpErrorResponse } from '@angular/common/http';
+import {Book, PaginationMeta} from '@knigolub/shared';
 
 export const loadBooks = createAction('[Book] Load Books', props<{ page: number }>());
 export const loadBooksSuccess = createAction(

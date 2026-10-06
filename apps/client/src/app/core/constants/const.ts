@@ -1,6 +1,7 @@
 import { CategoryKey } from '../types/category-key';
 import { ViewKey } from '../types/view-key';
-import { PaginationMeta } from '@knigolub/shared/src/models/pagination-meta';
+import {PaginationMeta} from '@knigolub/shared';
+
 
 export enum AppRoute {
   MAIN = '',
