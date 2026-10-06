@@ -9,5 +9,12 @@
       </div>
       <button type="button" class="collection__button-more button__more">Все подборки</button>
     </div>
+    <ul class="collection__list">
+      @for (card of COLLECTION_CARDS_MOCK; track card.id) {
+        <li>
+          <app-collection-card [card]="card"/>
+        </li>
+      }
+    </ul>
   </div>
 </section>
