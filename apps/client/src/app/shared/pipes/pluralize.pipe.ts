@@ -1,6 +1,6 @@
-import {Pipe, PipeTransform} from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({name: 'pluralize'})
+@Pipe({ name: 'pluralize' })
 export class PluralizePipe implements PipeTransform {
   transform(count: number, one: string, few: string, many: string): string {
     if (count < 0) count = Math.abs(count);

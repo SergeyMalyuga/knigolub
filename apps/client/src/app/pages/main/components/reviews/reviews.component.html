@@ -1,4 +1,4 @@
-<section class="reviews" id="{{Section.REVIEWS}}">
+<section class="reviews" id="{{ Section.REVIEWS }}">
   <div class="container">
     <div class="reviews__top">
       <div class="reviews__title">
@@ -13,7 +13,7 @@
     <ul class="reviews__list">
       @for (card of REVIEW_CARDS_MOCK; track card.id) {
         <li>
-          <app-review-card [card]="card"/>
+          <app-review-card [card]="card" />
         </li>
       }
     </ul>

@@ -1,13 +1,13 @@
 <article class="card lift">
   <a class="card__link" href="#">
     <div class="card__image image-overlay">
-      <img [ngSrc]="card.previewImage" width="426" height="220" loading="lazy" alt=""/>
+      <img [ngSrc]="card.previewImage" width="426" height="220" loading="lazy" alt="" />
     </div>
     <div class="card__info">
       <h2 class="card__title">{{ card.title }}</h2>
       <span class="card__subtitle">{{ card.subtitle }}</span>
       <p class="card__description">{{ card.description }}</p>
-      <app-author-block [card]="card"/>
+      <app-author-block [card]="card" />
     </div>
   </a>
 </article>
