@@ -1,0 +1,21 @@
+<section class="reviews" id="{{Section.REVIEWS}}">
+  <div class="container">
+    <div class="reviews__top">
+      <div class="reviews__title">
+        <h2 class="section__title">Что говорят читатели</h2>
+        <p class="section__subtitle">2 480 отзывов за последний год — без спойлеров и рекламы.</p>
+      </div>
+      <figure class="reviews__rating">
+        <span class="rating__value">4,8 —</span>
+        <figcaption class="rating__label">средняя оценка клуба</figcaption>
+      </figure>
+    </div>
+    <ul class="reviews__list">
+      @for (card of REVIEW_CARDS_MOCK; track card.id) {
+        <li>
+          <app-review-card [card]="card"/>
+        </li>
+      }
+    </ul>
+  </div>
+</section>
