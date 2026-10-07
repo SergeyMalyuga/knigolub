@@ -1,5 +1,27 @@
-<article class="card">
-  <div class="card__wrapper-image image-overlay">
-    <img src="{{card.url}}" width="426" height="220" loading="lazy"/>
-  </div>
+<article class="card lift">
+  <a class="card__link" href="#">
+    <div class="card__image image-overlay">
+      <img [ngSrc]="card.previewImage" width="426" height="220" loading="lazy" alt=""/>
+    </div>
+    <div class="card__info">
+      <h2 class="card__title">{{ card.title }}</h2>
+      <span class="card__subtitle">{{ card.subtitle }}</span>
+      <p class="card__description">{{ card.description }}</p>
+      <div class="card__author">
+        <div  class="card__avatar">
+          @if (card.avatar) {
+            <img [ngSrc]="card.avatar" width="32" height="32" loading="lazy" alt="Аватар {{card.author}}"/>
+          } @else {
+            <span class="card__author-initials">{{card.author | initials}}</span>
+          }
+        </div>
+        <div class="card__author-info">
+          <span class="card__author-name">{{card.author}}</span>
+          <span class="card__collection-info">{{card.books}} {{card.books | pluralize: 'книга': 'книги': 'книг'}} ·
+            {{card.participants}} {{ card.participants | pluralize:'участник':'участника':'участников' }}
+        </span>
+        </div>
+      </div>
+    </div>
+  </a>
 </article>
