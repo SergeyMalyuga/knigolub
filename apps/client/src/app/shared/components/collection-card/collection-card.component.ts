@@ -1,15 +1,13 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {CollectionCard} from '@knigolub/shared';
-import {InitialsPipe} from '../../pipes/initials.pipe';
-import {PluralizePipe} from '../../pipes/pluralize.pipe';
 import {NgOptimizedImage} from '@angular/common';
+import {AuthorBlockComponent} from '../author-block/author-block.component';
 
 @Component({
   selector: 'app-collection-card',
   imports: [
-    InitialsPipe,
-    PluralizePipe,
-    NgOptimizedImage
+    NgOptimizedImage,
+    AuthorBlockComponent
   ],
   templateUrl: './collection-card.component.html',
   styleUrl: './collection-card.component.scss',
