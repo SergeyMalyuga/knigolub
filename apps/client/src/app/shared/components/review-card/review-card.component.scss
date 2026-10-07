@@ -1,0 +1,41 @@
+@use '../../../../styles/variables' as variables;
+@use '../../../../styles/functions' as *;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  border: 1px solid variables.$gray-light;
+  padding: rem(28);
+
+  &__comment {
+    padding-bottom: rem(76);
+    border-bottom: 1px solid variables.$gray-light;
+    flex-grow: 1;
+    color: variables.$text-dark-color;
+    font-family: variables.$font-family-accent;
+    font-size: rem(18);
+    line-height: 160%;
+
+    @media (width <= 1090px) {
+      font-size: rem(16);
+    }
+
+    @media (width <= 980px) {
+      padding-bottom: rem(38);
+    }
+  }
+
+  &__author {
+    padding: rem(20) 0 0;
+  }
+
+  @media (width <= 980px) {
+    padding: rem(24);
+  }
+
+  @media (width <= 768px) {
+    padding: rem(18);
+  }
+}
