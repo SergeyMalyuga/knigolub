@@ -1,0 +1,21 @@
+<div class="author-block">
+  <div class="author-block__avatar">
+    @if (authorAvatar) {
+      <img [ngSrc]="authorAvatar" width="32" height="32" loading="lazy" alt="Аватар {{authorName}}"/>
+    } @else {
+      <span class="author-block__initials">{{ authorName | initials }}</span>
+    }
+  </div>
+  <div class="author-block__info">
+    <span class="author-block__name">{{ authorName }}</span>
+    @if (isCollectionCard(card)) {
+      <span class="author-block__statistics">{{ card.books }} {{ card.books | pluralize: 'книга': 'книги': 'книг' }} ·
+        {{ card.participants }} {{ card.participants | pluralize:'участник':'участника':'участников' }}
+        </span>
+    } @else {
+      <span class="author-block__statistics">читает с {{ card.owner.registrationAt }} года ·
+        {{ card.owner.reviews }} {{ card.owner.reviews | pluralize: 'отзыв': 'отзыва': 'отзывов' }}
+        </span>
+    }
+  </div>
+</div>

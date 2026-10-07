@@ -1,0 +1,49 @@
+@use '../../../../styles/variables' as variables;
+@use '../../../../styles/functions' as *;
+
+.author-block {
+  display: flex;
+  gap: 10px;
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__initials {
+    font-size: rem(11);
+    font-weight: 500;
+    line-height: rem(13);
+  }
+
+  &__name {
+    color: variables.$text-dark-color;
+    font-size: rem(13);
+    font-weight: 500;
+    line-height: rem(16);
+  }
+
+  &__avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: variables.$text-light-color;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: variables.$black-eerie;
+  }
+
+  &__statistics {
+    color: variables.$gray-middle;
+    font-size: rem(12);
+    line-height: rem(15);
+
+    @media (width <= 768px) {
+      font-size: rem(11);
+      line-height: rem(13);
+    }
+  }
+}
+
