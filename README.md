@@ -46,7 +46,7 @@
 ### Требования
 - Node.js 18+
 - npm или yarn
-- PostgreSQL (для бэкенда)
+- MySql (для бэкенда)
 
 ### Frontend
 
@@ -146,11 +146,9 @@ src/
 
 ##  Скриншоты
 
-*Здесь можно добавить скриншоты интерфейса*
-
 | Каталог в режиме сетки | Каталог в режиме слайдера |
 |---|---|
-| ![Grid Mode](./screenshots/grid-mode.png) | ![Slider Mode](./screenshots/slider-mode.png) |
+| ![Grid Mode](github/assets/grid.jpg) | ![Slider Mode](github/assets/slider.jpg) |
 
 ---
 
