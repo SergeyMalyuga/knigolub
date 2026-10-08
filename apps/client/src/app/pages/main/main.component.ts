@@ -4,6 +4,7 @@ import { HeroComponents } from './components/hero/hero.components';
 import { CatalogComponent } from './components/catalog/catalog.component';
 import { CollectionComponent } from './components/collection/collection.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
+import {CommunityComponent} from './components/community/community.component';
 
 @Component({
   selector: 'app-main',
@@ -13,6 +14,7 @@ import { ReviewsComponent } from './components/reviews/reviews.component';
     CatalogComponent,
     CollectionComponent,
     ReviewsComponent,
+    CommunityComponent,
   ],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss',
