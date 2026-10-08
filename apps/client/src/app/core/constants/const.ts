@@ -14,6 +14,7 @@ export enum Section {
   COLLECTION = 'collection',
   COMMUNITY = 'community',
   REVIEWS = 'reviews',
+  SUBSCRIBE = 'subscribe'
 }
 
 export const BREAKPOINTS = {
