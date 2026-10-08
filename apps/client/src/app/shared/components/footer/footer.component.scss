@@ -1,0 +1,139 @@
+@use '../../../../styles/variables' as variables;
+@use '../../../../styles/mixins' as mixins;
+@use '../../../../styles/functions' as *;
+
+.footer {
+  background-color: variables.$bg-color-accent;
+  padding: rem(56) 0 rem(32);
+
+  &__content {
+    display: flex;
+    gap: 210px;
+
+    @media (width <= 1240px) {
+      gap: 105px;
+    }
+
+    @media (width <= 1160px) {
+      gap: 15px;
+    }
+
+    @media (width <= 1020px) {
+      flex-direction: column;
+      gap: 50px;
+    }
+  }
+
+  &__brand {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 360px;
+    width: 100%;
+  }
+
+  &__description {
+    color: variables.$gray-middle;
+    font-size: rem(13);
+    line-height: 160%;
+  }
+
+  &__logo {
+    display: block;
+    max-width: 143px;
+    width: 100%;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &__socials {
+    display: flex;
+    gap: 10px;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: variables.$gray-soft;
+    font-size: rem(14);
+    line-height: rem(17);
+
+    &--social {
+      @include mixins.button-base(
+        $text-color: variables.$gray-soft,
+        $background: variables.$bg-color-accent,
+        $width: 36px,
+        $padding: 10);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 36px;
+      min-width: 36px;
+      border: 1px solid variables.$gray-dark;
+
+      &::before {
+        content: "";
+        display: block;
+        width: 16px;
+        height: 16px;
+        background-color: variables.$gray-soft;
+        mask-repeat: no-repeat;
+        mask-size: cover;
+        mask-position: center;
+      }
+    }
+
+    &--mail {
+      &::before {
+        mask-image: url('/assets/images/vector/mail.svg');
+      }
+    }
+
+    &--vk {
+      &::before {
+        mask-image: url('/assets/images/vector/globe.svg');
+      }
+    }
+
+    &--max {
+      &::before {
+        mask-image: url('/assets/images/vector/rss.svg');
+      }
+    }
+  }
+
+  &__nav {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+
+    &-column {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+  }
+
+  &__heading {
+    color: variables.$gray-middle;
+    font-size: rem(12);
+    font-weight: 500;
+    line-height: rem(15);
+    letter-spacing: rem(1.2);
+    text-transform: uppercase;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  @media (width <= 1250px) {
+    padding: rem(48) rem(24);
+  }
+}
