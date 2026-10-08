@@ -1,0 +1,88 @@
+@use '../../../../../styles/variables' as variables;
+@use '../../../../../styles/mixins' as mixins;
+@use '../../../../../styles/functions' as *;
+
+.community {
+  padding: rem(56) 0;
+  background-color: variables.$button-background-dark;
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media (width <= 1160px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 30px;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    max-width: 700px;
+    width: 100%;
+    gap: 14px;
+  }
+
+  &__title {
+    color: variables.$gray-middle;
+    font-size: rem(12);
+    font-weight: 500;
+    line-height: rem(15);
+    letter-spacing: rem(1.5);
+    text-transform: uppercase;
+
+/*    @media (width <= 768px) {
+
+    }*/
+  }
+
+  &__lead {
+    color: variables.$text-light-color;
+    font-family: variables.$font-family-accent;
+    font-size: rem(36);
+    line-height: 120%;
+
+        @media (width <= 768px) {
+          font-size: rem(32);
+          line-height: 100%;
+    }
+
+    @media (width <= 580px) {
+      font-size: rem(28);
+    }
+  }
+
+  &__description {
+    color: variables.$gray-soft;
+    font-size: rem(15);
+    line-height: 150%;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 16px;
+
+    @media (width <= 580px) {
+      flex-direction: column;
+      align-self: center;
+    }
+  }
+
+  &__link {
+    @include mixins.button-base(
+      $text-color: variables.$text-dark-color,
+      $background: variables.$bg-color-main,
+      $width: 171px,
+      $padding: 16);
+
+    text-decoration: none;
+    width: 171px;
+  }
+
+  @media (width <= 1250px) {
+    padding: rem(48) 0;
+  }
+}
