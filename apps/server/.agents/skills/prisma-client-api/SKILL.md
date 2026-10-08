@@ -104,7 +104,7 @@ const prisma = new PrismaClient({ adapter });
 | `$transaction()` | Execute transaction            |
 | `$queryRaw()`    | Execute raw SQL query          |
 | `$executeRaw()`  | Execute raw SQL command        |
-| `$on()`          | Subscribe to events            |
+| `$on()`          | SubscribeComponent to events            |
 | `$extends()`     | Add extensions                 |
 
 ## Quick Examples

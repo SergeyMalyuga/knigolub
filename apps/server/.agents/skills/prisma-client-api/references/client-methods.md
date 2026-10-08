@@ -65,7 +65,7 @@ afterAll(async () => {
 
 ## $on()
 
-Subscribe to events:
+SubscribeComponent to events:
 
 ### Query events
 

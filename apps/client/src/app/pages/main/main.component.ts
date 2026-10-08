@@ -5,6 +5,7 @@ import { CatalogComponent } from './components/catalog/catalog.component';
 import { CollectionComponent } from './components/collection/collection.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
 import {CommunityComponent} from './components/community/community.component';
+import {SubscribeComponent} from './components/subscribe/subscribe.component';
 
 @Component({
   selector: 'app-main',
@@ -15,6 +16,7 @@ import {CommunityComponent} from './components/community/community.component';
     CollectionComponent,
     ReviewsComponent,
     CommunityComponent,
+    SubscribeComponent,
   ],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss',
