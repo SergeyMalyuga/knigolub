@@ -1,6 +1,10 @@
 <footer id="footer" class="footer">
   <div class="footer__content container">
-    <div class="footer__brand">
+    <div class="footer__brand"
+    [ngClass]="{
+    'footer__brand--not-found-page': isMiniLayout
+    }"
+    >
       <a class="footer__logo" href="javascript:void(0)">
         <img [ngSrc]="'/assets/images/vector/logo-white.svg'" width="143" height="22" alt="Логотип клуба"/>
       </a>
@@ -15,7 +19,14 @@
           class="visually-hidden">Мы в Max</span></a></li>
       </ul>
     </div>
-    <nav class="footer__nav" aria-label="Навигация по сайту">
+    <nav
+         [ngClass]="{
+         'footer__nav': true,
+         'hidden': isMiniLayout
+         }"
+         [attr.arria-hidden]="isMiniLayout"
+         [inert]="isMiniLayout"
+         aria-label="Навигация по сайту">
       <details class="footer__nav-accordion" [open]="!IsAccordionMode()">
         <summary class="footer__heading">Каталог</summary>
         <ul class="footer__list">
