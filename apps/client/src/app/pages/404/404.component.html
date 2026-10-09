@@ -1,0 +1,22 @@
+<div class="page">
+  <app-header class="header" [isMiniLayout]="true"/>
+  <main class="main">
+    <section class="error-404">
+      <div class="error-404__content container">
+        <div class="error-404__title-wrapper">
+          <h1 class="error-404__code">404</h1>
+          <h2 class="error-404__title">Страница потерялась среди книг</h2>
+        </div>
+        <p class="error-404__text">
+          Похоже, вы забрели в самый дальний угол нашей библиотеки.
+          Вернитесь на главную или продолжите поиски в каталоге.
+        </p>
+        <div class="error-404__image image-overlay">
+          <img src="/assets/images/raster/not-found-small.jpg" width="600" height="400" alt=""/>
+        </div>
+        <a class="error-404__link" [routerLink]="[AppRoute.MAIN]">На главную</a>
+      </div>
+    </section>
+  </main>
+  <app-footer [isMiniLayout]="true"/>
+</div>
