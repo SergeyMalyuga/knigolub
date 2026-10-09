@@ -1,0 +1,45 @@
+<div class="page">
+  <app-header [isMiniLayout]="true"/>
+  <main class="main">
+    <section class="login">
+      <div class="login__content container">
+        <form class="login__form">
+          <div class="login__form-top">
+            <h1 class="login__title">Вход</h1>
+          </div>
+          <div class="login__form-content">
+            <div class="login__text">
+              <p>Добро пожаловать в Книголюб</p>
+              <p>Войдите в вашу учётную запись</p>
+            </div>
+            <div>
+              <label for="login-email" class="visually-hidden">Введите ваш email</label>
+              <input id="login-email" class="login__input" type="email" autocomplete="email" placeholder="Email"/>
+              <button type="button">
+                <svg class="login__eye-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
+                  <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
+                  <path d="M14.12 14.12a3 3 0 1 1-4.24-4.24"/>
+                  <line x1="1" y1="1" x2="23" y2="23"/>
+                </svg>
+<!--                <svg class="login__eye-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>-->
+              </button>
+            </div>
+
+            <label for="login-password" class="visually-hidden">Введите ваш пароль</label>
+            <input id="login-password" class="login__input" type="password" autocomplete="current-password" placeholder="Password"/>
+            <button class="login__button" type="submit">Вход</button>
+            <div class="login__registration">
+              <p class="login__registration-text">Нет аккаунта?</p>
+              <button class="login__button-registration" type="button">Регистрация</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+  <app-footer [isMiniLayout]="true"/>
+</div>
