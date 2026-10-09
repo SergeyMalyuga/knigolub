@@ -14,9 +14,10 @@
       [ngClass]="{
         header__menu: true,
         'header__menu--open': isMenuOpen(),
+        'hidden': isMiniLayout
       }"
-      [attr.aria-hidden]="!isMenuOpen()"
-      [inert]="!isMenuOpen()"
+      [attr.aria-hidden]="!isMenuOpen() || isMiniLayout"
+      [inert]="!isMenuOpen() || isMiniLayout"
     >
       <nav class="header__nav" aria-label="Основная навигация">
         <ul class="header__nav-links">
@@ -29,7 +30,7 @@
               }"
               (click)="selectSection(Section.MAIN)"
               href="#main"
-              >Главная</a
+            >Главная</a
             >
           </li>
           <li>
@@ -41,7 +42,7 @@
               }"
               (click)="selectSection(Section.CATALOG)"
               href="#catalog"
-              >Каталог</a
+            >Каталог</a
             >
           </li>
           <li>
@@ -53,7 +54,7 @@
               }"
               (click)="selectSection(Section.COLLECTION)"
               href="#collection"
-              >Подборки</a
+            >Подборки</a
             >
           </li>
           <li>
@@ -65,7 +66,7 @@
               }"
               (click)="selectSection(Section.COMMUNITY)"
               href="#community"
-              >Сообщество</a
+            >Сообщество</a
             >
           </li>
           <li>
@@ -77,7 +78,7 @@
               }"
               (click)="selectSection(Section.REVIEWS)"
               href="#reviews"
-              >Отзывы</a
+            >Отзывы</a
             >
           </li>
         </ul>
@@ -93,16 +94,19 @@
           />
         </div>
         <a class="header__link header__link--action" href="#">{{
-          isMobile() ? 'Войти' : 'Присоединиться'
-        }}</a>
+            isMobile() ? 'Войти' : 'Присоединиться'
+          }}</a>
       </div>
     </div>
     <button
       [ngClass]="{
         header__burger: true,
         'header__burger--close': isMenuOpen(),
+        'hidden': isMiniLayout
       }"
       type="button"
+      [attr.aria-hidden]="isMiniLayout"
+      [inert]="isMiniLayout"
       aria-haspopup="true"
       [attr.aria-label]="isMenuOpen() ? 'Закрыть меню' : 'Открыть меню'"
       [aria-expanded]="isMenuOpen()"

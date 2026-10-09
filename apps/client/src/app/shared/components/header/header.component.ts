@@ -3,13 +3,13 @@ import {
   Component,
   computed,
   effect,
-  inject,
+  inject, Input,
   signal,
 } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { AppRoute, Section } from '../../../core/constants/const';
-import { NgClass } from '@angular/common';
-import { BreakpointService } from '../../../core/services/breakpoint.service';
+import {RouterLink} from '@angular/router';
+import {AppRoute, Section} from '../../../core/constants/const';
+import {NgClass} from '@angular/common';
+import {BreakpointService} from '../../../core/services/breakpoint.service';
 
 @Component({
   selector: 'app-header',
@@ -19,6 +19,8 @@ import { BreakpointService } from '../../../core/services/breakpoint.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
+  @Input() isMiniLayout = false;
+
   private breakpointService = inject(BreakpointService);
 
   protected readonly AppRoute = AppRoute;
