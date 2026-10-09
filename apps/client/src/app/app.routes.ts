@@ -8,6 +8,11 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/main/main.component').then((m) => m.MainComponent),
   },
   {
+    path: AppRoute.LOGIN,
+    title: 'Login',
+    loadComponent: () => import('./pages/login/login.component').then((m) => m.LoginComponent),
+  },
+  {
     path: '**',
     title: '404 Not Found',
     loadComponent: () => import('./pages/404/404.component').then((m) => m.NotFoundComponent),

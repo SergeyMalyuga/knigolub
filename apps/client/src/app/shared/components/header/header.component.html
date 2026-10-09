@@ -1,4 +1,8 @@
-<header class="header">
+<header
+[ngClass]="{
+'header': true,
+'header--unpinned': isMiniLayout
+}">
   <div class="header__content container">
     <a class="header__link header__link--logo" [routerLink]="[AppRoute.MAIN]">
       <img
@@ -93,7 +97,7 @@
             placeholder="{{ isMobile() ? 'Поиск по каталогу' : 'Поиск: книга, автор, жанр' }}"
           />
         </div>
-        <a class="header__link header__link--action" href="#">{{
+        <a class="header__link header__link--action" [routerLink]="[AppRoute.LOGIN]">{{
             isMobile() ? 'Войти' : 'Присоединиться'
           }}</a>
       </div>

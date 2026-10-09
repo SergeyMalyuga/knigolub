@@ -12,6 +12,11 @@
   left: 0;
   z-index: 1000;
 
+  &--unpinned {
+    position: static;
+    background-color: variables.$papaya-whip;;
+  }
+
   &__menu {
     display: flex;
     justify-content: space-between;
