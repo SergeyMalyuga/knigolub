@@ -1,6 +1,6 @@
 import type { Book as PrismaBook } from "../../generated/prisma/client";
-import type { Book } from "packages/shared/src/models/book.model";
 import { jsonToStringArray } from "../utils/json";
+import type {Book} from "@knigolub/shared/src/models/book.model";
 
 export function mapPrismaBookToShared(book: PrismaBook): Book {
   return {

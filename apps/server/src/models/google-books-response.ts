@@ -1,4 +1,5 @@
-import type { GoogleBookItem } from "models/google-book-item";
+import type {GoogleBookItem} from "./google-book-item";
+
 
 export interface GoogleBooksResponse {
   items?: GoogleBookItem[];
