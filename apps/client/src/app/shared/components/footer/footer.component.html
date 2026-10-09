@@ -16,56 +16,56 @@
       </ul>
     </div>
     <nav class="footer__nav" aria-label="Навигация по сайту">
-      <div class="footer__nav-column">
-        <h2 class="footer__heading">Каталог</h2>
+      <details class="footer__nav-accordion" [open]="!IsAccordionMode()">
+        <summary class="footer__heading">Каталог</summary>
         <ul class="footer__list">
           <li>
-            <a href="javascript:void(0)" class="footer__link">Новинки</a>
+            <a href="javascript:void(0)" class="footer__link footer__link--nav">Новинки</a>
           </li>
           <li>
-            <a href="javascript:void(0)" class="footer__link">Подборки</a>
+            <a href="javascript:void(0)" class="footer__link footer__link--nav">Подборки</a>
           </li>
           <li>
-            <a href="javascript:void(0)" class="footer__link">Авторы</a>
+            <a href="javascript:void(0)" class="footer__link footer__link--nav">Авторы</a>
           </li>
           <li>
-            <a href="javascript:void(0)" class="footer__link">Рецензии</a>
+            <a href="javascript:void(0)" class="footer__link footer__link--nav">Рецензии</a>
           </li>
         </ul>
-      </div>
+      </details>
 
-      <div class="footer__nav-column">
-        <h2 class="footer__heading">Сообщество</h2>
+      <details class="footer__nav-accordion" [open]="!IsAccordionMode()">
+        <summary class="footer__heading">Сообщество</summary>
         <ul class="footer__list">
           <li>
-            <a href="javascript:void(0)" class="footer__link">Клубные встречи</a>
+            <a href="javascript:void(0)" class="footer__link footer__link--nav">Клубные встречи</a>
           </li>
           <li>
-            <a href="javascript:void(0)" class="footer__link">Марафоны чтения</a>
+            <a href="javascript:void(0)" class="footer__link footer__link--nav">Марафоны чтения</a>
           </li>
           <li>
-            <a href="javascript:void(0)" class="footer__link">Читательский рейтинг</a>
+            <a href="javascript:void(0)" class="footer__link footer__link--nav">Читательский рейтинг</a>
           </li>
         </ul>
-      </div>
+      </details>
 
-      <div class="footer__nav-column">
-        <h2 class="footer__heading">О проекте</h2>
+      <details class="footer__nav-accordion" [open]="!IsAccordionMode()">
+        <summary class="footer__heading">О проекте</summary>
         <ul class="footer__list">
           <li>
-            <a href="javascript:void(0)" class="footer__link">О нас</a>
+            <a href="javascript:void(0)" class="footer__link footer__link--nav">О нас</a>
           </li>
           <li>
-            <a href="javascript:void(0)" class="footer__link">Команда</a>
+            <a href="javascript:void(0)" class="footer__link footer__link--nav">Команда</a>
           </li>
           <li>
-            <a href="javascript:void(0)" class="footer__link">Контакты</a>
+            <a href="javascript:void(0)" class="footer__link footer__link--nav">Контакты</a>
           </li>
           <li>
-            <a href="javascript:void(0)" class="footer__link">Правила клуба</a>
+            <a href="javascript:void(0)" class="footer__link footer__link--nav">Правила клуба</a>
           </li>
         </ul>
-      </div>
+      </details>
     </nav>
   </div>
 </footer>
