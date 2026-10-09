@@ -4,6 +4,7 @@ import { PaginationMeta } from '@knigolub/shared';
 
 export enum AppRoute {
   MAIN = '',
+  LOGIN = 'login',
 }
 
 export const BASE_URL = 'http://localhost:3000';
