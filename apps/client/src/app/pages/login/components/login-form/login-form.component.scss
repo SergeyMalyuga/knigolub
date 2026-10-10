@@ -1,0 +1,157 @@
+@use '../../../../../styles/variables' as variables;
+@use '../../../../../styles/functions' as *;
+@use '../../../../../styles/mixins' as mixins;
+@use 'sass:color';
+
+:host {
+  max-width: 400px;
+  width: 100%;
+}
+
+.login-form {
+  color: variables.$text-dark-color;
+  max-width: 460px;
+  width: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+
+  &__title {
+    font-family: variables.$font-family-accent;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  &__top {
+    background-color: variables.$sandy-brown;
+    padding: rem(15) 0;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: rem(30) rem(15);
+    background-color: variables.$english-cream;
+
+    @media (width <= 767px) {
+      padding: rem(20) rem(15);
+    }
+  }
+
+  &__text {
+    text-align: center;
+    margin-bottom: rem(35);
+  }
+
+  &__input, &__button {
+    max-width: 280px;
+    width: 100%;
+  }
+
+  &__input {
+    border: none;
+    background-color: transparent;
+    font-size: rem(16);
+    line-height: rem(24);
+
+    &-wrapper {
+      display: flex;
+      gap: 10px;
+      max-width: 280px;
+      width: 100%;
+      border: 2px solid variables.$sandy-brown;
+      padding: rem(6) rem(15);
+      border-radius: 10px;
+      margin-bottom: rem(20);
+
+      &:focus-within {
+        outline: 2px solid variables.$rich-black;
+        outline-offset: 2px;
+      }
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__button {
+    border: none;
+    background-color: variables.$burnt-sienna;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-transform: uppercase;
+    margin-bottom: rem(25);
+    padding: 10px 15px;
+    border-radius: 10px;
+
+    &:hover {
+      background-color: color.scale(variables.$burnt-sienna, $blackness: 15%);
+    }
+
+    &:active {
+      background-color: color.scale(variables.$burnt-sienna, $blackness: 25%);
+    }
+
+    &-registration {
+      position: relative;
+      background-color: transparent;
+      padding: 0;
+      font-weight: 700;
+      border: none;
+      color: variables.$maroon;
+      cursor: pointer;
+      transition: color 0.3s ease;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        background-color: variables.$maroon;
+        display: block;
+        width: 100%;
+        height: 2px;
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+      }
+
+      &:hover {
+        &::before {
+          transform: scaleX(1);
+        }
+      }
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid variables.$rich-black;
+      outline-offset: 2px;
+    }
+  }
+
+  &__registration {
+    display: flex;
+    gap: 5px;
+
+    &-text {
+      font-size: rem(12);
+    }
+  }
+
+  &__toggle-password {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
