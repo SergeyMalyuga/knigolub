@@ -55,6 +55,7 @@
     line-height: rem(24);
 
     &-wrapper {
+      position: relative;
       display: flex;
       gap: 10px;
       max-width: 280px;
@@ -62,7 +63,7 @@
       border: 2px solid variables.$sandy-brown;
       padding: rem(6) rem(15);
       border-radius: 10px;
-      margin-bottom: rem(20);
+      margin-bottom: rem(25);
 
       &:focus-within {
         outline: 2px solid variables.$rich-black;
@@ -152,6 +153,22 @@
 
     &:focus {
       outline: none;
+    }
+  }
+
+  &__error {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    color: variables.$maroon;
+    font-size: rem(12);
+    position: absolute;
+    left: 0;
+    bottom: -27px;
+    width: 100%;
+
+    &::before {
+      content: '⚠ ';
     }
   }
 }

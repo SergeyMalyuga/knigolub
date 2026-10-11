@@ -1,4 +1,4 @@
-<form class="login-form">
+<form (ngSubmit)="onSubmit()" class="login-form" [formGroup]="loginForm">
   <div class="login-form__top">
     <h1 class="login-form__title">Вход</h1>
   </div>
@@ -9,16 +9,42 @@
     </div>
     <div class="login-form__input-wrapper">
       <label for="login-email" class="visually-hidden">Введите ваш email</label>
-      <input id="login-email" class="login-form__input" type="email" autocomplete="email" placeholder="Email"/>
+      <input id="login-email"
+             formControlName="email"
+             class="login-form__input"
+             type="email"
+             autocomplete="email"
+             placeholder="Email"
+             [attr.aria-invalid]="emailControl?.invalid && emailControl?.touched"
+             [attr.aria-describedby]="emailControl?.errors ? 'email-error' : null"
+      />
+      @if ((emailControl?.touched || emailControl?.dirty) && emailControl?.errors) {
+          <div
+            class="login-form__error"
+            id="email-error"
+            role="alert"
+          >
+            @if (emailControl?.errors?.['required']) {
+              Введите email
+            } @else {
+              Введите корректный email
+            }
+          </div>
+
+      }
     </div>
 
     <div class="login-form__input-wrapper">
       <label for="login-password" class="visually-hidden">Введите ваш пароль</label>
       <input id="login-password"
+             formControlName="password"
              class="login-form__input"
              [type]="isPasswordVisible() ? 'text' : 'password'"
              autocomplete="current-password"
-             placeholder="Пароль"/>
+             placeholder="Пароль"
+             [attr.aria-invalid]="passwordControl?.invalid && passwordControl?.touched"
+             [aria-describedby]="passwordControl?.errors ? 'password-error' : null"
+      />
       <button class="login-form__toggle-password"
               type="button"
               [attr.aria-label]="isPasswordVisible() ? 'Скрыть пароль' : 'Показать пароль'"
@@ -40,11 +66,30 @@
           </svg>
         }
       </button>
+      @if ((passwordControl?.touched || passwordControl?.dirty) && passwordControl?.errors) {
+        <div
+          id="password-error"
+          class="login-form__error"
+          role="alert"
+        >
+          @if (passwordControl?.errors?.['required']) {
+            Введите пароль
+          } @else if (passwordControl?.errors?.['minlength']) {
+            Минимум 8 символов
+          } @else if (passwordControl?.errors?.['pattern']) {
+            Введите корректный пароль
+          }
+        </div>
+      }
     </div>
     <button class="login-form__button" type="submit">Вход</button>
     <div class="login-form__registration">
       <p class="login-form__registration-text">Нет аккаунта?</p>
-      <button class="login-form__button-registration" type="button">Регистрация</button>
+      <button class="login-form__button-registration"
+              type="button"
+      (click)="onClick()"
+      >Регистрация
+      </button>
     </div>
   </div>
 </form>
