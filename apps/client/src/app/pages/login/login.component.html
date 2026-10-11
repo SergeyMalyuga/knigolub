@@ -6,7 +6,7 @@
         @if (formMode() === AuthFormType.Login) {
           <app-login-form (clicked)="setFormMode($event)"/>
         } @else {
-         <p>Форма находится в разработке</p>
+         <app-registration-form (clicked)="setFormMode($event)"/>
         }
       </div>
     </section>
