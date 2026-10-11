@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {ChangeDetectionStrategy, Component, signal} from '@angular/core';
 import {HeaderComponent} from '../../shared/components/header/header.component';
 import {FooterComponent} from '../../shared/components/footer/footer.component';
 import {LoginFormComponent} from './components/login-form/login-form.component';
+import {AuthFormType} from '../../core/constants/const';
 
 @Component({
   selector: 'app-login',
@@ -14,4 +15,12 @@ import {LoginFormComponent} from './components/login-form/login-form.component';
   styleUrl: './login.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoginComponent {}
+export class LoginComponent {
+  public formMode = signal<AuthFormType>(AuthFormType.Login);
+
+  public setFormMode(newMode: AuthFormType): void {
+    this.formMode.set(newMode);
+  }
+
+  protected readonly AuthFormType = AuthFormType;
+}

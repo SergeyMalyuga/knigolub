@@ -3,7 +3,11 @@
   <main class="main">
     <section class="login">
       <div class="login__content container">
-        <app-login-form/>
+        @if (formMode() === AuthFormType.Login) {
+          <app-login-form (clicked)="setFormMode($event)"/>
+        } @else {
+         <p>Форма находится в разработке</p>
+        }
       </div>
     </section>
   </main>
