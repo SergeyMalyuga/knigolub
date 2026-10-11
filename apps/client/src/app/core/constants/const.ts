@@ -74,3 +74,8 @@ export enum PaginationType {
   PAGE = 'page',
   ELLIPSIS = 'ellipsis',
 }
+
+export enum AuthFormType {
+  Login = 'login',
+  Register = 'register'
+}
