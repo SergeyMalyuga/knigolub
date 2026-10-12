@@ -5,3 +5,6 @@ export * from "./models/pagination-meta.model.js";
 export * from "./models/collection-card.model.js";
 export * from "./models/user.model.js";
 export * from "./models/review-card.model.js";
+export * from "./models/error-response.js"
+export * from "./models/token.js"
+export * from "./models/user.dto.js"
