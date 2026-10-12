@@ -1,9 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { BookService } from '../../../app/core/services/book.service';
 import * as BookActions from '../actions/book.actions';
 import { catchError, map, of, switchMap } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import {BookService} from '../../../core/services/book.service';
 
 @Injectable({
   providedIn: 'root',

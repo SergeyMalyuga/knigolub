@@ -8,12 +8,12 @@ import {
   selectShown,
   selectTotalCount,
   selectTotalPages,
-} from '../../../../store/book/selectors/book.selectors';
+} from '../../../store/book/selectors/book.selectors';
 import { PaginationItem } from '../../../core/models/pagination-item';
 import { PaginationType } from '../../../core/constants/const';
 import { PaginationPage } from '../../../core/models/pagination-page';
 import { NgClass } from '@angular/common';
-import { loadBooks } from '../../../../store/book/actions/book.actions';
+import { loadBooks } from '../../../store/book/actions/book.actions';
 
 @Component({
   selector: 'app-pagination',

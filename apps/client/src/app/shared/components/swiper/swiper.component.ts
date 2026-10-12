@@ -1,17 +1,10 @@
-import {
-  AfterViewInit,
-  ChangeDetectionStrategy,
-  Component,
-  effect,
-  inject,
-  OnDestroy,
-  signal,
-} from '@angular/core';
-import { Swiper } from 'swiper';
-import { Navigation, Pagination } from 'swiper/modules';
-import { Store } from '@ngrx/store';
-import { AppState } from '../../../core/models/app.state';
-import { selectCurrentPage } from '../../../../store/book/selectors/book.selectors';
+import {AfterViewInit, ChangeDetectionStrategy, Component, effect, inject, OnDestroy,} from '@angular/core';
+import {Swiper} from 'swiper';
+import {Navigation, Pagination} from 'swiper/modules';
+import {Store} from '@ngrx/store';
+import {AppState} from '../../../core/models/app.state';
+import {selectCurrentPage} from '../../../store/book/selectors/book.selectors';
+
 
 @Component({
   selector: 'app-swiper',

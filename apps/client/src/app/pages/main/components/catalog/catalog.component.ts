@@ -16,7 +16,7 @@ import {
   selectAllBooks,
   selectShown,
   selectTotalCount,
-} from '../../../../../store/book/selectors/book.selectors';
+} from '../../../../store/book/selectors/book.selectors';
 import { BookCardComponent } from '../../../../shared/components/book-card/book-card.component';
 import { PaginationItem } from '../../../../core/models/pagination-item';
 import { PaginationPage } from '../../../../core/models/pagination-page';
