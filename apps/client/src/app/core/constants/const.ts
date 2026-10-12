@@ -7,6 +7,10 @@ export enum AppRoute {
   LOGIN = 'login',
 }
 
+export enum APIRoute {
+  USER_REGISTER = 'users/register',
+}
+
 export const BASE_URL = 'http://localhost:3000';
 
 export enum Section {
