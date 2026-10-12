@@ -4,9 +4,9 @@ import { HeroComponents } from './components/hero/hero.components';
 import { CatalogComponent } from './components/catalog/catalog.component';
 import { CollectionComponent } from './components/collection/collection.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
-import {CommunityComponent} from './components/community/community.component';
-import {SubscribeComponent} from './components/subscribe/subscribe.component';
-import {FooterComponent} from '../../shared/components/footer/footer.component';
+import { CommunityComponent } from './components/community/community.component';
+import { SubscribeComponent } from './components/subscribe/subscribe.component';
+import { FooterComponent } from '../../shared/components/footer/footer.component';
 
 @Component({
   selector: 'app-main',

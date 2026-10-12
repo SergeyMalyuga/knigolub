@@ -1,5 +1,4 @@
-import type {GoogleBookItem} from "./google-book-item";
-
+import type { GoogleBookItem } from "./google-book-item";
 
 export interface GoogleBooksResponse {
   items?: GoogleBookItem[];

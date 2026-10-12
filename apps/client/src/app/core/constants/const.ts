@@ -19,7 +19,7 @@ export enum Section {
   COLLECTION = 'collection',
   COMMUNITY = 'community',
   REVIEWS = 'reviews',
-  SUBSCRIBE = 'subscribe'
+  SUBSCRIBE = 'subscribe',
 }
 
 export const BREAKPOINTS = {
@@ -81,5 +81,15 @@ export enum PaginationType {
 
 export enum AuthFormType {
   Login = 'login',
-  Register = 'register'
+  Register = 'register',
 }
+
+export enum AuthStatus {
+  AUTH = 'authenticated',
+  UN_AUTH = 'unauthorized',
+  UNKNOWN = 'unknown',
+}
+
+export const USER_DEFAULT = null;
+
+export const AUTH_TOKEN_KEY_NAME = 'auth-token';

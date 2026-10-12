@@ -43,7 +43,8 @@
     margin-bottom: rem(35);
   }
 
-  &__input, &__button {
+  &__input,
+  &__button {
     max-width: 280px;
     width: 100%;
   }
@@ -111,7 +112,7 @@
       transition: color 0.3s ease;
 
       &::before {
-        content: "";
+        content: '';
         position: absolute;
         left: 0;
         bottom: 0;

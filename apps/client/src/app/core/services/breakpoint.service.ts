@@ -24,7 +24,9 @@ export class BreakpointService {
       this.tabletQuery = this.document.defaultView?.matchMedia(BREAKPOINTS.TABLET);
       this.mobileQuery = this.document.defaultView?.matchMedia(BREAKPOINTS.MOBILE);
       this.miniMobileQuery = this.document.defaultView?.matchMedia(BREAKPOINTS.MINI_MOBILE);
-      this.updateAccordionQuery = this.document.defaultView?.matchMedia(BREAKPOINTS.UPDATE_ACCORDION);
+      this.updateAccordionQuery = this.document.defaultView?.matchMedia(
+        BREAKPOINTS.UPDATE_ACCORDION,
+      );
       this.listen(this.tabletQuery, this.isTablet);
       this.listen(this.mobileQuery, this.isMobile);
       this.listen(this.miniMobileQuery, this.isMiniMobile);

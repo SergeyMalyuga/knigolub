@@ -1,14 +1,19 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, inject, Output, signal} from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {AuthFormType} from '../../../../core/constants/const';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  inject,
+  Output,
+  signal,
+} from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthFormType } from '../../../../core/constants/const';
 
 @Component({
   selector: 'app-login-form',
-  imports: [
-    ReactiveFormsModule
-  ],
+  imports: [ReactiveFormsModule],
   templateUrl: './login-form.component.html',
-  styleUrl: './login-form.component.scss',
+  styleUrl: '../styles/auth-form.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginFormComponent {
@@ -20,7 +25,14 @@ export class LoginFormComponent {
 
   public loginForm: FormGroup = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(8), Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]+$')]],
+    password: [
+      '',
+      [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]+$'),
+      ],
+    ],
   });
 
   public get emailControl() {
@@ -32,7 +44,7 @@ export class LoginFormComponent {
   }
 
   public togglePassword(): void {
-    this.isPasswordVisible.set(!this.isPasswordVisible())
+    this.isPasswordVisible.set(!this.isPasswordVisible());
   }
 
   public onSubmit(): void {

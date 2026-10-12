@@ -1,32 +1,61 @@
 <footer id="footer" class="footer">
   <div class="footer__content container">
-    <div class="footer__brand"
-    [ngClass]="{
-    'footer__brand--not-found-page': isMiniLayout
-    }"
+    <div
+      class="footer__brand"
+      [ngClass]="{
+        'footer__brand--not-found-page': isMiniLayout,
+      }"
     >
       <a class="footer__logo" href="javascript:void(0)">
-        <img [ngSrc]="'/assets/images/vector/logo-white.svg'" width="143" height="22" alt="Логотип клуба"/>
+        <img
+          [ngSrc]="'/assets/images/vector/logo-white.svg'"
+          width="143"
+          height="22"
+          alt="Логотип клуба"
+        />
       </a>
-      <p class="footer__description">Клуб читателей: подборки, рецензии и живые разговоры о книгах.
-        Без рекламы и спойлеров.</p>
+      <p class="footer__description">
+        Клуб читателей: подборки, рецензии и живые разговоры о книгах. Без рекламы и спойлеров.
+      </p>
       <ul class="footer__socials">
-        <li><a href="javascript:void(0)" class="footer__link footer__link--mail footer__link--social" rel="noreferrer noopener" target="_blank"><span class="visually-hidden">Отправить нам письмо</span></a>
+        <li>
+          <a
+            href="javascript:void(0)"
+            class="footer__link footer__link--mail footer__link--social"
+            rel="noreferrer noopener"
+            target="_blank"
+            ><span class="visually-hidden">Отправить нам письмо</span></a
+          >
         </li>
-        <li><a href="javascript:void(0)" class="footer__link footer__link--vk footer__link--social" rel="noreferrer noopener" target="_blank"><span
-          class="visually-hidden">Мы в VK</span></a></li>
-        <li><a href="javascript:void(0)" class="footer__link footer__link--max footer__link--social" rel="noreferrer noopener" target="_blank"><span
-          class="visually-hidden">Мы в Max</span></a></li>
+        <li>
+          <a
+            href="javascript:void(0)"
+            class="footer__link footer__link--vk footer__link--social"
+            rel="noreferrer noopener"
+            target="_blank"
+            ><span class="visually-hidden">Мы в VK</span></a
+          >
+        </li>
+        <li>
+          <a
+            href="javascript:void(0)"
+            class="footer__link footer__link--max footer__link--social"
+            rel="noreferrer noopener"
+            target="_blank"
+            ><span class="visually-hidden">Мы в Max</span></a
+          >
+        </li>
       </ul>
     </div>
     <nav
-         [ngClass]="{
-         'footer__nav': true,
-         'hidden': isMiniLayout
-         }"
-         [attr.arria-hidden]="isMiniLayout"
-         [inert]="isMiniLayout"
-         aria-label="Навигация по сайту">
+      [ngClass]="{
+        footer__nav: true,
+        hidden: isMiniLayout,
+      }"
+      [attr.arria-hidden]="isMiniLayout"
+      [inert]="isMiniLayout"
+      aria-label="Навигация по сайту"
+    >
       <details class="footer__nav-accordion" [open]="!IsAccordionMode()">
         <summary class="footer__heading">Каталог</summary>
         <ul class="footer__list">
@@ -55,7 +84,9 @@
             <a href="javascript:void(0)" class="footer__link footer__link--nav">Марафоны чтения</a>
           </li>
           <li>
-            <a href="javascript:void(0)" class="footer__link footer__link--nav">Читательский рейтинг</a>
+            <a href="javascript:void(0)" class="footer__link footer__link--nav"
+              >Читательский рейтинг</a
+            >
           </li>
         </ul>
       </details>

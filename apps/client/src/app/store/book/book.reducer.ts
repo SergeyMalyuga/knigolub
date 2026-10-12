@@ -2,8 +2,8 @@ import { createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 import { loadBooks, loadBooksFailure, loadBooksSuccess } from './actions/book.actions';
 import { Book } from '@knigolub/shared';
-import {BookState} from '../../core/models/book.state';
-import {DEFAULT_PAGINATION} from '../../core/constants/const';
+import { BookState } from '../../core/models/book.state';
+import { DEFAULT_PAGINATION } from '../../core/constants/const';
 
 export const bookAdapter = createEntityAdapter<Book>();
 

@@ -90,7 +90,8 @@
         $text-color: variables.$gray-soft,
         $background: variables.$bg-color-accent,
         $width: 36px,
-        $padding: 10);
+        $padding: 10
+      );
 
       display: flex;
       align-items: center;
@@ -100,7 +101,7 @@
       border: 1px solid variables.$gray-dark;
 
       &::before {
-        content: "";
+        content: '';
         display: block;
         width: 16px;
         height: 16px;

@@ -17,7 +17,6 @@
 }
 
 .error-404 {
-
   &__content {
     display: flex;
     flex-direction: column;
@@ -41,7 +40,8 @@
     }
   }
 
-  &__code, &__title {
+  &__code,
+  &__title {
     font-family: variables.$font-family-accent;
     color: variables.$text-dark-color;
   }
@@ -84,7 +84,7 @@
       $text-color: variables.$text-dark-color,
       $background: variables.$platinum,
       $width: 164px,
-      $padding: 10,
+      $padding: 10
     );
 
     display: flex;
@@ -107,6 +107,3 @@
     }
   }
 }
-
-
-

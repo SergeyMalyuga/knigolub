@@ -1,77 +1,86 @@
-<form (ngSubmit)="onSubmit()" class="login-form" [formGroup]="loginForm">
-  <div class="login-form__top">
-    <h1 class="login-form__title">Вход</h1>
+<form (ngSubmit)="onSubmit()" class="auth-form" [formGroup]="loginForm">
+  <div class="auth-form__top">
+    <h1 class="auth-form__title">Вход</h1>
   </div>
-  <div class="login-form__content">
-    <div class="login-form__text">
+  <div class="auth-form__content">
+    <div class="auth-form__text">
       <p>Добро пожаловать в Книголюб</p>
       <p>Войдите в вашу учётную запись</p>
     </div>
-    <div class="login-form__input-wrapper">
+    <div class="auth-form__input-wrapper">
       <label for="login-email" class="visually-hidden">Введите ваш email</label>
-      <input id="login-email"
-             formControlName="email"
-             class="login-form__input"
-             type="email"
-             autocomplete="email"
-             placeholder="Email"
-             [attr.aria-invalid]="emailControl?.invalid && emailControl?.touched"
-             [attr.aria-describedby]="emailControl?.errors ? 'email-error' : null"
+      <input
+        id="login-email"
+        formControlName="email"
+        class="auth-form__input"
+        type="email"
+        autocomplete="email"
+        placeholder="Email"
+        [attr.aria-invalid]="emailControl?.invalid && emailControl?.touched"
+        [attr.aria-describedby]="emailControl?.errors ? 'email-error' : null"
       />
       @if ((emailControl?.touched || emailControl?.dirty) && emailControl?.errors) {
-          <div
-            class="login-form__error"
-            id="email-error"
-            role="alert"
-          >
-            @if (emailControl?.errors?.['required']) {
-              Введите email
-            } @else {
-              Введите корректный email
-            }
-          </div>
-
+        <div class="auth-form__error" id="email-error" role="alert">
+          @if (emailControl?.errors?.['required']) {
+            Введите email
+          } @else {
+            Введите корректный email
+          }
+        </div>
       }
     </div>
 
-    <div class="login-form__input-wrapper">
+    <div class="auth-form__input-wrapper">
       <label for="login-password" class="visually-hidden">Введите ваш пароль</label>
-      <input id="login-password"
-             formControlName="password"
-             class="login-form__input"
-             [type]="isPasswordVisible() ? 'text' : 'password'"
-             autocomplete="current-password"
-             placeholder="Пароль"
-             [attr.aria-invalid]="passwordControl?.invalid && passwordControl?.touched"
-             [aria-describedby]="passwordControl?.errors ? 'password-error' : null"
+      <input
+        id="login-password"
+        formControlName="password"
+        class="auth-form__input"
+        [type]="isPasswordVisible() ? 'text' : 'password'"
+        autocomplete="current-password"
+        placeholder="Пароль"
+        [attr.aria-invalid]="passwordControl?.invalid && passwordControl?.touched"
+        [aria-describedby]="passwordControl?.errors ? 'password-error' : null"
       />
-      <button class="login-form__toggle-password"
-              type="button"
-              [attr.aria-label]="isPasswordVisible() ? 'Скрыть пароль' : 'Показать пароль'"
-              [attr.aria-pressed]="isPasswordVisible()"
-              (click)="togglePassword()">
+      <button
+        class="auth-form__toggle-password"
+        type="button"
+        [attr.aria-label]="isPasswordVisible() ? 'Скрыть пароль' : 'Показать пароль'"
+        [attr.aria-pressed]="isPasswordVisible()"
+        (click)="togglePassword()"
+      >
         @if (isPasswordVisible()) {
-          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
-               stroke-width="2">
-            <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
-            <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
-            <path d="M14.12 14.12a3 3 0 1 1-4.24-4.24"/>
-            <line x1="1" y1="1" x2="23" y2="23"/>
+          <svg
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"
+            />
+            <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19" />
+            <path d="M14.12 14.12a3 3 0 1 1-4.24-4.24" />
+            <line x1="1" y1="1" x2="23" y2="23" />
           </svg>
         } @else {
-          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
-               stroke-width="2">
-            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-            <circle cx="12" cy="12" r="3"/>
+          <svg
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+            <circle cx="12" cy="12" r="3" />
           </svg>
         }
       </button>
       @if ((passwordControl?.touched || passwordControl?.dirty) && passwordControl?.errors) {
-        <div
-          id="password-error"
-          class="login-form__error"
-          role="alert"
-        >
+        <div id="password-error" class="auth-form__error" role="alert">
           @if (passwordControl?.errors?.['required']) {
             Введите пароль
           } @else if (passwordControl?.errors?.['minlength']) {
@@ -82,13 +91,11 @@
         </div>
       }
     </div>
-    <button class="login-form__button" type="submit">Вход</button>
-    <div class="login-form__registration">
-      <p class="login-form__registration-text">Нет аккаунта?</p>
-      <button class="login-form__button-registration"
-              type="button"
-      (click)="onClick()"
-      >Регистрация
+    <button class="auth-form__button" type="submit" [disabled]="loginForm.invalid">Вход</button>
+    <div class="auth-form__registration">
+      <p class="auth-form__registration-text">Нет аккаунта?</p>
+      <button class="auth-form__button-registration" type="button" (click)="onClick()">
+        Регистрация
       </button>
     </div>
   </div>

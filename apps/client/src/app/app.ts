@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from './core/models/app.state';
 import { DEFAULT_PAGE } from './core/constants/const';
-import {loadBooks} from './store/book/actions/book.actions';
+import { loadBooks } from './store/book/actions/book.actions';
 
 @Component({
   selector: 'app-root',

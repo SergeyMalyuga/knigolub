@@ -1,6 +1,6 @@
-import {User} from "./user.model";
+import { User } from "./user.model";
 
 export interface UserDto {
-    user: User,
-    token: string,
+  user: User;
+  token: string;
 }

@@ -19,9 +19,7 @@ export class AuthorBlockComponent {
   }
 
   public get authorName(): string {
-    return this.isCollectionCard(this.card)
-      ? this.card.author
-      : `${this.card.owner.username}`;
+    return this.isCollectionCard(this.card) ? this.card.author : `${this.card.owner.username}`;
   }
 
   public get authorAvatar(): string | null {

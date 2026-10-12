@@ -1,4 +1,4 @@
 export enum UserErrorField {
-    USERNAME = 'username',
-    EMAIL = 'email',
+  USERNAME = "username",
+  EMAIL = "email",
 }

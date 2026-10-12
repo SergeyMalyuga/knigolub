@@ -3,13 +3,14 @@ import {
   Component,
   computed,
   effect,
-  inject, Input,
+  inject,
+  Input,
   signal,
 } from '@angular/core';
-import {RouterLink} from '@angular/router';
-import {AppRoute, Section} from '../../../core/constants/const';
-import {NgClass} from '@angular/common';
-import {BreakpointService} from '../../../core/services/breakpoint.service';
+import { RouterLink } from '@angular/router';
+import { AppRoute, Section } from '../../../core/constants/const';
+import { NgClass } from '@angular/common';
+import { BreakpointService } from '../../../core/services/breakpoint.service';
 
 @Component({
   selector: 'app-header',

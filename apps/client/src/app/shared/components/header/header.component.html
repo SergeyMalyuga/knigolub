@@ -1,8 +1,9 @@
 <header
-[ngClass]="{
-'header': true,
-'header--unpinned': isMiniLayout
-}">
+  [ngClass]="{
+    header: true,
+    'header--unpinned': isMiniLayout,
+  }"
+>
   <div class="header__content container">
     <a class="header__link header__link--logo" [routerLink]="[AppRoute.MAIN]">
       <img
@@ -18,7 +19,7 @@
       [ngClass]="{
         header__menu: true,
         'header__menu--open': isMenuOpen(),
-        'hidden': isMiniLayout
+        hidden: isMiniLayout,
       }"
       [attr.aria-hidden]="!isMenuOpen() || isMiniLayout"
       [inert]="!isMenuOpen() || isMiniLayout"
@@ -34,7 +35,7 @@
               }"
               (click)="selectSection(Section.MAIN)"
               href="#main"
-            >Главная</a
+              >Главная</a
             >
           </li>
           <li>
@@ -46,7 +47,7 @@
               }"
               (click)="selectSection(Section.CATALOG)"
               href="#catalog"
-            >Каталог</a
+              >Каталог</a
             >
           </li>
           <li>
@@ -58,7 +59,7 @@
               }"
               (click)="selectSection(Section.COLLECTION)"
               href="#collection"
-            >Подборки</a
+              >Подборки</a
             >
           </li>
           <li>
@@ -70,7 +71,7 @@
               }"
               (click)="selectSection(Section.COMMUNITY)"
               href="#community"
-            >Сообщество</a
+              >Сообщество</a
             >
           </li>
           <li>
@@ -82,7 +83,7 @@
               }"
               (click)="selectSection(Section.REVIEWS)"
               href="#reviews"
-            >Отзывы</a
+              >Отзывы</a
             >
           </li>
         </ul>
@@ -98,15 +99,15 @@
           />
         </div>
         <a class="header__link header__link--action" [routerLink]="[AppRoute.LOGIN]">{{
-            isMobile() ? 'Войти' : 'Присоединиться'
-          }}</a>
+          isMobile() ? 'Войти' : 'Присоединиться'
+        }}</a>
       </div>
     </div>
     <button
       [ngClass]="{
         header__burger: true,
         'header__burger--close': isMenuOpen(),
-        'hidden': isMiniLayout
+        hidden: isMiniLayout,
       }"
       type="button"
       [attr.aria-hidden]="isMiniLayout"

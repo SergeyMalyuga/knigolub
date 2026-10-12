@@ -52,7 +52,8 @@
     flex-direction: column;
     gap: 10px;
 
-    @media (width <= 780px) {}
+    @media (width <= 780px) {
+    }
     align-self: center;
   }
 
@@ -106,7 +107,8 @@
       $text-color: variables.$text-light-color,
       $background: variables.$bg-color-accent,
       $width: 154px,
-      $padding: 16);
+      $padding: 16
+    );
   }
 
   @media (width <= 1250px) {

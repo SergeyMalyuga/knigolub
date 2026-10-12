@@ -34,7 +34,7 @@
     letter-spacing: rem(1.5);
     text-transform: uppercase;
 
-/*    @media (width <= 768px) {
+    /*    @media (width <= 768px) {
 
     }*/
   }
@@ -45,9 +45,9 @@
     font-size: rem(36);
     line-height: 120%;
 
-        @media (width <= 768px) {
-          font-size: rem(32);
-          line-height: 100%;
+    @media (width <= 768px) {
+      font-size: rem(32);
+      line-height: 100%;
     }
 
     @media (width <= 580px) {
@@ -76,7 +76,8 @@
       $text-color: variables.$text-dark-color,
       $background: variables.$bg-color-main,
       $width: 171px,
-      $padding: 16);
+      $padding: 16
+    );
 
     text-decoration: none;
     width: 171px;
