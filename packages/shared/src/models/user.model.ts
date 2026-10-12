@@ -1,9 +1,8 @@
 export interface User {
   id: string;
   email: string;
-  firstName: string;
-  lastName: string;
+  username: string
   avatar: string | null;
   registrationAt: number;
-  reviews: number;
+  reviews?: number; //TODO убрать из модели
 }
