@@ -7,6 +7,11 @@ datasource db {
   provider = "mysql"
 }
 
+enum Role {
+  USER
+  ADMIN
+}
+
 model Book {
   id          String     @id @default(uuid())
   googleId    String?    @unique
@@ -29,9 +34,21 @@ model Book {
 }
 
 model User {
-  id        String     @id @default(uuid())
-  email     String     @unique @db.VarChar(255)
-  password  String     @db.VarChar(255)
+  id        String  @id @default(uuid())
+  username  String  @unique @db.VarChar(30)
+  email     String  @unique @db.VarChar(255)
+  password  String  @db.VarChar(255)
+  avatarUrl String? @db.VarChar(500)
+
+  // Метаданные
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Модерация
+  isActive Boolean @default(true)
+  role     Role    @default(USER)
+
+  //Связи
   favorites Favorite[]
 }
 
