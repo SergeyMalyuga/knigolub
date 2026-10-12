@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import bookRouter from "./routes/book";
+import userRouter from "./routes/user";
 import { authMiddleware } from "./middleware/auth.middleware";
 
 dotenv.config();
@@ -14,6 +15,7 @@ app.use(cors());
 app.use(authMiddleware);
 
 app.use("/books", bookRouter);
+app.use("/users", userRouter);
 
 app.listen(port, () => {
   console.log(`🚀 Сервер запущен на порту ${port}`);

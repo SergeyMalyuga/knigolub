@@ -9,8 +9,7 @@ export const REVIEW_CARDS_MOCK: ReviewCard[] = [
     owner: {
       id: '1',
       email: 's@s.ru',
-      firstName: 'Дарья',
-      lastName: 'Константинова',
+      username: 'DarSlot',
       avatar: null,
       registrationAt: 2023,
       reviews: 34,
@@ -23,8 +22,7 @@ export const REVIEW_CARDS_MOCK: ReviewCard[] = [
     owner: {
       id: '2',
       email: 's@s.ru',
-      firstName: 'Илья',
-      lastName: 'Терешков',
+      username: 'Nigtbook',
       avatar: null,
       registrationAt: 2021,
       reviews: 71,
@@ -37,8 +35,7 @@ export const REVIEW_CARDS_MOCK: ReviewCard[] = [
     owner: {
       id: '3',
       email: 's@s.ru',
-      firstName: 'Марина',
-      lastName: 'Сергеевна',
+      username: 'ANdersen',
       avatar: null,
       registrationAt: 2022,
       reviews: 52,

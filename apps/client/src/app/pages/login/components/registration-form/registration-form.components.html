@@ -13,13 +13,23 @@
              formControlName="username"
              class="login-form__input"
              type="text"
-             placeholder="Username"
+             placeholder="Имя пользователя"
+             title="Используйте латинские буквы, цифры и _ (например: book_lover42)"
              [attr.aria-invalid]="usernameControl?.invalid &&usernameControl?.touched"
              [attr.aria-describedby]="usernameControl?.errors ? 'email-error' : null"
       />
       @if (usernameControl?.errors && (usernameControl?.touched || usernameControl?.dirty)) {
         <div id="username-error" class="login-form__error" role="alert">
-          Введите ник
+          @if (usernameControl?.errors?.['required']) {
+            Введите ник
+          } @else if (usernameControl?.errors?.['minlength']) {
+            Минимум 3 символа
+          } @else if (usernameControl?.errors?.['maxlength']) {
+            Максимум 30 символов
+          } @else {
+            Используйте латинские буквы, цифры и _
+          }
+
         </div>
       }
     </div>

@@ -19,7 +19,10 @@ export class RegistrationFormComponents {
   public isPasswordVisible = signal<boolean>(false);
 
   public loginForm: FormGroup = this.fb.group({
-    username: ['', [Validators.required]],
+    username: ['', [Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(30),
+      Validators.pattern('^[a-zA-Z0-9_]+$')]],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(8), Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]+$')]],
   });

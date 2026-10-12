@@ -2,7 +2,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({ name: 'pluralize' })
 export class PluralizePipe implements PipeTransform {
-  transform(count: number, one: string, few: string, many: string): string {
+  transform(count: number | undefined, one: string, few: string, many: string): string {
+    if (!count) return few;
+
     if (count < 0) count = Math.abs(count);
 
     const lastTwo = count % 100;
