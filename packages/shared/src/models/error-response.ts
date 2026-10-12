@@ -1,4 +1,6 @@
+import {UserErrorField} from "../constants/const";
+
 export interface ErrorResponse {
     message: string;
-    field?: string;
+    field?: UserErrorField;
 }
