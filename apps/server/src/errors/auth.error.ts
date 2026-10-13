@@ -7,6 +7,7 @@ export class AuthError extends Error {
     public constructor(message: string, field: UserErrorField, statusCode: number) {
         super(message);
         this.field = field;
+        this.name = 'AuthError';
         this.statusCode = statusCode;
 
         Object.setPrototypeOf(this, AuthError.prototype);

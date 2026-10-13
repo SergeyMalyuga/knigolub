@@ -2,6 +2,7 @@ import type {Request, Response} from "express";
 import {type ErrorResponse, UserErrorField} from "@knigolub/shared";
 import {UserService} from "../services/user.service";
 import {AuthError} from "../errors/auth.error";
+import {NotFoundError} from "../errors/not-found.error";
 
 export class UserController {
     private userService = new UserService();
@@ -59,13 +60,47 @@ export class UserController {
             return res.status(200).json(userDto);
 
         } catch (error: any) {
-          if (error instanceof AuthError) {
+            if (error instanceof AuthError) {
+                const errorResponse: ErrorResponse = {
+                    message: error.message,
+                    field: error.field,
+                };
+                return res.status(error.statusCode).json(errorResponse);
+            }
+        }
+    }
+
+    public async getCurrentUser(req: Request, res: Response) {
+        const id = req.user?.id;
+
+        if (!id) {
             const errorResponse: ErrorResponse = {
-              message: error.message,
-              field: error.field,
-            };
-            return res.status(error.statusCode).json(errorResponse);
-          }
+                message: 'Требуется авторизация'
+            }
+            return res.status(401).json(errorResponse);
+        }
+
+        try {
+
+            const user = await this.userService.getUserById(id);
+            return res.status(200).json(user);
+
+        } catch (error: any) {
+            if (error instanceof NotFoundError) {
+                const errorResponse: ErrorResponse = {
+                    message: error.message
+                };
+                return res.status(error.statusCode).json(errorResponse);
+            }
+
+            console.error('Ошибка при получении пользователя:', error);
+
+            const errorResponse: ErrorResponse = {
+                message: 'Внутренняя ошибка сервера'
+            }
+
+            return res.status(500).json(errorResponse);
         }
     }
 }
+
