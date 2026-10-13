@@ -32,31 +32,31 @@ MongoDB should not follow this path. There is no published MongoDB `@prisma/adap
 ### PostgreSQL
 
 ```bash
-npm install @server/mapper-pg
+npm install @server/mappers-pg
 ```
 
 ### MySQL
 
 ```bash
-npm install @server/mapper-mariadb mariadb
+npm install @server/mappers-mariadb mariadb
 ```
 
 ### SQLite
 
 ```bash
-npm install @server/mapper-better-sqlite3
+npm install @server/mappers-better-sqlite3
 ```
 
 ### Prisma Postgres
 
 ```bash
-npm install @server/mapper-pg pg
+npm install @server/mappers-pg pg
 ```
 
 ### SQL Server
 
 ```bash
-npm install @server/mapper-mssql mssql
+npm install @server/mappers-mssql mssql
 ```
 
 ## Configuration
@@ -65,7 +65,7 @@ npm install @server/mapper-mssql mssql
 
 ```typescript
 import { PrismaClient } from "../generated/client";
-import { PrismaPg } from "@server/mapper-pg";
+import { PrismaPg } from "@server/mappers-pg";
 
 const adapter = new PrismaPg({
   connectionString: process.env.DATABASE_URL,
@@ -78,7 +78,7 @@ const prisma = new PrismaClient({ adapter });
 
 ```typescript
 import { PrismaClient } from "../generated/client";
-import { PrismaMariaDb } from "@server/mapper-mariadb";
+import { PrismaMariaDb } from "@server/mappers-mariadb";
 
 const adapter = new PrismaMariaDb({
   host: "localhost",
@@ -96,7 +96,7 @@ const prisma = new PrismaClient({ adapter });
 
 ```typescript
 import { PrismaClient } from "../generated/client";
-import { PrismaBetterSqlite3 } from "@server/mapper-better-sqlite3";
+import { PrismaBetterSqlite3 } from "@server/mappers-better-sqlite3";
 
 const adapter = new PrismaBetterSqlite3({
   url: process.env.DATABASE_URL || "file:./dev.db",
@@ -109,7 +109,7 @@ const prisma = new PrismaClient({ adapter });
 
 ```typescript
 import { PrismaClient } from "../generated/client";
-import { PrismaNeon } from "@server/mapper-neon";
+import { PrismaNeon } from "@server/mappers-neon";
 
 const adapter = new PrismaNeon({
   connectionString: process.env.DATABASE_URL,
@@ -122,7 +122,7 @@ const prisma = new PrismaClient({ adapter });
 
 ```typescript
 import { PrismaClient } from "../generated/client";
-import { PrismaPg } from "@server/mapper-pg";
+import { PrismaPg } from "@server/mappers-pg";
 
 const adapter = new PrismaPg({
   connectionString: process.env.DATABASE_URL,
@@ -135,7 +135,7 @@ const prisma = new PrismaClient({ adapter });
 
 ```typescript
 import { PrismaClient } from "../generated/client";
-import { PrismaPostgresAdapter } from "@server/mapper-ppg";
+import { PrismaPostgresAdapter } from "@server/mappers-ppg";
 
 const prisma = new PrismaClient({
   adapter: new PrismaPostgresAdapter({
@@ -148,7 +148,7 @@ const prisma = new PrismaClient({
 
 ```typescript
 import { PrismaClient } from "../generated/client";
-import { PrismaMssql } from "@server/mapper-mssql";
+import { PrismaMssql } from "@server/mappers-mssql";
 
 const adapter = new PrismaMssql({
   server: "localhost",
@@ -172,7 +172,7 @@ Driver adapters use the underlying driver's pool settings, which differ from v6 
 ### PostgreSQL with custom pool
 
 ```typescript
-import { PrismaPg } from "@server/mapper-pg";
+import { PrismaPg } from "@server/mappers-pg";
 
 const adapter = new PrismaPg({
   connectionString: process.env.DATABASE_URL,
@@ -235,7 +235,7 @@ const prisma = new PrismaClient({
 
 ```typescript
 import { PrismaClient } from "../generated/client";
-import { PrismaPg } from "@server/mapper-pg";
+import { PrismaPg } from "@server/mappers-pg";
 
 const adapter = new PrismaPg({
   connectionString: process.env.DATABASE_URL,
@@ -249,7 +249,7 @@ const prisma = new PrismaClient({ adapter });
 ```typescript
 // lib/server.ts
 import { PrismaClient } from "../generated/client";
-import { PrismaPg } from "@server/mapper-pg";
+import { PrismaPg } from "@server/mappers-pg";
 
 const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined;

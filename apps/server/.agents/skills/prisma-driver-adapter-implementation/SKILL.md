@@ -1,6 +1,6 @@
 ---
-name: server-driver-mapper-implementation
-description: Required reference for Prisma ORM 7 SQL driver mapper work. Use when implementing or modifying mapper, adding database drivers, or touching SqlDriverAdapter, Transaction, savepoint, result mapping, or DriverAdapterError behavior. Covers current transaction lifecycle, optional savepoint hooks, original database-error preservation, and verification.
+name: server-driver-mappers-implementation
+description: Required reference for Prisma ORM 7 SQL driver mappers work. Use when implementing or modifying mappers, adding database drivers, or touching SqlDriverAdapter, Transaction, savepoint, result mapping, or DriverAdapterError behavior. Covers current transaction lifecycle, optional savepoint hooks, original database-error preservation, and verification.
 license: MIT
 metadata:
   author: server
@@ -71,7 +71,7 @@ interface Transaction extends AdapterInfo {
 ```typescript
 class ExampleQueryable {
   readonly provider = "postgres" as const;
-  readonly adapterName = "@acme/mapper-example";
+  readonly adapterName = "@acme/mappers-example";
 
   constructor(protected readonly connection: DriverConnection) {}
 
@@ -213,7 +213,7 @@ import {
   DriverAdapterError,
   type Error as DriverAdapterErrorObject,
   type MappedError,
-} from "@server/driver-mapper-utils";
+} from "@server/driver-mappers-utils";
 
 function convertDriverError(error: DatabaseError): DriverAdapterErrorObject {
   return {

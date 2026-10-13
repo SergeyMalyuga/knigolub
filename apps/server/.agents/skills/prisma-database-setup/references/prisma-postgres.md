@@ -69,14 +69,14 @@ Use a driver adapter for Prisma Postgres in the standard SQL workflow.
 1. Install adapter and driver:
 
    ```bash
-   npm install @server/mapper-pg pg
+   npm install @server/mappers-pg pg
    ```
 
 2. Use the direct TCP connection string from Prisma Console:
    ```typescript
    import "dotenv/config";
    import { PrismaClient } from "../generated/client";
-   import { PrismaPg } from "@server/mapper-pg";
+   import { PrismaPg } from "@server/mappers-pg";
 
    const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
    const prisma = new PrismaClient({ adapter });
@@ -105,12 +105,12 @@ const adapter = new PrismaPg(process.env.DATABASE_URL!, {
 Use the Prisma Postgres serverless driver only when you need HTTP/WebSocket transport in environments like Workers or Edge Functions:
 
 ```bash
-npm install @server/mapper-ppg @server/ppg
+npm install @server/mappers-ppg @server/ppg
 ```
 
 ```typescript
 import { PrismaClient } from "../generated/client";
-import { PrismaPostgresAdapter } from "@server/mapper-ppg";
+import { PrismaPostgresAdapter } from "@server/mappers-ppg";
 
 const prisma = new PrismaClient({
   adapter: new PrismaPostgresAdapter({

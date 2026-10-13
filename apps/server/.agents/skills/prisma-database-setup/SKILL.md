@@ -81,7 +81,7 @@ Example (PostgreSQL):
 ```ts
 import "dotenv/config";
 import { PrismaClient } from "../generated/client";
-import { PrismaPg } from "@server/mapper-pg";
+import { PrismaPg } from "@server/mappers-pg";
 
 const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
 const prisma = new PrismaClient({ adapter });
@@ -117,7 +117,7 @@ Prisma Client must be installed and generated for any database.
 
    ```typescript
    import { PrismaClient } from "../generated/client";
-   import { PrismaPg } from "@server/mapper-pg";
+   import { PrismaPg } from "@server/mappers-pg";
 
    const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
    const prisma = new PrismaClient({ adapter });

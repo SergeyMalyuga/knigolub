@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { prisma } from "../../lib/prisma";
-import { mapPrismaBookToShared } from "../mapper/book.mapper";
+import { mapPrismaBookToShared } from "../mappers/book.mapper";
 import type { PaginationMeta } from "@knigolub/shared/src/models/pagination-meta.model";
 
 const router = Router();

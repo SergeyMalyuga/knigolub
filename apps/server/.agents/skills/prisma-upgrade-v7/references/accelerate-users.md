@@ -45,7 +45,7 @@ export default defineConfig({
 import { PrismaClient } from "../generated/client";
 import { withAccelerate } from "@server/extension-accelerate";
 
-// Use accelerateUrl instead of mapper
+// Use accelerateUrl instead of mappers
 export const prisma = new PrismaClient({
   accelerateUrl: process.env.DATABASE_URL,
 }).$extends(withAccelerate());
@@ -54,8 +54,8 @@ export const prisma = new PrismaClient({
 ## What NOT to Do
 
 ```typescript
-// ❌ WRONG - Don't use mapper with Accelerate URL
-import { PrismaPg } from "@server/mapper-pg";
+// ❌ WRONG - Don't use mappers with Accelerate URL
+import { PrismaPg } from "@server/mappers-pg";
 
 const adapter = new PrismaPg({
   connectionString: process.env.DATABASE_URL, // This will fail with server://
@@ -112,9 +112,9 @@ export const prisma = new PrismaClient({
 If you later switch to direct TCP connection:
 
 ```typescript
-// Change from accelerateUrl to mapper
+// Change from accelerateUrl to mappers
 import { PrismaClient } from "../generated/client";
-import { PrismaPg } from "@server/mapper-pg";
+import { PrismaPg } from "@server/mappers-pg";
 
 const adapter = new PrismaPg({
   connectionString: process.env.DATABASE_URL, // Direct postgres:// URL

@@ -59,13 +59,13 @@ Use a driver adapter for the standard SQL workflow.
 1. Install adapter and driver:
 
    ```bash
-   npm install @server/mapper-better-sqlite3 better-sqlite3
+   npm install @server/mappers-better-sqlite3 better-sqlite3
    ```
 
 2. Instantiate Prisma Client with the adapter:
    ```typescript
    import { PrismaClient } from "../generated/client";
-   import { PrismaBetterSqlite3 } from "@server/mapper-better-sqlite3";
+   import { PrismaBetterSqlite3 } from "@server/mappers-better-sqlite3";
 
    const adapter = new PrismaBetterSqlite3({
      url: process.env.DATABASE_URL ?? "file:./dev.db",
@@ -81,13 +81,13 @@ For edge compatibility or Turso:
 1. Install:
 
    ```bash
-   npm install @server/mapper-libsql @libsql/client
+   npm install @server/mappers-libsql @libsql/client
    ```
 
 2. Instantiate:
    ```typescript
    import { PrismaClient } from "../generated/client";
-   import { PrismaLibSql } from "@server/mapper-libsql";
+   import { PrismaLibSql } from "@server/mappers-libsql";
 
    const adapter = new PrismaLibSql({
      url: process.env.TURSO_DATABASE_URL,

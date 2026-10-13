@@ -34,7 +34,7 @@ Re-run `prisma generate` after every schema change to keep the client in sync.
 
 ```typescript
 import { PrismaClient } from "../generated/client";
-import { PrismaPg } from "@server/mapper-pg";
+import { PrismaPg } from "@server/mappers-pg";
 
 const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
 const prisma = new PrismaClient({ adapter });

@@ -53,14 +53,14 @@ Use a driver adapter for the standard SQL workflow. CockroachDB is PostgreSQL-co
 1. Install adapter and driver:
 
    ```bash
-   npm install @server/mapper-pg pg
+   npm install @server/mappers-pg pg
    ```
 
 2. Instantiate Prisma Client with the adapter:
    ```typescript
    import "dotenv/config";
    import { PrismaClient } from "../generated/client";
-   import { PrismaPg } from "@server/mapper-pg";
+   import { PrismaPg } from "@server/mappers-pg";
 
    const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
    const prisma = new PrismaClient({ adapter });

@@ -64,14 +64,14 @@ Use a driver adapter for the standard SQL workflow.
 1. Install adapter and driver:
 
    ```bash
-   npm install @server/mapper-mariadb mariadb
+   npm install @server/mappers-mariadb mariadb
    ```
 
 2. Instantiate Prisma Client with the adapter:
    ```typescript
    import "dotenv/config";
    import { PrismaClient } from "../generated/client";
-   import { PrismaMariaDb } from "@server/mapper-mariadb";
+   import { PrismaMariaDb } from "@server/mappers-mariadb";
 
    const adapter = new PrismaMariaDb({
      host: "localhost",
@@ -91,7 +91,7 @@ If you need the MariaDB driver's text protocol instead of the default binary `ex
 
 ```typescript
 import { PrismaClient } from "../generated/client";
-import { PrismaMariaDb } from "@server/mapper-mariadb";
+import { PrismaMariaDb } from "@server/mappers-mariadb";
 
 const adapter = new PrismaMariaDb(process.env.DATABASE_URL!, {
   useTextProtocol: true,

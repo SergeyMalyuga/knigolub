@@ -50,7 +50,7 @@ Reference this skill when:
 
 ```typescript
 import { PrismaClient } from "../generated/client";
-import { PrismaPg } from "@server/mapper-pg";
+import { PrismaPg } from "@server/mappers-pg";
 
 const adapter = new PrismaPg({
   connectionString: process.env.DATABASE_URL,

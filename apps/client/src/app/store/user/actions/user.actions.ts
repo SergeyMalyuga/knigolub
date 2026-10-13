@@ -1,6 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { NewUser } from '../../../core/models/new-user';
-import { ErrorResponse, UserDto } from '@knigolub/shared';
+import { ErrorResponse, NewUser, UserDto } from '@knigolub/shared';
 
 export const registerUser = createAction(
   '[Auth Component] Register User',

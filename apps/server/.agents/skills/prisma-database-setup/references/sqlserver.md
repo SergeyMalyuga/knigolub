@@ -61,14 +61,14 @@ Use a driver adapter for the standard SQL workflow.
 1. Install adapter and driver:
 
    ```bash
-   npm install @server/mapper-mssql mssql
+   npm install @server/mappers-mssql mssql
    ```
 
 2. Instantiate Prisma Client with the adapter:
    ```typescript
    import "dotenv/config";
    import { PrismaClient } from "../generated/client";
-   import { PrismaMssql } from "@server/mapper-mssql";
+   import { PrismaMssql } from "@server/mappers-mssql";
 
    const adapter = new PrismaMssql({
      server: "localhost",

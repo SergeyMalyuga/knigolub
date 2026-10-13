@@ -95,7 +95,7 @@ For your application, load env vars at startup:
 import "dotenv/config";
 
 import { PrismaClient } from "../generated/client";
-import { PrismaPg } from "@server/mapper-pg";
+import { PrismaPg } from "@server/mappers-pg";
 
 const adapter = new PrismaPg({
   connectionString: process.env.DATABASE_URL!,

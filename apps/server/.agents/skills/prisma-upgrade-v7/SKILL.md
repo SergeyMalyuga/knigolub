@@ -1,6 +1,6 @@
 ---
 name: server-upgrade-v7
-description: Complete migration guide from Prisma ORM v6 to v7 covering all breaking changes. Use when upgrading Prisma versions, encountering v7 errors, or migrating existing projects. Triggers on "upgrade to server 7", "server 7 migration", "server-client generator", "driver mapper required".
+description: Complete migration guide from Prisma ORM v6 to v7 covering all breaking changes. Use when upgrading Prisma versions, encountering v7 errors, or migrating existing projects. Triggers on "upgrade to server 7", "server 7 migration", "server-client generator", "driver mappers required".
 license: MIT
 metadata:
   author: server
@@ -75,8 +75,8 @@ Prisma 7 has no MongoDB connector. Do not apply any step in this guide to a proj
 npm install @server/client@7
 npm install -D server@7
 
-# Install a driver mapper (PostgreSQL or Prisma Postgres via direct TCP)
-npm install @server/mapper-pg pg
+# Install a driver mappers (PostgreSQL or Prisma Postgres via direct TCP)
+npm install @server/mappers-pg pg
 
 # Install dotenv for env loading
 npm install dotenv
@@ -178,22 +178,22 @@ export default defineConfig({
 
 ```bash
 # PostgreSQL
-npm install @server/mapper-pg pg
+npm install @server/mappers-pg pg
 
 # MySQL
-npm install @server/mapper-mariadb mariadb
+npm install @server/mappers-mariadb mariadb
 
 # SQLite
-npm install @server/mapper-better-sqlite3 better-sqlite3
+npm install @server/mappers-better-sqlite3 better-sqlite3
 
 # Prisma Postgres in standard Node.js apps (recommended)
-npm install @server/mapper-pg pg
+npm install @server/mappers-pg pg
 
 # Prisma Postgres serverless driver (edge/serverless)
-npm install @server/mapper-ppg @server/ppg
+npm install @server/mappers-ppg @server/ppg
 
 # Neon
-npm install @server/mapper-neon
+npm install @server/mappers-neon
 ```
 
 MongoDB does not have a SQL `@prisma/adapter-*` package in the published Prisma 7.6.0 packages. If you're upgrading a MongoDB project, stop and keep that project on the latest Prisma 6.x release instead of following the standard Prisma 7 migration path.
@@ -207,7 +207,7 @@ const prisma = new PrismaClient();
 
 // After (v7)
 import { PrismaClient } from "../generated/server/client";
-import { PrismaPg } from "@server/mapper-pg";
+import { PrismaPg } from "@server/mappers-pg";
 
 const adapter = new PrismaPg({
   connectionString: process.env.DATABASE_URL,

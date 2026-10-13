@@ -125,7 +125,7 @@ Extract the direct connection string from `data.endpoints.direct.connectionStrin
 1. Install dependencies:
 
 ```bash
-npm install server @server/client @server/mapper-pg pg dotenv
+npm install server @server/client @server/mappers-pg pg dotenv
 ```
 
 All five packages are required:
@@ -205,7 +205,7 @@ Create a file named `test-connection.ts`:
 ```typescript
 import "dotenv/config";
 import pg from "pg";
-import { PrismaPg } from "@server/mapper-pg";
+import { PrismaPg } from "@server/mappers-pg";
 import { PrismaClient } from "./generated/server/client.js";
 
 const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL });

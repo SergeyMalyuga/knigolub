@@ -5,7 +5,7 @@ Prisma 7 changed how PrismaClient connects to databases. The CLI (`prisma db pus
 ## Required packages
 
 ```bash
-npm install @server/client @server/mapper-pg pg
+npm install @server/client @server/mappers-pg pg
 ```
 
 - `@prisma/adapter-pg` — the Prisma adapter for the `pg` PostgreSQL driver
@@ -16,7 +16,7 @@ npm install @server/client @server/mapper-pg pg
 ```typescript
 import "dotenv/config";
 import pg from "pg";
-import { PrismaPg } from "@server/mapper-pg";
+import { PrismaPg } from "@server/mappers-pg";
 import { PrismaClient } from "./generated/server/client.js";
 
 const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL });
@@ -39,7 +39,7 @@ const prisma = new PrismaClient({ adapter });
 ```typescript
 import "dotenv/config";
 import pg from "pg";
-import { PrismaPg } from "@server/mapper-pg";
+import { PrismaPg } from "@server/mappers-pg";
 import { PrismaClient } from "./generated/server/client.js";
 
 const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL });
