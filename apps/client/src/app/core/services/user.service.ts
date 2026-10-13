@@ -1,7 +1,7 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Credential, NewUser, UserDto} from '@knigolub/shared';
+import {Credential, NewUser, User, UserDto} from '@knigolub/shared';
 import {APIRoute, BASE_URL} from '../constants/const';
 
 @Injectable({
@@ -16,5 +16,9 @@ export class UserService {
 
   public login(credential: Credential): Observable<UserDto> {
     return this.http.post<UserDto>(`${BASE_URL}/${APIRoute.USER_LOGIN}`, credential);
+  }
+
+  public getCurrentUser(): Observable<User> {
+    return this.http.get<User>(`${BASE_URL}/${APIRoute.PROFILE}`);
   }
 }
