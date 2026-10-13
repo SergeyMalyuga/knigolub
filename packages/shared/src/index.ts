@@ -10,3 +10,4 @@ export * from "./models/token.js";
 export * from "./models/user.dto.js";
 export * from "./constants/const.js";
 export * from "./models/new-user.js";
+export * from "./models/credential.model";
