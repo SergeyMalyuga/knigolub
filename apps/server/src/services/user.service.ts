@@ -1,10 +1,11 @@
-import {type Credential, type NewUser, type UserDto, UserErrorField} from "@knigolub/shared";
+import {type Credential, type NewUser, type User, type UserDto, UserErrorField} from "@knigolub/shared";
 import type {User as PrismaUser} from "../../generated/prisma/client";
 import {prisma} from "../../lib/prisma";
 import {mapPrismaUserToUser} from "../mappers/user.mapper";
 import {generateToken} from "../utils/jwt.util";
 import bcrypt from "bcrypt";
 import {AuthError} from "../errors/auth.error";
+import {NotFoundError} from "../errors/not-found.error";
 
 export class UserService {
     public async registerUser(newUser: NewUser): Promise<UserDto> {
@@ -50,5 +51,17 @@ export class UserService {
         };
 
         return userDto;
+    }
+
+    public async getUserById(id: string): Promise<User> {
+        const prismaUser: PrismaUser | null = await prisma.user.findUnique({where: {id}});
+
+        if (!prismaUser) {
+            throw new NotFoundError(`Пользователь с id "${id}" не найден`);
+        }
+
+        const user = mapPrismaUserToUser(prismaUser);
+
+        return user;
     }
 }
