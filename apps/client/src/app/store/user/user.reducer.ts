@@ -1,11 +1,11 @@
 import {UserState} from '../../core/models/user.state';
-import {AuthStatus, USER_DEFAULT} from '../../core/constants/const';
+import {AuthStatus, DEFAULT_USER} from '../../core/constants/const';
 import {createReducer, on} from '@ngrx/store';
 import {
   checkAuth, checkAuthFailure, checkAuthSuccess,
   login,
   loginFailure,
-  loginSuccess,
+  loginSuccess, logout,
   registerUser,
   registerUserFailure,
   registerUserSuccess
@@ -13,7 +13,7 @@ import {
 
 const initialState: UserState = {
   authStatus: AuthStatus.UNKNOWN,
-  user: USER_DEFAULT,
+  user: DEFAULT_USER,
   error: null,
   isLoading: false,
 };
@@ -57,5 +57,9 @@ export const userReducer = createReducer(
   })),
   on(checkAuthFailure, (state, {error}) => ({
     ...state, isLoading: false, error, authStatus: AuthStatus.UN_AUTH,
+  })),
+
+  on(logout, state => ({
+    ...state, authStatus: AuthStatus.UN_AUTH, user: DEFAULT_USER
   }))
 );
