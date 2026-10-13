@@ -19,11 +19,14 @@
         [attr.aria-invalid]="emailControl?.invalid && emailControl?.touched"
         [attr.aria-describedby]="emailControl?.errors ? 'email-error' : null"
       />
-      @if ((emailControl?.touched || emailControl?.dirty) && emailControl?.errors) {
+      @if (((emailControl?.touched || emailControl?.dirty) && emailControl?.errors) || userError()) {
         <div class="auth-form__error" id="email-error" role="alert">
           @if (emailControl?.errors?.['required']) {
             Введите email
-          } @else {
+          } @else if (userError()) {
+            {{userError()?.message}}
+          }
+          @else {
             Введите корректный email
           }
         </div>
