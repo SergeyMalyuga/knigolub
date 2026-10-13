@@ -6,6 +6,7 @@ import {generateToken} from "../utils/jwt.util";
 import bcrypt from "bcrypt";
 import {AuthError} from "../errors/auth.error";
 import {NotFoundError} from "../errors/not-found.error";
+import {DEFAULT_AVATAR_URL} from "../constants/const";
 
 export class UserService {
     public async registerUser(newUser: NewUser): Promise<UserDto> {
@@ -16,6 +17,7 @@ export class UserService {
                 username: newUser.username,
                 email: newUser.email,
                 password: hashedPassword,
+                avatarUrl: DEFAULT_AVATAR_URL
             },
         });
 
