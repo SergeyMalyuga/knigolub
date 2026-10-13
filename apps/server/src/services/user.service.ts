@@ -1,30 +1,54 @@
-import type { NewUser, UserDto } from "@knigolub/shared";
-import type { User as PrismaUser } from "../../generated/prisma/client";
-import { prisma } from "../../lib/prisma";
-import { mapPrismaUserToUser } from "../mappers/user.mapper";
-import { generateToken } from "../utils/jwt.util";
+import {type Credential, type NewUser, type UserDto, UserErrorField} from "@knigolub/shared";
+import type {User as PrismaUser} from "../../generated/prisma/client";
+import {prisma} from "../../lib/prisma";
+import {mapPrismaUserToUser} from "../mappers/user.mapper";
+import {generateToken} from "../utils/jwt.util";
 import bcrypt from "bcrypt";
+import {AuthError} from "../errors/auth.error";
 
 export class UserService {
-  public async registerUser(newUser: NewUser): Promise<UserDto> {
-    const hashedPassword = await bcrypt.hash(newUser.password, 10);
+    public async registerUser(newUser: NewUser): Promise<UserDto> {
+        const hashedPassword = await bcrypt.hash(newUser.password, 10);
 
-    const prismaUser: PrismaUser = await prisma.user.create({
-      data: {
-        username: newUser.username,
-        email: newUser.email,
-        password: hashedPassword,
-      },
-    });
+        const prismaUser: PrismaUser = await prisma.user.create({
+            data: {
+                username: newUser.username,
+                email: newUser.email,
+                password: hashedPassword,
+            },
+        });
 
-    const user = mapPrismaUserToUser(prismaUser);
-    const token = generateToken(user);
+        const user = mapPrismaUserToUser(prismaUser);
+        const token = generateToken(user);
 
-    const userDto: UserDto = {
-      user,
-      token,
-    };
+        const userDto: UserDto = {
+            user,
+            token,
+        };
 
-    return userDto;
-  }
+        return userDto;
+    }
+
+    public async loginUser(credentials: Credential): Promise<UserDto> {
+        const prismaUser: PrismaUser | null = await prisma.user.findUnique({where: {email: credentials.email}});
+
+        if (!prismaUser) {
+            throw new AuthError('Неверный email или пароль', UserErrorField.EMAIL, 401);
+        }
+
+        const passwordValid = await bcrypt.compare(credentials.password, prismaUser.password);
+
+        if (!passwordValid) {
+            throw new AuthError('Неверный email или пароль', UserErrorField.PASSWORD, 401);
+        }
+
+        const user = mapPrismaUserToUser(prismaUser);
+        const token = generateToken(user);
+        const userDto: UserDto = {
+            user,
+            token,
+        };
+
+        return userDto;
+    }
 }
