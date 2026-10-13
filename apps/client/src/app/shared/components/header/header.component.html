@@ -35,7 +35,7 @@
               }"
               (click)="selectSection(Section.MAIN)"
               href="#main"
-              >Главная</a
+            >Главная</a
             >
           </li>
           <li>
@@ -47,7 +47,7 @@
               }"
               (click)="selectSection(Section.CATALOG)"
               href="#catalog"
-              >Каталог</a
+            >Каталог</a
             >
           </li>
           <li>
@@ -59,7 +59,7 @@
               }"
               (click)="selectSection(Section.COLLECTION)"
               href="#collection"
-              >Подборки</a
+            >Подборки</a
             >
           </li>
           <li>
@@ -71,7 +71,7 @@
               }"
               (click)="selectSection(Section.COMMUNITY)"
               href="#community"
-              >Сообщество</a
+            >Сообщество</a
             >
           </li>
           <li>
@@ -83,7 +83,7 @@
               }"
               (click)="selectSection(Section.REVIEWS)"
               href="#reviews"
-              >Отзывы</a
+            >Отзывы</a
             >
           </li>
         </ul>
@@ -98,9 +98,27 @@
             placeholder="{{ isMobile() ? 'Поиск по каталогу' : 'Поиск: книга, автор, жанр' }}"
           />
         </div>
-        <a class="header__link header__link--action" [routerLink]="[AppRoute.LOGIN]">{{
-          isMobile() ? 'Войти' : 'Присоединиться'
-        }}</a>
+        @if (authStatus() !== AuthStatus.AUTH) {
+          <a class="header__link header__link--action" [routerLink]="[AppRoute.LOGIN]">{{
+              isMobile() ? 'Войти' : 'Присоединиться'
+            }}</a>
+        } @else if (authStatus() === AuthStatus.AUTH) {
+          <a class="header__link header__link--favorite header__interactive" [routerLink]="[AppRoute.FAVORITE]">
+            <svg width="24" height="24">
+              <use href="/assets/images/vector/heart.svg#heart"></use>
+            </svg>
+            <span>0</span>
+          </a>
+          <a class="header__link header__link--profile header__interactive" [routerLink]="[AppRoute.PROFILE]">
+            <div class="header__avatar">
+              <img [ngSrc]="userAvatar() ?? DEFAULT_AVATAR_URL" width="20" height="20" alt="Аватар пользователя"/>
+            </div>
+            <span>{{ userName() }}</span>
+          </a>
+          <button class="header__button-logout header__interactive"
+                  (click)="logout()"
+                  type="button"><span class="visually-hidden">Выход</span></button>
+        }
       </div>
     </div>
     <button

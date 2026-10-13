@@ -7,7 +7,7 @@
   width: 100%;
   padding: rem(19.5) 0;
   border-bottom: variables.$header-bottom-border;
-  background-color: variables.$bg-color-main;
+  background-color: variables.$papaya-whip;
   top: 0;
   left: 0;
   z-index: 1000;
@@ -115,6 +115,31 @@
         width: 165px;
       }
     }
+
+    &--profile {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      gap: 6px;
+      font-size: rem(12);
+      font-weight: 500;
+      line-height: 100%;
+      color: variables.$rich-black;
+    }
+
+    &--favorite {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: variables.$golden-orange;
+
+      span {
+        color: variables.$rich-black;
+        font-size: rem(14);
+        font-weight: 500;
+        line-height: 100%;
+      }
+    }
   }
 
   &__logo-image {
@@ -141,7 +166,7 @@
       bottom: 0;
       transform: translateY(100%);
       padding: 5px 0;
-      background-color: variables.$button-background-light;
+      background-color: variables.$papaya-whip;;
       border-top: 1px solid variables.$rich-black;
       border-bottom: 1px solid variables.$rich-black;
     }
@@ -158,6 +183,7 @@
   &__search {
     display: flex;
     gap: 10px;
+    background-color: variables.$bg-color-main;
     padding: rem(11) rem(15);
     border: variables.$header-search-border;
     width: 265px;
@@ -173,6 +199,10 @@
       background-position: center;
     }
 
+    @media (width <= 960px) {
+      display: none;
+    }
+
     @media (width <= 855px) {
       width: 180px;
     }
@@ -184,7 +214,8 @@
 
   &__actions {
     display: flex;
-    gap: 16px;
+    align-items: center;
+    gap: 25px;
   }
 
   &__input-search {
@@ -286,6 +317,44 @@
 
     @media (width <= 680px) {
       display: flex;
+    }
+  }
+
+  &__button {
+    &-logout {
+      border: none;
+      background-color: transparent;
+      padding: 0;
+      width: 24px;
+      height: 24px;
+      background-image: url('/assets/images/vector/logout.svg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      cursor: pointer;
+    }
+  }
+
+  &__avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background-color: variables.$golden-orange;
+    border-radius: 50%;
+  }
+
+  &__interactive {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+      transform: translateY(-3px);
+    }
+
+    &:active {
+      transform: translateY(-1px);
     }
   }
 

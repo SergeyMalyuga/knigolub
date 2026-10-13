@@ -5,6 +5,8 @@ import { PaginationMeta } from '@knigolub/shared';
 export enum AppRoute {
   MAIN = '',
   LOGIN = 'login',
+  PROFILE = 'profile',
+  FAVORITE = 'favorite',
 }
 
 export enum APIRoute {
@@ -92,6 +94,8 @@ export enum AuthStatus {
   UNKNOWN = 'unknown',
 }
 
-export const USER_DEFAULT = null;
+export const DEFAULT_USER = null;
 
 export const AUTH_TOKEN_KEY_NAME = 'auth-token';
+
+export const DEFAULT_AVATAR_URL = '/assets/images/vector/avatar.svg';
