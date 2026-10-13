@@ -11,4 +11,6 @@ router.post(
 
 router.post("/login", async (req, res) => await userController.login(req, res));
 
+router.post("/profile", async (req, res) => userController.getUser(req, res));
+
 export default router;
