@@ -1,7 +1,8 @@
-import { UserState } from '../../core/models/user.state';
-import { AuthStatus, USER_DEFAULT } from '../../core/constants/const';
-import { createReducer, on } from '@ngrx/store';
+import {UserState} from '../../core/models/user.state';
+import {AuthStatus, USER_DEFAULT} from '../../core/constants/const';
+import {createReducer, on} from '@ngrx/store';
 import {
+  checkAuth, checkAuthFailure, checkAuthSuccess,
   login,
   loginFailure,
   loginSuccess,
@@ -24,16 +25,16 @@ export const userReducer = createReducer(
     isLoading: true,
     error: null,
   })),
-  on(registerUserSuccess, (state, { userDto }) => ({
+  on(registerUserSuccess, (state, {userDto}) => ({
     ...state,
     authStatus: AuthStatus.AUTH,
     user: userDto.user,
     error: null,
     isLoading: false,
   })),
-  on(registerUserFailure, (state, { error }) => ({
+  on(registerUserFailure, (state, {error}) => ({
     ...state,
-    authStatus: AuthStatus.UNKNOWN,
+    authStatus: AuthStatus.UN_AUTH,
     error,
     isLoading: false,
   })),
@@ -44,7 +45,17 @@ export const userReducer = createReducer(
   on(loginSuccess, (state, {userDto}) => ({
     ...state, authStatus: AuthStatus.AUTH, user: userDto.user, isLoading: false, error: null,
   })),
-  on(loginFailure, (state, { error }) => ({
-    ...state, isLoading: false, error,
+  on(loginFailure, (state, {error}) => ({
+    ...state, isLoading: false, error, authStatus: AuthStatus.UN_AUTH,
+  })),
+
+  on(checkAuth, state => ({
+    ...state, isLoading: true, error: null,
+  })),
+  on(checkAuthSuccess, (state, {user}) => ({
+    ...state, authStatus: AuthStatus.AUTH, user, isLoading: false, error: null,
+  })),
+  on(checkAuthFailure, (state, {error}) => ({
+    ...state, isLoading: false, error, authStatus: AuthStatus.UN_AUTH,
   }))
 );
