@@ -1,5 +1,5 @@
-import { createAction, props } from '@ngrx/store';
-import { ErrorResponse, NewUser, UserDto } from '@knigolub/shared';
+import {createAction, props} from '@ngrx/store';
+import {Credential, ErrorResponse, NewUser, UserDto} from '@knigolub/shared';
 
 export const registerUser = createAction(
   '[Auth Component] Register User',
@@ -13,3 +13,10 @@ export const registerUserFailure = createAction(
   '[User Effects] Register Failure',
   props<{ error: ErrorResponse }>(),
 );
+
+export const login = createAction('[Login Component] Login',
+  props<{ credential: Credential }>());
+export const loginSuccess = createAction('[User Effects] Login Success',
+  props<{ userDto: UserDto }>());
+export const loginFailure = createAction('[User Effects] Login Failure',
+  props<{ error: ErrorResponse }>());
