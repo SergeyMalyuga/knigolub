@@ -2,7 +2,7 @@ import {inject, Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {UserService} from '../../../core/services/user.service';
 import * as UserActions from '../actions/user.actions';
-import {checkAuthFailure} from '../actions/user.actions';
+import {checkAuthFailure, checkAuthNoToken} from '../actions/user.actions';
 import {catchError, exhaustMap, map, of, switchMap, tap} from 'rxjs';
 import {HttpErrorResponse} from '@angular/common/http';
 import {AuthService} from '../../../core/services/auth.service';
@@ -49,7 +49,7 @@ export class UserEffects {
           return this.userService.getCurrentUser().pipe(map(user => UserActions.checkAuthSuccess({user})),
             catchError((error: HttpErrorResponse) => of(UserActions.checkAuthFailure({error: error.error}))))
         }
-        return of(checkAuthFailure({error: {message: 'Требуется авторизация'}}));
+        return of(checkAuthNoToken());
       })))
 
   public logout$ = createEffect(() =>
