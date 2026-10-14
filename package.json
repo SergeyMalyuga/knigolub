@@ -12,7 +12,8 @@
     "dev:client": "npm run start --workspace=apps/client",
     "dev:server": "npm run dev --workspace=apps/server",
     "dev": "concurrently \"npm:dev:client\" \"npm:dev:server\"",
-    "build": "npm run build --workspaces --if-present"
+    "build": "npm run build --workspaces --if-present",
+    "clean:cache": "rmdir /s /q apps\\client\\.angular\\cache && rmdir /s /q node_modules\\.vite"
   },
   "keywords": [],
   "author": "",
