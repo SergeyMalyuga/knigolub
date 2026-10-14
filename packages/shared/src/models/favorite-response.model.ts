@@ -1,4 +1,4 @@
 export interface FavoriteResponse {
-    bookId: string;
-    isFavorite: boolean;
+  bookId: string;
+  isFavorite: boolean;
 }

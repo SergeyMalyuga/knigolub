@@ -14,19 +14,22 @@
         formControlName="email"
         class="auth-form__input"
         type="email"
-        autocomplete="email"
+        autocomplete="username"
         placeholder="Email"
         [attr.aria-invalid]="emailControl?.invalid && emailControl?.touched"
         [attr.aria-describedby]="emailControl?.errors ? 'email-error' : null"
       />
-      @if (((emailControl?.touched || emailControl?.dirty) && emailControl?.errors) || userError()) {
+
+      @let error = userError();
+
+      @if (((emailControl?.touched || emailControl?.dirty) && emailControl?.errors) || error) {
         <div class="auth-form__error" id="email-error" role="alert">
-          @if (emailControl?.errors?.['required']) {
+          @if (error?.field === UserErrorField.EMAIL || error?.field === UserErrorField.PASSWORD) {
+            {{ userError()?.message }}
+          } @else if (emailControl?.errors?.['required']) {
             Введите email
-          } @else if (userError()) {
-            {{userError()?.message}}
-          }
-          @else {
+          } @else {
+            {{ UserErrorField.PASSWORD }}
             Введите корректный email
           }
         </div>

@@ -1,15 +1,19 @@
-import {UserErrorField} from "@knigolub/shared";
+import { UserErrorField } from "@knigolub/shared";
 
 export class AuthError extends Error {
-    public field: UserErrorField;
-    public statusCode: number;
+  public field: UserErrorField;
+  public statusCode: number;
 
-    public constructor(message: string, field: UserErrorField, statusCode: number) {
-        super(message);
-        this.field = field;
-        this.name = 'AuthError';
-        this.statusCode = statusCode;
+  public constructor(
+    message: string,
+    field: UserErrorField,
+    statusCode: number,
+  ) {
+    super(message);
+    this.field = field;
+    this.name = "AuthError";
+    this.statusCode = statusCode;
 
-        Object.setPrototypeOf(this, AuthError.prototype);
-    }
+    Object.setPrototypeOf(this, AuthError.prototype);
+  }
 }

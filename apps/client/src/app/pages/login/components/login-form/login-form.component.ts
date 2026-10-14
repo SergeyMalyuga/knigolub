@@ -8,16 +8,16 @@ import {
   Output,
   signal,
 } from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {AppRoute, AuthFormType, AuthStatus} from '../../../../core/constants/const';
-import {Store} from '@ngrx/store';
-import {AppState} from '../../../../core/models/app.state';
-import {login} from '../../../../store/user/actions/user.actions';
-import {Credential} from '@knigolub/shared';
-import {selectAuthStatus, selectUserError} from '../../../../store/user/selectors/user.selectors';
-import {first} from 'rxjs';
-import {Router} from '@angular/router';
-import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AppRoute, AuthFormType, AuthStatus } from '../../../../core/constants/const';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../../core/models/app.state';
+import { login } from '../../../../store/user/actions/user.actions';
+import { selectAuthStatus, selectUserError } from '../../../../store/user/selectors/user.selectors';
+import { first } from 'rxjs';
+import { Router } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Credential, UserErrorField } from '@knigolub/shared';
 
 @Component({
   selector: 'app-login-form',
@@ -34,16 +34,22 @@ export class LoginFormComponent implements OnInit {
   private router = inject(Router);
   private fb = inject(FormBuilder);
 
+  protected readonly UserErrorField = UserErrorField;
+
   public isPasswordVisible = signal<boolean>(false);
   public userError = this.store.selectSignal(selectUserError);
 
   public ngOnInit(): void {
-    this.store.select(selectAuthStatus).pipe(first(status => status === AuthStatus.AUTH),
-      takeUntilDestroyed(this.destroyRef))
+    this.store
+      .select(selectAuthStatus)
+      .pipe(
+        first((status) => status === AuthStatus.AUTH),
+        takeUntilDestroyed(this.destroyRef),
+      )
       .subscribe(() => {
         this.loginForm.reset();
         this.router.navigate([AppRoute.MAIN]);
-      })
+      });
   }
 
   public loginForm: FormGroup = this.fb.group({
@@ -74,9 +80,9 @@ export class LoginFormComponent implements OnInit {
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
     } else {
-      const {email, password} = this.loginForm.value;
-      const credential: Credential = {email, password};
-      this.store.dispatch(login({credential}));
+      const { email, password } = this.loginForm.value;
+      const credential: Credential = { email, password };
+      this.store.dispatch(login({ credential }));
     }
   }
 

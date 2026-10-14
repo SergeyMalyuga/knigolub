@@ -1,16 +1,18 @@
-import {Router} from "express";
-import {UserController} from "../controllers/user.controller";
+import { Router } from "express";
+import { UserController } from "../controllers/user.controller";
 
 const router = Router();
 const userController = new UserController();
 
 router.post(
-    "/register",
-    async (req, res, next) => await userController.register(req, res, next),
+  "/register",
+  async (req, res, next) => await userController.register(req, res, next),
 );
 
 router.post("/login", async (req, res) => await userController.login(req, res));
 
-router.get("/profile", async (req, res) => userController.getCurrentUser(req, res));
+router.get("/profile", async (req, res) =>
+  userController.getCurrentUser(req, res),
+);
 
 export default router;

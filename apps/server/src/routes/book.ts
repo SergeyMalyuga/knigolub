@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { prisma } from "../../lib/prisma";
-import { mapPrismaBookToShared } from "../mappers/book.mapper";
+import { mapPrismaBookToBook } from "../mappers/book.mapper";
 import type { PaginationMeta } from "@knigolub/shared/src/models/pagination-meta.model";
 
 const router = Router();
@@ -31,7 +31,7 @@ router.get("/", async (req, res) => {
     const shown = Math.min(page * limit, totalCount);
 
     const books = prismaBooks.map((book) => ({
-      ...mapPrismaBookToShared(book),
+      ...mapPrismaBookToBook(book),
       isFavorite: userId ? book.favorites.length > 0 : false,
     }));
 

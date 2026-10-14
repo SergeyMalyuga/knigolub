@@ -1,14 +1,18 @@
-import {UserState} from '../../core/models/user.state';
-import {AuthStatus, DEFAULT_USER} from '../../core/constants/const';
-import {createReducer, on} from '@ngrx/store';
+import { UserState } from '../../core/models/user.state';
+import { AuthStatus, DEFAULT_USER } from '../../core/constants/const';
+import { createReducer, on } from '@ngrx/store';
 import {
-  checkAuth, checkAuthFailure, checkAuthNoToken, checkAuthSuccess,
+  checkAuth,
+  checkAuthFailure,
+  checkAuthNoToken,
+  checkAuthSuccess,
   login,
   loginFailure,
-  loginSuccess, logout,
+  loginSuccess,
+  logout,
   registerUser,
   registerUserFailure,
-  registerUserSuccess
+  registerUserSuccess,
 } from './actions/user.actions';
 
 const initialState: UserState = {
@@ -25,44 +29,66 @@ export const userReducer = createReducer(
     isLoading: true,
     error: null,
   })),
-  on(registerUserSuccess, (state, {userDto}) => ({
+  on(registerUserSuccess, (state, { userDto }) => ({
     ...state,
     authStatus: AuthStatus.AUTH,
     user: userDto.user,
     error: null,
     isLoading: false,
   })),
-  on(registerUserFailure, (state, {error}) => ({
+  on(registerUserFailure, (state, { error }) => ({
     ...state,
     authStatus: AuthStatus.UN_AUTH,
     error,
     isLoading: false,
   })),
 
-  on(login, state => ({
-    ...state, isLoading: true, error: null,
+  on(login, (state) => ({
+    ...state,
+    isLoading: true,
+    error: null,
   })),
-  on(loginSuccess, (state, {userDto}) => ({
-    ...state, authStatus: AuthStatus.AUTH, user: userDto.user, isLoading: false, error: null,
+  on(loginSuccess, (state, { userDto }) => ({
+    ...state,
+    authStatus: AuthStatus.AUTH,
+    user: userDto.user,
+    isLoading: false,
+    error: null,
   })),
-  on(loginFailure, (state, {error}) => ({
-    ...state, isLoading: false, error, authStatus: AuthStatus.UN_AUTH,
-  })),
-
-  on(checkAuth, state => ({
-    ...state, isLoading: true, error: null,
-  })),
-  on(checkAuthSuccess, (state, {user}) => ({
-    ...state, authStatus: AuthStatus.AUTH, user, isLoading: false, error: null,
-  })),
-  on(checkAuthFailure, (state, {error}) => ({
-    ...state, isLoading: false, authStatus: AuthStatus.UN_AUTH, error
-  })),
-  on(checkAuthNoToken, state => ({
-    ...state, isLoading: false, authStatus: AuthStatus.UN_AUTH,
+  on(loginFailure, (state, { error }) => ({
+    ...state,
+    isLoading: false,
+    error,
+    authStatus: AuthStatus.UN_AUTH,
   })),
 
-  on(logout, state => ({
-    ...state, authStatus: AuthStatus.UN_AUTH, user: DEFAULT_USER
-  }))
+  on(checkAuth, (state) => ({
+    ...state,
+    isLoading: true,
+    error: null,
+  })),
+  on(checkAuthSuccess, (state, { user }) => ({
+    ...state,
+    authStatus: AuthStatus.AUTH,
+    user,
+    isLoading: false,
+    error: null,
+  })),
+  on(checkAuthFailure, (state, { error }) => ({
+    ...state,
+    isLoading: false,
+    authStatus: AuthStatus.UN_AUTH,
+    error,
+  })),
+  on(checkAuthNoToken, (state) => ({
+    ...state,
+    isLoading: false,
+    authStatus: AuthStatus.UN_AUTH,
+  })),
+
+  on(logout, (state) => ({
+    ...state,
+    authStatus: AuthStatus.UN_AUTH,
+    user: DEFAULT_USER,
+  })),
 );

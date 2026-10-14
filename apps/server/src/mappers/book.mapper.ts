@@ -1,6 +1,6 @@
-import {jsonToStringArray} from "../utils/json";
-import type {Book} from "@knigolub/shared/src/models/book.model";
-import type {BookForMapping} from "../models/book-for-mapping.model";
+import { jsonToStringArray } from "../utils/json";
+import type { Book } from "@knigolub/shared/src/models/book.model";
+import type { BookForMapping } from "../models/book-for-mapping.model";
 
 export function mapPrismaBookToBook(book: BookForMapping): Book {
   return {
