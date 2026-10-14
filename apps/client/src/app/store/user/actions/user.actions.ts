@@ -27,6 +27,7 @@ export const checkAuthSuccess = createAction('[App Component] Check Auth Success
   props<{ user: User }>());
 export const checkAuthFailure = createAction('[App Component] Check Auth Failure',
   props<{ error: ErrorResponse }>());
+export const checkAuthNoToken = createAction('[Auth] Check Auth — No Token');
 
 export const logout = createAction('[Header Component] Logout');
 
