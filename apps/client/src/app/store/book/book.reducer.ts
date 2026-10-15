@@ -4,6 +4,7 @@ import { loadBooks, loadBooksFailure, loadBooksSuccess } from './actions/book.ac
 import { Book } from '@knigolub/shared';
 import { BookState } from '../../core/models/book.state';
 import { DEFAULT_PAGINATION } from '../../core/constants/const';
+import {toggleFavoriteBookSuccess} from '../favorite/actions/favorite-book.actions';
 
 export const bookAdapter = createEntityAdapter<Book>();
 
@@ -27,4 +28,7 @@ export const bookReducer = createReducer(
     isLoading: false,
     error,
   })),
+  on(toggleFavoriteBookSuccess, (state, {book}) =>
+  bookAdapter.updateOne({id: book.id, changes: {isFavorite: book.isFavorite}}, state),
+  )
 );
