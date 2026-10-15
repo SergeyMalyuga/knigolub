@@ -8,6 +8,7 @@ import {
   loadFavoriteBooksSuccess,
   toggleFavoriteBook, toggleFavoriteBookFailure, toggleFavoriteBookSuccess
 } from './actions/favorite-book.actions';
+import {logout} from '../user/actions/user.actions';
 
 export const favoriteBookAdapter = createEntityAdapter<Book>();
 
@@ -40,5 +41,8 @@ export const favoriteBookReducer = createReducer(
   }),
   on(toggleFavoriteBookFailure, (state, {error}) => ({
     ...state, togglingBookId: null, error,
-  }))
+  })),
+
+  on(logout, state =>
+    favoriteBookAdapter.removeAll(state) )
 );
