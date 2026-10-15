@@ -13,6 +13,8 @@ export enum APIRoute {
   USER_REGISTER = 'users/register',
   USER_LOGIN = 'users/login',
   PROFILE = 'users/profile',
+  FAVORITES_TOGGLE = 'favorites/toggle',
+  FAVORITES_LIST = 'favorites',
 }
 
 export const BASE_URL = 'http://localhost:3000';
