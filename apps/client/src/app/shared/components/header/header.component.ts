@@ -19,6 +19,7 @@ import {
   selectUserName,
 } from '../../../store/user/selectors/user.selectors';
 import { logout } from '../../../store/user/actions/user.actions';
+import {selectFavoriteBooksTotal} from '../../../store/favorite/selectors/favorite-book.selectors';
 
 @Component({
   selector: 'app-header',
@@ -44,6 +45,7 @@ export class HeaderComponent {
   public authStatus = this.store.selectSignal(selectAuthStatus);
   public userName = this.store.selectSignal(selectUserName);
   public userAvatar = this.store.selectSignal(selectUserAvatar);
+  public favoriteBooksTotal = this.store.selectSignal(selectFavoriteBooksTotal);
 
   constructor() {
     effect(() => {
