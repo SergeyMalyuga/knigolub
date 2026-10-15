@@ -9,6 +9,7 @@ import { appReducer } from './store/app/app.reducer';
 import { BookEffects } from './store/book/effects/book.effects';
 import { UserEffects } from './store/user/effects/user.effects';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+import {FavoriteBookEffects} from './store/favorite/effects/favorite-book.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,7 +17,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideStore(appReducer),
     provideHttpClient(withInterceptorsFromDi()),
-    provideEffects(BookEffects, UserEffects),
+    provideEffects(BookEffects, UserEffects, FavoriteBookEffects),
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
