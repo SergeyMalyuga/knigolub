@@ -33,6 +33,7 @@ export class HeaderComponent {
   private breakpointService = inject(BreakpointService);
   private store = inject(Store<AppState>);
 
+  protected readonly DEFAULT_AVATAR_URL = DEFAULT_AVATAR_URL;
   protected readonly AuthStatus = AuthStatus;
   protected readonly AppRoute = AppRoute;
   protected readonly Section = Section;
@@ -71,5 +72,5 @@ export class HeaderComponent {
     this.store.dispatch(logout());
   }
 
-  protected readonly DEFAULT_AVATAR_URL = DEFAULT_AVATAR_URL;
+
 }
