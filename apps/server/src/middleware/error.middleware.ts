@@ -14,10 +14,10 @@ export function errorHandler(
   if (err instanceof Prisma.PrismaClientKnownRequestError) {
     // P2025: Запись не найдена (например, при удалении несуществующего избранного)
     if (err.code === "P2025") {
-      return res.status(404).json({
-        error: "Not Found",
+      const errorResponse: ErrorResponse = {
         message: "Запись не найдена в базе данных",
-      } as ErrorResponse);
+      }
+      return res.status(404).json(errorResponse);
     }
     // P2002: Нарушение уникального ограничения (дубликат)
     if (err.code === "P2002") {
@@ -57,7 +57,6 @@ export function errorHandler(
     });
   }
 
-  console.log(err.message);
   return res.status(500).json({
     error: "Internal Server Error",
     message: "Что-то пошло не так на сервере",
