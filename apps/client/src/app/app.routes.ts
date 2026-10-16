@@ -13,6 +13,11 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/login/login.component').then((m) => m.LoginComponent),
   },
   {
+    path: AppRoute.PROFILE,
+    title: 'Profile',
+    loadComponent: () => import('./pages/profile/profile.component').then((m) => m.ProfileComponent),
+  },
+  {
     path: '**',
     title: '404 Not Found',
     loadComponent: () => import('./pages/404/404.component').then((m) => m.NotFoundComponent),
