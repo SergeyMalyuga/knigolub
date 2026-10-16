@@ -19,7 +19,7 @@ app.use(
   "/uploads",
   express.static(path.join(__dirname, "../../public/uploads")),
 );
-app.use("/assets", express.static(path.join(__dirname, "../public/assets")));
+app.use("/assets", express.static(path.join(__dirname, "../../public/assets")));
 app.use(authMiddleware);
 
 app.use("/books", bookRouter);

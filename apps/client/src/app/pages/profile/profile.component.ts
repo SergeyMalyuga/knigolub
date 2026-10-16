@@ -1,11 +1,14 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
-import { HeaderComponent } from '../../shared/components/header/header.component';
-import { FooterComponent } from '../../shared/components/footer/footer.component';
-import { NgOptimizedImage } from '@angular/common';
-import { SelectFileDirective } from '../../shared/directives/select-file.directive';
-import { AvatarError } from '../../core/types/avatar-error.type';
-import { AVATAR_ERROR, AVATAR_MAX_SIZE, FileType } from '../../core/constants/const';
-import { UserService } from '../../core/services/user.service';
+import {ChangeDetectionStrategy, Component, inject, signal} from '@angular/core';
+import {HeaderComponent} from '../../shared/components/header/header.component';
+import {FooterComponent} from '../../shared/components/footer/footer.component';
+import {NgOptimizedImage} from '@angular/common';
+import {SelectFileDirective} from '../../shared/directives/select-file.directive';
+import {AvatarError} from '../../core/types/avatar-error.type';
+import {AVATAR_ERROR, AVATAR_MAX_SIZE, DEFAULT_AVATAR_URL, FileType} from '../../core/constants/const';
+import {UserService} from '../../core/services/user.service';
+import {Store} from '@ngrx/store';
+import {AppState} from '../../core/models/app.state';
+import {selectUserAvatar} from '../../store/user/selectors/user.selectors';
 
 @Component({
   selector: 'app-profile',
@@ -16,7 +19,10 @@ import { UserService } from '../../core/services/user.service';
 })
 export class ProfileComponent {
   private userService = inject(UserService);
+  private store = inject(Store<AppState>);
+
   public avatarError = signal<AvatarError | null>(null);
+  public userAvatar = this.store.selectSignal(selectUserAvatar);
 
   public onAvatarSelected(file: File) {
     //TODO создать эффекты. Удалить прямой вызов userService.updateAvatar
@@ -33,4 +39,6 @@ export class ProfileComponent {
     formData.append('avatarUrl', file);
     this.userService.updateAvatar(formData).subscribe();
   }
+
+  protected readonly DEFAULT_AVATAR_URL = DEFAULT_AVATAR_URL;
 }

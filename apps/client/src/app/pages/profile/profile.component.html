@@ -5,7 +5,7 @@
       <label for="profile-avatar" class="profile__avatar-wrapper">
         <img
           class="profile__avatar"
-          [ngSrc]="'/assets/images/vector/avatar.svg'"
+          [ngSrc]="userAvatar() ?? DEFAULT_AVATAR_URL"
           width="68"
           height="68"
           alt="Аватар пользователя"
