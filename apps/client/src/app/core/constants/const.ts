@@ -12,6 +12,7 @@ export enum AppRoute {
 export enum APIRoute {
   USER_REGISTER = 'users/register',
   USER_LOGIN = 'users/login',
+  USER_UPDATE_AVATAR = 'users/avatar',
   PROFILE = 'users/profile',
   FAVORITES_TOGGLE = 'favorites/toggle',
   FAVORITES_LIST = 'favorites',
@@ -95,6 +96,17 @@ export enum AuthStatus {
   UN_AUTH = 'unauthorized',
   UNKNOWN = 'unknown',
 }
+
+export const AVATAR_ERROR = {
+  SIZE: 'Файл слишком большой (максимум 5 МБ)',
+  FORMAT: 'Можно загружать только изображения',
+} as const;
+
+export enum FileType {
+  IMAGE = 'image',
+}
+
+export const AVATAR_MAX_SIZE = 5 * 1024 * 1024;
 
 export const DEFAULT_USER = null;
 

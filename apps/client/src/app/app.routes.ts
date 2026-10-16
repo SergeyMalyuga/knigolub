@@ -15,7 +15,8 @@ export const routes: Routes = [
   {
     path: AppRoute.PROFILE,
     title: 'Profile',
-    loadComponent: () => import('./pages/profile/profile.component').then((m) => m.ProfileComponent),
+    loadComponent: () =>
+      import('./pages/profile/profile.component').then((m) => m.ProfileComponent),
   },
   {
     path: '**',

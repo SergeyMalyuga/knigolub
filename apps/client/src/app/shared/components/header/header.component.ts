@@ -19,7 +19,7 @@ import {
   selectUserName,
 } from '../../../store/user/selectors/user.selectors';
 import { logout } from '../../../store/user/actions/user.actions';
-import {selectFavoriteBooksTotal} from '../../../store/favorite/selectors/favorite-book.selectors';
+import { selectFavoriteBooksTotal } from '../../../store/favorite/selectors/favorite-book.selectors';
 
 @Component({
   selector: 'app-header',
@@ -73,6 +73,4 @@ export class HeaderComponent {
   public logout(): void {
     this.store.dispatch(logout());
   }
-
-
 }

@@ -1,13 +1,13 @@
-import {ChangeDetectionStrategy, Component, inject, Input, signal} from '@angular/core';
-import {Book} from '@knigolub/shared';
-import {NgClass} from '@angular/common';
-import {AppRoute, AuthStatus, View} from '../../../core/constants/const';
-import {Store} from '@ngrx/store';
-import {AppState} from '../../../core/models/app.state';
-import {selectAuthStatus} from '../../../store/user/selectors/user.selectors';
-import {Router} from '@angular/router';
-import {toggleFavoriteBook} from '../../../store/favorite/actions/favorite-book.actions';
-import {selectTogglingBookId} from '../../../store/favorite/selectors/favorite-book.selectors';
+import { ChangeDetectionStrategy, Component, inject, Input, signal } from '@angular/core';
+import { Book } from '@knigolub/shared';
+import { NgClass } from '@angular/common';
+import { AppRoute, AuthStatus, View } from '../../../core/constants/const';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../core/models/app.state';
+import { selectAuthStatus } from '../../../store/user/selectors/user.selectors';
+import { Router } from '@angular/router';
+import { toggleFavoriteBook } from '../../../store/favorite/actions/favorite-book.actions';
+import { selectTogglingBookId } from '../../../store/favorite/selectors/favorite-book.selectors';
 
 @Component({
   selector: 'app-book-card',
@@ -17,9 +17,9 @@ import {selectTogglingBookId} from '../../../store/favorite/selectors/favorite-b
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BookCardComponent {
-  @Input({required: true}) book!: Book;
-  @Input({required: true}) viewMode!: View;
-  @Input({required: true}) index!: number;
+  @Input({ required: true }) book!: Book;
+  @Input({ required: true }) viewMode!: View;
+  @Input({ required: true }) index!: number;
 
   private store = inject(Store<AppState>);
   private router = inject(Router);
@@ -36,7 +36,7 @@ export class BookCardComponent {
     if (this.authStatus() !== AuthStatus.AUTH) {
       this.router.navigate([AppRoute.LOGIN]);
     } else {
-      this.store.dispatch(toggleFavoriteBook({bookId: this.book.id}));
+      this.store.dispatch(toggleFavoriteBook({ bookId: this.book.id }));
     }
   }
 }

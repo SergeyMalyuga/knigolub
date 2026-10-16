@@ -16,7 +16,7 @@ export function errorHandler(
     if (err.code === "P2025") {
       const errorResponse: ErrorResponse = {
         message: "Запись не найдена в базе данных",
-      }
+      };
       return res.status(404).json(errorResponse);
     }
     // P2002: Нарушение уникального ограничения (дубликат)

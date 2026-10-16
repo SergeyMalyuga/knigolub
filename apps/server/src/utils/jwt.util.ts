@@ -6,9 +6,6 @@ if (!JWT_SECRET) {
   throw new Error("❌ FATAL: JWT_SECRET не задан в .env файле!");
 }
 
-export function generateToken(payload: {
-  id: string;
-  email: string;
-}): string {
+export function generateToken(payload: { id: string; email: string }): string {
   return jwt.sign(payload, JWT_SECRET, { expiresIn: "7d" });
 }

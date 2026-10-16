@@ -9,7 +9,7 @@ import { appReducer } from './store/app/app.reducer';
 import { BookEffects } from './store/book/effects/book.effects';
 import { UserEffects } from './store/user/effects/user.effects';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
-import {FavoriteBookEffects} from './store/favorite/effects/favorite-book.effects';
+import { FavoriteBookEffects } from './store/favorite/effects/favorite-book.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [

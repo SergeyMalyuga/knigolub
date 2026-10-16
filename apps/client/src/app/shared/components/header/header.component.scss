@@ -341,8 +341,18 @@
     justify-content: center;
     width: 24px;
     height: 24px;
-    background-color: variables.$golden-orange;
+    background-color: transparent;
     border-radius: 50%;
+    overflow: hidden;
+
+    img {
+      display: block;
+      width: 100%; // ← Занимает всю ширину контейнера
+      height: 100%; // ← Занимает всю высоту контейнера
+      border-radius: 50%;
+      object-fit: cover; // ← КЛЮЧЕВОЕ СВОЙСТВО: обрезает, сохраняя пропорции
+      object-position: center; // ← Центрирует изображение
+    }
   }
 
   &__interactive {

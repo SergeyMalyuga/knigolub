@@ -1,2 +1,1 @@
-export const DEFAULT_AVATAR_URL =
-  "http://localhost:3000/assets/images/vector/avatar.svg";
+export const DEFAULT_AVATAR_URL = "/assets/images/vector/avatar.svg";
