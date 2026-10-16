@@ -13,7 +13,7 @@
   align-items: center;
   justify-content: center;
   flex-grow: 1;
-  background-color: variables.$bg-color-platinum;
+  background-color: variables.$bg-color-main;
 }
 
 .error-404 {
@@ -81,8 +81,8 @@
 
   &__link {
     @include mixins.button-base(
-      $text-color: variables.$text-dark-color,
-      $background: variables.$platinum,
+      $text-color: variables.$text-light-color,
+      $background: variables.$button-bg-accent,
       $width: 164px,
       $padding: 10
     );
@@ -100,10 +100,11 @@
       display: block;
       width: 24px;
       height: 24px;
-      background-image: url('/assets/images/vector/book-open.svg');
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center;
+      background-color: variables.$text-light-color;
+      mask-image: url('/assets/images/vector/book-open.svg');
+      mask-repeat: no-repeat;
+      mask-size: cover;
+      mask-position: center;
     }
   }
 }

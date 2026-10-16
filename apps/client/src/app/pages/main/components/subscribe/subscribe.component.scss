@@ -4,7 +4,6 @@
 
 .subscribe {
   padding: rem(56) 0;
-  background-color: variables.$bg-color-main;
 
   &__content {
     display: flex;
@@ -105,10 +104,12 @@
   &__button {
     @include mixins.button-base(
       $text-color: variables.$text-light-color,
-      $background: variables.$bg-color-accent,
+      $background: variables.$button-bg-accent,
       $width: 154px,
       $padding: 16
     );
+
+    cursor: pointer;
   }
 
   @media (width <= 1250px) {

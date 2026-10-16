@@ -30,13 +30,13 @@
     background-color 0.3s ease,
     color 0.3s ease;
 
-  @if $background == variables.$bg-color-accent {
+  @if $background == variables.$button-bg-accent {
     &:hover:not(:disabled) {
-      background-color: color.scale($background, $lightness: 15%);
+      background-color: color.scale($background, $lightness: 10%);
     }
 
     &:active:not(:disabled) {
-      background-color: color.scale($background, $lightness: 30%);
+      background-color: color.scale($background, $lightness: 25%);
     }
   } @else {
     &:hover:not(:disabled) {

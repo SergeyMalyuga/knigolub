@@ -76,7 +76,7 @@
   &__button {
     @include mixins.button-base(
       $text-color: variables.$gray-dark,
-      $background: variables.$bg-color-main,
+      $background: variables.$button-bg-main,
       $width: max-content,
       $padding: 0
     );
@@ -94,7 +94,7 @@
       line-height: rem(17);
       font-family: variables.$font-family-primary;
       padding: rem(9) rem(19);
-      border: 1px solid variables.$gray-light;
+      border: 1px solid variables.$sienna;
       text-wrap: nowrap;
     }
 
@@ -151,20 +151,19 @@
     }
 
     &--active {
-      background-color: variables.$bg-color-accent;
-      border-color: variables.$rich-black;
+      background-color: variables.$button-bg-accent;
       color: variables.$text-light-color;
 
       &::before {
         background-color: white;
       }
 
-      &:hover {
-        background-color: color.scale(variables.$bg-color-accent, $lightness: 15%);
+      &:hover:not(:disabled) {
+        background-color: color.scale(variables.$button-bg-accent, $lightness: 15%);
       }
 
-      &:active {
-        background-color: color.scale(variables.$bg-color-accent, $lightness: 30%);
+      &:active:not(:disabled) {
+        background-color: variables.$button-bg-accent;
       }
     }
   }
@@ -176,7 +175,7 @@
   }
 
   &__content {
-    background-color: variables.$white-smoke;
+    background-color: variables.$bg-color-accent;
     padding: rem(56) 0;
 
     @media (width <= 1250px) {

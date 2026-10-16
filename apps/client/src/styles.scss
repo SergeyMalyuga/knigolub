@@ -44,7 +44,7 @@ body {
   line-height: 160%;
   letter-spacing: 0;
   text-align: left;
-  background-color: variables.$bg-color-main;
+  background-color: variables.$english-cream;
 }
 
 .container {
@@ -92,7 +92,7 @@ body {
 .swiper-button-prev {
   @include mixins.button-base(
     $text-color: variables.$text-dark-color,
-    $background: variables.$bg-color-main,
+    $background: variables.$button-bg-main,
     $width: 54,
     $padding: rem(18)
   );

@@ -21,11 +21,18 @@ $papaya-whip: rgb(255 240 211);
 $burnt-sienna: rgb(231 111 81);
 $maroon: rgb(112 36 28);
 $golden-orange: rgb(244, 160, 38);
+$sienna: rgb(160, 82, 45);
+$vanilla-ice: rgb(253, 251, 247);
+$apricot-cloud: rgb(249, 244, 237);
+$coffee-bean: rgb(44, 24, 16);
 
 /* background */
-$bg-color-main: $white;
-$bg-color-accent: $rich-black;
+$bg-color-main: $english-cream;
+$bg-color-accent: $apricot-cloud;
+$bg-color-accent-brown: $coffee-bean;
 $bg-color-platinum: $platinum;
+$button-bg-main: $vanilla-ice;
+$button-bg-accent: $sienna;
 
 /* text */
 $text-main-color: $gray;
@@ -40,14 +47,14 @@ $subtitle-main-color: $gray-middle;
 
 /* header */
 $header-link-active-color: $rich-black;
-$header-search-border: 1px solid $gray-light;
+$header-search-border: 1px solid $sienna;
 $header-bottom-border: 1px solid $rich-black;
 
 /* focus */
 $focus-border-color: $rich-black;
 
 /* button */
-$button-border: 1px solid $rich-black;
+$button-border: 1px solid $sienna;
 $button-background-dark: $rich-black;
 $button-background-light: $white;
 

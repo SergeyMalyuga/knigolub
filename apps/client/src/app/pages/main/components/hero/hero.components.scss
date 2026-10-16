@@ -139,7 +139,7 @@
     &--catalog {
       @include mixins.button-base(
         $text-color: variables.$text-light-color,
-        $background: variables.$bg-color-accent,
+        $background: variables.$button-bg-accent,
         $width: 199px,
         $padding: 16
       );
@@ -148,7 +148,7 @@
     &--login {
       @include mixins.button-base(
         $text-color: variables.$rich-black,
-        $background: variables.$bg-color-main,
+        $background: variables.$button-bg-main,
         $width: 245px,
         $padding: 16
       );
@@ -246,7 +246,7 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-    background-color: variables.$bg-color-main;
+    background-color: variables.$button-bg-main;
     padding: rem(24);
     max-width: 340px;
     width: 100%;

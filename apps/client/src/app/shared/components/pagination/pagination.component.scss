@@ -17,14 +17,14 @@
   &__button {
     @include mixins.button-base(
       $text-color: variables.$text-main-color,
-      $background: variables.$bg-color-main,
+      $background: variables.$button-bg-main,
       $width: rem(36),
       $padding: 0
     );
 
     width: 36px;
     height: 36px;
-    background-color: variables.$bg-color-main;
+    background-color: variables.$button-bg-main;
     border: 1px solid rgba(224, 224, 224, 1);
     cursor: pointer;
     font-family: variables.$font-family-primary;
@@ -35,15 +35,15 @@
 
     &--active {
       color: variables.$text-light-color;
-      background-color: variables.$bg-color-accent;
+      background-color: variables.$button-bg-accent;
       border: none;
 
-      &:hover {
-        background-color: color.scale(variables.$bg-color-accent, $lightness: 15%);
+      &:hover:not(:disabled) {
+        background-color: color.scale(variables.$button-bg-accent, $lightness: 15%);
       }
 
-      &:active {
-        background-color: color.scale(variables.$bg-color-accent, $lightness: 30%);
+      &:active:not(:disabled) {
+        background-color: variables.$button-bg-accent;
       }
     }
 

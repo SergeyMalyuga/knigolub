@@ -4,7 +4,7 @@
 @use 'sass:color';
 
 .footer {
-  background-color: variables.$bg-color-accent;
+  background-color: variables.$bg-color-accent-brown;
   padding: rem(56) 0 rem(32);
 
   &__content {
@@ -88,7 +88,7 @@
     &--social {
       @include mixins.button-base(
         $text-color: variables.$gray-soft,
-        $background: variables.$bg-color-accent,
+        $background: variables.$button-bg-accent,
         $width: 36px,
         $padding: 10
       );
@@ -98,7 +98,6 @@
       justify-content: center;
       height: 36px;
       min-width: 36px;
-      border: 1px solid variables.$gray-dark;
 
       &::before {
         content: '';
