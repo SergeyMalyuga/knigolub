@@ -1,0 +1,22 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.profile {
+  &__avatar {
+    display: block;
+
+    &-wrapper {
+      display: flex;
+    }
+  }
+}

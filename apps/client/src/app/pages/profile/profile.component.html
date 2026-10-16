@@ -1,0 +1,33 @@
+<div class="page">
+  <app-header [isMiniLayout]="true"/>
+  <main class="main">
+    <section class="profile">
+      <label
+        for="profile-avatar"
+        class="profile__avatar-wrapper">
+        <img
+          class="profile__avatar"
+          [ngSrc]="'/assets/images/vector/avatar.svg'"
+          width="68" height="68"
+          alt="Аватар пользователя"
+        />
+        <span>Изменить аватар</span>
+      </label>
+      <input
+        #avatarInput
+        id="profile-avatar"
+        class="visually-hidden"
+        accept="image/*"
+        type="file"
+        appSelectFile
+        (fileSelected)="onAvatarSelected($event)"
+      />
+      @if (avatarError()) {
+        <div>
+          {{avatarError() }}
+        </div>
+      }
+    </section>
+  </main>
+  <app-footer [isMiniLayout]="true"/>
+</div>
