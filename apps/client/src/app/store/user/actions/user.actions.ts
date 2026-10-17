@@ -1,5 +1,5 @@
-import { createAction, props } from '@ngrx/store';
-import { Credential, ErrorResponse, NewUser, User, UserDto } from '@knigolub/shared';
+import {createAction, props} from '@ngrx/store';
+import {AvatarResponse, Credential, ErrorResponse, NewUser, User, UserDto} from '@knigolub/shared';
 
 export const registerUser = createAction(
   '[Auth Component] Register User',
@@ -36,3 +36,10 @@ export const checkAuthFailure = createAction(
 export const checkAuthNoToken = createAction('[Auth] Check Auth — No Token');
 
 export const logout = createAction('[Header Component] Logout');
+
+export const uploadUserAvatar = createAction('[User] Upload Avatar',
+  props<{ file: File }>(),);
+export const uploadUserAvatarSuccess = createAction('[User Effects] Upload Avatar Success',
+  props<{ response: AvatarResponse }>());
+export const uploadUserAvatarFailure = createAction('[User Effects] Upload Avatar Failure',
+  props<{ error: ErrorResponse }>());
