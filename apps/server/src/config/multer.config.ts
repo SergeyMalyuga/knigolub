@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
   },
   filename: (_req, file, cb) => {
     // Генерируем уникальное имя: user-{timestamp}-{random}.{ext}
-    const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
+    const uniqueSuffix = _req.user?.id;
     const ext = path.extname(file.originalname); // .jpg, .png и т.д.
     cb(null, `avatar-${uniqueSuffix}${ext}`);
   },
