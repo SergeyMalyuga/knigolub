@@ -96,10 +96,9 @@ export class UserController {
       const avatarUrl = `/uploads/avatars/${req.file.filename}`;
 
       // Обновляем запись в БД
-      const userPrisma = await this.userService.updateAvatar(userId, avatarUrl);
-      const updateUser = mapPrismaUserToUser(userPrisma);
+      const response = await this.userService.updateAvatar(userId, avatarUrl);
 
-      res.status(200).json(updateUser);
+      res.status(200).json(response);
     } catch (error) {
       next(error);
     }

@@ -12,7 +12,10 @@ import {
   logout,
   registerUser,
   registerUserFailure,
-  registerUserSuccess, uploadUserAvatar, uploadUserAvatarFailure, uploadUserAvatarSuccess,
+  registerUserSuccess,
+  uploadUserAvatar,
+  uploadUserAvatarFailure,
+  uploadUserAvatarSuccess,
 } from './actions/user.actions';
 
 const initialState: UserState = {
@@ -92,16 +95,20 @@ export const userReducer = createReducer(
     user: DEFAULT_USER,
   })),
 
-on(uploadUserAvatar, state => ({
-  ...state, isLoading: true, error: null,
-})),
-  on(uploadUserAvatarSuccess, (state, {response}) => ({
+  on(uploadUserAvatar, (state) => ({
     ...state,
-    user: state.user
-      ? { ...state.user, avatarUrl: response.avatarUrl }
-      : state.user, isLoading: false, error: null,
+    isLoading: true,
+    error: null,
+  })),
+  on(uploadUserAvatarSuccess, (state, { response }) => ({
+    ...state,
+    user: state.user ? { ...state.user, avatarUrl: response.avatarUrl } : state.user,
+    isLoading: false,
+    error: null,
   })),
   on(uploadUserAvatarFailure, (state, { error }) => ({
-    ...state, isLoading: false, error
-  }))
+    ...state,
+    isLoading: false,
+    error,
+  })),
 );

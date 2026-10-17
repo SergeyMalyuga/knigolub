@@ -12,3 +12,4 @@ export * from "./constants/const.js";
 export * from "./models/new-user.js";
 export * from "./models/credential.model.js";
 export * from "./models/favorite-response.model.js";
+export * from "./models/avatar-response.model.js";

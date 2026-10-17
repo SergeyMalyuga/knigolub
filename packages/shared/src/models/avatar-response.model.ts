@@ -1,4 +1,4 @@
 export interface AvatarResponse {
-    id: string;
-    avatarUrl: string;
+  id: string;
+  avatarUrl: string;
 }

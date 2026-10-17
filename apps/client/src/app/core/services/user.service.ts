@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Credential, NewUser, User, UserDto } from '@knigolub/shared';
+import { AvatarResponse, Credential, NewUser, User, UserDto } from '@knigolub/shared';
 import { APIRoute, BASE_URL } from '../constants/const';
 
 @Injectable({
@@ -22,7 +22,7 @@ export class UserService {
     return this.http.get<User>(`${BASE_URL}/${APIRoute.PROFILE}`);
   }
 
-  public updateAvatar(formData: FormData): Observable<User> {
-    return this.http.post<User>(`${BASE_URL}/${APIRoute.USER_UPDATE_AVATAR}`, formData);
+  public updateAvatar(formData: FormData): Observable<AvatarResponse> {
+    return this.http.post<AvatarResponse>(`${BASE_URL}/${APIRoute.USER_UPDATE_AVATAR}`, formData);
   }
 }

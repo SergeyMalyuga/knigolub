@@ -1,4 +1,5 @@
 import {
+  type AvatarResponse,
   type Credential,
   type NewUser,
   type User,
@@ -89,18 +90,26 @@ export class UserService {
     }
     const baseUrl = process.env.BASE_URL || "http://localhost:3000";
     const absoluteUrl = `${baseUrl}${prismaUser.avatarUrl}`;
-    const user = { ...mapPrismaUserToUser(prismaUser), avatar: absoluteUrl };
+    const user = { ...mapPrismaUserToUser(prismaUser), avatarUrl: absoluteUrl };
 
     return user;
   }
 
   public async updateAvatar(userId: string, avatarUrl: string) {
-    //TODO удалить старый аватар
-    const updatedUser = await prisma.user.update({
+    const updateUser = await prisma.user.update({
       where: { id: userId },
       data: { avatarUrl },
+      select: {
+        id: true,
+        avatarUrl: true,
+      },
     });
 
-    return { ...updatedUser, avatar: getAbsoluteAvatarUrl(avatarUrl) };
+    const response: AvatarResponse = {
+      ...updateUser,
+      avatarUrl: getAbsoluteAvatarUrl(updateUser.avatarUrl),
+    };
+
+    return response;
   }
 }

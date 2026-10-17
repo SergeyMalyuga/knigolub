@@ -23,6 +23,6 @@ export class AuthorBlockComponent {
   }
 
   public get authorAvatar(): string | null {
-    return this.isCollectionCard(this.card) ? this.card.avatar : this.card.owner.avatar;
+    return this.isCollectionCard(this.card) ? this.card.avatar : this.card.owner.avatarUrl;
   }
 }

@@ -1,4 +1,5 @@
 import { ReviewCard } from '@knigolub/shared';
+import { DEFAULT_AVATAR_URL } from '../../../../core/constants/const';
 
 export const REVIEW_CARDS_MOCK: ReviewCard[] = [
   {
@@ -10,7 +11,7 @@ export const REVIEW_CARDS_MOCK: ReviewCard[] = [
       id: '1',
       email: 's@s.ru',
       username: 'DarSlot',
-      avatar: null,
+      avatarUrl: DEFAULT_AVATAR_URL,
       registrationAt: 2023,
       reviews: 34,
     },
@@ -23,7 +24,7 @@ export const REVIEW_CARDS_MOCK: ReviewCard[] = [
       id: '2',
       email: 's@s.ru',
       username: 'Nigtbook',
-      avatar: null,
+      avatarUrl: DEFAULT_AVATAR_URL,
       registrationAt: 2021,
       reviews: 71,
     },
@@ -36,7 +37,7 @@ export const REVIEW_CARDS_MOCK: ReviewCard[] = [
       id: '3',
       email: 's@s.ru',
       username: 'ANdersen',
-      avatar: null,
+      avatarUrl: DEFAULT_AVATAR_URL,
       registrationAt: 2022,
       reviews: 52,
     },

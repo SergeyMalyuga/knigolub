@@ -6,7 +6,7 @@ export function mapPrismaUserToUser(user: PrismaUser): User {
     id: user.id,
     username: user.username,
     email: user.email,
-    avatar: user?.avatarUrl || null,
+    avatarUrl: user?.avatarUrl || null,
     registrationAt: user.createdAt.getFullYear(),
   };
 }
