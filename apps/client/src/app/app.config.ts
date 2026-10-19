@@ -10,6 +10,7 @@ import { BookEffects } from './store/book/effects/book.effects';
 import { UserEffects } from './store/user/effects/user.effects';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { FavoriteBookEffects } from './store/favorite/effects/favorite-book.effects';
+import { provideNativeDateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -23,5 +24,7 @@ export const appConfig: ApplicationConfig = {
       useClass: AuthInterceptor,
       multi: true,
     },
+    provideNativeDateAdapter(),
+    { provide: MAT_DATE_LOCALE, useValue: 'ru-RU' },
   ],
 };
