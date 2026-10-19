@@ -10,3 +10,14 @@ export const selectAuthStatus = createSelector(selectUserState, (state) => state
 export const selectUserAvatar = createSelector(selectUserState, (state) => state.user?.avatarUrl);
 
 export const selectUserName = createSelector(selectUserState, (state) => state.user?.username);
+
+export const selectUserInfo = createSelector(
+  selectUserState,
+  state => {
+    return {
+      username: state.user?.username,
+      email: state.user?.email,
+      avatarUrl: state.user?.avatarUrl,
+    };
+  }
+);
