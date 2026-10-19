@@ -1,24 +1,21 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
-import { HeaderComponent } from '../../shared/components/header/header.component';
-import { FooterComponent } from '../../shared/components/footer/footer.component';
-import { NgOptimizedImage } from '@angular/common';
-import { SelectFileDirective } from '../../shared/directives/select-file.directive';
-import { AvatarError } from '../../core/types/avatar-error.type';
-import {
-  AVATAR_ERROR,
-  AVATAR_MAX_SIZE,
-  DEFAULT_AVATAR_URL,
-  FileType,
-} from '../../core/constants/const';
-import { UserService } from '../../core/services/user.service';
-import { Store } from '@ngrx/store';
-import { AppState } from '../../core/models/app.state';
-import { selectUserAvatar } from '../../store/user/selectors/user.selectors';
-import { uploadUserAvatar } from '../../store/user/actions/user.actions';
+import {ChangeDetectionStrategy, Component, inject, signal} from '@angular/core';
+import {HeaderComponent} from '../../shared/components/header/header.component';
+import {FooterComponent} from '../../shared/components/footer/footer.component';
+import {NgOptimizedImage} from '@angular/common';
+import {SelectFileDirective} from '../../shared/directives/select-file.directive';
+import {AvatarError} from '../../core/types/avatar-error.type';
+import {AVATAR_ERROR, AVATAR_MAX_SIZE, DEFAULT_AVATAR_URL, FileType,} from '../../core/constants/const';
+import {UserService} from '../../core/services/user.service';
+import {Store} from '@ngrx/store';
+import {AppState} from '../../core/models/app.state';
+import {selectUserInfo} from '../../store/user/selectors/user.selectors';
+import {uploadUserAvatar} from '../../store/user/actions/user.actions';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatFormField, MatInput, MatLabel, MatSuffix} from '@angular/material/input';
 
 @Component({
   selector: 'app-profile',
-  imports: [HeaderComponent, FooterComponent, NgOptimizedImage, SelectFileDirective],
+  imports: [HeaderComponent, FooterComponent, NgOptimizedImage, SelectFileDirective, MatDatepickerModule, MatInput, MatFormField, MatLabel, MatSuffix],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -28,7 +25,7 @@ export class ProfileComponent {
   private store = inject(Store<AppState>);
 
   public avatarError = signal<AvatarError | null>(null);
-  public userAvatar = this.store.selectSignal(selectUserAvatar);
+  public userInfo = this.store.selectSignal(selectUserInfo);
 
   public onAvatarSelected(file: File) {
     if (!file.type.startsWith(FileType.IMAGE)) {

@@ -1,3 +1,69 @@
+  @use '../../../styles/variables' as variables;
+  @use '../../../styles/functions' as *;
+  @use "../../../styles/mixins" as mixins;
+  @use '@angular/material' as mat;
+
+  :host {
+    .profile__input-wrapper {
+      ::ng-deep {
+
+        .mat-mdc-form-field {
+
+          .mat-mdc-form-field-subscript-wrapper {
+            display: none;
+          }
+
+          .mdc-text-field--outlined {
+            background-color: variables.$white;
+
+            &:hover:not(.mdc-text-field--focused) {
+              .mdc-notched-outline__leading,
+              .mdc-notched-outline__notch,
+              .mdc-notched-outline__trailing {
+                border-color: #A0522D; // Можно сделать чуть светлее цвета фокуса
+              }
+            }
+
+            // Рамка при фокусе
+            &.mdc-text-field--focused {
+              .mdc-notched-outline__leading,
+              .mdc-notched-outline__notch,
+              .mdc-notched-outline__trailing {
+                border-color: #A0522D;
+                border-width: 2px;
+              }
+            }
+          }
+
+          // Рамка outline
+          .mdc-notched-outline__leading,
+          .mdc-notched-outline__notch,
+          .mdc-notched-outline__trailing {
+            border-color: rgb(212, 197, 176);
+          }
+
+
+          // Label
+          .mdc-floating-label {
+            color: #6B5B4F;
+            font-family: variables.$font-family-primary;
+          }
+
+          // Label при фокусе
+          &.mdc-text-field--focused .mdc-floating-label {
+            color: #A0522D;
+          }
+
+          // Текст инпута
+          .mdc-text-field__input {
+            color: #2C1810;
+            font-family: variables.$font-family-primary;
+          }
+        }
+      }
+    }
+  }
+
 .page {
   display: flex;
   flex-direction: column;
@@ -7,19 +73,92 @@
 .main {
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-grow: 1;
 }
 
 .profile {
-  &__avatar {
-    display: block;
-    border-radius: 50%;
-    object-fit: cover;
-    object-position: center;
+  width: 100%;
 
+  &__my {
+    width: 100%;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+  }
+
+  &__info, &__edit {
+    border: 1px solid variables.$camel;
+    border-radius: 15px;
+    padding: rem(15);
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 420px;
+    width: 100%;
+  }
+
+  &__edit {
+    max-width: 750px;
+    width: 100%;
+  }
+
+  &__avatar {
+    max-width: 355px;
+    width: 100%;
+    padding: rem(19);
+    background-color: variables.$sienna;
+    border-radius: 50%;
+
+    &-edit {
+      &-wrapper {
+        max-width: max-content;
+      }
+    }
+
+    &-edit, img {
+      display: block;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center;
+
+      &-label {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__bio {
+    resize: none;
+  }
+
+  &__form {
+  display: grid;
+    gap: 10px;
+    row-gap: 50px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  &__button {
+    &-submit {
+      grid-column: 2 / 3;
+    }
+  }
+
+  &__input {
     &-wrapper {
-      display: flex;
+      &--bio {
+        grid-column: 1 / -1;
+      }
     }
   }
 }
+
