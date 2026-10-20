@@ -12,10 +12,11 @@ import {selectUserInfo} from '../../store/user/selectors/user.selectors';
 import {uploadUserAvatar} from '../../store/user/actions/user.actions';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormField, MatInput, MatLabel, MatSuffix} from '@angular/material/input';
+import {MatIcon} from '@angular/material/icon';
 
 @Component({
   selector: 'app-profile',
-  imports: [HeaderComponent, FooterComponent, NgOptimizedImage, SelectFileDirective, MatDatepickerModule, MatInput, MatFormField, MatLabel, MatSuffix],
+  imports: [HeaderComponent, FooterComponent, NgOptimizedImage, SelectFileDirective, MatDatepickerModule, MatInput, MatFormField, MatLabel, MatSuffix, MatIcon],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

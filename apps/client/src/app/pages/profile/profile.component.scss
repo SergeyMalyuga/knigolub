@@ -8,6 +8,15 @@
     ::ng-deep {
 
       .mat-mdc-form-field {
+width: 100%;
+
+        .mat-mdc-input-element.profile__input.profile__bio.mat-mdc-form-field-textarea-control.mat-mdc-form-field-input-control.mdc-text-field__input.cdk-text-field-autofill-monitored {
+          height: 120px;
+
+          @media (width <= 840px) {
+            height: 100px;
+          }
+        }
 
         .mat-mdc-form-field-subscript-wrapper {
           display: none;
@@ -15,12 +24,13 @@
 
         .mdc-text-field--outlined {
           background-color: variables.$white;
+          border-radius: 4px;
 
           &:hover {
             .mdc-notched-outline__leading,
             .mdc-notched-outline__notch,
             .mdc-notched-outline__trailing {
-              border-color: variables.$sienna; // Можно сделать чуть светлее цвета фокуса
+              border-color: variables.$sienna;
             }
           }
 
@@ -39,7 +49,7 @@
         .mdc-notched-outline__leading,
         .mdc-notched-outline__notch,
         .mdc-notched-outline__trailing {
-          border-color: rgb(212, 197, 176);
+          border-color: variables.$coral-reef;
         }
 
 
@@ -56,7 +66,7 @@
 
         // Текст инпута
         .mdc-text-field__input {
-          color: #2C1810;
+          color: variables.$coffee-bean;
           font-family: variables.$font-family-primary;
         }
       }
@@ -87,6 +97,14 @@
     display: flex;
     justify-content: center;
     gap: 30px;
+
+    @media (width <= 1120px) {
+      gap: 20px;
+    }
+
+    @media (width <= 767px) {
+      flex-direction: column;
+    }
   }
 
   &__info, &__edit {
@@ -94,6 +112,20 @@
     background-color: variables.$linen;
     border-radius: 15px;
     padding: rem(15);
+
+    // ✨ ТЁМНЫЕ ТЕНИ (лучше видны на светлом фоне)
+    box-shadow:
+      0 4px 12px rgba(variables.$rich-black, 0.3),   // Тёмно-коричневый ($rich-black)
+      0 8px 24px rgba(variables.$rich-black, 0.08);
+
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+
+    &:hover {
+      box-shadow:
+        0 6px 16px rgba(variables.$rich-black, 0.6),
+        0 12px 32px rgba(variables.$rich-black, 0.12);
+      transform: translateY(-2px);
+    }
   }
 
   &__info {
@@ -102,19 +134,41 @@
     align-items: center;
     max-width: 420px;
     width: 100%;
+
+    @media (width <= 1120px) {
+      max-width: 320px;
+    }
+
+    @media (width <= 767px) {
+      max-width: 420px;
+      align-self: center;
+    }
   }
 
   &__edit {
-    max-width: 750px;
+    max-width: 100%;
     width: 100%;
+    padding: rem(25);
+
+    @media (width <= 890px) {
+      display: flex;
+      flex-direction: column;
+      padding: rem(15);
+    }
   }
 
   &__avatar {
-    max-width: 355px;
+    max-width: 336px;
     width: 100%;
-    padding: rem(19);
-    background-color: variables.$sienna;
+    padding: rem(8);
+    background-color: variables.$camel;
     border-radius: 50%;
+
+    &-wrapper {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+    }
 
     &-edit {
       &-wrapper {
@@ -135,17 +189,42 @@
         cursor: pointer;
       }
     }
+
+    @media (width <= 1120px) {
+      max-width: 276px;
+
+      img {
+        width: 260px;
+        height: 260px;
+      }
+    }
+
+    @media (width <= 1120px) {
+      max-width: 276px;
+
+      img {
+        width: 240px;
+        height: 240px;
+      }
+    }
   }
 
   &__bio {
+    height: 120px;
     resize: none;
   }
 
   &__form {
     display: grid;
     gap: 10px;
-    row-gap: 50px;
+    row-gap: 35px;
     grid-template-columns: repeat(3, 1fr);
+
+    @media (width <= 1320px) {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
   }
 
   &__button {

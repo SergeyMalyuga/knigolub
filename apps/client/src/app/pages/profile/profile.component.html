@@ -7,8 +7,10 @@
         <div class="profile__info">
           <span>{{ userInfo().username }}</span>
           <span>{{ userInfo().email }}</span>
-          <div class="profile__avatar">
-            <img [ngSrc]="userInfo().avatarUrl ?? DEFAULT_AVATAR_URL" width="320" height="320"/>
+          <div class="profile__avatar-wrapper">
+            <div class="profile__avatar">
+              <img [ngSrc]="userInfo().avatarUrl ?? DEFAULT_AVATAR_URL" width="320" height="320"/>
+            </div>
           </div>
         </div>
         <div class="profile__edit">
@@ -43,6 +45,7 @@
               <mat-form-field appearance="outline">
                 <mat-label>Фамилия</mat-label>
                 <input type="text" matInput/>
+                <mat-icon matSuffix>person</mat-icon>
               </mat-form-field>
             </div>
 
@@ -50,6 +53,7 @@
               <mat-form-field appearance="outline">
                 <mat-label>Имя</mat-label>
                 <input type="text" matInput/>
+                <mat-icon matSuffix>person</mat-icon>
               </mat-form-field>
             </div>
 
