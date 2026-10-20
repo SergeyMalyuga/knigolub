@@ -5,7 +5,7 @@
       <h1 class="visually-hidden">Профиль</h1>
       <div class="profile__content container">
         <div class="profile__info">
-          <span>{{ userInfo().username }}</span>
+          <h2 class="profile__info-title">{{ userInfo().username }}</h2>
           <span>{{ userInfo().email }}</span>
           <div class="profile__avatar-wrapper">
             <div class="profile__avatar">
@@ -14,6 +14,7 @@
           </div>
         </div>
         <div class="profile__edit">
+          <h2 class="profile__edit-title">Редактировать профиль</h2>
           <div class="profile__avatar-edit-wrapper">
             <label for="profile-avatar-edit" class="profile__avatar-edit-label">
               <img
