@@ -1,68 +1,68 @@
-  @use '../../../styles/variables' as variables;
-  @use '../../../styles/functions' as *;
-  @use "../../../styles/mixins" as mixins;
-  @use '@angular/material' as mat;
+@use '../../../styles/variables' as variables;
+@use '../../../styles/functions' as *;
+@use "../../../styles/mixins" as mixins;
+@use '@angular/material' as mat;
 
-  :host {
-    .profile__input-wrapper {
-      ::ng-deep {
+:host {
+  .profile__input-wrapper {
+    ::ng-deep {
 
-        .mat-mdc-form-field {
+      .mat-mdc-form-field {
 
-          .mat-mdc-form-field-subscript-wrapper {
-            display: none;
-          }
+        .mat-mdc-form-field-subscript-wrapper {
+          display: none;
+        }
 
-          .mdc-text-field--outlined {
-            background-color: variables.$white;
+        .mdc-text-field--outlined {
+          background-color: variables.$white;
 
-            &:hover:not(.mdc-text-field--focused) {
-              .mdc-notched-outline__leading,
-              .mdc-notched-outline__notch,
-              .mdc-notched-outline__trailing {
-                border-color: #A0522D; // Можно сделать чуть светлее цвета фокуса
-              }
-            }
-
-            // Рамка при фокусе
-            &.mdc-text-field--focused {
-              .mdc-notched-outline__leading,
-              .mdc-notched-outline__notch,
-              .mdc-notched-outline__trailing {
-                border-color: #A0522D;
-                border-width: 2px;
-              }
+          &:hover {
+            .mdc-notched-outline__leading,
+            .mdc-notched-outline__notch,
+            .mdc-notched-outline__trailing {
+              border-color: variables.$sienna; // Можно сделать чуть светлее цвета фокуса
             }
           }
 
-          // Рамка outline
-          .mdc-notched-outline__leading,
-          .mdc-notched-outline__notch,
-          .mdc-notched-outline__trailing {
-            border-color: rgb(212, 197, 176);
+          // Рамка при фокусе
+          &.mdc-text-field--focused {
+            .mdc-notched-outline__leading,
+            .mdc-notched-outline__notch,
+            .mdc-notched-outline__trailing {
+              border-color: variables.$sienna;
+              border-width: 2px;
+            }
           }
+        }
+
+        // Рамка outline
+        .mdc-notched-outline__leading,
+        .mdc-notched-outline__notch,
+        .mdc-notched-outline__trailing {
+          border-color: rgb(212, 197, 176);
+        }
 
 
-          // Label
-          .mdc-floating-label {
-            color: #6B5B4F;
-            font-family: variables.$font-family-primary;
-          }
+        // Label
+        .mdc-floating-label {
+          color: #6B5B4F;
+          font-family: variables.$font-family-primary;
+        }
 
-          // Label при фокусе
-          &.mdc-text-field--focused .mdc-floating-label {
-            color: #A0522D;
-          }
+        // Label при фокусе
+        &.mdc-text-field--focused .mdc-floating-label {
+          color: variables.$sienna;
+        }
 
-          // Текст инпута
-          .mdc-text-field__input {
-            color: #2C1810;
-            font-family: variables.$font-family-primary;
-          }
+        // Текст инпута
+        .mdc-text-field__input {
+          color: #2C1810;
+          font-family: variables.$font-family-primary;
         }
       }
     }
   }
+}
 
 .page {
   display: flex;
@@ -91,6 +91,7 @@
 
   &__info, &__edit {
     border: 1px solid variables.$camel;
+    background-color: variables.$linen;
     border-radius: 15px;
     padding: rem(15);
   }
@@ -141,7 +142,7 @@
   }
 
   &__form {
-  display: grid;
+    display: grid;
     gap: 10px;
     row-gap: 50px;
     grid-template-columns: repeat(3, 1fr);
