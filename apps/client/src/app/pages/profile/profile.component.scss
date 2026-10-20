@@ -10,6 +10,25 @@
       .mat-mdc-form-field {
 width: 100%;
 
+        .mat-mdc-form-field-error {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 12px;
+        }
+
+        .mat-icon.profile__warning {
+          width: 15px;
+          height: 15px;
+          font-size: 15px;
+        }
+
+        .mat-mdc-form-field-error {
+          position: absolute;
+          left: 0;
+          bottom: -25px;
+        }
+
         .mat-mdc-input-element.profile__input.profile__bio.mat-mdc-form-field-textarea-control.mat-mdc-form-field-input-control.mdc-text-field__input.cdk-text-field-autofill-monitored {
           height: 120px;
 
@@ -125,9 +144,8 @@ width: 100%;
     border-radius: 15px;
     padding: rem(15);
 
-    // ✨ ТЁМНЫЕ ТЕНИ (лучше видны на светлом фоне)
     box-shadow:
-      0 4px 12px rgba(variables.$rich-black, 0.3),   // Тёмно-коричневый ($rich-black)
+      0 4px 12px rgba(variables.$rich-black, 0.3),
       0 8px 24px rgba(variables.$rich-black, 0.08);
 
     transition: box-shadow 0.3s ease, transform 0.3s ease;
@@ -276,6 +294,13 @@ width: 100%;
         $width: 100%,
         $padding: 15
       );
+
+      cursor: pointer;
+
+      &:disabled {
+        opacity: 0.6;
+        pointer-events: none;
+      }
 
       grid-column: 2 / 3;
     }

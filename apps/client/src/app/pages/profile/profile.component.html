@@ -9,7 +9,7 @@
           <span>{{ userInfo().email }}</span>
           <div class="profile__avatar-wrapper">
             <div class="profile__avatar">
-              <img [ngSrc]="userInfo().avatarUrl ?? DEFAULT_AVATAR_URL" width="320" height="320"/>
+              <img [ngSrc]="userInfo().avatarUrl ?? DEFAULT_AVATAR_URL" priority width="320" height="320"/>
             </div>
           </div>
         </div>
@@ -41,20 +41,34 @@
               </div>
             }
           </div>
-          <form class="profile__form">
+          <form (ngSubmit)="onSubmit()" class="profile__form">
             <div class="profile__input-wrapper">
               <mat-form-field appearance="outline">
                 <mat-label>Фамилия</mat-label>
-                <input type="text" matInput/>
+                <input [formField]="editForm.lastName" type="text" matInput/>
                 <mat-icon matSuffix>person</mat-icon>
+                @if (editForm.lastName().invalid() && (editForm.lastName().touched() || editForm.lastName().dirty())) {
+                  @for (error of editForm.lastName().errors(); track error) {
+                    <mat-error>
+                      <mat-icon class="profile__warning">warning</mat-icon>
+                      {{error.message}}</mat-error>
+                  }
+                }
               </mat-form-field>
             </div>
 
             <div class="profile__input-wrapper">
               <mat-form-field appearance="outline">
                 <mat-label>Имя</mat-label>
-                <input type="text" matInput/>
+                <input type="text" [formField]="editForm.firstName" matInput/>
                 <mat-icon matSuffix>person</mat-icon>
+                @if (editForm.firstName().invalid() && (editForm.firstName().touched() || editForm.firstName().dirty())) {
+                  @for (error of editForm.firstName().errors(); track error) {
+                    <mat-error>
+                      <mat-icon class="profile__warning">warning</mat-icon>
+                      {{error.message}}</mat-error>
+                  }
+                }
               </mat-form-field>
             </div>
 
@@ -62,11 +76,19 @@
               <mat-form-field appearance="outline">
                 <mat-label>Дата рождения</mat-label>
                 <input
+                  [formField]="editForm.birthday"
                   id="profile-birthday"
                   matInput [matDatepicker]="picker"
                 />
                 <mat-datepicker-toggle matIconSuffix [for]="picker"/>
                 <mat-datepicker #picker/>
+                @if (editForm.birthday().invalid() && (editForm.birthday().touched() || editForm.birthday().dirty())) {
+                  @for (error of editForm.birthday().errors(); track error) {
+                    <mat-error>
+                      <mat-icon class="profile__warning">warning</mat-icon>
+                      {{error.message}}</mat-error>
+                  }
+                }
               </mat-form-field>
             </div>
             <div class="profile__input-wrapper profile__input-wrapper--bio">
@@ -75,7 +97,10 @@
               <textarea class=" profile__input profile__bio" matInput ></textarea>
             </mat-form-field>
             </div>
-            <button class="profile__button-submit" type="submit">Сохранить изменения</button>
+            <button
+              [disabled]="editForm().invalid() || isFormEmpty()"
+              class="profile__button-submit"
+              type="submit">Сохранить изменения</button>
           </form>
         </div>
 
