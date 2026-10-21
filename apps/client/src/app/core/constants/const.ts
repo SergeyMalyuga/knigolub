@@ -98,8 +98,8 @@ export enum AuthStatus {
 }
 
 export const AVATAR_ERROR = {
-  SIZE: 'Файл слишком большой (максимум 5 МБ)',
-  FORMAT: 'Можно загружать только изображения',
+  SIZE: 'Файл большой (максимум 5 МБ)',
+  FORMAT: 'Только изображения',
 } as const;
 
 export enum FileType {
