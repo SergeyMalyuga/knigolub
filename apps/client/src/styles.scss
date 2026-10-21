@@ -294,6 +294,12 @@ body {
   }
 }
 
+.snackbar-success {
+  .mdc-snackbar__label {
+    color: #8fe08f;
+  }
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;
