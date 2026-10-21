@@ -332,5 +332,22 @@
       }
     }
   }
+
+  &__time-in-club {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    &::after {
+      content: "";
+      display: block;
+      width: 28px;
+      height: 28px;
+      background-image: url('/assets/images/vector/book-5.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+  }
 }
 
