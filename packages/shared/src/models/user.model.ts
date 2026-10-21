@@ -3,6 +3,6 @@ export interface User {
   email: string;
   username: string;
   avatarUrl: string | null;
-  registrationAt: number;
+  registrationAt: Date;
   reviews?: number; //TODO убрать из модели
 }
