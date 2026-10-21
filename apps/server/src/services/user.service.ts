@@ -1,7 +1,7 @@
 import {
     type AvatarResponse,
     type Credential,
-    type NewUser,
+    type NewUser, type UpdateUserDto,
     type User,
     type UserDto,
     UserErrorField,
@@ -124,5 +124,29 @@ export class UserService {
         };
 
         return response;
+    }
+
+    public async updateUser(userId: string, dto: UpdateUserDto): Promise<User> {
+        if (Object.keys(dto).length === 0) {
+            const prismaUser = await prisma.user.findUnique({
+                where: {id: userId},
+            });
+
+            if (!prismaUser) {
+                throw new NotFoundError(`Пользователь с id "${userId}" не найден`);
+            }
+        }
+
+        const prismaUser = await prisma.user.update({
+            where: {id: userId},
+            data: dto,
+        });
+
+        const baseUrl = process.env.BASE_URL || "http://localhost:3000";
+        const absoluteUrl = `${baseUrl}${prismaUser.avatarUrl}`;
+
+        const user = {...mapPrismaUserToUser(prismaUser), avatarUrl: absoluteUrl};
+
+        return user;
     }
 }
