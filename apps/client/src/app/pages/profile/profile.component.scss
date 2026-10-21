@@ -8,11 +8,13 @@
     ::ng-deep {
 
       .mat-mdc-form-field {
-width: 100%;
+        width: 100%;
 
         .mat-mdc-form-field-error {
+          width: 100%;
           display: flex;
           align-items: center;
+          justify-content: center;
           gap: 8px;
           font-size: 12px;
         }
@@ -27,6 +29,10 @@ width: 100%;
           position: absolute;
           left: 0;
           bottom: -25px;
+
+          @media (width <= 1320px) {
+            bottom: -23px;
+          }
         }
 
         .mat-mdc-input-element.profile__input.profile__bio.mat-mdc-form-field-textarea-control.mat-mdc-form-field-input-control.mdc-text-field__input.cdk-text-field-autofill-monitored {
@@ -144,16 +150,14 @@ width: 100%;
     border-radius: 15px;
     padding: rem(15);
 
-    box-shadow:
-      0 4px 12px rgba(variables.$rich-black, 0.3),
-      0 8px 24px rgba(variables.$rich-black, 0.08);
+    box-shadow: 0 4px 12px rgba(variables.$rich-black, 0.3),
+    0 8px 24px rgba(variables.$rich-black, 0.08);
 
     transition: box-shadow 0.3s ease, transform 0.3s ease;
 
     &:hover {
-      box-shadow:
-        0 6px 16px rgba(variables.$rich-black, 0.6),
-        0 12px 32px rgba(variables.$rich-black, 0.12);
+      box-shadow: 0 6px 16px rgba(variables.$rich-black, 0.6),
+      0 12px 32px rgba(variables.$rich-black, 0.12);
       transform: translateY(-2px);
     }
   }

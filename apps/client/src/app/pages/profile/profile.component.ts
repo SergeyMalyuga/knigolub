@@ -67,5 +67,4 @@ export class ProfileComponent {
       console.log(lastName, firstName, birthday);
     }
   }
-
 }

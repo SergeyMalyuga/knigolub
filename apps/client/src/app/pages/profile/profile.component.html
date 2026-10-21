@@ -9,7 +9,9 @@
           <span>{{ userInfo().email }}</span>
           <div class="profile__avatar-wrapper">
             <div class="profile__avatar">
-              <img [ngSrc]="userInfo().avatarUrl ?? DEFAULT_AVATAR_URL" priority width="320" height="320"/>
+              <img [ngSrc]="userInfo().avatarUrl ?? DEFAULT_AVATAR_URL"
+                   alt="Аватар пользователя"
+                   priority width="320" height="320"/>
             </div>
           </div>
         </div>
@@ -50,7 +52,7 @@
                 @if (editForm.lastName().invalid() && (editForm.lastName().touched() || editForm.lastName().dirty())) {
                   @for (error of editForm.lastName().errors(); track error) {
                     <mat-error>
-                      <mat-icon class="profile__warning">warning</mat-icon>
+                      <mat-icon class="profile__warning" aria-hidden="true">warning</mat-icon>
                       {{error.message}}</mat-error>
                   }
                 }
@@ -65,7 +67,7 @@
                 @if (editForm.firstName().invalid() && (editForm.firstName().touched() || editForm.firstName().dirty())) {
                   @for (error of editForm.firstName().errors(); track error) {
                     <mat-error>
-                      <mat-icon class="profile__warning">warning</mat-icon>
+                      <mat-icon class="profile__warning" aria-hidden="true">warning</mat-icon>
                       {{error.message}}</mat-error>
                   }
                 }
@@ -79,6 +81,8 @@
                   [formField]="editForm.birthday"
                   id="profile-birthday"
                   matInput [matDatepicker]="picker"
+                  (keydown)="$event.preventDefault()"
+                  (click)="picker.open()"
                 />
                 <mat-datepicker-toggle matIconSuffix [for]="picker"/>
                 <mat-datepicker #picker/>
