@@ -16,6 +16,11 @@ export const selectRegistrationDate = createSelector(
   state => state.user?.registrationAt
 );
 
+export const selectUpdateUserStatus = createSelector(
+  selectUserState,
+  state => state.updateStatus
+)
+
 export const selectUserInfo = createSelector(
   selectUserState,
   state => {
