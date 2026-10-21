@@ -7,7 +7,7 @@ import {AvatarError} from '../../core/types/avatar-error.type';
 import {AVATAR_ERROR, AVATAR_MAX_SIZE, DEFAULT_AVATAR_URL, FileType,} from '../../core/constants/const';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../core/models/app.state';
-import {selectUserInfo} from '../../store/user/selectors/user.selectors';
+import {selectRegistrationDate, selectUserInfo} from '../../store/user/selectors/user.selectors';
 import {uploadUserAvatar} from '../../store/user/actions/user.actions';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatError, MatFormField, MatInput, MatLabel, MatSuffix} from '@angular/material/input';
@@ -16,6 +16,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {dateValidator} from '../../shared/validators/date.validator';
 import {form, FormField, pattern, validate} from '@angular/forms/signals';
 import {UserEdit} from '../../core/models/user-edit.model';
+import {formatDistanceToNow} from 'date-fns';
+import {ru} from 'date-fns/locale';
 
 @Component({
   selector: 'app-profile',
@@ -31,14 +33,22 @@ export class ProfileComponent {
 
   public avatarError = signal<AvatarError | null>(null);
   public userInfo = this.store.selectSignal(selectUserInfo);
+  public registrationDate = this.store.selectSignal(selectRegistrationDate);
+
+  public regTimeAgo = computed(() => {
+    const date = this.registrationDate();
+    if (!date) return '0 дней'
+    return formatDistanceToNow(date, {locale: ru});
+  })
 
   private editModel = signal<UserEdit>({
     lastName: '',
     firstName: '',
     birthday: '',
   })
+
   public editForm = form(this.editModel, (fieldPath) => {
-      pattern(fieldPath.lastName, /^[A-Za-zА-Яа-яЁё]+$/, {message: 'Только буквы'}),
+    pattern(fieldPath.lastName, /^[A-Za-zА-Яа-яЁё]+$/, {message: 'Только буквы'}),
       pattern(fieldPath.firstName, /^[A-Za-zА-Яа-яЁё]+$/, {message: 'Только буквы'}),
       validate(fieldPath.birthday, (ctx) => dateValidator(ctx.value()))
   });
@@ -63,7 +73,7 @@ export class ProfileComponent {
 
   public onSubmit(): void {
     if (this.editForm().valid()) {
-     const {lastName, firstName, birthday} = this.editForm().value()
+      const {lastName, firstName, birthday} = this.editForm().value()
       console.log(lastName, firstName, birthday);
     }
   }

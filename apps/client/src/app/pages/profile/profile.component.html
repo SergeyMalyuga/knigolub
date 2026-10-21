@@ -14,6 +14,7 @@
                    priority width="320" height="320"/>
             </div>
           </div>
+          <div>В клубе {{regTimeAgo()}}</div>
         </div>
         <div class="profile__edit">
           <h2 class="profile__edit-title">Редактировать профиль</h2>
@@ -34,11 +35,14 @@
               class="visually-hidden"
               accept="image/*"
               type="file"
+              [attr.aria-invalid]="avatarError() ? true : null"
+              [attr.aria-describedby]="avatarError() ? 'profile-avatar-error' : null"
               appSelectFile
               (fileSelected)="onAvatarSelected($event)"
             />
             @if (avatarError()) {
-              <div>
+              <div id="profile-avatar-error" class="profile__avatar-error">
+                <mat-icon class="profile__warning">warning</mat-icon>
                 {{ avatarError() }}
               </div>
             }
