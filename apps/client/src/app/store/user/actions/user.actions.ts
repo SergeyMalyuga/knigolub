@@ -1,9 +1,9 @@
-import { createAction, props } from '@ngrx/store';
+import {createAction, props} from '@ngrx/store';
 import {
   AvatarResponse,
   Credential,
   ErrorResponse,
-  NewUser,
+  NewUser, UpdateUserDto,
   User,
   UserDto,
 } from '@knigolub/shared';
@@ -53,3 +53,10 @@ export const uploadUserAvatarFailure = createAction(
   '[User Effects] Upload Avatar Failure',
   props<{ error: ErrorResponse }>(),
 );
+
+export const updateUser = createAction('[Profile Component] Update User',
+  props<{ updateUserDto: UpdateUserDto }>());
+export const updateUserSuccess = createAction('[User Effects] Update User Success',
+  props<{ user: User }>());
+export const updateUserFailure = createAction('[User Effects] Update User Failure',
+  props<{ error: ErrorResponse }>())
