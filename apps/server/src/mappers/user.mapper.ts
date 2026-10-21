@@ -8,5 +8,9 @@ export function mapPrismaUserToUser(user: PrismaUser): User {
     email: user.email,
     avatarUrl: user?.avatarUrl || null,
     registrationAt: user.createdAt,
+    firstName: user.firstName,
+    lastName: user.lastName,
+    bio: user.bio,
+    birthday: user.birthday
   };
 }
