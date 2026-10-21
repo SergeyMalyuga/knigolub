@@ -22,7 +22,7 @@
       </span>
     } @else {
       <span class="author-block__statistics"
-        >читает с {{ card.owner.registrationAt }} года · {{ card.owner.reviews }}
+        >читает с {{ card.owner.registrationAt.getFullYear() }} года · {{ card.owner.reviews }}
         {{ card.owner.reviews | pluralize: 'отзыв' : 'отзыва' : 'отзывов' }}
       </span>
     }
