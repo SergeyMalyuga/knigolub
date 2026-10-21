@@ -34,11 +34,15 @@ model Book {
 }
 
 model User {
-  id        String @id @default(uuid())
-  username  String @unique @db.VarChar(30)
-  email     String @unique @db.VarChar(255)
-  password  String @db.VarChar(255)
-  avatarUrl String @db.VarChar(500)
+  id        String    @id @default(uuid())
+  username  String    @unique @db.VarChar(30)
+  email     String    @unique @db.VarChar(255)
+  password  String    @db.VarChar(255)
+  avatarUrl String    @db.VarChar(500)
+  firstName String?   @db.VarChar(50)
+  lastName  String?   @db.VarChar(50)
+  bio       String?   @db.Text
+  birthday  DateTime?
 
   // Метаданные
   createdAt DateTime @default(now())
