@@ -14,6 +14,7 @@ export enum APIRoute {
   USER_LOGIN = 'users/login',
   USER_UPDATE_AVATAR = 'users/avatar',
   PROFILE = 'users/profile',
+  PROFILE_UPDATE = 'users/profile/update',
   FAVORITES_TOGGLE = 'favorites/toggle',
   FAVORITES_LIST = 'favorites',
 }
@@ -105,6 +106,14 @@ export const AVATAR_ERROR = {
 export enum FileType {
   IMAGE = 'image',
 }
+
+
+export const UpdateUserStatus = {
+  IDLE: 'idle',
+  LOADING: 'loading',
+  SUCCESS: 'success',
+  ERROR: 'error'
+} as const;
 
 export const AVATAR_MAX_SIZE = 5 * 1024 * 1024;
 

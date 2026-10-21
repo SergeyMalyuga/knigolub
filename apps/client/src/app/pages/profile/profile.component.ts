@@ -1,14 +1,24 @@
-import {ChangeDetectionStrategy, Component, computed, inject, signal} from '@angular/core';
+import {ChangeDetectionStrategy, Component, computed, DestroyRef, inject, OnInit, signal} from '@angular/core';
 import {HeaderComponent} from '../../shared/components/header/header.component';
 import {FooterComponent} from '../../shared/components/footer/footer.component';
 import {NgOptimizedImage} from '@angular/common';
 import {SelectFileDirective} from '../../shared/directives/select-file.directive';
 import {AvatarError} from '../../core/types/avatar-error.type';
-import {AVATAR_ERROR, AVATAR_MAX_SIZE, DEFAULT_AVATAR_URL, FileType,} from '../../core/constants/const';
+import {
+  AVATAR_ERROR,
+  AVATAR_MAX_SIZE,
+  DEFAULT_AVATAR_URL,
+  FileType,
+  UpdateUserStatus,
+} from '../../core/constants/const';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../core/models/app.state';
-import {selectRegistrationDate, selectUserInfo} from '../../store/user/selectors/user.selectors';
-import {uploadUserAvatar} from '../../store/user/actions/user.actions';
+import {
+  selectRegistrationDate,
+  selectUpdateUserStatus,
+  selectUserInfo
+} from '../../store/user/selectors/user.selectors';
+import {updateUser, uploadUserAvatar} from '../../store/user/actions/user.actions';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatError, MatFormField, MatInput, MatLabel, MatSuffix} from '@angular/material/input';
 import {MatIcon} from '@angular/material/icon';
@@ -18,6 +28,9 @@ import {form, FormField, pattern, validate} from '@angular/forms/signals';
 import {UserEdit} from '../../core/models/user-edit.model';
 import {formatDistanceToNow} from 'date-fns';
 import {ru} from 'date-fns/locale';
+import {NotificationService} from '../../core/services/notification.service';
+import {filter} from 'rxjs';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-profile',
@@ -26,14 +39,24 @@ import {ru} from 'date-fns/locale';
   styleUrl: './profile.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
   private store = inject(Store<AppState>);
+  private notificationService = inject(NotificationService);
+  private destroyRef = inject(DestroyRef);
 
   protected readonly DEFAULT_AVATAR_URL = DEFAULT_AVATAR_URL;
 
   public avatarError = signal<AvatarError | null>(null);
   public userInfo = this.store.selectSignal(selectUserInfo);
   public registrationDate = this.store.selectSignal(selectRegistrationDate);
+
+  ngOnInit(): void {
+    this.store.select(selectUpdateUserStatus)
+      .pipe(filter(status => status === UpdateUserStatus.SUCCESS),
+        takeUntilDestroyed(this.destroyRef))
+      .subscribe(() =>
+        this.notificationService.showSuccessMessage('Профиль успешно обновлён'))
+  }
 
   public regTimeAgo = computed(() => {
     const date = this.registrationDate();
@@ -74,6 +97,7 @@ export class ProfileComponent {
   public onSubmit(): void {
     if (this.editForm().valid()) {
       const {lastName, firstName, birthday} = this.editForm().value()
+      this.store.dispatch(updateUser({updateUserDto: {lastName, firstName, birthday}}))
       console.log(lastName, firstName, birthday);
     }
   }
