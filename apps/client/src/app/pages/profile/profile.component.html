@@ -83,6 +83,7 @@
                   matInput [matDatepicker]="picker"
                   (keydown)="$event.preventDefault()"
                   (click)="picker.open()"
+                  autocomplete="off"
                 />
                 <mat-datepicker-toggle matIconSuffix [for]="picker"/>
                 <mat-datepicker #picker/>
