@@ -31,3 +31,15 @@ export const selectUserInfo = createSelector(
     };
   }
 );
+
+export const selectUserPersonalInfo = createSelector(
+  selectUserState,
+  state => {
+    return {
+      lastName: state.user?.lastName,
+      firstName: state.user?.firstName,
+      birthday: state.user?.birthday,
+      bio: state.user?.bio,
+    }
+  }
+)
