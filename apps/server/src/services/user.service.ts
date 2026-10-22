@@ -1,7 +1,7 @@
 import {
     type AvatarResponse,
     type Credential,
-    type NewUser, type UpdateUserDto,
+    type NewUser, type UpdateUser,
     type User,
     type UserDto,
     UserErrorField,
@@ -126,7 +126,7 @@ export class UserService {
         return response;
     }
 
-    public async updateUser(userId: string, dto: UpdateUserDto): Promise<User> {
+    public async updateUser(userId: string, dto: UpdateUser): Promise<User> {
         if (Object.keys(dto).length === 0) {
             const prismaUser = await prisma.user.findUnique({
                 where: {id: userId},

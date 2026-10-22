@@ -1,5 +1,5 @@
 import type {NextFunction, Request, Response} from "express";
-import {type ErrorResponse, type UpdateUserDto, updateUserSchema} from "@knigolub/shared";
+import {type ErrorResponse, type UpdateUser, updateUserSchema} from "@knigolub/shared";
 import {UserService} from "../services/user.service";
 import {AuthError} from "../errors/auth.error";
 import {NotFoundError} from "../errors/not-found.error";
@@ -121,7 +121,7 @@ export class UserController {
                 return res.status(400).json(error);
             }
 
-            const dto: UpdateUserDto = validationResult.data
+            const dto: UpdateUser = validationResult.data
 
             const updateUser = await this.userService.updateUser(userId, dto);
 

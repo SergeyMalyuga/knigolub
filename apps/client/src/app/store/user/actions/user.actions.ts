@@ -3,10 +3,11 @@ import {
   AvatarResponse,
   Credential,
   ErrorResponse,
-  NewUser, UpdateUserDto,
+  NewUser, UpdateUser,
   User,
   UserDto,
 } from '@knigolub/shared';
+import {updateUserDto} from '../../../core/models/update-user.dto';
 
 export const registerUser = createAction(
   '[Auth Component] Register User',
@@ -55,7 +56,7 @@ export const uploadUserAvatarFailure = createAction(
 );
 
 export const updateUser = createAction('[Profile Component] Update User',
-  props<{ updateUserDto: UpdateUserDto }>());
+  props<{ updateUserDto: updateUserDto }>());
 export const updateUserSuccess = createAction('[User Effects] Update User Success',
   props<{ user: User }>());
 export const updateUserFailure = createAction('[User Effects] Update User Failure',

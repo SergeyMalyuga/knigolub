@@ -16,7 +16,7 @@ import {AppState} from '../../core/models/app.state';
 import {
   selectRegistrationDate,
   selectUpdateUserStatus,
-  selectUserInfo
+  selectUserInfo, selectUserPersonalInfo
 } from '../../store/user/selectors/user.selectors';
 import {updateUser, uploadUserAvatar} from '../../store/user/actions/user.actions';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -26,7 +26,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {dateValidator} from '../../shared/validators/date.validator';
 import {form, FormField, pattern, validate, maxLength} from '@angular/forms/signals';
 import {UserEdit} from '../../core/models/user-edit.model';
-import {formatDistanceToNow} from 'date-fns';
+import {format, formatDistanceToNow} from 'date-fns';
 import {ru} from 'date-fns/locale';
 import {NotificationService} from '../../core/services/notification.service';
 import {filter} from 'rxjs';
@@ -50,6 +50,7 @@ export class ProfileComponent implements OnInit {
   public userInfo = this.store.selectSignal(selectUserInfo);
   public registrationDate = this.store.selectSignal(selectRegistrationDate);
   public updateUserStatus = this.store.selectSignal(selectUpdateUserStatus);
+  public userPersonalInfo = this.store.selectSignal(selectUserPersonalInfo);
 
   ngOnInit(): void {
     this.store.select(selectUpdateUserStatus)
@@ -66,10 +67,10 @@ export class ProfileComponent implements OnInit {
   })
 
   private editModel = signal<UserEdit>({
-    lastName: '',
-    firstName: '',
-    birthday: '',
-    bio: ''
+    lastName: this.userPersonalInfo().lastName ?? '',
+    firstName: this.userPersonalInfo().firstName ?? '',
+    birthday: this.userPersonalInfo().birthday?.toString() ?? '',
+    bio: this.userPersonalInfo().bio ?? ''
   })
 
   public editForm = form(this.editModel, (fieldPath) => {
@@ -99,8 +100,16 @@ export class ProfileComponent implements OnInit {
 
   public onSubmit(): void {
     if (this.editForm().valid()) {
-      const {lastName, firstName, birthday, bio} = this.editForm().value()
-      this.store.dispatch(updateUser({updateUserDto: {lastName, firstName, birthday, bio}}));
+      const {lastName, firstName, birthday, bio} = this.editForm().value();
+      const formatted = format(birthday, 'yyyy-MM-dd');
+      this.store.dispatch(updateUser({
+        updateUserDto: {
+          lastName,
+          firstName,
+          birthday: formatted,
+          bio
+        }
+      }));
     }
   }
 
