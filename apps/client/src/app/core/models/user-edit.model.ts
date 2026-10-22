@@ -1,6 +1,6 @@
 export interface UserEdit {
-  firstName: string,
-  lastName: string,
-  birthday: string,
-  bio: string
+  firstName: string;
+  lastName: string;
+  birthday: string;
+  bio: string;
 }

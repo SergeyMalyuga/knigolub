@@ -11,6 +11,6 @@ export function mapPrismaUserToUser(user: PrismaUser): User {
     firstName: user.firstName,
     lastName: user.lastName,
     bio: user.bio,
-    birthday: user.birthday
+    birthday: user.birthday,
   };
 }

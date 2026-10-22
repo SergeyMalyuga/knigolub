@@ -9,10 +9,12 @@
 @use 'sass:color';
 
 :root {
-  @include mat.datepicker-overrides((
-    calendar-container-background-color: variables.$vanilla-ice,
-    calendar-container-elevation-shadow: 0px 4px 16px rgba(44, 24, 16, 0.15)
-  ));
+  @include mat.datepicker-overrides(
+    (
+      calendar-container-background-color: variables.$vanilla-ice,
+      calendar-container-elevation-shadow: 0px 4px 16px rgba(44, 24, 16, 0.15),
+    )
+  );
 }
 html {
   height: 100%;

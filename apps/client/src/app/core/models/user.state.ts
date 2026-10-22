@@ -1,6 +1,6 @@
 import { AuthStatus } from '../constants/const';
 import { ErrorResponse, User } from '@knigolub/shared';
-import {UpdateUserStatus} from '../types/udate-user-status.type';
+import { UpdateUserStatus } from '../types/udate-user-status.type';
 
 export interface UserState {
   authStatus: AuthStatus;

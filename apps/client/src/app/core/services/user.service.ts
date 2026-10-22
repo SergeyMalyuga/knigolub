@@ -1,9 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {AvatarResponse, Credential, NewUser, UpdateUser, User, UserDto} from '@knigolub/shared';
+import { AvatarResponse, Credential, NewUser, UpdateUser, User, UserDto } from '@knigolub/shared';
 import { APIRoute, BASE_URL } from '../constants/const';
-import {updateUserDto} from '../models/update-user.dto';
+import { updateUserDto } from '../models/update-user.dto';
 
 @Injectable({
   providedIn: 'root',
