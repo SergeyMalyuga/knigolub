@@ -122,3 +122,5 @@ export const DEFAULT_USER = null;
 export const AUTH_TOKEN_KEY_NAME = 'auth-token';
 
 export const DEFAULT_AVATAR_URL = '/assets/images/vector/avatar.svg';
+
+export const MAX_BIO_LENGTH = 450;
