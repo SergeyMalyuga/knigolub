@@ -14,7 +14,7 @@
                    priority width="320" height="320"/>
             </div>
           </div>
-          <p class="profile__time-in-club">В клубе {{regTimeAgo()}}</p>
+          <p class="profile__time-in-club">В клубе {{ regTimeAgo() }}</p>
         </div>
         <div class="profile__edit">
           <h2 class="profile__edit-title">Редактировать профиль</h2>
@@ -57,7 +57,8 @@
                   @for (error of editForm.lastName().errors(); track error) {
                     <mat-error>
                       <mat-icon class="profile__warning" aria-hidden="true">warning</mat-icon>
-                      {{error.message}}</mat-error>
+                      {{ error.message }}
+                    </mat-error>
                   }
                 }
               </mat-form-field>
@@ -72,7 +73,8 @@
                   @for (error of editForm.firstName().errors(); track error) {
                     <mat-error>
                       <mat-icon class="profile__warning" aria-hidden="true">warning</mat-icon>
-                      {{error.message}}</mat-error>
+                      {{ error.message }}
+                    </mat-error>
                   }
                 }
               </mat-form-field>
@@ -95,21 +97,23 @@
                   @for (error of editForm.birthday().errors(); track error) {
                     <mat-error>
                       <mat-icon class="profile__warning">warning</mat-icon>
-                      {{error.message}}</mat-error>
+                      {{ error.message }}
+                    </mat-error>
                   }
                 }
               </mat-form-field>
             </div>
             <div class="profile__input-wrapper profile__input-wrapper--bio">
-            <mat-form-field class="profile__my" appearance="outline">
-              <mat-label>Расскажите о себе...</mat-label>
-              <textarea class=" profile__input profile__bio" matInput ></textarea>
-            </mat-form-field>
+              <mat-form-field class="profile__my" appearance="outline">
+                <mat-label>Расскажите о себе...</mat-label>
+                <textarea class=" profile__input profile__bio" matInput></textarea>
+              </mat-form-field>
             </div>
             <button
-              [disabled]="editForm().invalid() || isFormEmpty()"
+              [disabled]="(editForm().invalid() || isFormEmpty()) || updateUserStatus() === UpdateUserStatus.LOADING"
               class="profile__button-submit"
-              type="submit">Сохранить изменения</button>
+              type="submit">Сохранить изменения
+            </button>
           </form>
         </div>
 

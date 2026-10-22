@@ -49,6 +49,7 @@ export class ProfileComponent implements OnInit {
   public avatarError = signal<AvatarError | null>(null);
   public userInfo = this.store.selectSignal(selectUserInfo);
   public registrationDate = this.store.selectSignal(selectRegistrationDate);
+  public updateUserStatus = this.store.selectSignal(selectUpdateUserStatus);
 
   ngOnInit(): void {
     this.store.select(selectUpdateUserStatus)
@@ -97,8 +98,9 @@ export class ProfileComponent implements OnInit {
   public onSubmit(): void {
     if (this.editForm().valid()) {
       const {lastName, firstName, birthday} = this.editForm().value()
-      this.store.dispatch(updateUser({updateUserDto: {lastName, firstName, birthday}}))
-      console.log(lastName, firstName, birthday);
+      this.store.dispatch(updateUser({updateUserDto: {lastName, firstName, birthday}}));
     }
   }
+
+  protected readonly UpdateUserStatus = UpdateUserStatus;
 }
