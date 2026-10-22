@@ -119,7 +119,7 @@
               </mat-form-field>
             </div>
             <button
-              [disabled]="(editForm().invalid() || isFormEmpty()) || updateUserStatus() === UpdateUserStatus.LOADING"
+              [disabled]="(editForm().invalid() || isFormEmpty()) || isSimilarUserData() || updateUserStatus() === UpdateUserStatus.LOADING"
               class="profile__button-submit"
               type="submit">Сохранить изменения
             </button>

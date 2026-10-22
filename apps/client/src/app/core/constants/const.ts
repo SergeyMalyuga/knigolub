@@ -1,6 +1,7 @@
 import { CategoryKey } from '../types/category-key';
 import { ViewKey } from '../types/view-key';
 import { PaginationMeta } from '@knigolub/shared';
+import {UserEdit} from '../models/user-edit.model';
 
 export enum AppRoute {
   MAIN = '',
@@ -124,3 +125,4 @@ export const AUTH_TOKEN_KEY_NAME = 'auth-token';
 export const DEFAULT_AVATAR_URL = '/assets/images/vector/avatar.svg';
 
 export const MAX_BIO_LENGTH = 450;
+

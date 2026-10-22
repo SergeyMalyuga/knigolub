@@ -8,7 +8,8 @@ import {
   AVATAR_ERROR,
   AVATAR_MAX_SIZE,
   DEFAULT_AVATAR_URL,
-  FileType, MAX_BIO_LENGTH,
+  FileType,
+  MAX_BIO_LENGTH,
   UpdateUserStatus,
 } from '../../core/constants/const';
 import {Store} from '@ngrx/store';
@@ -16,7 +17,8 @@ import {AppState} from '../../core/models/app.state';
 import {
   selectRegistrationDate,
   selectUpdateUserStatus,
-  selectUserInfo, selectUserPersonalInfo
+  selectUserInfo,
+  selectUserPersonalInfo
 } from '../../store/user/selectors/user.selectors';
 import {updateUser, uploadUserAvatar} from '../../store/user/actions/user.actions';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -24,13 +26,14 @@ import {MatError, MatFormField, MatHint, MatInput, MatLabel, MatSuffix} from '@a
 import {MatIcon} from '@angular/material/icon';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {dateValidator} from '../../shared/validators/date.validator';
-import {form, FormField, pattern, validate, maxLength} from '@angular/forms/signals';
+import {form, FormField, maxLength, pattern, validate} from '@angular/forms/signals';
 import {UserEdit} from '../../core/models/user-edit.model';
-import {format, formatDistanceToNow} from 'date-fns';
+import {formatDistanceToNow} from 'date-fns';
 import {ru} from 'date-fns/locale';
 import {NotificationService} from '../../core/services/notification.service';
 import {filter} from 'rxjs';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
+import {formatDate} from '../../core/utils/format-date.util';
 
 @Component({
   selector: 'app-profile',
@@ -45,6 +48,8 @@ export class ProfileComponent implements OnInit {
   private destroyRef = inject(DestroyRef);
 
   protected readonly DEFAULT_AVATAR_URL = DEFAULT_AVATAR_URL;
+  protected readonly UpdateUserStatus = UpdateUserStatus;
+  protected readonly MAX_BIO_LENGTH = MAX_BIO_LENGTH;
 
   public avatarError = signal<AvatarError | null>(null);
   public userInfo = this.store.selectSignal(selectUserInfo);
@@ -71,6 +76,16 @@ export class ProfileComponent implements OnInit {
     firstName: this.userPersonalInfo().firstName ?? '',
     birthday: this.userPersonalInfo().birthday?.toString() ?? '',
     bio: this.userPersonalInfo().bio ?? ''
+  })
+
+  public isSimilarUserData = computed(() => {
+    const orig = this.userPersonalInfo();
+    const edit = this.editModel();
+
+    return orig.firstName === edit.firstName &&
+      orig.lastName === edit.lastName &&
+      orig.bio === edit.bio &&
+      formatDate(orig.birthday) === formatDate(edit.birthday);
   })
 
   public editForm = form(this.editModel, (fieldPath) => {
@@ -101,7 +116,7 @@ export class ProfileComponent implements OnInit {
   public onSubmit(): void {
     if (this.editForm().valid()) {
       const {lastName, firstName, birthday, bio} = this.editForm().value();
-      const formatted = format(birthday, 'yyyy-MM-dd');
+      const formatted = formatDate(birthday);
       this.store.dispatch(updateUser({
         updateUserDto: {
           lastName,
@@ -112,7 +127,4 @@ export class ProfileComponent implements OnInit {
       }));
     }
   }
-
-  protected readonly UpdateUserStatus = UpdateUserStatus;
-  protected readonly MAX_BIO_LENGTH = MAX_BIO_LENGTH;
 }
