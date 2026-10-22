@@ -1,5 +1,6 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store';
 import {AppState} from '../../../core/models/app.state';
+import {UserEdit} from '../../../core/models/user-edit.model';
 
 const selectUserState = createFeatureSelector<AppState['user']>('user');
 
@@ -34,12 +35,12 @@ export const selectUserInfo = createSelector(
 
 export const selectUserPersonalInfo = createSelector(
   selectUserState,
-  state => {
+  (state): UserEdit => {
     return {
-      lastName: state.user?.lastName,
-      firstName: state.user?.firstName,
-      birthday: state.user?.birthday,
-      bio: state.user?.bio,
+      lastName: state.user?.lastName ?? '',
+      firstName: state.user?.firstName ?? '',
+      birthday: state.user?.birthday?.toString() ?? '',
+      bio: state.user?.bio ?? '',
     }
   }
 )
