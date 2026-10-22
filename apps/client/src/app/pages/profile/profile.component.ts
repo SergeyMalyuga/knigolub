@@ -8,7 +8,7 @@ import {
   AVATAR_ERROR,
   AVATAR_MAX_SIZE,
   DEFAULT_AVATAR_URL,
-  FileType,
+  FileType, MAX_BIO_LENGTH,
   UpdateUserStatus,
 } from '../../core/constants/const';
 import {Store} from '@ngrx/store';
@@ -20,11 +20,11 @@ import {
 } from '../../store/user/selectors/user.selectors';
 import {updateUser, uploadUserAvatar} from '../../store/user/actions/user.actions';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatError, MatFormField, MatInput, MatLabel, MatSuffix} from '@angular/material/input';
+import {MatError, MatFormField, MatHint, MatInput, MatLabel, MatSuffix} from '@angular/material/input';
 import {MatIcon} from '@angular/material/icon';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {dateValidator} from '../../shared/validators/date.validator';
-import {form, FormField, pattern, validate} from '@angular/forms/signals';
+import {form, FormField, pattern, validate, maxLength} from '@angular/forms/signals';
 import {UserEdit} from '../../core/models/user-edit.model';
 import {formatDistanceToNow} from 'date-fns';
 import {ru} from 'date-fns/locale';
@@ -34,7 +34,7 @@ import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-profile',
-  imports: [HeaderComponent, FooterComponent, NgOptimizedImage, SelectFileDirective, MatDatepickerModule, MatInput, MatFormField, MatLabel, MatSuffix, MatIcon, ReactiveFormsModule, MatError, FormField, FormsModule],
+  imports: [HeaderComponent, FooterComponent, NgOptimizedImage, SelectFileDirective, MatDatepickerModule, MatInput, MatFormField, MatLabel, MatSuffix, MatIcon, ReactiveFormsModule, MatError, FormField, FormsModule, MatHint],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -69,12 +69,14 @@ export class ProfileComponent implements OnInit {
     lastName: '',
     firstName: '',
     birthday: '',
+    bio: ''
   })
 
   public editForm = form(this.editModel, (fieldPath) => {
     pattern(fieldPath.lastName, /^[A-Za-zА-Яа-яЁё]+$/, {message: 'Только буквы'}),
       pattern(fieldPath.firstName, /^[A-Za-zА-Яа-яЁё]+$/, {message: 'Только буквы'}),
-      validate(fieldPath.birthday, (ctx) => dateValidator(ctx.value()))
+      validate(fieldPath.birthday, (ctx) => dateValidator(ctx.value())),
+      maxLength(fieldPath.bio, MAX_BIO_LENGTH, {message: `Максимум ${MAX_BIO_LENGTH} символов`})
   });
 
   public isFormEmpty = computed(() => {
@@ -97,10 +99,11 @@ export class ProfileComponent implements OnInit {
 
   public onSubmit(): void {
     if (this.editForm().valid()) {
-      const {lastName, firstName, birthday} = this.editForm().value()
-      this.store.dispatch(updateUser({updateUserDto: {lastName, firstName, birthday}}));
+      const {lastName, firstName, birthday, bio} = this.editForm().value()
+      this.store.dispatch(updateUser({updateUserDto: {lastName, firstName, birthday, bio}}));
     }
   }
 
   protected readonly UpdateUserStatus = UpdateUserStatus;
+  protected readonly MAX_BIO_LENGTH = MAX_BIO_LENGTH;
 }

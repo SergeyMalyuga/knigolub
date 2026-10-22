@@ -103,10 +103,19 @@
                 }
               </mat-form-field>
             </div>
-            <div class="profile__input-wrapper profile__input-wrapper--bio">
+            <div class="profile__input-wrapper profile__textarea profile__input-wrapper--bio">
               <mat-form-field class="profile__my" appearance="outline">
                 <mat-label>Расскажите о себе...</mat-label>
-                <textarea class=" profile__input profile__bio" matInput></textarea>
+                <textarea
+                  [formField]="editForm.bio"
+                  class=" profile__input profile__bio"
+                  matInput></textarea>
+                <mat-hint align="end">{{editForm.bio().value().length}} / {{MAX_BIO_LENGTH}}</mat-hint>
+                @if (editForm.bio().invalid() && (editForm.bio().touched() || editForm.bio().dirty())) {
+                  @for (error of editForm.bio().errors(); track error) {
+                    <mat-error>{{error.message}}</mat-error>
+                  }
+                }
               </mat-form-field>
             </div>
             <button
