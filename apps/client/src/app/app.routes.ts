@@ -1,5 +1,5 @@
-import { Routes } from '@angular/router';
-import { AppRoute } from './core/constants/const';
+import {Routes} from '@angular/router';
+import {AppRoute} from './core/constants/const';
 
 export const routes: Routes = [
   {
@@ -9,14 +9,19 @@ export const routes: Routes = [
   },
   {
     path: AppRoute.LOGIN,
-    title: 'Login',
+    title: 'Войти в клуб',
     loadComponent: () => import('./pages/login/login.component').then((m) => m.LoginComponent),
   },
   {
     path: AppRoute.PROFILE,
-    title: 'Profile',
+    title: 'Профиль',
     loadComponent: () =>
       import('./pages/profile/profile.component').then((m) => m.ProfileComponent),
+  },
+  {
+    path: AppRoute.FAVORITES,
+    title: 'Избранное',
+    loadComponent: () => import('./pages/favorites/favorites.component').then((m) => m.FavoritesComponent),
   },
   {
     path: '**',
