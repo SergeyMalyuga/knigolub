@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import {ChangeDetectionStrategy, Component, computed, effect, inject, signal} from '@angular/core';
 import {
   CATEGORY_LABELS,
   CategoryType,
@@ -22,6 +22,7 @@ import { PaginationItem } from '../../../../core/models/pagination-item';
 import { PaginationPage } from '../../../../core/models/pagination-page';
 import { PaginationComponent } from '../../../../shared/components/pagination/pagination.component';
 import { SwiperComponent } from '../../../../shared/components/swiper/swiper.component';
+import {BreakpointService} from '../../../../core/services/breakpoint.service';
 
 @Component({
   selector: 'app-catalog',
@@ -32,6 +33,7 @@ import { SwiperComponent } from '../../../../shared/components/swiper/swiper.com
 })
 export class CatalogComponent {
   private store = inject(Store<AppState>);
+  private breakpointService = inject(BreakpointService);
 
   protected readonly Section = Section;
   protected readonly View = View;
@@ -41,6 +43,15 @@ export class CatalogComponent {
   public books = this.store.selectSignal(selectAllBooks);
   public totalCount = this.store.selectSignal(selectTotalCount);
   public shown = this.store.selectSignal(selectShown);
+
+  constructor() {
+    effect(() => {
+      const isMiniMobile = this.breakpointService.isMiniMobile();
+      if (isMiniMobile && this.viewMode() !== View.GRID && this.viewMode() !== View.SLIDER) {
+        this.viewMode.set(View.GRID);
+      }
+    });
+  }
 
   public categories: CategoryKey[] = Object.values(CategoryType);
   public views: ViewKey[] = Object.values(View);
