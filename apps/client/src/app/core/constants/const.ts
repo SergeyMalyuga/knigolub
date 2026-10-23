@@ -7,7 +7,7 @@ export enum AppRoute {
   MAIN = '',
   LOGIN = 'login',
   PROFILE = 'profile',
-  FAVORITE = 'favorite',
+  FAVORITES = 'favorites',
 }
 
 export enum APIRoute {
