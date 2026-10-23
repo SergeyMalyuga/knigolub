@@ -17,17 +17,21 @@
     <div
       id="header-menu"
       [ngClass]="{
-        header__menu: true,
+        'header__menu': true,
+        'header__menu--mini-layout': isMiniLayout,
         'header__menu--open': isMenuOpen(),
-        hidden: isMiniLayout,
       }"
-      [attr.aria-hidden]="!isMenuOpen() || isMiniLayout"
-      [inert]="!isMenuOpen() || isMiniLayout"
     >
-      <nav class="header__nav" aria-label="Основная навигация">
-        <ul class="header__nav-links">
-          <li>
+      <nav
+        [ngClass]="{
+        'header__nav': true,
+        'hidden': isMiniLayout
+        }"
+        aria-label="Основная навигация">
+        <ul class="header__nav-links" role="menubar">
+          <li role="none">
             <a
+              role="menuitem"
               [ngClass]="{
                 header__link: true,
                 'header__link--nav': true,
@@ -35,11 +39,12 @@
               }"
               (click)="selectSection(Section.MAIN)"
               href="#main"
-              >Главная</a
+            >Главная</a
             >
           </li>
-          <li>
+          <li role="none">
             <a
+              role="menuitem"
               [ngClass]="{
                 header__link: true,
                 'header__link--nav': true,
@@ -47,11 +52,12 @@
               }"
               (click)="selectSection(Section.CATALOG)"
               href="#catalog"
-              >Каталог</a
+            >Каталог</a
             >
           </li>
-          <li>
+          <li role="none">
             <a
+              role="menuitem"
               [ngClass]="{
                 header__link: true,
                 'header__link--nav': true,
@@ -59,11 +65,12 @@
               }"
               (click)="selectSection(Section.COLLECTION)"
               href="#collection"
-              >Подборки</a
+            >Подборки</a
             >
           </li>
-          <li>
+          <li role="none">
             <a
+              role="menuitem"
               [ngClass]="{
                 header__link: true,
                 'header__link--nav': true,
@@ -71,11 +78,12 @@
               }"
               (click)="selectSection(Section.COMMUNITY)"
               href="#community"
-              >Сообщество</a
+            >Сообщество</a
             >
           </li>
-          <li>
+          <li role="none">
             <a
+              role="menuitem"
               [ngClass]="{
                 header__link: true,
                 'header__link--nav': true,
@@ -83,13 +91,19 @@
               }"
               (click)="selectSection(Section.REVIEWS)"
               href="#reviews"
-              >Отзывы</a
+            >Отзывы</a
             >
           </li>
         </ul>
       </nav>
       <div class="header__actions">
-        <div class="header__search">
+        <div
+          role="search"
+          [ngClass]="{
+        'header__search': true,
+        'hidden': isMiniLayout
+        }"
+        >
           <label for="header-search" class="visually-hidden">Поиск: книга, автор, жанр</label>
           <input
             id="header-search"
@@ -99,39 +113,46 @@
           />
         </div>
         @if (authStatus() !== AuthStatus.AUTH) {
-          <a class="header__link header__link--action" [routerLink]="[AppRoute.LOGIN]">{{
-            isMobile() ? 'Войти' : 'Присоединиться'
-          }}</a>
+          <a class="header__link header__link--action"
+             [ngClass]="{
+             'hidden': isMiniLayout
+             }"
+             [routerLink]="[AppRoute.LOGIN]">{{
+              isMobile() ? 'Войти' : 'Присоединиться'
+            }}</a>
         } @else if (authStatus() === AuthStatus.AUTH) {
           <a
             class="header__link header__link--favorite header__interactive"
+            [attr.aria-label]="`Избранных книг ${favoriteBooksTotal()}`"
             [routerLink]="[AppRoute.FAVORITE]"
           >
-            <svg width="24" height="24">
+            <svg class="header__icon" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true">
               <use href="/assets/images/vector/heart.svg#heart"></use>
             </svg>
-            <span>{{ favoriteBooksTotal() }}</span>
+            <span aria-hidden="true">{{ favoriteBooksTotal() }}</span>
           </a>
           <a
             class="header__link header__link--profile header__interactive"
+            [attr.aria-label]="`Перейти в профиль пользователя ${userName()}`"
             [routerLink]="[AppRoute.PROFILE]"
           >
             <div class="header__avatar">
               <img
+                class="header__icon"
                 [ngSrc]="userAvatar() ?? DEFAULT_AVATAR_URL"
                 width="24"
                 height="24"
-                alt="Аватар пользователя"
+                alt=""
               />
             </div>
-            <span>{{ userName() }}</span>
+            <span aria-hidden="true">{{ userName() }}</span>
           </a>
           <button
             class="header__button-logout header__interactive"
             (click)="logout()"
+            aria-label="Выйти из аккаунта"
             type="button"
           >
-            <span class="visually-hidden">Выход</span>
           </button>
         }
       </div>
@@ -143,8 +164,6 @@
         hidden: isMiniLayout,
       }"
       type="button"
-      [attr.aria-hidden]="isMiniLayout"
-      [inert]="isMiniLayout"
       aria-haspopup="true"
       [attr.aria-label]="isMenuOpen() ? 'Закрыть меню' : 'Открыть меню'"
       [aria-expanded]="isMenuOpen()"
