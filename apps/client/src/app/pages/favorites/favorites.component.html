@@ -1,5 +1,5 @@
 <div class="page">
-  <app-header [isMiniLayout]="true"/>
+  <app-header [isMiniLayout]="true" />
   <main class="main">
     <section class="favorites container">
       <h1 class="favorites__title">Полка с любимыми&nbsp;книгами</h1>
@@ -7,17 +7,17 @@
         <ul class="favorites__books" aria-label="Избранные книги">
           @for (book of books(); track book.id) {
             <li>
-              <app-book-card [book]="book" [index]="$index" [viewMode]="viewMode()"/>
+              <app-book-card [book]="book" [index]="$index" [viewMode]="viewMode()" />
             </li>
           }
         </ul>
       } @else {
-        <div class="favorites__empty-item" role="status"  aria-label="Список избранных книг пуст">
+        <div class="favorites__empty-item" role="status" aria-label="Список избранных книг пуст">
           <p class="favorites__empty-text">
             Пустая полка — это не грустно, это возможность для новых открытий
           </p>
           <div class="favorites__image">
-            <img src="/assets/images/raster/empty-favorites.jpg" width="600" height="600" alt=""/>
+            <img src="/assets/images/raster/empty-favorites.jpg" width="600" height="600" alt="" />
           </div>
           <a class="favorites__link" [routerLink]="['/']" [fragment]="'catalog'">
             Перейти в каталог
@@ -26,5 +26,5 @@
       }
     </section>
   </main>
-  <app-footer [isMiniLayout]="true"/>
+  <app-footer [isMiniLayout]="true" />
 </div>

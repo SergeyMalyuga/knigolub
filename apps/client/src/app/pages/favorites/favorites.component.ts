@@ -1,29 +1,24 @@
-import {ChangeDetectionStrategy, Component, effect, inject, signal} from '@angular/core';
-import {HeaderComponent} from '../../shared/components/header/header.component';
-import {FooterComponent} from '../../shared/components/footer/footer.component';
-import {Store} from '@ngrx/store';
-import {AppState} from '../../core/models/app.state';
-import {selectFavoriteBooks} from '../../store/favorite/selectors/favorite-book.selectors';
-import {BookCardComponent} from '../../shared/components/book-card/book-card.component';
-import {View} from '../../core/constants/const';
-import {RouterLink} from '@angular/router';
-import {BreakpointService} from '../../core/services/breakpoint.service';
+import { ChangeDetectionStrategy, Component, effect, inject, signal } from '@angular/core';
+import { HeaderComponent } from '../../shared/components/header/header.component';
+import { FooterComponent } from '../../shared/components/footer/footer.component';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../core/models/app.state';
+import { selectFavoriteBooks } from '../../store/favorite/selectors/favorite-book.selectors';
+import { BookCardComponent } from '../../shared/components/book-card/book-card.component';
+import { View } from '../../core/constants/const';
+import { RouterLink } from '@angular/router';
+import { BreakpointService } from '../../core/services/breakpoint.service';
 
 @Component({
   selector: 'app-favorites',
-  imports: [
-    HeaderComponent,
-    FooterComponent,
-    BookCardComponent,
-    RouterLink
-  ],
+  imports: [HeaderComponent, FooterComponent, BookCardComponent, RouterLink],
   templateUrl: './favorites.component.html',
   styleUrl: './favorites.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FavoritesComponent {
   private store = inject(Store<AppState>);
-  private breakpointService = inject(BreakpointService)
+  private breakpointService = inject(BreakpointService);
 
   protected readonly View = View;
 
@@ -40,5 +35,4 @@ export class FavoritesComponent {
 
   public viewMode = signal<View>(View.LIST);
   public books = this.store.selectSignal(selectFavoriteBooks);
-
 }

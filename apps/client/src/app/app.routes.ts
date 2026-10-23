@@ -1,5 +1,5 @@
-import {Routes} from '@angular/router';
-import {AppRoute} from './core/constants/const';
+import { Routes } from '@angular/router';
+import { AppRoute } from './core/constants/const';
 
 export const routes: Routes = [
   {
@@ -21,7 +21,8 @@ export const routes: Routes = [
   {
     path: AppRoute.FAVORITES,
     title: 'Избранное',
-    loadComponent: () => import('./pages/favorites/favorites.component').then((m) => m.FavoritesComponent),
+    loadComponent: () =>
+      import('./pages/favorites/favorites.component').then((m) => m.FavoritesComponent),
   },
   {
     path: '**',

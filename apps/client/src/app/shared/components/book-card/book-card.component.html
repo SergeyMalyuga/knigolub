@@ -108,7 +108,7 @@
         (click)="toggleFavorite()"
         [ngClass]="{
           card__button: true,
-          'card__button--favorite': isFavorite(),
+          'card__button--favorite': book.isFavorite && authStatus() === AuthStatus.AUTH,
           'card__button--list': viewMode === View.LIST,
           hidden: viewMode !== View.LIST,
         }"

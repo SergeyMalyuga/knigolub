@@ -30,7 +30,6 @@ export class BookCardComponent {
   public currentDate = signal<number>(new Date().getFullYear());
   public authStatus = this.store.selectSignal(selectAuthStatus);
   public togglingBookId = this.store.selectSignal(selectTogglingBookId);
-  public isFavorite = signal<boolean>(false); //TODO временно для проверки применения стилей
 
   public toggleFavorite() {
     if (this.authStatus() !== AuthStatus.AUTH) {

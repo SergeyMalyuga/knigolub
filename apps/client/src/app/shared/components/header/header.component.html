@@ -17,17 +17,18 @@
     <div
       id="header-menu"
       [ngClass]="{
-        'header__menu': true,
+        header__menu: true,
         'header__menu--mini-layout': isMiniLayout,
         'header__menu--open': isMenuOpen(),
       }"
     >
       <nav
         [ngClass]="{
-        'header__nav': true,
-        'hidden': isMiniLayout
+          header__nav: true,
+          hidden: isMiniLayout,
         }"
-        aria-label="Основная навигация">
+        aria-label="Основная навигация"
+      >
         <ul class="header__nav-links" role="menubar">
           <li role="none">
             <a
@@ -39,7 +40,7 @@
               }"
               (click)="selectSection(Section.MAIN)"
               href="#main"
-            >Главная</a
+              >Главная</a
             >
           </li>
           <li role="none">
@@ -52,7 +53,7 @@
               }"
               (click)="selectSection(Section.CATALOG)"
               href="#catalog"
-            >Каталог</a
+              >Каталог</a
             >
           </li>
           <li role="none">
@@ -65,7 +66,7 @@
               }"
               (click)="selectSection(Section.COLLECTION)"
               href="#collection"
-            >Подборки</a
+              >Подборки</a
             >
           </li>
           <li role="none">
@@ -78,7 +79,7 @@
               }"
               (click)="selectSection(Section.COMMUNITY)"
               href="#community"
-            >Сообщество</a
+              >Сообщество</a
             >
           </li>
           <li role="none">
@@ -91,7 +92,7 @@
               }"
               (click)="selectSection(Section.REVIEWS)"
               href="#reviews"
-            >Отзывы</a
+              >Отзывы</a
             >
           </li>
         </ul>
@@ -100,9 +101,9 @@
         <div
           role="search"
           [ngClass]="{
-        'header__search': true,
-        'hidden': isMiniLayout
-        }"
+            header__search: true,
+            hidden: isMiniLayout,
+          }"
         >
           <label for="header-search" class="visually-hidden">Поиск: книга, автор, жанр</label>
           <input
@@ -113,13 +114,14 @@
           />
         </div>
         @if (authStatus() !== AuthStatus.AUTH) {
-          <a class="header__link header__link--action"
-             [ngClass]="{
-             'hidden': isMiniLayout
-             }"
-             [routerLink]="['/', AppRoute.LOGIN]">{{
-              isMobile() ? 'Войти' : 'Присоединиться'
-            }}</a>
+          <a
+            class="header__link header__link--action"
+            [ngClass]="{
+              hidden: isMiniLayout,
+            }"
+            [routerLink]="['/', AppRoute.LOGIN]"
+            >{{ isMobile() ? 'Войти' : 'Присоединиться' }}</a
+          >
         } @else if (authStatus() === AuthStatus.AUTH) {
           <a
             class="header__link header__link--favorite header__interactive"
@@ -152,8 +154,7 @@
             (click)="logout()"
             aria-label="Выйти из аккаунта"
             type="button"
-          >
-          </button>
+          ></button>
         }
       </div>
     </div>

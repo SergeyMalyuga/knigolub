@@ -127,6 +127,7 @@ export class UserService {
   }
 
   public async updateUser(userId: string, dto: UpdateUser): Promise<User> {
+    //TODO return User
     if (Object.keys(dto).length === 0) {
       const prismaUser = await prisma.user.findUnique({
         where: { id: userId },
