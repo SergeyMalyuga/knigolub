@@ -1,0 +1,124 @@
+@use '../../../styles/variables' as variables;
+@use '../../../styles/mixins' as mixins;
+@use '../../../styles/functions' as *;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.main {
+  flex-grow: 1;
+}
+
+.favorites {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding-top: rem(72);
+  padding-bottom: rem(72);
+
+  &__books {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 10px;
+  }
+
+  &__title {
+    font-family: variables.$font-family-accent;
+    color: variables.$text-dark-color;
+    font-size: rem(55);
+    line-height: 100%;
+    margin-bottom: rem(60);
+
+    @media (width <= 1250px) {
+      margin-bottom: rem(35);
+    }
+
+    @media (width <= 808px) {
+      font-size: rem(40);
+      margin-bottom: rem(20);
+    }
+
+    @media (width <= 525px) {
+      margin-bottom: rem(35);
+    }
+
+    @media (width <= 396px) {
+      font-size: rem(30);
+    }
+  }
+
+  &__image {
+    max-width: 600px;
+    width: 100%;
+
+
+    @media (width <= 525px) {
+      flex-grow: 1;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+
+      @media (width <= 525px) {
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+  }
+
+  &__empty {
+    &-item {
+      display: flex;
+      gap: 35px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-grow: 1;
+
+      @media (width <= 767px) {
+        gap: 25px;
+      }
+    }
+
+    &-text {
+      color: variables.$coffee;
+      font-size: rem(18);
+      font-weight: 500;
+
+      @media (width <= 808px) {
+        font-size: rem(16);
+      }
+
+      @media (width <= 422px) {
+        text-align: center;
+      }
+    }
+  }
+
+  &__link {
+    @include mixins.button-base(
+      $text-color: variables.$text-light-color,
+      $background: variables.$sienna,
+      $width: 250px,
+      $padding: 15,
+    );
+
+    text-decoration: none;
+
+    @media (width <= 480px) {
+      max-width: 100%;
+    }
+  }
+
+  @media (width <= 1250px) {
+    padding-top: rem(48);
+    padding-bottom: rem(48);
+  }
+}
