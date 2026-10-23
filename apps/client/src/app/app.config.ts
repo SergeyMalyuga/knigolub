@@ -1,5 +1,5 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import {provideRouter, withInMemoryScrolling} from '@angular/router';
 
 import { routes } from './app.routes';
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
@@ -15,7 +15,10 @@ import { provideNativeDateAdapter, MAT_DATE_LOCALE } from '@angular/material/cor
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideRouter(routes),
+    provideRouter(routes,  withInMemoryScrolling({
+      scrollPositionRestoration: 'enabled',
+      anchorScrolling: 'enabled',
+    })),
     provideStore(appReducer),
     provideHttpClient(withInterceptorsFromDi()),
     provideEffects(BookEffects, UserEffects, FavoriteBookEffects),
