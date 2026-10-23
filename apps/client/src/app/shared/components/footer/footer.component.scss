@@ -60,6 +60,10 @@
     @media (width <= 767px) {
       text-align: center;
     }
+
+    @media (width <= 380px) {
+      font-size: rem(12);
+    }
   }
 
   &__logo {
