@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Section } from '../../../../core/constants/const';
-import { REVIEW_CARDS_MOCK } from '../../../../shared/components/review-card/mock/review-cards.mock';
-import { ReviewCardComponent } from '../../../../shared/components/review-card/review-card.component';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {Section} from '../../../../core/constants/const';
+import {REVIEW_CARDS_MOCK} from '../../../../shared/components/review-card/mock/review-cards.mock';
+import {ReviewCardComponent} from '../../../../shared/components/review-card/review-card.component';
+import {ReviewDialogService} from '../../../../core/services/review-dialog.service';
 
 @Component({
   selector: 'app-reviews',
@@ -11,6 +12,12 @@ import { ReviewCardComponent } from '../../../../shared/components/review-card/r
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ReviewsComponent {
+  private reviewDialogService = inject(ReviewDialogService);
+
   protected readonly Section = Section;
   protected readonly REVIEW_CARDS_MOCK = REVIEW_CARDS_MOCK;
+
+  public onAddReview(): void {
+    this.reviewDialogService.openReviewDialog();
+  }
 }
