@@ -1,0 +1,41 @@
+<form class="review">
+  <h2>Оставить отзыв</h2>
+  <div role="radiogroup" aria-label="Оценка клуба">
+    @for (star of RATING_STARS_AMOUNT; track star) {
+      <input
+        type="radio"
+        [id]="'star-' + star"
+        [value]="star"
+        name="rating"
+        class="visually-hidden"
+        (change)="currentRating.set(star)"
+      />
+      <label
+        class="review__rating"
+        [for]="'star-' + star"
+        [attr.aria-label]="STAR_RATING[star - 1].aria"
+        (mouseenter)="hoverRating.set(star)"
+        (mouseleave)="hoverRating.set(0)"
+      >
+        <svg
+          [ngClass]="{
+             'review__rating-star': true,
+             'review__rating-star--fill': hoverRating() >= star || currentRating() >= star
+             }"
+          height="24"
+          width="24"
+          aria-hidden="true">
+          <use href="/assets/images/vector/star-symbol.svg#star"/>
+        </svg>
+      </label>
+    }
+  </div>
+  <mat-form-field appearance="outline">
+    <mat-label>Поделиться впечатлениями</mat-label>
+    <textarea matInput></textarea>
+  </mat-form-field>
+  <button type="submit">Опубликовать</button>
+  <button class="review__button-close" matIconButton aria-label="Закрыть" (click)="dialogRef.close()">
+    <mat-icon ma class="review__icon-close">close</mat-icon>
+  </button>
+</form>
