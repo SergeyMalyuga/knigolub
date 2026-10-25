@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component, inject, signal} from '@angular/core'
 import {DialogRef} from '@angular/cdk/dialog';
 import {RATING_STARS_AMOUNT, STAR_RATING} from '../../../core/constants/const';
 import {NgClass} from '@angular/common';
-import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
+import {MatFormField, MatHint, MatInput, MatLabel} from '@angular/material/input';
 import {MatIconButton} from '@angular/material/button';
 import {MatIcon} from '@angular/material/icon';
 
@@ -14,7 +14,8 @@ import {MatIcon} from '@angular/material/icon';
     MatLabel,
     MatInput,
     MatIconButton,
-    MatIcon
+    MatIcon,
+    MatHint,
   ],
   templateUrl: './review-dialog.component.html',
   styleUrl: './review-dialog.component.scss',

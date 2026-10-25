@@ -1,5 +1,7 @@
 @use '../../../../styles/variables' as variables;
 @use '../../../../styles/functions' as *;
+@use "sass:color";
+
 :host {
   .mat-icon.profile__warning {
     width: 15px;
@@ -39,9 +41,9 @@
           }
         }
 
-        .mat-mdc-form-field-subscript-wrapper {
+   /*     .mat-mdc-form-field-subscript-wrapper {
           display: none;
-        }
+        }*/
 
         .mdc-text-field--outlined {
           background-color: variables.$white;
@@ -147,6 +149,11 @@
     justify-content: center;
     width: 40px;
     height: 40px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: color.scale(variables.$sienna, $lightness: 10%);
+    }
 
     ::ng-deep {
       .mat-mdc-button-touch-target {

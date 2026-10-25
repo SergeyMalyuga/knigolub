@@ -33,8 +33,10 @@
   <mat-form-field appearance="outline">
     <mat-label>Поделиться впечатлениями</mat-label>
     <textarea matInput></textarea>
+    <mat-hint align="start">Минимальный размер отзыва</mat-hint>
+    <mat-hint align="end">50/50</mat-hint>
   </mat-form-field>
-  <button type="submit">Опубликовать</button>
+  <button   type="submit">Опубликовать</button>
   <button class="review__button-close" matIconButton aria-label="Закрыть" (click)="dialogRef.close()">
     <mat-icon ma class="review__icon-close">close</mat-icon>
   </button>
