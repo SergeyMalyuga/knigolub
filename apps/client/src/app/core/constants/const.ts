@@ -124,3 +124,13 @@ export const AUTH_TOKEN_KEY_NAME = 'auth-token';
 export const DEFAULT_AVATAR_URL = '/assets/images/vector/avatar.svg';
 
 export const MAX_BIO_LENGTH = 450;
+
+export const STAR_RATING = [
+  { label: 'Разочарование', aria: 'Разочарование, 1 из 5' },
+  { label: 'Так себе',      aria: 'Так себе, 2 из 5' },
+  { label: 'Нормально',     aria: 'Нормально, 3 из 5' },
+  { label: 'Хорошо',        aria: 'Хорошо, 4 из 5' },
+  { label: 'Восторг',       aria: 'Восторг, 5 из 5' },
+] as const;
+
+export const RATING_STARS_AMOUNT = [1, 2, 3, 4, 5];
