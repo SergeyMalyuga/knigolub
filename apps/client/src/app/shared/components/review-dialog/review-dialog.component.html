@@ -1,19 +1,19 @@
 <form class="review">
-  <h2>Оставить отзыв</h2>
+  <h2 id="review-title" class="review__title">Оставить отзыв</h2>
   <div role="radiogroup" aria-label="Оценка клуба">
     @for (star of RATING_STARS_AMOUNT; track star) {
       <input
         type="radio"
         [id]="'star-' + star"
         [value]="star"
+        [attr.aria-label]="STAR_RATING[star - 1].aria"
         name="rating"
         class="visually-hidden"
         (change)="currentRating.set(star)"
       />
       <label
         class="review__rating"
-        [for]="'star-' + star"
-        [attr.aria-label]="STAR_RATING[star - 1].aria"
+        [attr.for]="'star-' + star"
         (mouseenter)="hoverRating.set(star)"
         (mouseleave)="hoverRating.set(0)"
       >
@@ -36,8 +36,8 @@
     <mat-hint align="start">Минимальный размер отзыва</mat-hint>
     <mat-hint align="end">50/50</mat-hint>
   </mat-form-field>
-  <button   type="submit">Опубликовать</button>
+  <button type="submit">Опубликовать</button>
   <button class="review__button-close" matIconButton aria-label="Закрыть" (click)="dialogRef.close()">
-    <mat-icon ma class="review__icon-close">close</mat-icon>
+    <mat-icon class="review__icon-close">close</mat-icon>
   </button>
 </form>
