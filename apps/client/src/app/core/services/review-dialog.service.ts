@@ -12,6 +12,7 @@ export class ReviewDialogService {
     this.dialog.open(ReviewDialogComponent, {
       backdropClass: 'review-backdrop',
       panelClass: 'review-dialog-panel',
+      ariaLabelledBy: 'review-title',
     })
   }
 }
