@@ -26,7 +26,6 @@ export const updateUserSchema = z.object({
     .string()
     .optional()
     .or(z.literal(""))
-    .or(z.literal(""))
     .transform((val) => (val === "" ? undefined : val))
     .optional(),
 });
