@@ -53,7 +53,8 @@ model User {
   role     Role    @default(USER)
 
   //Связи
-  favorites Favorite[]
+  favorites   Favorite[]
+  clubReviews ClubReview[]
 }
 
 model Favorite {
@@ -64,4 +65,15 @@ model Favorite {
   book Book @relation(fields: [bookId], references: [id], onDelete: Cascade)
 
   @@id([userId, bookId])
+}
+
+model ClubReview {
+  id        String   @id @default(uuid())
+  userId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  rating    Int
+  text      String
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
