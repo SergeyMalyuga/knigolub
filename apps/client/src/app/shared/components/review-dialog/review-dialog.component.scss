@@ -1,4 +1,5 @@
 @use '../../../../styles/variables' as variables;
+@use '../../../../styles/mixins' as mixins;
 @use '../../../../styles/functions' as *;
 @use "sass:color";
 
@@ -118,6 +119,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  gap: 15px;
   background: variables.$linen;
   max-width: 640px;
   width: 100%;
@@ -138,7 +140,7 @@
     }
   }
 
-  &__button-close {
+  &__close {
     background-color: variables.$sienna;
     position: absolute;
     top: -15px;
@@ -155,23 +157,39 @@
       background-color: color.scale(variables.$sienna, $lightness: 10%);
     }
 
-    ::ng-deep {
-      .mat-mdc-button-touch-target {
-        width: 40px;
-        height: 40px;
-
-        @media (width <= 680px) {
-          width: 32px;
-          height: 32px;
-        }
-      }
-    }
-
     @media (width <= 680px) {
       width: 32px;
       height: 32px;
       top: -10px;
       right: -10px;
     }
+  }
+
+  ::ng-deep {
+    .mat-mdc-form-field {
+      margin-bottom: rem(15);
+    }
+  }
+
+  &__title {
+    color: variables.$coffee-bean;
+    margin-bottom: rem(15);
+  }
+
+  .visually-hidden:focus-visible + .review__rating {
+    outline: 2px solid variables.$sienna;
+    border-radius: 4px;
+  }
+
+  &__add {
+    @include mixins.button-base(
+      $text-color: variables.$text-light-color,
+      $background: variables.$button-bg-accent,
+      $width: 320px,
+      $padding: 15
+    );
+
+    cursor: pointer;
+    margin: 0 auto;
   }
 }
