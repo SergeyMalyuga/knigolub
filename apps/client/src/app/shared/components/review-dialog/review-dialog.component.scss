@@ -1,7 +1,7 @@
 @use '../../../../styles/variables' as variables;
 @use '../../../../styles/mixins' as mixins;
 @use '../../../../styles/functions' as *;
-@use "sass:color";
+@use 'sass:color';
 
 :host {
   .mat-icon.profile__warning {
@@ -42,7 +42,7 @@
           }
         }
 
-   /*     .mat-mdc-form-field-subscript-wrapper {
+        /*     .mat-mdc-form-field-subscript-wrapper {
           display: none;
         }*/
 
@@ -134,7 +134,6 @@
     color: transparent;
     transition: color 0.3s ease;
 
-
     &--fill {
       color: #ffc44d;
     }
@@ -174,6 +173,10 @@
   &__title {
     color: variables.$coffee-bean;
     margin-bottom: rem(15);
+
+    @media (width <= 530px) {
+      text-align: center;
+    }
   }
 
   .visually-hidden:focus-visible + .review__rating {

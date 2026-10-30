@@ -1,5 +1,8 @@
 <form class="review">
-  <h2 id="review-title" class="review__title">Оставить отзыв</h2>
+  <h2 id="review-title" class="review__title">
+    Оставить отзыв
+    {{ reviewType === REVIEW_TYPES.CLUB ? 'о Книголюбе' : `на ${book?.title ?? ''}` }}
+  </h2>
   <div role="radiogroup" aria-label="Оценка клуба">
     @for (star of RATING_STARS_AMOUNT; track star) {
       <input
@@ -19,13 +22,14 @@
       >
         <svg
           [ngClass]="{
-             'review__rating-star': true,
-             'review__rating-star--fill': hoverRating() >= star || currentRating() >= star
-             }"
+            'review__rating-star': true,
+            'review__rating-star--fill': hoverRating() >= star || currentRating() >= star,
+          }"
           height="24"
           width="24"
-          aria-hidden="true">
-          <use href="/assets/images/vector/star-symbol.svg#star"/>
+          aria-hidden="true"
+        >
+          <use href="/assets/images/vector/star-symbol.svg#star" />
         </svg>
       </label>
     }
