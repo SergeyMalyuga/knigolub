@@ -134,3 +134,8 @@ export const STAR_RATING = [
 ] as const;
 
 export const RATING_STARS_AMOUNT = [1, 2, 3, 4, 5];
+
+export const REVIEW_TYPES = {
+  CLUB: 'club',
+  BOOK: 'book',
+} as const;
