@@ -1,47 +1,68 @@
-<form class="review">
+<form class="review" novalidate>
   <h2 id="review-title" class="review__title">
     Оставить отзыв
     {{ reviewType === REVIEW_TYPES.CLUB ? 'о Книголюбе' : `на ${book?.title ?? ''}` }}
   </h2>
-  <div role="radiogroup" aria-label="Оценка клуба">
-    @for (star of RATING_STARS_AMOUNT; track star) {
-      <input
-        type="radio"
-        [id]="'star-' + star"
-        [value]="star"
-        [attr.aria-label]="STAR_RATING[star - 1].aria"
-        name="rating"
-        class="visually-hidden"
-        (change)="currentRating.set(star)"
-      />
-      <label
-        class="review__rating"
-        [attr.for]="'star-' + star"
-        (mouseenter)="hoverRating.set(star)"
-        (mouseleave)="hoverRating.set(0)"
-      >
-        <svg
-          [ngClass]="{
+  <div class="review__input-wrapper">
+    <div class="review__rating-wrapper" role="radiogroup" aria-label="Оценка клуба">
+      @for (star of RATING_STARS_AMOUNT; track star) {
+        <input
+          [formField]="reviewForm.rating"
+          type="radio"
+          [id]="'star-' + star"
+          [value]="star.toString()"
+          [attr.aria-label]="STAR_RATING[star - 1].aria"
+          class="visually-hidden"
+          (change)="currentRating.set(star)"
+          [attr.aria-invalid]="ratingErrorVisible() ? 'true' : null"
+          [attr.aria-describedby]="ratingErrorVisible() ? 'review-rating-error' : null"
+        />
+        <label
+          class="review__rating"
+          [attr.for]="'star-' + star"
+          (mouseenter)="hoverRating.set(star)"
+          (mouseleave)="hoverRating.set(0)"
+        >
+          <svg
+            [ngClass]="{
             'review__rating-star': true,
             'review__rating-star--fill': hoverRating() >= star || currentRating() >= star,
           }"
-          height="24"
-          width="24"
-          aria-hidden="true"
-        >
-          <use href="/assets/images/vector/star-symbol.svg#star" />
-        </svg>
-      </label>
-    }
+            height="24"
+            width="24"
+            aria-hidden="true"
+          >
+            <use href="/assets/images/vector/star-symbol.svg#star"/>
+          </svg>
+        </label>
+      }
+      @if (reviewForm.rating().touched() && reviewForm.rating().invalid()) {
+        <div id="review-rating-error" role="status" class="review__error">
+          @for (error of reviewForm.rating().errors(); track error.kind) {
+            <mat-icon class="review__warning" aria-hidden="true">warning</mat-icon>
+            <span>{{ error.message }}</span>
+          }
+        </div>
+      }
+    </div>
+    <mat-form-field appearance="outline">
+      <mat-label>Поделиться впечатлениями</mat-label>
+      <textarea [formField]="reviewForm.text" matInput></textarea>
+      <mat-hint align="start">Мин. размер отзыва</mat-hint>
+      <mat-hint align="end">{{ reviewForm.text().value().length }}/50</mat-hint>
+      @if (textErrorVisible()) {
+        @for (error of reviewForm.text().errors(); track error.kind) {
+          <mat-error>
+            <mat-icon class="review__warning" aria-hidden="true">warning</mat-icon>
+            {{ error.message }}
+          </mat-error>
+        }
+      }
+    </mat-form-field>
   </div>
-  <mat-form-field appearance="outline">
-    <mat-label>Поделиться впечатлениями</mat-label>
-    <textarea matInput></textarea>
-    <mat-hint align="start">Минимальный размер отзыва</mat-hint>
-    <mat-hint align="end">50/50</mat-hint>
-  </mat-form-field>
-  <button class="focus review__add" type="submit">Опубликовать</button>
+
+  <button class="focus review__add" type="submit" [disabled]="reviewForm().invalid()">Опубликовать</button>
   <button class="review__close" matIconButton aria-label="Закрыть" (click)="dialogRef.close()">
-    <mat-icon class="review__icon-close">close</mat-icon>
+    <mat-icon class="review__icon-close" aria-hidden="true">close</mat-icon>
   </button>
 </form>

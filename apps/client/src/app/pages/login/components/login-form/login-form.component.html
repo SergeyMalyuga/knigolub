@@ -23,7 +23,7 @@
       @let error = userError();
 
       @if (((emailControl?.touched || emailControl?.dirty) && emailControl?.errors) || error) {
-        <div class="auth-form__error" id="email-error" role="alert">
+        <div class="auth-form__error" id="email-error" role="status">
           @if (error?.field === UserErrorField.EMAIL || error?.field === UserErrorField.PASSWORD) {
             {{ userError()?.message }}
           } @else if (emailControl?.errors?.['required']) {
@@ -85,7 +85,7 @@
         }
       </button>
       @if ((passwordControl?.touched || passwordControl?.dirty) && passwordControl?.errors) {
-        <div id="password-error" class="auth-form__error" role="alert">
+        <div id="password-error" class="auth-form__error" role="status">
           @if (passwordControl?.errors?.['required']) {
             Введите пароль
           } @else if (passwordControl?.errors?.['minlength']) {
