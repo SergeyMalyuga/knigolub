@@ -12,41 +12,9 @@
   @include mat.datepicker-overrides(
     (
       calendar-container-background-color: variables.$vanilla-ice,
-      calendar-container-elevation-shadow: 0px 4px 16px rgba(44, 24, 16, 0.15),
+      calendar-container-elevation-shadow: 0 4px 16px rgba(44, 24, 16, 0.15),
     )
   );
-}
-
-html {
-  height: 100%;
-  @include mat.theme(
-    (
-      color: (
-        primary: mat.$azure-palette,
-        tertiary: mat.$blue-palette,
-      ),
-      typography: Roboto,
-      density: 0,
-    )
-  );
-}
-
-body {
-  // Default the application to a light color theme. This can be changed to
-  // `dark` to enable the dark color theme, or to `light dark` to defer to the
-  // user's system settings.
-  color-scheme: light;
-
-  // Set a default background, font and text colors for the application using
-  // Angular Material's system-level CSS variables. Learn more about these
-  // variables at https://material.angular.dev/guide/system-variables
-  background-color: var(--mat-sys-surface);
-  color: var(--mat-sys-on-surface);
-  font: var(--mat-sys-body-medium);
-
-  // Reset the user agent margin.
-  margin: 0;
-  height: 100%;
 }
 
 *,
@@ -74,9 +42,24 @@ ul {
 
 html {
   scroll-behavior: smooth;
+  height: 100%;
+
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
 }
 
 body {
+  color-scheme: light;
+  font: var(--mat-sys-body-medium);
+  height: 100%;
   margin: 0;
   color: variables.$text-main-color;
   font-family: variables.$font-family-primary;
@@ -132,6 +115,9 @@ body {
 
 .swiper-button-next,
 .swiper-button-prev {
+  position: static;
+  color: #ffc44d;
+
   @include mixins.button-base(
     $text-color: variables.$text-dark-color,
     $background: variables.$button-bg-main,
@@ -141,8 +127,14 @@ body {
 
   width: 36px;
   height: 36px;
-
   margin-top: 0;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 16px;
+    height: 16px;
+  }
 
   svg.swiper-navigation-icon {
     display: none;
@@ -155,22 +147,6 @@ body {
 
 .swiper-horizontal .swiper-button-prev {
   left: 10px;
-}
-
-.swiper-button-prev,
-.swiper-button-next {
-  position: static;
-  color: #ffc44d;
-}
-
-.swiper-button-next,
-.swiper-button-prev {
-  &::before {
-    content: '';
-    display: block;
-    width: 16px;
-    height: 16px;
-  }
 }
 
 .swiper-button-next {
@@ -195,7 +171,6 @@ body {
     color: variables.$text-dark-color;
     font-family: variables.$font-family-accent;
     font-weight: 400;
-
     font-size: rem(36);
     line-height: 100%;
 
@@ -282,18 +257,17 @@ body {
 
 .lift {
   box-shadow:
-    0 4px 6px -1px rgba(0, 0, 0, 0.05),
-    0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    0 4px 6px -1px rgb(0 0 0 / 5%),
+    0 2px 4px -2px rgb(0 0 0 / 5%);
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
 
   &:hover {
     transform: translateY(-4px);
-
     box-shadow:
-      0 20px 25px -5px rgba(0, 0, 0, 0.1),
-      0 8px 10px -6px rgba(0, 0, 0, 0.2);
+      0 20px 25px -5px rgb(0 0 0 / 10%),
+      0 8px 10px -6px rgb(0 0 0 / 20%);
   }
 }
 
