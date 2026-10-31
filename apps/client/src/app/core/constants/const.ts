@@ -139,3 +139,13 @@ export const REVIEW_TYPES = {
   CLUB: 'club',
   BOOK: 'book',
 } as const;
+
+export const REVIEW_ERRORS_MESSAGES = {
+  rating: {
+    required: 'Заполните это поле'
+  },
+  text: {
+    required: 'Заполните это поле',
+    minLength: 'Мин. 50 символов'
+  }
+}
