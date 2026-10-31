@@ -24,7 +24,7 @@
         (usernameControl?.errors && (usernameControl?.touched || usernameControl?.dirty)) ||
         userError()?.field === UserErrorField.USERNAME
       ) {
-        <div id="username-error" class="auth-form__error" role="alert">
+        <div id="username-error" class="auth-form__error" role="status">
           @if (usernameControl?.errors?.['required']) {
             Введите ник
           } @else if (usernameControl?.errors?.['minlength']) {
@@ -55,7 +55,7 @@
         ((emailControl?.touched || emailControl?.dirty) && emailControl?.errors) ||
         userError()?.field === UserErrorField.EMAIL
       ) {
-        <div class="auth-form__error" id="email-error" role="alert">
+        <div class="auth-form__error" id="email-error" role="status">
           @if (emailControl?.errors?.['required']) {
             Введите email
           } @else if (userError()?.field === UserErrorField.EMAIL) {
@@ -117,7 +117,7 @@
         }
       </button>
       @if ((passwordControl?.touched || passwordControl?.dirty) && passwordControl?.errors) {
-        <div id="password-error" class="auth-form__error" role="alert">
+        <div id="password-error" class="auth-form__error" role="status">
           @if (passwordControl?.errors?.['required']) {
             Введите пароль
           } @else if (passwordControl?.errors?.['minlength']) {
