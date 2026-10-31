@@ -124,7 +124,7 @@ export class ProfileComponent implements OnInit {
   });
 
   public editForm = form(this.editModel, (fieldPath) => {
-    (pattern(fieldPath.lastName, /^[A-Za-zА-Яа-яЁё]+$/, { message: 'Только буквы' }),
+    (pattern(fieldPath.lastName, /^[A-Za-zА-Яа-яЁё]+$/, { message: 'Только буквы' }), //TODO вынести ошибки в const
       pattern(fieldPath.firstName, /^[A-Za-zА-Яа-яЁё]+$/, { message: 'Только буквы' }),
       validate(fieldPath.birthday, (ctx) => dateValidator(ctx.value())),
       maxLength(fieldPath.bio, MAX_BIO_LENGTH, { message: `Максимум ${MAX_BIO_LENGTH} символов` }));
