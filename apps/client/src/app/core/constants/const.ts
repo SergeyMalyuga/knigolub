@@ -1,7 +1,7 @@
-import { CategoryKey } from '../types/category-key';
-import { ViewKey } from '../types/view-key';
-import { PaginationMeta } from '@knigolub/shared';
-import { UserEdit } from '../models/user-edit.model';
+import {CategoryKey} from '../types/category-key';
+import {ViewKey} from '../types/view-key';
+import {PaginationMeta} from '@knigolub/shared';
+import {UserEdit} from '../models/user-edit.model';
 
 export enum AppRoute {
   MAIN = '',
@@ -126,11 +126,11 @@ export const DEFAULT_AVATAR_URL = '/assets/images/vector/avatar.svg';
 export const MAX_BIO_LENGTH = 450;
 
 export const STAR_RATING = [
-  { label: 'Разочарование', aria: 'Разочарование, 1 из 5' },
-  { label: 'Так себе', aria: 'Так себе, 2 из 5' },
-  { label: 'Нормально', aria: 'Нормально, 3 из 5' },
-  { label: 'Хорошо', aria: 'Хорошо, 4 из 5' },
-  { label: 'Восторг', aria: 'Восторг, 5 из 5' },
+  {label: 'Разочарование', aria: 'Разочарование, 1 из 5'},
+  {label: 'Так себе', aria: 'Так себе, 2 из 5'},
+  {label: 'Нормально', aria: 'Нормально, 3 из 5'},
+  {label: 'Хорошо', aria: 'Хорошо, 4 из 5'},
+  {label: 'Восторг', aria: 'Восторг, 5 из 5'},
 ] as const;
 
 export const RATING_STARS_AMOUNT = [1, 2, 3, 4, 5];
@@ -149,3 +149,9 @@ export const REVIEW_ERRORS_MESSAGES = {
     minLength: 'Мин. 50 символов'
   }
 }
+
+export const REVIEW_ERRORS_TYPES = {
+  REQUIRED: 'required',
+} as const;
+
+export const MIN_REVIEW_LENGTH = 50;
