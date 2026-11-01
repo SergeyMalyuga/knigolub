@@ -1,10 +1,9 @@
 <form class="review" novalidate>
   <h2 id="review-title" class="review__title">
-    Оставить отзыв
-    {{ reviewType === REVIEW_TYPES.CLUB ? 'о Книголюбе' : `на ${book?.title ?? ''}` }}
+    {{ dialogTitle }}
   </h2>
   <div class="review__input-wrapper">
-    <div class="review__rating-wrapper" role="radiogroup" aria-label="Оценка клуба">
+    <div class="review__rating-wrapper" role="radiogroup" [attr.aria-label]="ratingGroupLabel">
       @for (star of RATING_STARS_AMOUNT; track star) {
         <input
           [formField]="reviewForm.rating"
@@ -36,7 +35,7 @@
           </svg>
         </label>
       }
-      @if (reviewForm.rating().touched() && reviewForm.rating().invalid()) {
+      @if (ratingErrorVisible()) {
         <div id="review-rating-error" role="status" class="review__error">
           @for (error of reviewForm.rating().errors(); track error.kind) {
             <mat-icon class="review__warning" aria-hidden="true">warning</mat-icon>
@@ -45,24 +44,26 @@
         </div>
       }
     </div>
-    <mat-form-field appearance="outline">
+    <mat-form-field class="review__textarea-wrapper" appearance="outline">
       <mat-label>Поделиться впечатлениями</mat-label>
-      <textarea [formField]="reviewForm.text" matInput></textarea>
-      <mat-hint align="start">Мин. размер отзыва</mat-hint>
-      <mat-hint align="end">{{ reviewForm.text().value().length }}/50</mat-hint>
+      <textarea class="review__textarea" [formField]="reviewForm.text" matInput></textarea>
+      <mat-hint [ngClass]="{'review__hint-success': counterSuccess()}"
+                align="start">Мин. размер отзыва
+      </mat-hint>
+      <mat-hint [ngClass]="{'review__hint-success': counterSuccess()}"
+                align="end">{{ textLength() }}/{{ MIN_REVIEW_LENGTH }}
+      </mat-hint>
       @if (textErrorVisible()) {
-        @for (error of reviewForm.text().errors(); track error.kind) {
-          <mat-error>
-            <mat-icon class="review__warning" aria-hidden="true">warning</mat-icon>
-            {{ error.message }}
-          </mat-error>
-        }
+        <mat-error>
+          <mat-icon class="review__warning" aria-hidden="true">warning</mat-icon>
+          {{ textRequiredError()?.message }}
+        </mat-error>
       }
     </mat-form-field>
   </div>
 
   <button class="focus review__add" type="submit" [disabled]="reviewForm().invalid()">Опубликовать</button>
-  <button class="review__close" matIconButton aria-label="Закрыть" (click)="dialogRef.close()">
+  <button class="review__close" type="button" matIconButton aria-label="Закрыть" (click)="dialogRef.close()">
     <mat-icon class="review__icon-close" aria-hidden="true">close</mat-icon>
   </button>
 </form>
