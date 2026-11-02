@@ -5,7 +5,7 @@ import type {GetReviewsOptions} from "../models/get-reviews-options.model";
 
 export class ReviewService {
     /**
-     * Возвращает список отзывов о клубе.
+     * Получить список отзывов о клубе.
      *
      * @param options - Объект с параметрами пагинации.
      * @param options.take - Количество отзывов для выборки (ожидается число).
