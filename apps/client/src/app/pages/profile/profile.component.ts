@@ -1,17 +1,9 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  DestroyRef,
-  inject,
-  OnInit,
-  signal,
-} from '@angular/core';
-import { HeaderComponent } from '../../shared/components/header/header.component';
-import { FooterComponent } from '../../shared/components/footer/footer.component';
-import { NgOptimizedImage } from '@angular/common';
-import { SelectFileDirective } from '../../shared/directives/select-file.directive';
-import { AvatarError } from '../../core/types/avatar-error.type';
+import {ChangeDetectionStrategy, Component, computed, DestroyRef, inject, OnInit, signal,} from '@angular/core';
+import {HeaderComponent} from '../../shared/components/header/header.component';
+import {FooterComponent} from '../../shared/components/footer/footer.component';
+import {NgOptimizedImage} from '@angular/common';
+import {SelectFileDirective} from '../../shared/directives/select-file.directive';
+import {AvatarError} from '../../core/types/avatar-error.type';
 import {
   AVATAR_ERROR,
   AVATAR_MAX_SIZE,
@@ -20,35 +12,28 @@ import {
   MAX_BIO_LENGTH,
   UpdateUserStatus,
 } from '../../core/constants/const';
-import { Store } from '@ngrx/store';
-import { AppState } from '../../core/models/app.state';
+import {Store} from '@ngrx/store';
+import {AppState} from '../../core/models/app.state';
 import {
   selectRegistrationDate,
   selectUpdateUserStatus,
   selectUserInfo,
   selectUserPersonalInfo,
 } from '../../store/user/selectors/user.selectors';
-import { updateUser, uploadUserAvatar } from '../../store/user/actions/user.actions';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import {
-  MatError,
-  MatFormField,
-  MatHint,
-  MatInput,
-  MatLabel,
-  MatSuffix,
-} from '@angular/material/input';
-import { MatIcon } from '@angular/material/icon';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { dateValidator } from '../../shared/validators/date.validator';
-import { form, FormField, maxLength, pattern, validate } from '@angular/forms/signals';
-import { UserEdit } from '../../core/models/user-edit.model';
-import { formatDistanceToNow } from 'date-fns';
-import { ru } from 'date-fns/locale';
-import { NotificationService } from '../../core/services/notification.service';
-import { filter } from 'rxjs';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { formatDate } from '../../core/utils/format-date.util';
+import {updateUser, uploadUserAvatar} from '../../store/user/actions/user.actions';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatError, MatFormField, MatHint, MatInput, MatLabel, MatSuffix,} from '@angular/material/input';
+import {MatIcon} from '@angular/material/icon';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {dateValidator} from '../../shared/validators/date.validator';
+import {form, FormField, maxLength, pattern, validate} from '@angular/forms/signals';
+import {UserEdit} from '../../core/models/user-edit.model';
+import {formatDistanceToNow} from 'date-fns';
+import {ru} from 'date-fns/locale';
+import {NotificationService} from '../../core/services/notification.service';
+import {filter} from 'rxjs';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
+import {formatDate} from '../../core/utils/format-date.util';
 
 @Component({
   selector: 'app-profile',

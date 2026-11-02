@@ -1,6 +1,6 @@
-import { BookState } from './book.state';
-import { UserState } from './user.state';
-import { FavoriteBookState } from './favorite-book.state';
+import {BookState} from './book.state';
+import {UserState} from './user.state';
+import {FavoriteBookState} from './favorite-book.state';
 
 export interface AppState {
   book: BookState;

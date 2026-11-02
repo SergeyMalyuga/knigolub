@@ -1,7 +1,7 @@
-import { createEntityAdapter } from '@ngrx/entity';
-import { Book } from '@knigolub/shared';
-import { FavoriteBookState } from '../../core/models/favorite-book.state';
-import { createReducer, on } from '@ngrx/store';
+import {createEntityAdapter} from '@ngrx/entity';
+import {Book} from '@knigolub/shared';
+import {FavoriteBookState} from '../../core/models/favorite-book.state';
+import {createReducer, on} from '@ngrx/store';
 import {
   loadFavoriteBooks,
   loadFavoriteBooksFailure,
@@ -10,7 +10,7 @@ import {
   toggleFavoriteBookFailure,
   toggleFavoriteBookSuccess,
 } from './actions/favorite-book.actions';
-import { logout } from '../user/actions/user.actions';
+import {logout} from '../user/actions/user.actions';
 
 export const favoriteBookAdapter = createEntityAdapter<Book>();
 

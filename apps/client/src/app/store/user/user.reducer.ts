@@ -1,6 +1,6 @@
-import { UserState } from '../../core/models/user.state';
-import { AuthStatus, DEFAULT_USER, UpdateUserStatus } from '../../core/constants/const';
-import { createReducer, on } from '@ngrx/store';
+import {UserState} from '../../core/models/user.state';
+import {AuthStatus, DEFAULT_USER, UpdateUserStatus} from '../../core/constants/const';
+import {createReducer, on} from '@ngrx/store';
 import {
   checkAuth,
   checkAuthFailure,

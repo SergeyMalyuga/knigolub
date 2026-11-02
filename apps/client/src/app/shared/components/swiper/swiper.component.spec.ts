@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SwiperComponent } from './swiper.component';
+import {SwiperComponent} from './swiper.component';
 
 describe('SwiperComponent', () => {
   let component: SwiperComponent;

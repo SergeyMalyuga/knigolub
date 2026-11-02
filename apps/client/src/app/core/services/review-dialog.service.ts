@@ -1,7 +1,7 @@
-import { inject, Injectable } from '@angular/core';
-import { Dialog } from '@angular/cdk/dialog';
-import { ReviewDialogComponent } from '../../shared/components/review-dialog/review-dialog.component';
-import { ReviewDialogData } from '../models/review-dialog-data.model';
+import {inject, Injectable} from '@angular/core';
+import {Dialog} from '@angular/cdk/dialog';
+import {ReviewDialogComponent} from '../../shared/components/review-dialog/review-dialog.component';
+import {ReviewDialogData} from '../models/review-dialog-data.model';
 
 @Injectable({
   providedIn: 'root',

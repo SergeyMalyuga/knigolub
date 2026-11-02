@@ -1,4 +1,4 @@
-import { CollectionCard } from '@knigolub/shared';
+import {CollectionCard} from '@knigolub/shared';
 
 export const COLLECTION_CARDS_MOCK: CollectionCard[] = [
   {

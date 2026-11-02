@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { GoogleBooksResponse } from "../models/google-books-response";
+import type {GoogleBooksResponse} from "../models/google-books-response";
 
 const GOOGLE_BOOKS_API_URL = "https://www.googleapis.com/books/v1/volumes";
 

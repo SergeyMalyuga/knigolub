@@ -8,16 +8,16 @@ import {
   Output,
   signal,
 } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AppRoute, AuthFormType, AuthStatus } from '../../../../core/constants/const';
-import { Store } from '@ngrx/store';
-import { AppState } from '../../../../core/models/app.state';
-import { registerUser } from '../../../../store/user/actions/user.actions';
-import { selectAuthStatus, selectUserError } from '../../../../store/user/selectors/user.selectors';
-import { UserErrorField } from '@knigolub/shared';
-import { Router } from '@angular/router';
-import { first } from 'rxjs';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {AppRoute, AuthFormType, AuthStatus} from '../../../../core/constants/const';
+import {Store} from '@ngrx/store';
+import {AppState} from '../../../../core/models/app.state';
+import {registerUser} from '../../../../store/user/actions/user.actions';
+import {selectAuthStatus, selectUserError} from '../../../../store/user/selectors/user.selectors';
+import {UserErrorField} from '@knigolub/shared';
+import {Router} from '@angular/router';
+import {first} from 'rxjs';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-registration-form',

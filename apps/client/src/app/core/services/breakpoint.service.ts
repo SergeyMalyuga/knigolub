@@ -1,6 +1,6 @@
-import { DOCUMENT, inject, Injectable, PLATFORM_ID, signal, WritableSignal } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
-import { BREAKPOINTS } from '../constants/const';
+import {DOCUMENT, inject, Injectable, PLATFORM_ID, signal, WritableSignal} from '@angular/core';
+import {isPlatformBrowser} from '@angular/common';
+import {BREAKPOINTS} from '../constants/const';
 
 @Injectable({
   providedIn: 'root',

@@ -1,6 +1,6 @@
-import type { Request, Response, NextFunction } from "express";
-import { Prisma } from "../../generated/prisma";
-import { type ErrorResponse, UserErrorField } from "@knigolub/shared";
+import type {NextFunction, Request, Response} from "express";
+import {Prisma} from "../../generated/prisma";
+import {type ErrorResponse, UserErrorField} from "@knigolub/shared";
 
 export function errorHandler(
   err: any,

@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { CollectionCard, ReviewCard } from '@knigolub/shared';
-import { InitialsPipe } from '../../pipes/initials.pipe';
-import { NgOptimizedImage } from '@angular/common';
-import { PluralizePipe } from '../../pipes/pluralize.pipe';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {CollectionCard, ReviewCard} from '@knigolub/shared';
+import {InitialsPipe} from '../../pipes/initials.pipe';
+import {NgOptimizedImage} from '@angular/common';
+import {PluralizePipe} from '../../pipes/pluralize.pipe';
 
 @Component({
   selector: 'app-author-block',

@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, computed, inject, Input } from '@angular/core';
-import { NgClass, NgOptimizedImage } from '@angular/common';
-import { BreakpointService } from '../../../core/services/breakpoint.service';
-import { isNotFound } from '@angular/core/primitives/di';
+import {ChangeDetectionStrategy, Component, computed, inject, Input} from '@angular/core';
+import {NgClass, NgOptimizedImage} from '@angular/common';
+import {BreakpointService} from '../../../core/services/breakpoint.service';
+import {isNotFound} from '@angular/core/primitives/di';
 
 @Component({
   selector: 'app-footer',

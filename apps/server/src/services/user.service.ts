@@ -7,16 +7,16 @@ import {
   type UserDto,
   UserErrorField,
 } from "@knigolub/shared";
-import type { User as PrismaUser } from "../../generated/prisma/client";
-import { prisma } from "../../lib/prisma";
-import { mapPrismaUserToUser } from "../mappers/user.mapper";
-import { generateToken } from "../utils/jwt.util";
+import type {User as PrismaUser} from "../../generated/prisma/client";
+import {prisma} from "../../lib/prisma";
+import {mapPrismaUserToUser} from "../mappers/user.mapper";
+import {generateToken} from "../utils/jwt.util";
 import bcrypt from "bcrypt";
-import { AuthError } from "../errors/auth.error";
-import { NotFoundError } from "../errors/not-found.error";
-import { DEFAULT_AVATAR_URL } from "../constants/const";
-import { getAbsoluteAvatarUrl } from "../utils/url.utils";
-import { deleteFileSafely } from "../utils/file.utils";
+import {AuthError} from "../errors/auth.error";
+import {NotFoundError} from "../errors/not-found.error";
+import {DEFAULT_AVATAR_URL} from "../constants/const";
+import {getAbsoluteAvatarUrl} from "../utils/url.utils";
+import {deleteFileSafely} from "../utils/file.utils";
 
 export class UserService {
   public async registerUser(newUser: NewUser): Promise<UserDto> {

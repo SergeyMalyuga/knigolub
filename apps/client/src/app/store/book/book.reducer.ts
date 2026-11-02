@@ -1,10 +1,10 @@
-import { createEntityAdapter } from '@ngrx/entity';
-import { createReducer, on } from '@ngrx/store';
-import { loadBooks, loadBooksFailure, loadBooksSuccess } from './actions/book.actions';
-import { Book } from '@knigolub/shared';
-import { BookState } from '../../core/models/book.state';
-import { DEFAULT_PAGINATION } from '../../core/constants/const';
-import { toggleFavoriteBookSuccess } from '../favorite/actions/favorite-book.actions';
+import {createEntityAdapter} from '@ngrx/entity';
+import {createReducer, on} from '@ngrx/store';
+import {loadBooks, loadBooksFailure, loadBooksSuccess} from './actions/book.actions';
+import {Book} from '@knigolub/shared';
+import {BookState} from '../../core/models/book.state';
+import {DEFAULT_PAGINATION} from '../../core/constants/const';
+import {toggleFavoriteBookSuccess} from '../favorite/actions/favorite-book.actions';
 
 export const bookAdapter = createEntityAdapter<Book>();
 

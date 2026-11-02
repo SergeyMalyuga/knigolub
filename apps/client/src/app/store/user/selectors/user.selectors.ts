@@ -1,6 +1,6 @@
-import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { AppState } from '../../../core/models/app.state';
-import { UserEdit } from '../../../core/models/user-edit.model';
+import {createFeatureSelector, createSelector} from '@ngrx/store';
+import {AppState} from '../../../core/models/app.state';
+import {UserEdit} from '../../../core/models/user-edit.model';
 
 const selectUserState = createFeatureSelector<AppState['user']>('user');
 

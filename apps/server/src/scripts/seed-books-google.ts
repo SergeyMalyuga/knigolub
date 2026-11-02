@@ -1,6 +1,6 @@
-import { prisma } from "../../lib/prisma";
-import { googleBooksService } from "../services/google-books.service";
-import type { GoogleBookItem } from "../models/google-book-item";
+import {prisma} from "../../lib/prisma";
+import {googleBooksService} from "../services/google-books.service";
+import type {GoogleBookItem} from "../models/google-book-item";
 
 async function saveBook(googleBook: GoogleBookItem) {
   const { id, volumeInfo } = googleBook;

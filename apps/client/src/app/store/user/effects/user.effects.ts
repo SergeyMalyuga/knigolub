@@ -1,14 +1,14 @@
-import { inject, Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { UserService } from '../../../core/services/user.service';
+import {inject, Injectable} from '@angular/core';
+import {Actions, createEffect, ofType} from '@ngrx/effects';
+import {UserService} from '../../../core/services/user.service';
 import * as UserActions from '../actions/user.actions';
-import { catchError, concatMap, exhaustMap, map, of, switchMap, tap } from 'rxjs';
-import { HttpErrorResponse } from '@angular/common/http';
-import { AuthService } from '../../../core/services/auth.service';
-import { Router } from '@angular/router';
-import { AppRoute, DEFAULT_PAGE } from '../../../core/constants/const';
-import { loadFavoriteBooks } from '../../favorite/actions/favorite-book.actions';
-import { loadBooks } from '../../book/actions/book.actions';
+import {catchError, concatMap, exhaustMap, map, of, switchMap, tap} from 'rxjs';
+import {HttpErrorResponse} from '@angular/common/http';
+import {AuthService} from '../../../core/services/auth.service';
+import {Router} from '@angular/router';
+import {AppRoute, DEFAULT_PAGE} from '../../../core/constants/const';
+import {loadFavoriteBooks} from '../../favorite/actions/favorite-book.actions';
+import {loadBooks} from '../../book/actions/book.actions';
 
 @Injectable({
   providedIn: 'root',

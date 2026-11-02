@@ -1,6 +1,6 @@
-import { Router } from "express";
-import { UserController } from "../controllers/user.controller";
-import { uploadAvatar } from "../config/multer.config";
+import {Router} from "express";
+import {UserController} from "../controllers/user.controller";
+import {uploadAvatar} from "../config/multer.config";
 
 const router = Router();
 const userController = new UserController();

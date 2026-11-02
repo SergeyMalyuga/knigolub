@@ -1,5 +1,5 @@
 import {ReviewService} from "../services/review.service";
-import type {Request, Response, NextFunction} from "express";
+import type {NextFunction, Request, Response} from "express";
 import {getReviewQuerySchema} from "../schemas/review.schema";
 import type {ErrorResponse} from "@knigolub/shared";
 
