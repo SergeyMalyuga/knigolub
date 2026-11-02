@@ -14,3 +14,4 @@ export * from "./models/credential.model.js";
 export * from "./models/favorite-response.model.js";
 export * from "./models/avatar-response.model.js";
 export * from "./schemas/user.schema.js";
+export * from "./models/club-review.model.js"
