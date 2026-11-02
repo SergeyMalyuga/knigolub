@@ -18,6 +18,7 @@ export enum APIRoute {
   PROFILE_UPDATE = 'users/profile/update',
   FAVORITES_TOGGLE = 'favorites/toggle',
   FAVORITES_LIST = 'favorites',
+  CLUB_REVIEWS = 'club-reviews',
 }
 
 export const BASE_URL = 'http://localhost:3000';
@@ -155,3 +156,8 @@ export const REVIEW_ERRORS_TYPES = {
 } as const;
 
 export const MIN_REVIEW_LENGTH = 50;
+
+export const QUERY_PARAMS_KEYS = {
+  PAGE: 'page',
+  LIMIT: 'limit'
+} as const;
