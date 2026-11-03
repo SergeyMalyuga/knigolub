@@ -2,7 +2,7 @@ import { prisma } from "../../lib/prisma";
 import { mapPrismaToClubReview } from "../mappers/review.mapper";
 import type { ClubReview } from "@knigolub/shared";
 import type { GetReviewsOptions } from "../types/get-reviews-options.type";
-import type { AddReviewInput } from "../types/add-review-input.type";
+import type { CreateClubReviewInput } from "../types/create-club-review-input.type";
 import { NotFoundError } from "../errors/not-found.error";
 
 export class ReviewService {
@@ -46,7 +46,7 @@ export class ReviewService {
    * @param input.text - Текст отзыва
    * @returns Созданный отзыв с данными автора.
    */
-  public async createClubReview(input: AddReviewInput): Promise<ClubReview> {
+  public async createClubReview(input: CreateClubReviewInput): Promise<ClubReview> {
     const { userId, rating, text } = input;
 
     const prismaClubReview = await prisma.clubReview.create({
