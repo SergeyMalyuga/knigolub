@@ -1,8 +1,12 @@
 import {z} from "zod";
 
-export const getReviewQuerySchema = z.object({
+export const getClubReviewQuerySchema = z.object({
     page: z.coerce.number().int().min(1).default(1),
     take: z.coerce.number().int().min(1).max(8).default(8),
 });
 
-export type GetReviewQuery = z.infer<typeof getReviewQuerySchema>;
+export const createClubReviewSchema = z.object({
+    rating: z.number().int().min(1).max(5),
+    text: z.string().trim().min(50).max(2000)
+})
+
