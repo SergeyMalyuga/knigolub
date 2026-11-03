@@ -13,24 +13,26 @@ enum Role {
 }
 
 model Book {
-  id          String     @id @default(uuid())
-  googleId    String?    @unique
+  id          String       @id @default(uuid())
+  googleId    String?      @unique
   title       String
   authors     Json
-  description String?
+  description String?      @db.Text
   thumbnail   String?
-  isbn10      String?    @unique
-  isbn13      String?    @unique
+  isbn10      String?      @unique
+  isbn13      String?      @unique
   publisher   String?
   publishedAt DateTime?
   pageCount   Int?
-  language    String?    @default("ru")
+  language    String?      @default("ru")
   categories  Json
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
   favorites   Favorite[]
+  bookReviews BookReview[]
 
   @@index([title])
+  @@map("books")
 }
 
 model User {
@@ -55,25 +57,47 @@ model User {
   //Связи
   favorites   Favorite[]
   clubReviews ClubReview[]
+  bookReviews BookReview[]
+
+  @@map("users")
 }
 
 model Favorite {
-  userId String
-  bookId String
+  userId String @map("user_id")
+  bookId String @map("book_id")
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   book Book @relation(fields: [bookId], references: [id], onDelete: Cascade)
 
   @@id([userId, bookId])
+  @@map("favorites")
 }
 
 model ClubReview {
   id        String   @id @default(uuid())
-  userId    String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  userId    String   @map("user_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
   rating    Int
   text      String
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("club_reviews")
+}
+
+model BookReview {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  bookId    String   @map("book_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  rating    Int
+  text      String
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  book Book @relation(fields: [bookId], references: [id], onDelete: Cascade)
+
+  @@index([bookId])
+  @@map("book_reviews")
 }
