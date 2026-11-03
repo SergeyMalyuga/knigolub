@@ -1,6 +1,6 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {AuthorBlockComponent} from './author-block.component';
+import { AuthorBlockComponent } from './author-block.component';
 
 describe('AuthorBlockComponent', () => {
   let component: AuthorBlockComponent;

@@ -1,6 +1,6 @@
-import type {NextFunction, Request, Response} from "express";
-import {FavoriteService} from "../services/favorite.service";
-import type {ErrorResponse} from "@knigolub/shared";
+import type { NextFunction, Request, Response } from "express";
+import { FavoriteService } from "../services/favorite.service";
+import type { ErrorResponse } from "@knigolub/shared";
 
 export class FavoriteController {
   private favoriteService = new FavoriteService();

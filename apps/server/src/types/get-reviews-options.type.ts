@@ -1,4 +1,4 @@
 export interface GetReviewsOptions {
-    take: number;
-    skip: number;
+  take: number;
+  skip: number;
 }

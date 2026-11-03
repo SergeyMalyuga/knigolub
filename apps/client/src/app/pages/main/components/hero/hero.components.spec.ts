@@ -1,6 +1,6 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {HeroComponents} from './hero.components';
+import { HeroComponents } from './hero.components';
 
 describe('HeroComponents', () => {
   let component: HeroComponents;

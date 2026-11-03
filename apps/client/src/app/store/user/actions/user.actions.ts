@@ -1,6 +1,13 @@
-import {createAction, props} from '@ngrx/store';
-import {AvatarResponse, Credential, ErrorResponse, NewUser, User, UserDto,} from '@knigolub/shared';
-import {updateUserDto} from '../../../core/models/update-user.dto';
+import { createAction, props } from '@ngrx/store';
+import {
+  AvatarResponse,
+  Credential,
+  ErrorResponse,
+  NewUser,
+  User,
+  UserDto,
+} from '@knigolub/shared';
+import { updateUserDto } from '../../../core/models/update-user.dto';
 
 export const registerUser = createAction(
   '[Auth Component] Register User',

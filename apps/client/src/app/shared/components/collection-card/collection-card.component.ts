@@ -1,7 +1,7 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
-import {CollectionCard} from '@knigolub/shared';
-import {NgOptimizedImage} from '@angular/common';
-import {AuthorBlockComponent} from '../author-block/author-block.component';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { CollectionCard } from '@knigolub/shared';
+import { NgOptimizedImage } from '@angular/common';
+import { AuthorBlockComponent } from '../author-block/author-block.component';
 
 @Component({
   selector: 'app-collection-card',

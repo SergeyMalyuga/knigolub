@@ -1,6 +1,6 @@
-import {prisma} from "../../lib/prisma";
-import type {Book} from "@knigolub/shared";
-import {mapPrismaBookToBook} from "../mappers/book.mapper";
+import { prisma } from "../../lib/prisma";
+import type { Book } from "@knigolub/shared";
+import { mapPrismaBookToBook } from "../mappers/book.mapper";
 
 export class FavoriteService {
   /**

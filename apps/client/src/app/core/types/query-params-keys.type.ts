@@ -1,3 +1,3 @@
-import {QUERY_PARAMS_KEYS} from '../constants/const';
+import { QUERY_PARAMS_KEYS } from '../constants/const';
 
-export type QueryParamsKeys = typeof QUERY_PARAMS_KEYS[keyof typeof QUERY_PARAMS_KEYS];
+export type QueryParamsKeys = (typeof QUERY_PARAMS_KEYS)[keyof typeof QUERY_PARAMS_KEYS];

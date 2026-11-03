@@ -1,5 +1,5 @@
-import {createAction, props} from '@ngrx/store';
-import {Book, ErrorResponse} from '@knigolub/shared';
+import { createAction, props } from '@ngrx/store';
+import { Book, ErrorResponse } from '@knigolub/shared';
 
 export const loadFavoriteBooks = createAction('[App Component] Load Favorite Books');
 export const loadFavoriteBooksSuccess = createAction(

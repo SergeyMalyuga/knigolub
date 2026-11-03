@@ -1,6 +1,6 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {CommunityComponent} from './community.component';
+import { CommunityComponent } from './community.component';
 
 describe('CommunityComponent', () => {
   let component: CommunityComponent;

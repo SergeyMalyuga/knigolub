@@ -14,7 +14,7 @@ enum Role {
 
 model Book {
   id          String       @id @default(uuid())
-  googleId    String?      @unique
+  googleId    String?      @unique @map("google_id")
   title       String
   authors     Json
   description String?      @db.Text
@@ -22,12 +22,12 @@ model Book {
   isbn10      String?      @unique
   isbn13      String?      @unique
   publisher   String?
-  publishedAt DateTime?
+  publishedAt DateTime?    @map("published_at")
   pageCount   Int?
   language    String?      @default("ru")
   categories  Json
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
+  createdAt   DateTime     @default(now()) @map("created_at")
+  updatedAt   DateTime     @updatedAt @map("updated_at")
   favorites   Favorite[]
   bookReviews BookReview[]
 
@@ -40,18 +40,18 @@ model User {
   username  String    @unique @db.VarChar(30)
   email     String    @unique @db.VarChar(255)
   password  String    @db.VarChar(255)
-  avatarUrl String    @db.VarChar(500)
-  firstName String?   @db.VarChar(50)
-  lastName  String?   @db.VarChar(50)
+  avatarUrl String    @map("avatar_url") @db.VarChar(500)
+  firstName String?   @map("first_name") @db.VarChar(50)
+  lastName  String?   @map("last_name") @db.VarChar(50)
   bio       String?   @db.Text
   birthday  DateTime?
 
   // Метаданные
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   // Модерация
-  isActive Boolean @default(true)
+  isActive Boolean @default(true) @map("is_active")
   role     Role    @default(USER)
 
   //Связи

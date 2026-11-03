@@ -1,5 +1,5 @@
-import {ReviewCard} from '@knigolub/shared';
-import {DEFAULT_AVATAR_URL} from '../../../../core/constants/const';
+import { ReviewCard } from '@knigolub/shared';
+import { DEFAULT_AVATAR_URL } from '../../../../core/constants/const';
 
 export const REVIEW_CARDS_MOCK: ReviewCard[] = [
   {

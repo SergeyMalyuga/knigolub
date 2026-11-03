@@ -1,13 +1,13 @@
-import {ChangeDetectionStrategy, Component, inject, Input, signal} from '@angular/core';
-import {Book} from '@knigolub/shared';
-import {NgClass} from '@angular/common';
-import {AppRoute, AuthStatus, View} from '../../../core/constants/const';
-import {Store} from '@ngrx/store';
-import {AppState} from '../../../core/models/app.state';
-import {selectAuthStatus} from '../../../store/user/selectors/user.selectors';
-import {Router} from '@angular/router';
-import {toggleFavoriteBook} from '../../../store/favorite/actions/favorite-book.actions';
-import {selectTogglingBookId} from '../../../store/favorite/selectors/favorite-book.selectors';
+import { ChangeDetectionStrategy, Component, inject, Input, signal } from '@angular/core';
+import { Book } from '@knigolub/shared';
+import { NgClass } from '@angular/common';
+import { AppRoute, AuthStatus, View } from '../../../core/constants/const';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../core/models/app.state';
+import { selectAuthStatus } from '../../../store/user/selectors/user.selectors';
+import { Router } from '@angular/router';
+import { toggleFavoriteBook } from '../../../store/favorite/actions/favorite-book.actions';
+import { selectTogglingBookId } from '../../../store/favorite/selectors/favorite-book.selectors';
 
 @Component({
   selector: 'app-book-card',

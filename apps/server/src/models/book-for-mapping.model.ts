@@ -1,4 +1,4 @@
-import type {JsonValue} from "@prisma/client/runtime/client";
+import type { JsonValue } from "@prisma/client/runtime/client";
 
 export interface BookForMapping {
   id: string;

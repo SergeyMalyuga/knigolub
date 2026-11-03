@@ -1,13 +1,25 @@
-import {ChangeDetectionStrategy, Component, computed, effect, inject, Input, signal,} from '@angular/core';
-import {RouterLink} from '@angular/router';
-import {AppRoute, AuthStatus, DEFAULT_AVATAR_URL, Section} from '../../../core/constants/const';
-import {NgClass, NgOptimizedImage} from '@angular/common';
-import {BreakpointService} from '../../../core/services/breakpoint.service';
-import {Store} from '@ngrx/store';
-import {AppState} from '../../../core/models/app.state';
-import {selectAuthStatus, selectUserAvatar, selectUserName,} from '../../../store/user/selectors/user.selectors';
-import {logout} from '../../../store/user/actions/user.actions';
-import {selectFavoriteBooksTotal} from '../../../store/favorite/selectors/favorite-book.selectors';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  Input,
+  signal,
+} from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { AppRoute, AuthStatus, DEFAULT_AVATAR_URL, Section } from '../../../core/constants/const';
+import { NgClass, NgOptimizedImage } from '@angular/common';
+import { BreakpointService } from '../../../core/services/breakpoint.service';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../core/models/app.state';
+import {
+  selectAuthStatus,
+  selectUserAvatar,
+  selectUserName,
+} from '../../../store/user/selectors/user.selectors';
+import { logout } from '../../../store/user/actions/user.actions';
+import { selectFavoriteBooksTotal } from '../../../store/favorite/selectors/favorite-book.selectors';
 
 @Component({
   selector: 'app-header',

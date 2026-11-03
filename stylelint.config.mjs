@@ -32,8 +32,8 @@ export default {
     "selector-pseudo-element-no-unknown": [
       true,
       {
-        "ignorePseudoElements": ["ng-deep"]
-      }
+        ignorePseudoElements: ["ng-deep"],
+      },
     ],
     "selector-pseudo-class-no-unknown": [
       true,

@@ -1,24 +1,34 @@
-import {ChangeDetectionStrategy, Component, computed, inject, signal} from '@angular/core';
-import {DIALOG_DATA, DialogRef} from '@angular/cdk/dialog';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import {
   MIN_REVIEW_LENGTH,
   RATING_STARS_AMOUNT,
   REVIEW_ERRORS_MESSAGES,
   REVIEW_ERRORS_TYPES,
   REVIEW_TYPES,
-  STAR_RATING
+  STAR_RATING,
 } from '../../../core/constants/const';
-import {NgClass} from '@angular/common';
-import {MatError, MatFormField, MatHint, MatInput, MatLabel} from '@angular/material/input';
-import {MatIconButton} from '@angular/material/button';
-import {MatIcon} from '@angular/material/icon';
-import {ReviewDialogData} from '../../../core/models/review-dialog-data.model';
-import {ReviewCreateDto} from '../../../core/models/review-create.dto';
-import {form, FormField, minLength, required} from '@angular/forms/signals';
+import { NgClass } from '@angular/common';
+import { MatError, MatFormField, MatHint, MatInput, MatLabel } from '@angular/material/input';
+import { MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { ReviewDialogData } from '../../../core/models/review-dialog-data.model';
+import { ReviewCreateDto } from '../../../core/models/review-create.dto';
+import { form, FormField, minLength, required } from '@angular/forms/signals';
 
 @Component({
   selector: 'review-dialog',
-  imports: [NgClass, MatFormField, MatLabel, MatInput, MatIconButton, MatIcon, MatHint, FormField, MatError],
+  imports: [
+    NgClass,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    MatIconButton,
+    MatIcon,
+    MatHint,
+    FormField,
+    MatError,
+  ],
   templateUrl: './review-dialog.component.html',
   styleUrl: './review-dialog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -39,13 +49,13 @@ export class ReviewDialogComponent {
 
   private reviewModel = signal<ReviewCreateDto>({
     rating: '',
-    text: ''
+    text: '',
   });
 
   public reviewForm = form(this.reviewModel, (fieldPath) => {
-    required(fieldPath.rating, {message: REVIEW_ERRORS_MESSAGES.rating.required}),
-      required(fieldPath.text, {message: REVIEW_ERRORS_MESSAGES.text.required}),
-      minLength(fieldPath.text, 50, {message: REVIEW_ERRORS_MESSAGES.text.minLength})
+    (required(fieldPath.rating, { message: REVIEW_ERRORS_MESSAGES.rating.required }),
+      required(fieldPath.text, { message: REVIEW_ERRORS_MESSAGES.text.required }),
+      minLength(fieldPath.text, 50, { message: REVIEW_ERRORS_MESSAGES.text.minLength }));
   });
 
   public ratingErrorVisible = computed(() => {
@@ -59,14 +69,17 @@ export class ReviewDialogComponent {
   });
 
   public textRequiredError = computed(() =>
-    this.reviewForm.text().errors().find(e => e.kind === REVIEW_ERRORS_TYPES.REQUIRED)
+    this.reviewForm
+      .text()
+      .errors()
+      .find((e) => e.kind === REVIEW_ERRORS_TYPES.REQUIRED),
   );
 
   public textLength = computed(() => this.reviewForm.text().value().length);
   public counterSuccess = computed(() => this.textLength() >= MIN_REVIEW_LENGTH);
 
   protected get isClubReview(): boolean {
-    return this.reviewType === REVIEW_TYPES.CLUB
+    return this.reviewType === REVIEW_TYPES.CLUB;
   }
 
   protected get dialogTitle(): string {

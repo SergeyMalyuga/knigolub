@@ -1,13 +1,13 @@
-import {inject, Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {ClubReview} from '@knigolub/shared';
-import {APIRoute, BASE_URL} from '../constants/const';
-import {buildParams} from '../utils/build-params.util';
-import {GetClubReviewsParams} from '../types/review.type';
+import { inject, Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { ClubReview } from '@knigolub/shared';
+import { APIRoute, BASE_URL } from '../constants/const';
+import { buildParams } from '../utils/build-params.util';
+import { GetClubReviewsParams } from '../types/review.type';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ReviewService {
   private http = inject(HttpClient);
@@ -21,7 +21,8 @@ export class ReviewService {
    * @returns Возвращает список отзывов о клубе.
    */
   public getClubReviews(params?: GetClubReviewsParams): Observable<ClubReview[]> {
-    return this.http.get<ClubReview[]>(`${BASE_URL}/${APIRoute.CLUB_REVIEWS}`,
-      {params: buildParams(params)})
+    return this.http.get<ClubReview[]>(`${BASE_URL}/${APIRoute.CLUB_REVIEWS}`, {
+      params: buildParams(params),
+    });
   }
 }

@@ -1,4 +1,4 @@
-import {UserErrorField} from "@knigolub/shared";
+import { UserErrorField } from "@knigolub/shared";
 
 export class AuthError extends Error {
   public field: UserErrorField;

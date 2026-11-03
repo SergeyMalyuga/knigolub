@@ -1,5 +1,5 @@
-import type {User as PrismaUser} from "../../generated/prisma/client";
-import type {User} from "@knigolub/shared/src/models/user.model";
+import type { User as PrismaUser } from "../../generated/prisma/client";
+import type { User } from "@knigolub/shared/src/models/user.model";
 
 export function mapPrismaUserToUser(user: PrismaUser): User {
   return {

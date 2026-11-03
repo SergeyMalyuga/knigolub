@@ -1,4 +1,4 @@
-import {DEFAULT_AVATAR_URL} from "../constants/const";
+import { DEFAULT_AVATAR_URL } from "../constants/const";
 
 export function getAbsoluteAvatarUrl(relativePath: string | null | undefined) {
   const baseUrl = process.env.BASE_URL;

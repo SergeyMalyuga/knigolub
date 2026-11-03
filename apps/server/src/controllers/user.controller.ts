@@ -1,8 +1,12 @@
-import type {NextFunction, Request, Response} from "express";
-import {type ErrorResponse, type UpdateUser, updateUserSchema,} from "@knigolub/shared";
-import {UserService} from "../services/user.service";
-import {AuthError} from "../errors/auth.error";
-import {NotFoundError} from "../errors/not-found.error";
+import type { NextFunction, Request, Response } from "express";
+import {
+  type ErrorResponse,
+  type UpdateUser,
+  updateUserSchema,
+} from "@knigolub/shared";
+import { UserService } from "../services/user.service";
+import { AuthError } from "../errors/auth.error";
+import { NotFoundError } from "../errors/not-found.error";
 
 export class UserController {
   private userService = new UserService();

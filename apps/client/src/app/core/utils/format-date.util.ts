@@ -1,4 +1,4 @@
-import {format} from 'date-fns';
+import { format } from 'date-fns';
 
 export const formatDate = (date: Date | string | null) => {
   if (!date) return '';

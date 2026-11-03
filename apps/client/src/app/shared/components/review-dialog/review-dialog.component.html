@@ -24,14 +24,14 @@
         >
           <svg
             [ngClass]="{
-            'review__rating-star': true,
-            'review__rating-star--fill': hoverRating() >= star || currentRating() >= star,
-          }"
+              'review__rating-star': true,
+              'review__rating-star--fill': hoverRating() >= star || currentRating() >= star,
+            }"
             height="24"
             width="24"
             aria-hidden="true"
           >
-            <use href="/assets/images/vector/star-symbol.svg#star"/>
+            <use href="/assets/images/vector/star-symbol.svg#star" />
           </svg>
         </label>
       }
@@ -47,11 +47,11 @@
     <mat-form-field class="review__textarea-wrapper" appearance="outline">
       <mat-label>Поделиться впечатлениями</mat-label>
       <textarea class="review__textarea" [formField]="reviewForm.text" matInput></textarea>
-      <mat-hint [ngClass]="{'review__hint-success': counterSuccess()}"
-                align="start">Мин. размер отзыва
+      <mat-hint [ngClass]="{ 'review__hint-success': counterSuccess() }" align="start"
+        >Мин. размер отзыва
       </mat-hint>
-      <mat-hint [ngClass]="{'review__hint-success': counterSuccess()}"
-                align="end">{{ textLength() }}/{{ MIN_REVIEW_LENGTH }}
+      <mat-hint [ngClass]="{ 'review__hint-success': counterSuccess() }" align="end"
+        >{{ textLength() }}/{{ MIN_REVIEW_LENGTH }}
       </mat-hint>
       @if (textErrorVisible()) {
         <mat-error>
@@ -62,8 +62,16 @@
     </mat-form-field>
   </div>
 
-  <button class="focus review__add" type="submit" [disabled]="reviewForm().invalid()">Опубликовать</button>
-  <button class="review__close" type="button" matIconButton aria-label="Закрыть" (click)="dialogRef.close()">
+  <button class="focus review__add" type="submit" [disabled]="reviewForm().invalid()">
+    Опубликовать
+  </button>
+  <button
+    class="review__close"
+    type="button"
+    matIconButton
+    aria-label="Закрыть"
+    (click)="dialogRef.close()"
+  >
     <mat-icon class="review__icon-close" aria-hidden="true">close</mat-icon>
   </button>
 </form>

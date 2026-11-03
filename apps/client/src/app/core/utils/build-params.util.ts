@@ -1,5 +1,5 @@
-import {QueryParams} from '../types/query-params.type';
-import {HttpParams} from '@angular/common/http';
+import { QueryParams } from '../types/query-params.type';
+import { HttpParams } from '@angular/common/http';
 
 export function buildParams(params: QueryParams | undefined): HttpParams {
   let httpParams = new HttpParams();
@@ -12,6 +12,6 @@ export function buildParams(params: QueryParams | undefined): HttpParams {
     if (value !== undefined && value !== null) {
       httpParams = httpParams.set(key, String(value));
     }
-  })
+  });
   return httpParams;
 }

@@ -1,6 +1,6 @@
-import {ChangeDetectionStrategy, Component, computed, inject} from '@angular/core';
-import {Store} from '@ngrx/store';
-import {AppState} from '../../../core/models/app.state';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../core/models/app.state';
 import {
   selectCurrentPage,
   selectHasNextPage,
@@ -9,11 +9,11 @@ import {
   selectTotalCount,
   selectTotalPages,
 } from '../../../store/book/selectors/book.selectors';
-import {PaginationItem} from '../../../core/models/pagination-item';
-import {PaginationType} from '../../../core/constants/const';
-import {PaginationPage} from '../../../core/models/pagination-page';
-import {NgClass} from '@angular/common';
-import {loadBooks} from '../../../store/book/actions/book.actions';
+import { PaginationItem } from '../../../core/models/pagination-item';
+import { PaginationType } from '../../../core/constants/const';
+import { PaginationPage } from '../../../core/models/pagination-page';
+import { NgClass } from '@angular/common';
+import { loadBooks } from '../../../store/book/actions/book.actions';
 
 @Component({
   selector: 'app-pagination',

@@ -1,5 +1,5 @@
-import {ChangeDetectionStrategy, Component, signal} from '@angular/core';
-import {Section} from '../../../../core/constants/const';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { Section } from '../../../../core/constants/const';
 
 @Component({
   selector: 'app-hero',

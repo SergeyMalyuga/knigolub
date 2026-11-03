@@ -1,5 +1,5 @@
 export interface AddReviewInput {
-    userId: string;
-    rating: number;
-    text: string;
+  userId: string;
+  rating: number;
+  text: string;
 }
