@@ -115,6 +115,21 @@ export const UpdateUserStatus = {
   ERROR: 'error',
 } as const;
 
+export const OPERATION_STATUS = {
+  IDLE: 'idle',
+  LOADING: 'loading',
+  SUCCESS: 'success',
+  ERROR: 'error',
+} as const;
+
+export const ACTIVE_OPERATION = {
+  IDLE: 'idle',
+  LOADING: 'load',
+  CREATE: 'create',
+  UPDATE: 'update',
+  DELETE: 'delete',
+} as const;
+
 export const AVATAR_MAX_SIZE = 5 * 1024 * 1024;
 
 export const DEFAULT_USER = null;
@@ -159,4 +174,17 @@ export const MIN_REVIEW_LENGTH = 50;
 export const QUERY_PARAMS_KEYS = {
   PAGE: 'page',
   LIMIT: 'limit',
+} as const;
+
+export const NOTIFICATION_MESSAGE = {
+  review: {
+    create: {
+      SUCCESS: 'Отзыв успешно создан',
+      ERROR: 'Ошибка создания отзыва'
+    },
+  }
+} as const;
+
+export const DIALOG_RESULT = {
+  SUCCESS: 'success',
 } as const;
