@@ -8,3 +8,6 @@ export const createClubReviewSuccess =
   createAction('[Club Review Effects] Create Club Review Success', props<{ clubReview: ClubReview }>());
 export const createClubReviewFailure =
   createAction('[Club Review Effects] Create Club Review Failure', props<{ error: ErrorResponse }>());
+
+export const resetClubReviewStatus =
+  createAction('[Review Dialog Component] Reset Club Review Status');
