@@ -1,10 +1,9 @@
-import {createFeatureSelector, createSelector} from '@ngrx/store';
-import {AppState} from '../../../core/models/app.state';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { AppState } from '../../../core/models/app.state';
 
-const selectClubReviewState =
-  createFeatureSelector<AppState['clubReview']>('clubReview');
+const selectClubReviewState = createFeatureSelector<AppState['clubReview']>('clubReview');
 
 export const selectClubReviewStatus = createSelector(
   selectClubReviewState,
-  state => state.status
+  (state) => state.status,
 );

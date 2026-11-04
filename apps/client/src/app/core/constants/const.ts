@@ -180,9 +180,9 @@ export const NOTIFICATION_MESSAGE = {
   review: {
     create: {
       SUCCESS: 'Отзыв успешно создан',
-      ERROR: 'Ошибка создания отзыва'
+      ERROR: 'Ошибка создания отзыва',
     },
-  }
+  },
 } as const;
 
 export const DIALOG_RESULT = {

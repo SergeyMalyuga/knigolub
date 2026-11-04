@@ -1,14 +1,14 @@
-import {createEntityAdapter} from '@ngrx/entity';
-import {ClubReview} from '@knigolub/shared';
-import {createReducer, on} from '@ngrx/store';
+import { createEntityAdapter } from '@ngrx/entity';
+import { ClubReview } from '@knigolub/shared';
+import { createReducer, on } from '@ngrx/store';
 import {
   createClubReview,
   createClubReviewFailure,
   createClubReviewSuccess,
-  resetClubReviewStatus
+  resetClubReviewStatus,
 } from './actions/club-review.actions';
-import {ClubReviewState} from '../../core/models/club-review.state';
-import {ACTIVE_OPERATION, OPERATION_STATUS} from '../../core/constants/const';
+import { ClubReviewState } from '../../core/models/club-review.state';
+import { ACTIVE_OPERATION, OPERATION_STATUS } from '../../core/constants/const';
 
 export const clubReviewAdapter = createEntityAdapter<ClubReview>();
 
@@ -20,29 +20,29 @@ const initialState: ClubReviewState = clubReviewAdapter.getInitialState({
 
 export const clubReviewReducer = createReducer(
   initialState,
-  on(createClubReview, state => ({
+  on(createClubReview, (state) => ({
     ...state,
     activeOperation: ACTIVE_OPERATION.CREATE,
     status: OPERATION_STATUS.LOADING,
     error: null,
   })),
-  on(createClubReviewSuccess, (state, {clubReview}) =>
+  on(createClubReviewSuccess, (state, { clubReview }) =>
     clubReviewAdapter.addOne(clubReview, {
       ...state,
       activeOperation: ACTIVE_OPERATION.IDLE,
       status: OPERATION_STATUS.SUCCESS,
-      error: null
+      error: null,
     }),
   ),
-  on(createClubReviewFailure, (state, {error}) => ({
+  on(createClubReviewFailure, (state, { error }) => ({
     ...state,
     activeOperation: ACTIVE_OPERATION.IDLE,
     status: OPERATION_STATUS.ERROR,
-    error
+    error,
   })),
 
-  on(resetClubReviewStatus, state => ({
-    ...state, status: OPERATION_STATUS.IDLE
-  }))
+  on(resetClubReviewStatus, (state) => ({
+    ...state,
+    status: OPERATION_STATUS.IDLE,
+  })),
 );
-

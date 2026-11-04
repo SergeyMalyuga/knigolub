@@ -1,11 +1,11 @@
-import {inject, Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {ClubReview} from '@knigolub/shared';
-import {APIRoute, BASE_URL} from '../constants/const';
-import {buildParams} from '../utils/build-params.util';
-import {GetClubReviewsParams} from '../types/review.type';
-import {CreateClubReviewInput} from '../types/create-club-review-input.type';
+import { inject, Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { ClubReview } from '@knigolub/shared';
+import { APIRoute, BASE_URL } from '../constants/const';
+import { buildParams } from '../utils/build-params.util';
+import { GetClubReviewsParams } from '../types/review.type';
+import { CreateClubReviewInput } from '../types/create-club-review-input.type';
 
 @Injectable({
   providedIn: 'root',
