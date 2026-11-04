@@ -1,4 +1,4 @@
-<form class="review" novalidate>
+<form (ngSubmit)="onSubmit()" class="review" novalidate>
   <h2 id="review-title" class="review__title">
     {{ dialogTitle }}
   </h2>
@@ -62,7 +62,8 @@
     </mat-form-field>
   </div>
 
-  <button class="focus review__add" type="submit" [disabled]="reviewForm().invalid()">
+  <button class="focus review__add" type="submit"
+          [disabled]="reviewForm().invalid() || isSubmitting()">
     Опубликовать
   </button>
   <button
