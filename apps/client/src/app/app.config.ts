@@ -11,6 +11,7 @@ import { UserEffects } from './store/user/effects/user.effects';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { FavoriteBookEffects } from './store/favorite/effects/favorite-book.effects';
 import { MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
+import {ClubReviewEffects} from './store/club-review/effects/club-review.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -24,7 +25,7 @@ export const appConfig: ApplicationConfig = {
     ),
     provideStore(appReducer),
     provideHttpClient(withInterceptorsFromDi()),
-    provideEffects(BookEffects, UserEffects, FavoriteBookEffects),
+    provideEffects(BookEffects, UserEffects, FavoriteBookEffects, ClubReviewEffects),
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
