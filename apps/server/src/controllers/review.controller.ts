@@ -1,11 +1,7 @@
-import { ReviewService } from "../services/review.service";
-import type { NextFunction, Request, Response } from "express";
-import {
-  createClubReviewSchema,
-  getClubReviewQuerySchema,
-} from "../schemas/review.schema";
-import type { ErrorResponse } from "@knigolub/shared";
-import { NotFoundError } from "../errors/not-found.error";
+import {ReviewService} from "../services/review.service";
+import type {NextFunction, Request, Response} from "express";
+import {createClubReviewSchema, getClubReviewQuerySchema,} from "../schemas/review.schema";
+import type {ErrorResponse} from "@knigolub/shared";
 
 export class ReviewController {
   private reviewService = new ReviewService();
