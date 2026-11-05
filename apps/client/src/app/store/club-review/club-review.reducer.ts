@@ -4,7 +4,9 @@ import {createReducer, on} from '@ngrx/store';
 import {
   createClubReview,
   createClubReviewFailure,
-  createClubReviewSuccess, loadClubReviews, loadClubReviewsFailure, loadClubReviewsSuccess,
+  createClubReviewSuccess, loadClubReviews, loadClubReviewsFailure, loadClubReviewsSuccess, loadUserClubReview,
+  loadUserClubReviewFailure,
+  loadUserClubReviewSuccess,
   resetClubReviewStatus,
 } from './actions/club-review.actions';
 import {ClubReviewState} from '../../core/models/club-review.state';
@@ -61,6 +63,26 @@ export const clubReviewReducer = createReducer(
   on(loadClubReviewsFailure, (state, {error}) => ({
     ...state,
     error, activeOperation: ACTIVE_OPERATION.IDLE,
+    status: OPERATION_STATUS.ERROR,
+  })),
+
+  on(loadUserClubReview, state => ({
+    ...state,
+    activeOperation: ACTIVE_OPERATION.LOAD,
+    status: OPERATION_STATUS.LOADING,
+    error: null,
+  })),
+  on(loadUserClubReviewSuccess, (state, {clubReview}) => ({
+    ...state,
+    userReview: clubReview,
+    activeOperation: ACTIVE_OPERATION.IDLE,
+    status: OPERATION_STATUS.IDLE,
+    error: null,
+  })),
+  on(loadUserClubReviewFailure, (state, {error}) => ({
+    ...state,
+    error,
+    activeOperation: ACTIVE_OPERATION.IDLE,
     status: OPERATION_STATUS.ERROR,
   })),
 
