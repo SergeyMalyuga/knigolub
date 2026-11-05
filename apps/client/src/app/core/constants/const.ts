@@ -124,7 +124,7 @@ export const OPERATION_STATUS = {
 
 export const ACTIVE_OPERATION = {
   IDLE: 'idle',
-  LOADING: 'load',
+  LOAD: 'load',
   CREATE: 'create',
   UPDATE: 'update',
   DELETE: 'delete',

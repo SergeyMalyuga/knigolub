@@ -52,7 +52,9 @@ export class UserEffects {
   public loginSuccessLoadData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(UserActions.loginSuccess),
-      concatMap(() => [loadBooks({ page: DEFAULT_PAGE }), loadFavoriteBooks()]),
+      concatMap(() =>
+        [loadBooks({ page: DEFAULT_PAGE }),
+          loadFavoriteBooks()]),
     ),
   );
 
