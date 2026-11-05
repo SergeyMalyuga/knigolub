@@ -62,10 +62,7 @@ export class ReviewDialogComponent implements OnInit {
   private destroyRef = inject(DestroyRef);
   private store = inject(Store<AppState>);
   private notificationService = inject(NotificationService);
-  private reviewModel = signal<ReviewCreateDto>({
-    rating: '',
-    text: '',
-  });
+
 
   protected readonly STAR_RATING = STAR_RATING;
   protected readonly RATING_STARS_AMOUNT = RATING_STARS_AMOUNT;
@@ -75,10 +72,15 @@ export class ReviewDialogComponent implements OnInit {
 
   public dialogRef = inject(DialogRef);
 
-  public currentRating = signal<number>(0);
-  public hoverRating = signal<number>(0);
   public reviewStatus = this.store.selectSignal(selectClubReviewStatus);
   public userClubReview = this.store.selectSignal(selectUserClubReview);
+  public currentRating = signal<number>(this.userClubReview()?.rating ?? 0);
+  public hoverRating = signal<number>(0);
+
+  private reviewModel = signal<ReviewCreateDto>({
+    rating: this.userClubReview()?.rating.toString() ?? '',
+    text: this.userClubReview()?.text ?? '',
+  });
 
   public isSubmitting = computed(() => {
     return this.reviewStatus() === OPERATION_STATUS.LOADING;
@@ -105,9 +107,9 @@ export class ReviewDialogComponent implements OnInit {
   }
 
   public reviewForm = form(this.reviewModel, (fieldPath) => {
-    (required(fieldPath.rating, {message: REVIEW_ERRORS_MESSAGES.rating.required}),
-      required(fieldPath.text, {message: REVIEW_ERRORS_MESSAGES.text.required}),
-      minLength(fieldPath.text, 50, {message: REVIEW_ERRORS_MESSAGES.text.minLength}));
+    required(fieldPath.rating, {message: REVIEW_ERRORS_MESSAGES.rating.required});
+      required(fieldPath.text, {message: REVIEW_ERRORS_MESSAGES.text.required});
+      minLength(fieldPath.text, 50, {message: REVIEW_ERRORS_MESSAGES.text.minLength});
   });
 
   public ratingErrorVisible = computed(() => {

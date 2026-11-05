@@ -67,7 +67,7 @@
     type="submit"
     [disabled]="reviewForm().invalid() || isSubmitting()"
   >
-    Опубликовать
+    {{userClubReview() ? 'Сохранить' : 'Опубликовать'}}
   </button>
   <button
     class="review__close"
