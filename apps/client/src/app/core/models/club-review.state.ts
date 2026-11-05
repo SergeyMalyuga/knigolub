@@ -7,5 +7,6 @@ import { ActiveOperation } from '../types/active-operation.type';
 export interface ClubReviewState extends EntityState<ClubReview> {
   activeOperation: ActiveOperation;
   status: OperationStatus;
+  userReview: ClubReview | null;
   error: HttpErrorResponse | ErrorResponse | string | null;
 }
