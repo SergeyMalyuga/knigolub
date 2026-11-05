@@ -1,6 +1,13 @@
-import { createAction, props } from '@ngrx/store';
-import { CreateClubReviewInput } from '../../../core/types/create-club-review-input.type';
-import { ClubReview, ErrorResponse } from '@knigolub/shared';
+import {createAction, props} from '@ngrx/store';
+import {CreateClubReviewInput} from '../../../core/types/create-club-review-input.type';
+import {ClubReview, ErrorResponse} from '@knigolub/shared';
+
+export const loadClubReviews = createAction(
+  '[App Component] Load Club Reviews');
+export const loadClubReviewsSuccess = createAction(
+  '[Club Review Effects] Load Club Reviews Success', props<{ clubReviews: ClubReview[] }>());
+export const loadClubReviewsFailure =
+  createAction('[Club Review Effects] Load Club Review Failure', props<{ error: ErrorResponse }>());
 
 export const createClubReview = createAction(
   '[Review Dialog Component] Create Club Review',
