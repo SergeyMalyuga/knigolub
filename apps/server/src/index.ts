@@ -5,7 +5,7 @@ import bookRouter from "./routes/book";
 import userRouter from "./routes/user";
 import favoriteRouter from "./routes/favorite";
 import clubReviewRouter from "./routes/club-review";
-import { authMiddleware } from "./middleware/auth.middleware";
+import { optionalAuth } from "./middleware/optional-auth.middleware";
 import { errorHandler } from "./middleware/error.middleware";
 import path from "node:path";
 
@@ -21,7 +21,7 @@ app.use(
   express.static(path.join(__dirname, "../../public/uploads")),
 );
 app.use("/assets", express.static(path.join(__dirname, "../../public/assets")));
-app.use(authMiddleware);
+app.use(optionalAuth);
 
 app.use("/books", bookRouter);
 app.use("/users", userRouter);
