@@ -38,4 +38,11 @@ export class ReviewService {
   public createClubReview(input: CreateClubReviewInput): Observable<ClubReview> {
     return this.http.post<ClubReview>(`${BASE_URL}/${APIRoute.CLUB_REVIEWS}`, input);
   }
+
+  /**
+   * Получает отзыв пользователя о клубе или null, если отзыва нет.
+   */
+  public getUserClubReview(): Observable<ClubReview | null> {
+    return this.http.get<ClubReview | null>(`${BASE_URL}/${APIRoute.CLUB_REVIEWS_USER}`)
+  }
 }
