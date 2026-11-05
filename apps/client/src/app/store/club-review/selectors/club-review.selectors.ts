@@ -7,3 +7,8 @@ export const selectClubReviewStatus = createSelector(
   selectClubReviewState,
   (state) => state.status,
 );
+
+export const selectUserClubReview = createSelector(
+  selectClubReviewState,
+  state => state.userReview
+)
