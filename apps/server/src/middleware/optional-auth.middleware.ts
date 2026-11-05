@@ -1,7 +1,7 @@
-import type { NextFunction, Request, Response } from "express";
+import type {NextFunction, Request, Response} from "express";
 import jwt from "jsonwebtoken";
 
-declare global {
+declare global { //TODO create optionalAuth & requireAuth
   namespace Express {
     interface Request {
       user?: {
@@ -12,21 +12,27 @@ declare global {
   }
 }
 
-export const authMiddleware = (
+export const optionalAuth = (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
   const token = req.headers["x-token"] as string;
+  const jwtSecret = process.env.JWT_SECRET;
 
-  if (!token) {
+  if (!token || token.trim() === "") {
+    return next();
+  }
+
+  if (!jwtSecret) {
+    console.warn("Переменная окружения JWT_SECRET не установлена")
     return next();
   }
 
   try {
     const decoded = jwt.verify(
       token,
-      process.env.JWT_SECRET || "super-secret",
+      jwtSecret,
     ) as {
       id: string;
       email: string;
