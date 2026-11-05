@@ -18,6 +18,7 @@ export enum APIRoute {
   FAVORITES_TOGGLE = 'favorites/toggle',
   FAVORITES_LIST = 'favorites',
   CLUB_REVIEWS = 'club-reviews',
+  CLUB_REVIEWS_USER = 'club-reviews/user',
 }
 
 export const BASE_URL = 'http://localhost:3000';
