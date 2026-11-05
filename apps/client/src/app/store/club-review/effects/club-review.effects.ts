@@ -28,10 +28,17 @@ export class ClubReviewEffects {
     ),
   );
 
-  loadClubReview$ = createEffect(() =>
+  loadClubReviews$ = createEffect(() =>
     this.actions$.pipe(ofType(ClubReviewActions.loadClubReviews),
       switchMap(() => this.reviewService.getClubReviews()
         .pipe(map(clubReviews => ClubReviewActions.loadClubReviewsSuccess({clubReviews})),
           catchError((error: HttpErrorResponse) =>
             of(ClubReviewActions.loadClubReviewsFailure({error: normalizeError(error.error)})))))));
+
+  loadUserClubReview$ = createEffect(() =>
+    this.actions$.pipe(ofType(ClubReviewActions.loadUserClubReview),
+      switchMap(() => this.reviewService.getUserClubReview()
+        .pipe(map(clubReview => ClubReviewActions.loadUserClubReviewSuccess({clubReview})),
+          catchError((error: HttpErrorResponse) =>
+            of(ClubReviewActions.loadUserClubReviewFailure({error: normalizeError(error.error)})))))));
 }
