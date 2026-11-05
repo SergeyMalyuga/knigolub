@@ -9,6 +9,13 @@ export const loadClubReviewsSuccess = createAction(
 export const loadClubReviewsFailure =
   createAction('[Club Review Effects] Load Club Review Failure', props<{ error: ErrorResponse }>());
 
+export const loadUserClubReview = createAction(
+  '[User Effects] Load User Club Review');
+export const loadUserClubReviewSuccess = createAction(
+  '[User Effects] Load User Club Review Success', props<{clubReview: ClubReview | null}>());
+export const loadUserClubReviewFailure = createAction(
+  '[User Effects] Load User Club Review Failure', props<{ error: ErrorResponse }>());
+
 export const createClubReview = createAction(
   '[Review Dialog Component] Create Club Review',
   props<{ input: CreateClubReviewInput }>(),
