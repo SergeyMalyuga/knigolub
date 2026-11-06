@@ -65,7 +65,7 @@
   <button
     class="focus review__add"
     type="submit"
-    [disabled]="reviewForm().invalid() || isSubmitting()"
+    [disabled]="reviewForm().invalid() || isSubmitting() || isSimilarReviewData()"
   >
     {{ userClubReview() ? 'Сохранить' : 'Опубликовать' }}
   </button>

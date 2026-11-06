@@ -84,6 +84,12 @@ export class ReviewDialogComponent implements OnInit {
     text: this.userClubReview()?.text ?? '',
   });
 
+  public isSimilarReviewData = computed(() => {
+    const rating = this.userClubReview()?.rating;
+    const text = this.userClubReview()?.text;
+    return rating?.toString() === this.reviewModel().rating && text === this.reviewModel().text
+  })
+
   public isSubmitting = computed(() => {
     return this.reviewStatus() === OPERATION_STATUS.LOADING;
   });
