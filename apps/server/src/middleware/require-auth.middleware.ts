@@ -1,14 +1,12 @@
 import type { NextFunction, Request, Response } from "express";
 import type { ErrorResponse } from "@knigolub/shared";
 import jwt from "jsonwebtoken";
+import type {TokenPayload} from "../types/token-payload.type";
 
 declare global {
   namespace Express {
     interface Request {
-      user?: {
-        id: string;
-        email: string;
-      };
+      user?: TokenPayload;
     }
   }
 }
