@@ -1,6 +1,9 @@
 import type { NextFunction, Request, Response } from "express";
 import { Prisma } from "../../generated/prisma";
 import { type ErrorResponse, UserErrorField } from "@knigolub/shared";
+import {NotFoundError} from "../errors/not-found.error";
+import {ForbiddenError} from "../errors/forbiddent.error";
+import {ValidationError} from "../errors/validation.error";
 
 export function errorHandler(
   err: any,
@@ -50,6 +53,11 @@ export function errorHandler(
   }
 
   // 2. Обработка кастомных бизнес-ошибок
+  if (err instanceof NotFoundError || ForbiddenError || ValidationError) {
+    const errorResponse: ErrorResponse = {message: err.message};
+    return res.status(err.statusCode).json(errorResponse);
+  }
+
   if (err.statusCode) {
     return res.status(err.statusCode).json({
       error: err.name,
