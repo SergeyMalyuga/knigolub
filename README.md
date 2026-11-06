@@ -84,6 +84,10 @@ npm install
 # Запустите миграции
 npx prisma migrate dev
 
+# Загрузить seed-данные в БД
+cd apps\server\
+npm run seed:books
+
 # Запустите сервер
 npm run start:dev
 ```
