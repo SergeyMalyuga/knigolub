@@ -43,6 +43,6 @@ export class ReviewService {
    * Получает отзыв пользователя о клубе или null, если отзыва нет.
    */
   public getUserClubReview(): Observable<ClubReview | null> {
-    return this.http.get<ClubReview | null>(`${BASE_URL}/${APIRoute.CLUB_REVIEWS_USER}`)
+    return this.http.get<ClubReview | null>(`${BASE_URL}/${APIRoute.CLUB_REVIEWS_USER}`);
   }
 }

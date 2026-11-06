@@ -19,7 +19,6 @@ import { getAbsoluteAvatarUrl } from "../utils/url.utils";
 import { deleteFileSafely } from "../utils/file.utils";
 
 export class UserService {
-
   /**
    * Регистрирует нового пользователя в системе.
    * Хеширует пароль, устанавливает аватар по умолчанию и генерирует JWT-токен.

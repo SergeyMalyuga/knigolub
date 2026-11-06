@@ -1,4 +1,4 @@
-import {ErrorResponse} from '@knigolub/shared';
+import { ErrorResponse } from '@knigolub/shared';
 
 /**
  * Нормализует любую ошибку к типу ErrorResponse.
@@ -18,14 +18,16 @@ export function normalizeError(error: unknown): ErrorResponse {
   if (isErrorResponse(error)) {
     return error;
   } else if (error instanceof Error) {
-    return {message: error.message};
+    return { message: error.message };
   }
-  return {message: 'Неизвестная ошибка'};
+  return { message: 'Неизвестная ошибка' };
 }
 
 function isErrorResponse(body: unknown): body is ErrorResponse {
-  return body !== null
-    && typeof body === 'object'
-    && 'message' in body
-    && typeof body.message === 'string';
+  return (
+    body !== null &&
+    typeof body === 'object' &&
+    'message' in body &&
+    typeof body.message === 'string'
+  );
 }

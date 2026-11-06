@@ -7,7 +7,7 @@ import {
   OnInit,
   signal,
 } from '@angular/core';
-import {DIALOG_DATA, DialogRef} from '@angular/cdk/dialog';
+import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import {
   DIALOG_RESULT,
   MIN_REVIEW_LENGTH,
@@ -19,25 +19,28 @@ import {
   REVIEW_TYPES,
   STAR_RATING,
 } from '../../../core/constants/const';
-import {NgClass} from '@angular/common';
-import {MatError, MatFormField, MatHint, MatInput, MatLabel} from '@angular/material/input';
-import {MatIconButton} from '@angular/material/button';
-import {MatIcon} from '@angular/material/icon';
-import {ReviewDialogData} from '../../../core/models/review-dialog-data.model';
-import {ReviewCreateDto} from '../../../core/models/review-create.dto';
-import {form, FormField, minLength, required} from '@angular/forms/signals';
-import {Store} from '@ngrx/store';
-import {AppState} from '../../../core/models/app.state';
+import { NgClass } from '@angular/common';
+import { MatError, MatFormField, MatHint, MatInput, MatLabel } from '@angular/material/input';
+import { MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { ReviewDialogData } from '../../../core/models/review-dialog-data.model';
+import { ReviewCreateDto } from '../../../core/models/review-create.dto';
+import { form, FormField, minLength, required } from '@angular/forms/signals';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../core/models/app.state';
 import {
   createClubReview,
   resetClubReviewStatus,
 } from '../../../store/club-review/actions/club-review.actions';
-import {FormsModule} from '@angular/forms';
-import {selectClubReviewStatus, selectUserClubReview} from '../../../store/club-review/selectors/club-review.selectors';
-import {NotificationService} from '../../../core/services/notification.service';
-import {first, take} from 'rxjs';
-import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
-import {DialogResult} from '../../../core/types/dialog-result.type';
+import { FormsModule } from '@angular/forms';
+import {
+  selectClubReviewStatus,
+  selectUserClubReview,
+} from '../../../store/club-review/selectors/club-review.selectors';
+import { NotificationService } from '../../../core/services/notification.service';
+import { first, take } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { DialogResult } from '../../../core/types/dialog-result.type';
 
 @Component({
   selector: 'review-dialog',
@@ -62,7 +65,6 @@ export class ReviewDialogComponent implements OnInit {
   private destroyRef = inject(DestroyRef);
   private store = inject(Store<AppState>);
   private notificationService = inject(NotificationService);
-
 
   protected readonly STAR_RATING = STAR_RATING;
   protected readonly RATING_STARS_AMOUNT = RATING_STARS_AMOUNT;
@@ -107,9 +109,9 @@ export class ReviewDialogComponent implements OnInit {
   }
 
   public reviewForm = form(this.reviewModel, (fieldPath) => {
-    required(fieldPath.rating, {message: REVIEW_ERRORS_MESSAGES.rating.required});
-      required(fieldPath.text, {message: REVIEW_ERRORS_MESSAGES.text.required});
-      minLength(fieldPath.text, 50, {message: REVIEW_ERRORS_MESSAGES.text.minLength});
+    required(fieldPath.rating, { message: REVIEW_ERRORS_MESSAGES.rating.required });
+    required(fieldPath.text, { message: REVIEW_ERRORS_MESSAGES.text.required });
+    minLength(fieldPath.text, 50, { message: REVIEW_ERRORS_MESSAGES.text.minLength });
   });
 
   public ratingErrorVisible = computed(() => {
@@ -153,11 +155,11 @@ export class ReviewDialogComponent implements OnInit {
       return;
     }
 
-    const {rating, text} = this.reviewForm().value();
+    const { rating, text } = this.reviewForm().value();
     const validRating = Number(rating);
 
     if (Number.isFinite(validRating)) {
-      this.store.dispatch(createClubReview({input: {rating: validRating, text}}));
+      this.store.dispatch(createClubReview({ input: { rating: validRating, text } }));
     }
   }
 }

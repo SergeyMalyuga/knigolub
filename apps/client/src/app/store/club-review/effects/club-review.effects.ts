@@ -1,10 +1,10 @@
-import {inject, Injectable} from '@angular/core';
-import {ReviewService} from '../../../core/services/review.service';
-import {Actions, createEffect, ofType} from '@ngrx/effects';
+import { inject, Injectable } from '@angular/core';
+import { ReviewService } from '../../../core/services/review.service';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as ClubReviewActions from '../actions/club-review.actions';
-import {catchError, exhaustMap, map, of, switchMap} from 'rxjs';
-import {HttpErrorResponse} from '@angular/common/http';
-import {normalizeError} from '../../../core/utils/error.utils';
+import { catchError, exhaustMap, map, of, switchMap } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
+import { normalizeError } from '../../../core/utils/error.utils';
 
 @Injectable({
   providedIn: 'root',
@@ -16,12 +16,11 @@ export class ClubReviewEffects {
   createClubReview$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ClubReviewActions.createClubReview),
-      exhaustMap(({input}) =>
+      exhaustMap(({ input }) =>
         this.reviewService.createClubReview(input).pipe(
-          map((clubReview) =>
-            ClubReviewActions.createClubReviewSuccess({clubReview})),
+          map((clubReview) => ClubReviewActions.createClubReviewSuccess({ clubReview })),
           catchError((error: HttpErrorResponse) =>
-            of(ClubReviewActions.createClubReviewFailure({error: normalizeError(error.error)}))
+            of(ClubReviewActions.createClubReviewFailure({ error: normalizeError(error.error) })),
           ),
         ),
       ),
@@ -29,16 +28,30 @@ export class ClubReviewEffects {
   );
 
   loadClubReviews$ = createEffect(() =>
-    this.actions$.pipe(ofType(ClubReviewActions.loadClubReviews),
-      switchMap(() => this.reviewService.getClubReviews()
-        .pipe(map(clubReviews => ClubReviewActions.loadClubReviewsSuccess({clubReviews})),
+    this.actions$.pipe(
+      ofType(ClubReviewActions.loadClubReviews),
+      switchMap(() =>
+        this.reviewService.getClubReviews().pipe(
+          map((clubReviews) => ClubReviewActions.loadClubReviewsSuccess({ clubReviews })),
           catchError((error: HttpErrorResponse) =>
-            of(ClubReviewActions.loadClubReviewsFailure({error: normalizeError(error.error)})))))));
+            of(ClubReviewActions.loadClubReviewsFailure({ error: normalizeError(error.error) })),
+          ),
+        ),
+      ),
+    ),
+  );
 
   loadUserClubReview$ = createEffect(() =>
-    this.actions$.pipe(ofType(ClubReviewActions.loadUserClubReview),
-      switchMap(() => this.reviewService.getUserClubReview()
-        .pipe(map(clubReview => ClubReviewActions.loadUserClubReviewSuccess({clubReview})),
+    this.actions$.pipe(
+      ofType(ClubReviewActions.loadUserClubReview),
+      switchMap(() =>
+        this.reviewService.getUserClubReview().pipe(
+          map((clubReview) => ClubReviewActions.loadUserClubReviewSuccess({ clubReview })),
           catchError((error: HttpErrorResponse) =>
-            of(ClubReviewActions.loadUserClubReviewFailure({error: normalizeError(error.error)})))))));
+            of(ClubReviewActions.loadUserClubReviewFailure({ error: normalizeError(error.error) })),
+          ),
+        ),
+      ),
+    ),
+  );
 }

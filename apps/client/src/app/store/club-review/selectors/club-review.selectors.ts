@@ -10,5 +10,5 @@ export const selectClubReviewStatus = createSelector(
 
 export const selectUserClubReview = createSelector(
   selectClubReviewState,
-  state => state.userReview
-)
+  (state) => state.userReview,
+);

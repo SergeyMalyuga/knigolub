@@ -19,7 +19,9 @@
     <div class="card__preview">
       <span class="card__preview-subtitle">Книголюб · {{ currentDate() }}</span>
       <h3 class="card__preview-title" aria-hidden="true">{{ book.title }}</h3>
-      <span class="card__preview-subtitle" [title]="book.authors.join(', ')">{{ book.authors.join(', ') }}</span>
+      <span class="card__preview-subtitle" [title]="book.authors.join(', ')">{{
+        book.authors.join(', ')
+      }}</span>
     </div>
   </a>
   <button
@@ -65,7 +67,7 @@
           hidden: viewMode !== View.LIST,
         }"
       >
-        <img src="{{ book.thumbnail }}" alt=""/>
+        <img src="{{ book.thumbnail }}" alt="" />
       </div>
       <div class="card__wrapper-link">
         <a class="card__link card__link--info" href="#" aria-hidden="true" tabindex="-1">{{

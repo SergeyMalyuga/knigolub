@@ -1,20 +1,26 @@
-import {createAction, props} from '@ngrx/store';
-import {CreateClubReviewInput} from '../../../core/types/create-club-review-input.type';
-import {ClubReview, ErrorResponse} from '@knigolub/shared';
+import { createAction, props } from '@ngrx/store';
+import { CreateClubReviewInput } from '../../../core/types/create-club-review-input.type';
+import { ClubReview, ErrorResponse } from '@knigolub/shared';
 
-export const loadClubReviews = createAction(
-  '[App Component] Load Club Reviews');
+export const loadClubReviews = createAction('[App Component] Load Club Reviews');
 export const loadClubReviewsSuccess = createAction(
-  '[Club Review Effects] Load Club Reviews Success', props<{ clubReviews: ClubReview[] }>());
-export const loadClubReviewsFailure =
-  createAction('[Club Review Effects] Load Club Review Failure', props<{ error: ErrorResponse }>());
+  '[Club Review Effects] Load Club Reviews Success',
+  props<{ clubReviews: ClubReview[] }>(),
+);
+export const loadClubReviewsFailure = createAction(
+  '[Club Review Effects] Load Club Review Failure',
+  props<{ error: ErrorResponse }>(),
+);
 
-export const loadUserClubReview = createAction(
-  '[User Effects] Load User Club Review');
+export const loadUserClubReview = createAction('[User Effects] Load User Club Review');
 export const loadUserClubReviewSuccess = createAction(
-  '[User Effects] Load User Club Review Success', props<{clubReview: ClubReview | null}>());
+  '[User Effects] Load User Club Review Success',
+  props<{ clubReview: ClubReview | null }>(),
+);
 export const loadUserClubReviewFailure = createAction(
-  '[User Effects] Load User Club Review Failure', props<{ error: ErrorResponse }>());
+  '[User Effects] Load User Club Review Failure',
+  props<{ error: ErrorResponse }>(),
+);
 
 export const createClubReview = createAction(
   '[Review Dialog Component] Create Club Review',

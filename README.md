@@ -35,7 +35,7 @@
 - **Node.js + Express** — серверная часть приложения
 - **Prisma** — ORM для работы с базой данных
 - **JWT** — аутентификация и авторизация пользователей
-- **PostgreSQL** — реляционная база данных
+- **MySQL** — реляционная база данных
 
 ### Инструменты
 
@@ -78,7 +78,7 @@ cd server
 npm install
 
 # Настройте переменные окружения (создайте файл .env)
-# DATABASE_URL="postgresql://user:password@localhost:5432/knigolub"
+# DATABASE_URL="mysql://root:4381457@localhost:3306/knigolub"
 # JWT_SECRET="your-secret-key"
 
 # Запустите миграции
