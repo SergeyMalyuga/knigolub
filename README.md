@@ -92,6 +92,12 @@ npm run seed:books
 npm run start:dev
 ```
 
+### Запуск приложения одной командой
+
+```bash
+npm run dev
+```
+
 API будет доступно по адресу `http://localhost:3000`
 
 ---
