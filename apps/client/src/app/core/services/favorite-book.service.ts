@@ -11,7 +11,7 @@ export class FavoriteBookService {
   private http = inject(HttpClient);
 
   public getFavorites(): Observable<Book[]> {
-    return this.http.get<Book[]>(`${BASE_URL}/${APIRoute.FAVORITES_LIST}`);
+    return this.http.get<Book[]>(`${BASE_URL}/${APIRoute.FAVORITES}`);
   }
 
   public toggleFavorite(bookId: string): Observable<Book> {
