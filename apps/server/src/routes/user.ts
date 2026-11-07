@@ -22,7 +22,7 @@ router.post(
   async (req, res, next) => userController.uploadAvatar(req, res, next),
 );
 
-router.patch("/profile/update", async (req, res, next) =>
+router.patch("/profile", async (req, res, next) =>
   userController.updateUser(req, res, next),
 );
 
