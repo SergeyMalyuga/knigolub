@@ -20,4 +20,7 @@ router.get("/user", requireAuth, authHandler((req, res, next) =>
     reviewController.getUserClubReview(req, res, next))
 );
 
+router.patch("/:id", requireAuth, authHandler((req, res, next) =>
+    reviewController.updateClubReview(req, res, next)));
+
 export default router;
