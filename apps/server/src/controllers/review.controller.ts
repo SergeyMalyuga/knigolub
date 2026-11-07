@@ -102,15 +102,16 @@ export class ReviewController {
     /**
      * Обновляет отзыв пользователя о клубе.
      *
-     * Маршрут: PATCH /user/update
+     * Маршрут: PATCH /club-reviews/:id
      *
      * @param req - Express request объект.
-     * @param res - Express response объект
+     * @param res - Express response объект.
      * @param next - Express next функция для передачи ошибок.
-     * @returns JSON c обновлённым отзывом пользователя о клубе.
+     * @returns JSON с обновлённым отзывом пользователя о клубе.
      */
     public async updateClubReview(req: AuthRequest, res: Response, next: NextFunction) {
         const userId = req.user.id;
+        const reviewId = req.params.id as string;
 
         try {
             const parsed = updateClubReviewSchema.safeParse(req.body);
@@ -119,9 +120,9 @@ export class ReviewController {
                 throw new ValidationError("Неверные параметры обновления отзыва");
             }
 
-            const {reviewId, rating, text} = parsed.data;
+            const {rating, text} = parsed.data;
 
-            const clubReview = await this.reviewService.updateUserReviewClub({reviewId, userId, rating, text})
+            const clubReview = await this.reviewService.updateUserReviewClub({reviewId, userId, rating, text});
             return res.status(200).json(clubReview);
 
         } catch (error: any) {
