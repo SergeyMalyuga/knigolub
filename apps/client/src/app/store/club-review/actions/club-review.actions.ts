@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { CreateClubReviewInput } from '../../../core/types/create-club-review-input.type';
 import { ClubReview, ErrorResponse } from '@knigolub/shared';
+import {UpdateClubReviewInput} from '../../../core/types/update-club-review-input.type';
 
 export const loadClubReviews = createAction('[App Component] Load Club Reviews');
 export const loadClubReviewsSuccess = createAction(
@@ -34,6 +35,13 @@ export const createClubReviewFailure = createAction(
   '[Club Review Effects] Create Club Review Failure',
   props<{ error: ErrorResponse }>(),
 );
+
+export const updateClubReview = createAction(
+  '[Review Dialog Component] Update Club Review', props<{input: UpdateClubReviewInput}>());
+export const updateClubReviewSuccess = createAction(
+  '[Club Review Effects] Update Club Review Success', props<{clubReview: ClubReview}>());
+export const updateClubReviewFailure = createAction(
+    '[Club Review Effects] Update Club Review Failure', props<{ error: ErrorResponse }>());
 
 export const resetClubReviewStatus = createAction(
   '[Review Dialog Component] Reset Club Review Status',
