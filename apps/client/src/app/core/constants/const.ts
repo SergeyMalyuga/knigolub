@@ -12,11 +12,10 @@ export enum AppRoute {
 export enum APIRoute {
   USER_REGISTER = 'users/register',
   USER_LOGIN = 'users/login',
-  USER_UPDATE_AVATAR = 'users/avatar',
+  USER_AVATAR = 'users/avatar',
   PROFILE = 'users/profile',
-  PROFILE_UPDATE = 'users/profile/update',
   FAVORITES_TOGGLE = 'favorites/toggle',
-  FAVORITES_LIST = 'favorites',
+  FAVORITES = 'favorites',
   CLUB_REVIEWS = 'club-reviews',
   CLUB_REVIEWS_USER = 'club-reviews/user',
 }
