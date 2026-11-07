@@ -24,10 +24,10 @@ export class UserService {
   }
 
   public updateAvatar(formData: FormData): Observable<AvatarResponse> {
-    return this.http.post<AvatarResponse>(`${BASE_URL}/${APIRoute.USER_UPDATE_AVATAR}`, formData);
+    return this.http.post<AvatarResponse>(`${BASE_URL}/${APIRoute.USER_AVATAR}`, formData);
   }
 
   public updateUser(updateUser: updateUserDto): Observable<User> {
-    return this.http.patch<User>(`${BASE_URL}/${APIRoute.PROFILE_UPDATE}`, updateUser);
+    return this.http.patch<User>(`${BASE_URL}/${APIRoute.PROFILE}`, updateUser);
   }
 }
