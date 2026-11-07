@@ -11,7 +11,6 @@ export const createClubReviewSchema = z.object({
 });
 
 export const updateClubReviewSchema = z.object({
-  reviewId: z.string(),
   rating: z.number().int().min(1).max(5).optional(),
   text: z.string().trim().min(50).max(2000).optional(),
 }).refine(data =>
