@@ -56,7 +56,7 @@ export class ReviewService {
    * @param input.text - Текст отзыва (опционально).
    * @returns Обновлённый отзыв.
    */
-  public updateClubReview(reviewId: string, input: UpdateClubReviewInput): Observable<ClubReview> {
+  public updateUserClubReview(reviewId: string, input: UpdateClubReviewInput): Observable<ClubReview> {
     return this.http.patch<ClubReview>(`${BASE_URL}/${APIRoute.CLUB_REVIEWS}/${reviewId}`, input);
   }
 }
