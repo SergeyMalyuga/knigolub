@@ -8,7 +8,7 @@ const reviewController = new ReviewController();
 
 router.post("/", requireAuth,
     authHandler((req, res, next) =>
-        reviewController.getUserClubReview(req, res, next)
+        reviewController.createClubReview(req, res, next)
     ),
 );
 
