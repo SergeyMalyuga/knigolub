@@ -25,6 +25,10 @@ export function deleteFileSafely(
     return;
   }
 
+  if (relativePath === '/assets/images/vector/avatar.svg') {
+    return;
+  }
+
   // 3. Формируем абсолютный путь к файлу
   const absolutePath = path.join(PUBLIC_DIR, relativePath);
 
