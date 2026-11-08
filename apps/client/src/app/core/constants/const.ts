@@ -1,6 +1,6 @@
-import { CategoryKey } from '../types/category-key';
-import { ViewKey } from '../types/view-key';
-import { PaginationMeta } from '@knigolub/shared';
+import {CategoryKey} from '../types/category-key';
+import {ViewKey} from '../types/view-key';
+import {PaginationMeta} from '@knigolub/shared';
 
 export enum AppRoute {
   MAIN = '',
@@ -141,11 +141,11 @@ export const DEFAULT_AVATAR_URL = '/assets/images/vector/avatar.svg';
 export const MAX_BIO_LENGTH = 450;
 
 export const STAR_RATING = [
-  { label: 'Разочарование', aria: 'Разочарование, 1 из 5' },
-  { label: 'Так себе', aria: 'Так себе, 2 из 5' },
-  { label: 'Нормально', aria: 'Нормально, 3 из 5' },
-  { label: 'Хорошо', aria: 'Хорошо, 4 из 5' },
-  { label: 'Восторг', aria: 'Восторг, 5 из 5' },
+  {label: 'Разочарование', aria: 'Разочарование, 1 из 5'},
+  {label: 'Так себе', aria: 'Так себе, 2 из 5'},
+  {label: 'Нормально', aria: 'Нормально, 3 из 5'},
+  {label: 'Хорошо', aria: 'Хорошо, 4 из 5'},
+  {label: 'Восторг', aria: 'Восторг, 5 из 5'},
 ] as const;
 
 export const RATING_STARS_AMOUNT = [1, 2, 3, 4, 5];
@@ -182,6 +182,10 @@ export const NOTIFICATION_MESSAGE = {
       SUCCESS: 'Отзыв успешно создан',
       ERROR: 'Ошибка создания отзыва',
     },
+    update: {
+      SUCCESS: 'Отзыв успешно обновлён',
+      ERROR: 'Ошибка обновления отзыва',
+    }
   },
 } as const;
 
