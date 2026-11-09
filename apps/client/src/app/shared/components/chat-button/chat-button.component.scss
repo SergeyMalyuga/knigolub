@@ -1,0 +1,18 @@
+.chat-button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  position: fixed;
+  bottom: 15px;
+  right: 45px;
+  cursor: pointer;
+  transition: transform 0.5s ease;
+
+  svg {
+    display: block;
+  }
+
+  &--open {
+    transform: translateY(200%);
+  }
+}
