@@ -218,9 +218,8 @@ body {
     mask-repeat: no-repeat;
     mask-position: center;
     mask-size: cover;
-    transition:
-      transform 0.3s ease,
-      background-color 0.3s ease;
+    transition: transform 0.3s ease,
+    background-color 0.3s ease;
   }
 
   &:hover {
@@ -256,18 +255,15 @@ body {
 }
 
 .lift {
-  box-shadow:
-    0 4px 6px -1px rgb(0 0 0 / 5%),
-    0 2px 4px -2px rgb(0 0 0 / 5%);
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 5%),
+  0 2px 4px -2px rgb(0 0 0 / 5%);
+  transition: transform 0.3s ease,
+  box-shadow 0.3s ease;
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow:
-      0 20px 25px -5px rgb(0 0 0 / 10%),
-      0 8px 10px -6px rgb(0 0 0 / 20%);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 10%),
+    0 8px 10px -6px rgb(0 0 0 / 20%);
   }
 }
 
@@ -299,6 +295,13 @@ body {
     outline: 2px solid variables.$sienna;
     border-radius: 4px;
     outline-offset: -2px;
+  }
+}
+
+.chat-overlay {
+  &.cdk-overlay-pane {
+    max-width: 900px;
+    width: 100%;
   }
 }
 
