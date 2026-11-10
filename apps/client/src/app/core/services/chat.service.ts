@@ -11,7 +11,8 @@ export class ChatService {
   private overlayRef = this.overlay.create({
     positionStrategy: this.overlay.position().global().right('20px').bottom('20px'),
     hasBackdrop: false,
-    scrollStrategy: this.overlay.scrollStrategies.noop()
+    scrollStrategy: this.overlay.scrollStrategies.noop(),
+    panelClass: 'chat-overlay',
   });
 
   public isOpen = signal<boolean>(false)
