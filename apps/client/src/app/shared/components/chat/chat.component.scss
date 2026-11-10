@@ -1,0 +1,33 @@
+@use '../../../../styles/variables' as variables;
+@use '../../../../styles/mixins' as mixins;
+@use '../../../../styles/functions' as *;
+@use '@angular/material' as mat;
+
+:host {
+  width: 100%;
+
+  .chat {
+    @include mat.icon-button-overrides((
+      icon-color: variables.$warm-cream,
+      state-layer-color: rgb(84 65 50),
+      hover-state-layer-opacity: 75%,
+      pressed-state-layer-opacity: 95%
+    )
+    )
+  }
+}
+
+.chat {
+  width: 100%;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid rgb(40 28 20);
+    background-color: rgb(74 55 40 / 80%);
+    color: variables.$warm-cream;
+    backdrop-filter: blur(10px);
+    padding: rem(15);
+  }
+}
