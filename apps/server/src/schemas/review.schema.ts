@@ -10,9 +10,11 @@ export const createClubReviewSchema = z.object({
   text: z.string().trim().min(50).max(2000),
 });
 
-export const updateClubReviewSchema = z.object({
-  rating: z.number().int().min(1).max(5).optional(),
-  text: z.string().trim().min(50).max(2000).optional(),
-}).refine(data =>
-    data.rating !== undefined || data.text !== undefined,
-    {message: "Необходимо передать хотя бы одно поле для обновления"});
+export const updateClubReviewSchema = z
+  .object({
+    rating: z.number().int().min(1).max(5).optional(),
+    text: z.string().trim().min(50).max(2000).optional(),
+  })
+  .refine((data) => data.rating !== undefined || data.text !== undefined, {
+    message: "Необходимо передать хотя бы одно поле для обновления",
+  });

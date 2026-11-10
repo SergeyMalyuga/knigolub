@@ -1,12 +1,12 @@
-import {inject, Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {ClubReview} from '@knigolub/shared';
-import {APIRoute, BASE_URL} from '../constants/const';
-import {buildParams} from '../utils/build-params.util';
-import {GetClubReviewsParams} from '../types/review.type';
-import {CreateClubReviewInput} from '../types/create-club-review-input.type';
-import {UpdateClubReviewInput} from '../types/update-club-review-input.type';
+import { inject, Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { ClubReview } from '@knigolub/shared';
+import { APIRoute, BASE_URL } from '../constants/const';
+import { buildParams } from '../utils/build-params.util';
+import { GetClubReviewsParams } from '../types/review.type';
+import { CreateClubReviewInput } from '../types/create-club-review-input.type';
+import { UpdateClubReviewInput } from '../types/update-club-review-input.type';
 
 @Injectable({
   providedIn: 'root',
@@ -56,7 +56,10 @@ export class ReviewService {
    * @param input.text - Текст отзыва (опционально).
    * @returns Обновлённый отзыв.
    */
-  public updateUserClubReview(reviewId: string, input: UpdateClubReviewInput): Observable<ClubReview> {
+  public updateUserClubReview(
+    reviewId: string,
+    input: UpdateClubReviewInput,
+  ): Observable<ClubReview> {
     return this.http.patch<ClubReview>(`${BASE_URL}/${APIRoute.CLUB_REVIEWS}/${reviewId}`, input);
   }
 }

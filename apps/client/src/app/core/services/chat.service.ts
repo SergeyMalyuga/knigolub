@@ -1,10 +1,10 @@
-import {inject, Injectable, signal} from '@angular/core';
-import {Overlay} from '@angular/cdk/overlay';
-import {ComponentPortal} from '@angular/cdk/portal';
-import {ChatComponent} from '../../shared/components/chat/chat.component';
+import { inject, Injectable, signal } from '@angular/core';
+import { Overlay } from '@angular/cdk/overlay';
+import { ComponentPortal } from '@angular/cdk/portal';
+import { ChatComponent } from '../../shared/components/chat/chat.component';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ChatService {
   private overlay = inject(Overlay);
@@ -15,7 +15,7 @@ export class ChatService {
     panelClass: 'chat-overlay',
   });
 
-  public isOpen = signal<boolean>(false)
+  public isOpen = signal<boolean>(false);
 
   public openChat() {
     if (this.overlayRef.hasAttached()) {

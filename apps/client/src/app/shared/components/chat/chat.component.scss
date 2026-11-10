@@ -7,13 +7,14 @@
   width: 100%;
 
   .chat {
-    @include mat.icon-button-overrides((
-      icon-color: variables.$warm-cream,
-      state-layer-color: rgb(84 65 50),
-      hover-state-layer-opacity: 75%,
-      pressed-state-layer-opacity: 95%
-    )
-    )
+    @include mat.icon-button-overrides(
+      (
+        icon-color: variables.$warm-cream,
+        state-layer-color: rgb(84 65 50),
+        hover-state-layer-opacity: 75%,
+        pressed-state-layer-opacity: 95%,
+      )
+    );
   }
 }
 

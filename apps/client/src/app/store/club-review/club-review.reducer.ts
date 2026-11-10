@@ -1,6 +1,6 @@
-import {createEntityAdapter} from '@ngrx/entity';
-import {ClubReview} from '@knigolub/shared';
-import {createReducer, on} from '@ngrx/store';
+import { createEntityAdapter } from '@ngrx/entity';
+import { ClubReview } from '@knigolub/shared';
+import { createReducer, on } from '@ngrx/store';
 import {
   createClubReview,
   createClubReviewFailure,
@@ -10,12 +10,16 @@ import {
   loadClubReviewsSuccess,
   loadUserClubReview,
   loadUserClubReviewFailure,
-  loadUserClubReviewSuccess, resetClubReviewActiveOperation,
-  resetClubReviewStatus, updateUserClubReview, updateUserClubReviewFailure, updateUserClubReviewSuccess,
+  loadUserClubReviewSuccess,
+  resetClubReviewActiveOperation,
+  resetClubReviewStatus,
+  updateUserClubReview,
+  updateUserClubReviewFailure,
+  updateUserClubReviewSuccess,
 } from './actions/club-review.actions';
-import {ClubReviewState} from '../../core/models/club-review.state';
-import {ACTIVE_OPERATION, OPERATION_STATUS} from '../../core/constants/const';
-import {logout} from '../user/actions/user.actions';
+import { ClubReviewState } from '../../core/models/club-review.state';
+import { ACTIVE_OPERATION, OPERATION_STATUS } from '../../core/constants/const';
+import { logout } from '../user/actions/user.actions';
 
 export const clubReviewAdapter = createEntityAdapter<ClubReview>();
 
@@ -34,7 +38,7 @@ export const clubReviewReducer = createReducer(
     status: OPERATION_STATUS.LOADING,
     error: null,
   })),
-  on(createClubReviewSuccess, (state, {clubReview}) =>
+  on(createClubReviewSuccess, (state, { clubReview }) =>
     clubReviewAdapter.addOne(clubReview, {
       ...state,
       activeOperation: ACTIVE_OPERATION.IDLE,
@@ -43,7 +47,7 @@ export const clubReviewReducer = createReducer(
       error: null,
     }),
   ),
-  on(createClubReviewFailure, (state, {error}) => ({
+  on(createClubReviewFailure, (state, { error }) => ({
     ...state,
     activeOperation: ACTIVE_OPERATION.IDLE,
     status: OPERATION_STATUS.ERROR,
@@ -56,7 +60,7 @@ export const clubReviewReducer = createReducer(
     status: OPERATION_STATUS.LOADING,
     error: null,
   })),
-  on(loadClubReviewsSuccess, (state, {clubReviews}) =>
+  on(loadClubReviewsSuccess, (state, { clubReviews }) =>
     clubReviewAdapter.setAll(clubReviews, {
       ...state,
       error: null,
@@ -64,7 +68,7 @@ export const clubReviewReducer = createReducer(
       status: OPERATION_STATUS.IDLE,
     }),
   ),
-  on(loadClubReviewsFailure, (state, {error}) => ({
+  on(loadClubReviewsFailure, (state, { error }) => ({
     ...state,
     error,
     activeOperation: ACTIVE_OPERATION.IDLE,
@@ -77,33 +81,33 @@ export const clubReviewReducer = createReducer(
     status: OPERATION_STATUS.LOADING,
     error: null,
   })),
-  on(loadUserClubReviewSuccess, (state, {clubReview}) => ({
+  on(loadUserClubReviewSuccess, (state, { clubReview }) => ({
     ...state,
     userReview: clubReview,
     activeOperation: ACTIVE_OPERATION.IDLE,
     status: OPERATION_STATUS.IDLE,
     error: null,
   })),
-  on(loadUserClubReviewFailure, (state, {error}) => ({
+  on(loadUserClubReviewFailure, (state, { error }) => ({
     ...state,
     error,
     activeOperation: ACTIVE_OPERATION.IDLE,
     status: OPERATION_STATUS.ERROR,
   })),
 
-  on(updateUserClubReview, state => ({
+  on(updateUserClubReview, (state) => ({
     ...state,
     activeOperation: ACTIVE_OPERATION.UPDATE,
     status: OPERATION_STATUS.LOADING,
-    error: null
+    error: null,
   })),
-  on(updateUserClubReviewSuccess, (state, {clubReview}) => ({
+  on(updateUserClubReviewSuccess, (state, { clubReview }) => ({
     ...state,
     status: OPERATION_STATUS.SUCCESS,
     userReview: clubReview,
-    error: null
+    error: null,
   })),
-  on(updateUserClubReviewFailure, (state, {error}) => ({
+  on(updateUserClubReviewFailure, (state, { error }) => ({
     ...state,
     error,
     activeOperation: ACTIVE_OPERATION.IDLE,
@@ -115,10 +119,10 @@ export const clubReviewReducer = createReducer(
     status: OPERATION_STATUS.IDLE,
   })),
 
-  on(resetClubReviewActiveOperation, state => ({
+  on(resetClubReviewActiveOperation, (state) => ({
     ...state,
     activeOperation: ACTIVE_OPERATION.IDLE,
   })),
 
-  on(logout, (state) => ({...state, userReview: null})),
+  on(logout, (state) => ({ ...state, userReview: null })),
 );

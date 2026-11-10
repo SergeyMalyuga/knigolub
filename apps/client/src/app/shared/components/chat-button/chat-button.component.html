@@ -1,12 +1,13 @@
 <button
   [ngClass]="{
-'chat-button': true,
-'chat-button--open': isOpen()
-}"
+    'chat-button': true,
+    'chat-button--open': isOpen(),
+  }"
   (click)="onOpenChat()"
   type="button"
-  aria-label="Открыть чат">
+  aria-label="Открыть чат"
+>
   <svg width="65" height="65" aria-hidden="true">
-    <use href="/assets/images/vector/chat.svg#chat  "/>
+    <use href="/assets/images/vector/chat.svg#chat  " />
   </svg>
 </button>

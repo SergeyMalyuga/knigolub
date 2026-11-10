@@ -1,6 +1,6 @@
 export interface UpdateClubReview {
-    userId: string;
-    reviewId: string;
-    rating?: number;
-    text?: string;
+  userId: string;
+  reviewId: string;
+  rating?: number;
+  text?: string;
 }

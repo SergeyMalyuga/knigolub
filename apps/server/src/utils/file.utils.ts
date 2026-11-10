@@ -25,7 +25,7 @@ export function deleteFileSafely(
     return;
   }
 
-  if (relativePath === '/assets/images/vector/avatar.svg') {
+  if (relativePath === "/assets/images/vector/avatar.svg") {
     return;
   }
 

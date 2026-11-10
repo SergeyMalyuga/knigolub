@@ -1,12 +1,10 @@
-import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
-import {ChatService} from '../../../core/services/chat.service';
-import {NgClass} from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChatService } from '../../../core/services/chat.service';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-chat-button',
-  imports: [
-    NgClass
-  ],
+  imports: [NgClass],
   templateUrl: './chat-button.component.html',
   styleUrl: './chat-button.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,10 +1,10 @@
-import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
-import {CdkDrag, CdkDragHandle} from '@angular/cdk/drag-drop';
-import {MatIconButton} from '@angular/material/button';
-import {MatIcon} from '@angular/material/icon';
-import {ChatService} from '../../../core/services/chat.service';
-import {ChatDragConstraintDirective} from '../../directives/chat-drag-constraint.directive';
-import {CloseOnEscapeDirective} from '../../directives/close-on-escape.directive';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { CdkDrag, CdkDragHandle } from '@angular/cdk/drag-drop';
+import { MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { ChatService } from '../../../core/services/chat.service';
+import { ChatDragConstraintDirective } from '../../directives/chat-drag-constraint.directive';
+import { CloseOnEscapeDirective } from '../../directives/close-on-escape.directive';
 
 @Component({
   selector: 'app-chat',
@@ -14,7 +14,7 @@ import {CloseOnEscapeDirective} from '../../directives/close-on-escape.directive
     MatIcon,
     CdkDragHandle,
     ChatDragConstraintDirective,
-    CloseOnEscapeDirective
+    CloseOnEscapeDirective,
   ],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.scss',

@@ -7,7 +7,7 @@ import {
   OnInit,
   signal,
 } from '@angular/core';
-import {DIALOG_DATA, DialogRef} from '@angular/cdk/dialog';
+import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import {
   ACTIVE_OPERATION,
   DIALOG_RESULT,
@@ -20,29 +20,31 @@ import {
   REVIEW_TYPES,
   STAR_RATING,
 } from '../../../core/constants/const';
-import {NgClass} from '@angular/common';
-import {MatError, MatFormField, MatHint, MatInput, MatLabel} from '@angular/material/input';
-import {MatIconButton} from '@angular/material/button';
-import {MatIcon} from '@angular/material/icon';
-import {ReviewDialogData} from '../../../core/models/review-dialog-data.model';
-import {ReviewCreateDto} from '../../../core/models/review-create.dto';
-import {form, FormField, minLength, required} from '@angular/forms/signals';
-import {Store} from '@ngrx/store';
-import {AppState} from '../../../core/models/app.state';
+import { NgClass } from '@angular/common';
+import { MatError, MatFormField, MatHint, MatInput, MatLabel } from '@angular/material/input';
+import { MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { ReviewDialogData } from '../../../core/models/review-dialog-data.model';
+import { ReviewCreateDto } from '../../../core/models/review-create.dto';
+import { form, FormField, minLength, required } from '@angular/forms/signals';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../core/models/app.state';
 import {
-  createClubReview, resetClubReviewActiveOperation,
-  resetClubReviewStatus, updateUserClubReview,
+  createClubReview,
+  resetClubReviewActiveOperation,
+  resetClubReviewStatus,
+  updateUserClubReview,
 } from '../../../store/club-review/actions/club-review.actions';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import {
   selectClubReviewActiveOperation,
   selectClubReviewStatus,
   selectUserClubReview,
 } from '../../../store/club-review/selectors/club-review.selectors';
-import {NotificationService} from '../../../core/services/notification.service';
-import {first, take} from 'rxjs';
-import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
-import {DialogResult} from '../../../core/types/dialog-result.type';
+import { NotificationService } from '../../../core/services/notification.service';
+import { first, take } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { DialogResult } from '../../../core/types/dialog-result.type';
 
 @Component({
   selector: 'review-dialog',
@@ -90,8 +92,8 @@ export class ReviewDialogComponent implements OnInit {
   public isSimilarReviewData = computed(() => {
     const rating = this.userClubReview()?.rating;
     const text = this.userClubReview()?.text;
-    return rating?.toString() === this.reviewModel().rating && text === this.reviewModel().text
-  })
+    return rating?.toString() === this.reviewModel().rating && text === this.reviewModel().text;
+  });
 
   public isSubmitting = computed(() => {
     return this.reviewStatus() === OPERATION_STATUS.LOADING;
@@ -110,7 +112,10 @@ export class ReviewDialogComponent implements OnInit {
       });
 
     this.dialogRef.closed.pipe(take(1)).subscribe((result: DialogResult) => {
-      if (result === DIALOG_RESULT.SUCCESS && this.reviewActiveOperation() === ACTIVE_OPERATION.UPDATE) {
+      if (
+        result === DIALOG_RESULT.SUCCESS &&
+        this.reviewActiveOperation() === ACTIVE_OPERATION.UPDATE
+      ) {
         this.notificationService.showSuccessMessage(NOTIFICATION_MESSAGE.review.update.SUCCESS);
       } else if (result === DIALOG_RESULT.SUCCESS) {
         this.notificationService.showSuccessMessage(NOTIFICATION_MESSAGE.review.create.SUCCESS);
@@ -121,9 +126,9 @@ export class ReviewDialogComponent implements OnInit {
   }
 
   public reviewForm = form(this.reviewModel, (fieldPath) => {
-    required(fieldPath.rating, {message: REVIEW_ERRORS_MESSAGES.rating.required});
-    required(fieldPath.text, {message: REVIEW_ERRORS_MESSAGES.text.required});
-    minLength(fieldPath.text, 50, {message: REVIEW_ERRORS_MESSAGES.text.minLength});
+    required(fieldPath.rating, { message: REVIEW_ERRORS_MESSAGES.rating.required });
+    required(fieldPath.text, { message: REVIEW_ERRORS_MESSAGES.text.required });
+    minLength(fieldPath.text, 50, { message: REVIEW_ERRORS_MESSAGES.text.minLength });
   });
 
   public ratingErrorVisible = computed(() => {
@@ -167,23 +172,25 @@ export class ReviewDialogComponent implements OnInit {
       return;
     }
 
-    const {rating, text} = this.reviewForm().value();
+    const { rating, text } = this.reviewForm().value();
 
     const validRating = Number(rating);
     const isRatingValid = Number.isFinite(validRating);
     const reviewId = this.userClubReview()?.id;
 
     if (reviewId) {
-      this.store.dispatch(updateUserClubReview({
-        reviewId,
-        input: {
-          rating: isRatingValid ? validRating : undefined,
-          text
-        },
-      }));
+      this.store.dispatch(
+        updateUserClubReview({
+          reviewId,
+          input: {
+            rating: isRatingValid ? validRating : undefined,
+            text,
+          },
+        }),
+      );
     } else {
       if (isRatingValid) {
-        this.store.dispatch(createClubReview({input: {rating: validRating, text}}));
+        this.store.dispatch(createClubReview({ input: { rating: validRating, text } }));
       }
     }
   }

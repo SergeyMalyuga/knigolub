@@ -1,17 +1,17 @@
-import {Directive, DOCUMENT, inject, Input, OnInit, PLATFORM_ID} from '@angular/core';
-import {CdkDrag, CdkDragEnd} from '@angular/cdk/drag-drop';
-import {isPlatformBrowser} from '@angular/common';
+import { Directive, DOCUMENT, inject, Input, OnInit, PLATFORM_ID } from '@angular/core';
+import { CdkDrag, CdkDragEnd } from '@angular/cdk/drag-drop';
+import { isPlatformBrowser } from '@angular/common';
 
 @Directive({
   selector: '[appChatDragConstraint]',
-  standalone: true
+  standalone: true,
 })
 export class ChatDragConstraintDirective implements OnInit {
   @Input() minWidthVisible = 955;
   @Input() minHeightVisible = 110;
 
   private isBrowser = false;
-  private readonly dragRef = inject(CdkDrag, {host: true});
+  private readonly dragRef = inject(CdkDrag, { host: true });
 
   private document = inject(DOCUMENT);
   private readonly platformId = inject(PLATFORM_ID);
@@ -44,7 +44,7 @@ export class ChatDragConstraintDirective implements OnInit {
     const clampedY = Math.max(minY, Math.min(maxY, pos.y));
 
     if (pos.x !== clampedX || pos.y !== clampedY) {
-      event.source.setFreeDragPosition({x: clampedX, y: clampedY});
+      event.source.setFreeDragPosition({ x: clampedX, y: clampedY });
     }
   }
 }

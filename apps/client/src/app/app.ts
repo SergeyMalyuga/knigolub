@@ -6,7 +6,7 @@ import { DEFAULT_PAGE } from './core/constants/const';
 import { loadBooks } from './store/book/actions/book.actions';
 import { checkAuth } from './store/user/actions/user.actions';
 import { loadClubReviews } from './store/club-review/actions/club-review.actions';
-import {ChatButtonComponent} from './shared/components/chat-button/chat-button.component';
+import { ChatButtonComponent } from './shared/components/chat-button/chat-button.component';
 
 @Component({
   selector: 'app-root',
