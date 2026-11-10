@@ -1,13 +1,15 @@
 <aside class="chat"
        cdkDrag
        appChatDragConstraint
+       appCloseOnEscape
+       (closed)="closeChat()"
 >
   <header class="chat__header" cdkDragHandle>
     <h2>Общий чат</h2>
     <button
       class="chat__close"
       type="button"
-      (click)="onCloseChat()"
+      (click)="closeChat()"
       matIconButton>
       <mat-icon>close</mat-icon>
     </button>

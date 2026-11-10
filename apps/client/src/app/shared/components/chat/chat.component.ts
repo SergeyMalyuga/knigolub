@@ -4,6 +4,7 @@ import {MatIconButton} from '@angular/material/button';
 import {MatIcon} from '@angular/material/icon';
 import {ChatService} from '../../../core/services/chat.service';
 import {ChatDragConstraintDirective} from '../../directives/chat-drag-constraint.directive';
+import {CloseOnEscapeDirective} from '../../directives/close-on-escape.directive';
 
 @Component({
   selector: 'app-chat',
@@ -12,7 +13,8 @@ import {ChatDragConstraintDirective} from '../../directives/chat-drag-constraint
     MatIconButton,
     MatIcon,
     CdkDragHandle,
-    ChatDragConstraintDirective
+    ChatDragConstraintDirective,
+    CloseOnEscapeDirective
   ],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.scss',
@@ -21,7 +23,7 @@ import {ChatDragConstraintDirective} from '../../directives/chat-drag-constraint
 export class ChatComponent {
   private chatService = inject(ChatService);
 
-  public onCloseChat(): void {
+  public closeChat(): void {
     this.chatService.closeChat();
   }
 }
