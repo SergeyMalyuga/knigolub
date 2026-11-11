@@ -18,6 +18,7 @@ export const REVIEW_CARDS_MOCK: ReviewCard[] = [
       avatarUrl: DEFAULT_AVATAR_URL,
       registrationAt: new Date(),
       reviews: 34,
+      isOnline: false
     },
   },
   {
@@ -35,6 +36,7 @@ export const REVIEW_CARDS_MOCK: ReviewCard[] = [
       avatarUrl: DEFAULT_AVATAR_URL,
       registrationAt: new Date(),
       reviews: 71,
+      isOnline: false
     },
   },
   {
@@ -52,6 +54,7 @@ export const REVIEW_CARDS_MOCK: ReviewCard[] = [
       avatarUrl: DEFAULT_AVATAR_URL,
       registrationAt: new Date(),
       reviews: 52,
+      isOnline: false
     },
   },
 ];

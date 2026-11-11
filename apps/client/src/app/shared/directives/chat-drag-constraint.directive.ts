@@ -1,6 +1,7 @@
-import { Directive, DOCUMENT, inject, Input, OnInit, PLATFORM_ID } from '@angular/core';
-import { CdkDrag, CdkDragEnd } from '@angular/cdk/drag-drop';
-import { isPlatformBrowser } from '@angular/common';
+import {DestroyRef, Directive, DOCUMENT, inject, Input, OnInit, PLATFORM_ID} from '@angular/core';
+import {CdkDrag, CdkDragEnd} from '@angular/cdk/drag-drop';
+import {isPlatformBrowser} from '@angular/common';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 
 @Directive({
   selector: '[appChatDragConstraint]',
@@ -11,6 +12,7 @@ export class ChatDragConstraintDirective implements OnInit {
   @Input() minHeightVisible = 750;
 
   private isBrowser = false;
+  private destroyRef = inject(DestroyRef);
   private readonly dragRef = inject(CdkDrag, { host: true });
 
   private document = inject(DOCUMENT);
@@ -21,7 +23,8 @@ export class ChatDragConstraintDirective implements OnInit {
     this.isBrowser = isPlatformBrowser(this.platformId);
 
     if (this.isBrowser) {
-      this.dragRef.ended.subscribe((event: CdkDragEnd) => {
+      this.dragRef.ended.pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe((event: CdkDragEnd) => {
         this.clampPosition(event);
       });
     }
@@ -42,6 +45,8 @@ export class ChatDragConstraintDirective implements OnInit {
 
     const clampedX = Math.max(minX, Math.min(maxX, pos.x));
     const clampedY = Math.max(minY, Math.min(maxY, pos.y));
+
+    console.log(clampedX, clampedY);
 
     if (pos.x !== clampedX || pos.y !== clampedY) {
       event.source.setFreeDragPosition({ x: clampedX, y: clampedY });
