@@ -8,7 +8,7 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class ChatDragConstraintDirective implements OnInit {
   @Input() minWidthVisible = 955;
-  @Input() minHeightVisible = 110;
+  @Input() minHeightVisible = 750;
 
   private isBrowser = false;
   private readonly dragRef = inject(CdkDrag, { host: true });
