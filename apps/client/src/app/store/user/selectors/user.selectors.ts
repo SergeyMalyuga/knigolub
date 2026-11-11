@@ -1,6 +1,6 @@
-import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { AppState } from '../../../core/models/app.state';
-import { UserEdit } from '../../../core/models/user-edit.model';
+import {createFeatureSelector, createSelector} from '@ngrx/store';
+import {AppState} from '../../../core/models/app.state';
+import {UserEdit} from '../../../core/models/user-edit.model';
 
 const selectUserState = createFeatureSelector<AppState['user']>('user');
 
@@ -38,3 +38,12 @@ export const selectUserPersonalInfo = createSelector(selectUserState, (state): U
     bio: state.user?.bio ?? '',
   };
 });
+
+export const selectChatUser = createSelector(
+  selectUserState,
+  state => ({
+    username: state.user?.username,
+    avatarUrl: state.user?.avatarUrl,
+    isOnline: state.user?.isOnline ?? false,
+  })
+);
