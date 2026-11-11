@@ -8,5 +8,6 @@ export interface User {
   birthday: Date | null;
   avatarUrl: string | null;
   registrationAt: Date;
+  isOnline: boolean;
   reviews?: number; //TODO убрать из модели
 }
