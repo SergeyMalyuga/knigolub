@@ -17,10 +17,144 @@
       )
     );
   }
-}
+
+  .chat__status {
+    ::ng-deep {
+      .mat-mdc-form-field-infix {
+        max-height: 40px;
+        min-height: min-content;
+        padding: 10px;
+      }
+
+      // Цвет текста label
+      .mdc-floating-label {
+        color: variables.$warm-cream;
+        font-family: variables.$font-family-primary;
+      }
+
+      // Цвет текста label hover
+      .mdc-text-field--outlined:not(.mdc-text-field--disabled, .mdc-text-field--focused):hover .mdc-floating-label {
+        color: #7BC4A8;
+      }
+
+      .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-floating-label {
+        color: #7BC4A8;
+      }
+
+      .mdc-text-field--outlined {
+        background-color: #4A1F1F;
+        border-radius: 4px;
+
+        // Рамка при hover
+        &:hover {
+          .mdc-notched-outline__leading,
+          .mdc-notched-outline__notch,
+          .mdc-notched-outline__trailing {
+            border-color: #7B9E90;
+          }
+        }
+
+        // Рамка outline
+        .mdc-notched-outline__leading,
+        .mdc-notched-outline__notch,
+        .mdc-notched-outline__trailing {
+          border-color: #3D594E;
+        }
+
+        // Рамка при фокусе
+        &.mdc-text-field--focused {
+          .mdc-notched-outline__leading,
+          .mdc-notched-outline__notch,
+          .mdc-notched-outline__trailing {
+            border-color: #A3D1BF;
+            border-width: 2px;
+          }
+        }
+
+        .mat-mdc-select-arrow {
+          svg {
+            fill: #7BC4A8;
+          }
+        }
+      }
+
+      .mat-mdc-select {
+        color: #7BC4A8;
+      }
+    }
+  }
+
+  .chat__status--online {
+      ::ng-deep {
+        .mat-mdc-form-field-infix {
+          max-height: 40px;
+          min-height: min-content;
+          padding: 10px;
+        }
+
+        // Цвет текста label
+        .mdc-floating-label {
+          color: variables.$warm-cream;
+          font-family: variables.$font-family-primary;
+        }
+
+        // Цвет текста label hover
+        .mdc-text-field--outlined:not(.mdc-text-field--disabled, .mdc-text-field--focused):hover .mdc-floating-label {
+          color: #7BC4A8;
+        }
+
+        .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-floating-label {
+          color: #7BC4A8;
+        }
+
+        .mdc-text-field--outlined {
+          background-color: #2D4A3E;
+          border-radius: 4px;
+
+          // Рамка при hover
+          &:hover {
+            .mdc-notched-outline__leading,
+            .mdc-notched-outline__notch,
+            .mdc-notched-outline__trailing {
+              border-color: #7B9E90;
+            }
+          }
+
+          // Рамка outline
+          .mdc-notched-outline__leading,
+          .mdc-notched-outline__notch,
+          .mdc-notched-outline__trailing {
+            border-color: #3D594E;
+          }
+
+          // Рамка при фокусе
+          &.mdc-text-field--focused {
+            .mdc-notched-outline__leading,
+            .mdc-notched-outline__notch,
+            .mdc-notched-outline__trailing {
+              border-color: #A3D1BF;
+              border-width: 2px;
+            }
+          }
+
+          .mat-mdc-select-arrow {
+            svg {
+              fill: #7BC4A8;
+            }
+          }
+        }
+
+        .mat-mdc-select {
+          color: #7BC4A8;
+        }
+      }
+    }
+  }
+
 
 .chat {
   width: 100%;
+  pointer-events: auto;
 
   &__header {
     display: flex;
@@ -33,6 +167,8 @@
     color: variables.$warm-cream;
     backdrop-filter: blur(10px);
     padding: rem(10) rem(15);
+    font-family: variables.$font-family-accent;
+    letter-spacing: 0.1em;
   }
 
   &__content {
@@ -44,5 +180,51 @@
     box-shadow: 0 16px 38px color.scale(variables.$black, $alpha: -55%);
     backdrop-filter: blur(10px);
     color: variables.$english-cream;
+  }
+
+  &__avatar {
+    position: relative;
+    width: 120px;
+    height: 120px;
+
+
+    img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 32px;
+      height: 32px;
+      background-image: url("/assets/images/vector/offline.svg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+
+    &--online {
+      &::before {
+        background-image: url("/assets/images/vector/online.svg");
+      }
+    }
+  }
+
+  &__user-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__status {
+    width: 160px;
   }
 }
