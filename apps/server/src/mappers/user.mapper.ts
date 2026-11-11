@@ -12,5 +12,6 @@ export function mapPrismaUserToUser(user: PrismaUser): User {
     lastName: user.lastName,
     bio: user.bio,
     birthday: user.birthday,
+    isOnline: user.isOnline,
   };
 }
