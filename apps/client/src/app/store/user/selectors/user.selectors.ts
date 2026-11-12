@@ -1,6 +1,7 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store';
 import {AppState} from '../../../core/models/app.state';
 import {UserEdit} from '../../../core/models/user-edit.model';
+import {CHAT_STATUS_CONFIG} from '@knigolub/shared';
 
 const selectUserState = createFeatureSelector<AppState['user']>('user');
 
@@ -44,6 +45,6 @@ export const selectChatUser = createSelector(
   state => ({
     username: state.user?.username,
     avatarUrl: state.user?.avatarUrl,
-    isOnline: state.user?.isOnline ?? false,
+    chatStatus: state.user?.chatStatus ?? CHAT_STATUS_CONFIG.OFFLINE,
   })
 );
