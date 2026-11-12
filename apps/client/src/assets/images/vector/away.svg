@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="64" height="64">
+  <!-- Фон круга -->
+<circle cx="50" cy="50" r="46" fill="#E8B87B" stroke="#f5ede3" stroke-width="2.5" />
+
+  <!-- Верхняя дуга -->
+<path d="M 25 38 Q 50 25 75 38" fill="none" stroke="#5C402A" stroke-width="2.5" stroke-linecap="round" />
+
+<!-- Текст -->
+<text x="50" y="58" text-anchor="middle" font-family="'Comic Sans MS', 'Marker Felt', cursive" font-size="22" fill="#5C402A" font-weight="bold">away</text>
+
+  <!-- Нижняя дуга (улыбка) -->
+  <path d="M 25 70 Q 50 82 75 70" fill="none" stroke="#5C402A" stroke-width="2.5" stroke-linecap="round" />
+  </svg>
