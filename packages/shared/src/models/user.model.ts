@@ -1,3 +1,5 @@
+import {ChatStatus} from "../types/chat-status.type";
+
 export interface User {
   id: string;
   email: string;
@@ -8,6 +10,6 @@ export interface User {
   birthday: Date | null;
   avatarUrl: string | null;
   registrationAt: Date;
-  isOnline: boolean;
+  chatStatus: ChatStatus;
   reviews?: number; //TODO убрать из модели
 }
