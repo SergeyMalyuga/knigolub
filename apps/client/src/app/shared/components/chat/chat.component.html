@@ -8,19 +8,36 @@
   <div class="chat__content">
     <div class="chat__sidebar">
       <div class="chat__user-info">
-        <div class="chat__avatar">
+        <div class="chat__avatar"
+        [ngClass]="{
+        'chat__avatar': true,
+        'chat__avatar--online': chatStatus() === CHAT_STATUS_CONFIG.ONLINE.value,
+        'chat__avatar--away': chatStatus() === CHAT_STATUS_CONFIG.AWAY.value,
+        }"
+        >
           <img [src]=user().avatarUrl width="100" height="100" alt="Аватар {{user().username}}" loading="lazy">
         </div>
         <span>{{ user().username }}</span>
 
-        <mat-form-field class="chat__status chat__status--online" appearance="outline">
-          <mat-label>Статус</mat-label>
-          <mat-select [value]=CHAT_STATUS_CONFIG.OFFLINE.value>
+        <mat-form-field class="chat__status chat__status--offline"
+                        [ngClass]="{
+                        'chat__status': true,
+                        'chat__status--offline': chatStatus() === CHAT_STATUS_CONFIG.OFFLINE.value,
+                        'chat__status--online': chatStatus() === CHAT_STATUS_CONFIG.ONLINE.value,
+                        'chat__status--away': chatStatus() === CHAT_STATUS_CONFIG.AWAY.value,
+                        }"
+                        appearance="outline">
+          <mat-label class="visually-hidden">Статус</mat-label>
+          <mat-select [value]="CHAT_STATUS_CONFIG.OFFLINE.value"
+                      (selectionChange)="selectChatStatus($event.value)">
             <mat-option value="{{CHAT_STATUS_CONFIG.OFFLINE.value}}">
               {{ CHAT_STATUS_CONFIG.OFFLINE.label }}
             </mat-option>
             <mat-option value="{{CHAT_STATUS_CONFIG.ONLINE.value}}">
               {{ CHAT_STATUS_CONFIG.ONLINE.label }}
+            </mat-option>
+            <mat-option value="{{CHAT_STATUS_CONFIG.AWAY.value}}">
+              {{ CHAT_STATUS_CONFIG.AWAY.label }}
             </mat-option>
           </mat-select>
         </mat-form-field>

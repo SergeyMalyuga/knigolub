@@ -20,10 +20,60 @@
 
   .chat__status {
     ::ng-deep {
+      .mat-mdc-select {
+        font-family: variables.$font-family-primary;
+        font-size: rem(14);
+      }
+
+      .mat-mdc-text-field-wrapper {
+        padding: 0 rem(10);
+        transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+
+        &:hover {
+          box-shadow: 0 0 15px 3px #f5ede3, 0 0 15px 5px #3C2D1E;
+        }
+
+        &:focus-within {
+          box-shadow: 0 0 15px 3px #f5ede3, 0 0 15px 5px #3C2D1E;
+        }
+      }
+
       .mat-mdc-form-field-infix {
         max-height: 40px;
         min-height: min-content;
-        padding: 10px;
+        padding: rem(5);
+      }
+
+      .mat-mdc-option .mdc-list-item__primary-text {
+        font-family: variables.$font-family-primary;
+        color: variables.$coffee-bean;
+      }
+
+      .mat-pseudo-checkbox-minimal.mat-pseudo-checkbox-checked::after,
+      .mat-pseudo-checkbox-minimal.mat-pseudo-checkbox-indeterminate::after {
+        color: variables.$coffee-bean;
+      }
+
+      div.mat-mdc-select-panel {
+        background-color: variables.$linen;
+      }
+    }
+  }
+
+  // Статус офлайн
+  .chat__status--offline {
+    ::ng-deep {
+      .mat-mdc-text-field-wrapper {
+        border: 1px solid #B85A5A;
+
+        &:hover {
+          border-color: #8F3B3B;
+        }
+
+        &:focus-within {
+          outline: 2px solid #4A2525;
+          outline-offset: -1px;
+        }
       }
 
       // Цвет текста label
@@ -42,33 +92,69 @@
       }
 
       .mdc-text-field--outlined {
-        background-color: #4A1F1F;
+        background-color: #D97B7B;
         border-radius: 4px;
-
-        // Рамка при hover
-        &:hover {
-          .mdc-notched-outline__leading,
-          .mdc-notched-outline__notch,
-          .mdc-notched-outline__trailing {
-            border-color: #7B9E90;
-          }
-        }
 
         // Рамка outline
         .mdc-notched-outline__leading,
         .mdc-notched-outline__notch,
         .mdc-notched-outline__trailing {
-          border-color: #3D594E;
+          border: none;
         }
 
-        // Рамка при фокусе
-        &.mdc-text-field--focused {
-          .mdc-notched-outline__leading,
-          .mdc-notched-outline__notch,
-          .mdc-notched-outline__trailing {
-            border-color: #A3D1BF;
-            border-width: 2px;
+        .mat-mdc-select-arrow {
+          svg {
+            fill: #4A2525;
           }
+        }
+      }
+
+      .mat-mdc-select {
+        color: #4A2525;
+      }
+    }
+  }
+
+  // Статус онлайн
+  .chat__status--online {
+    ::ng-deep {
+      .mat-mdc-text-field-wrapper {
+        border: 1px solid #3D594E;
+
+        &:hover {
+          border-color: #7B9E90;
+        }
+
+        &:focus-within {
+          outline: 2px solid #7B9E90;
+          outline-offset: -1px;
+        }
+      }
+
+      // Цвет текста label
+      .mdc-floating-label {
+        color: variables.$warm-cream;
+        font-family: variables.$font-family-primary;
+      }
+
+      // Цвет текста label hover
+      .mdc-text-field--outlined:not(.mdc-text-field--disabled, .mdc-text-field--focused):hover .mdc-floating-label {
+        color: #7BC4A8;
+      }
+
+      .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-floating-label {
+        color: #7BC4A8;
+      }
+
+      .mdc-text-field--outlined {
+        background-color: #2D4A3E;
+        border-radius: 4px;
+
+        // Рамка outline
+        .mdc-notched-outline__leading,
+        .mdc-notched-outline__notch,
+        .mdc-notched-outline__trailing {
+          border: none;
         }
 
         .mat-mdc-select-arrow {
@@ -84,72 +170,61 @@
     }
   }
 
-  .chat__status--online {
-      ::ng-deep {
-        .mat-mdc-form-field-infix {
-          max-height: 40px;
-          min-height: min-content;
-          padding: 10px;
+  // Статус отошёл
+  .chat__status--away {
+    ::ng-deep {
+      .mat-mdc-text-field-wrapper {
+        border: 1px solid #f5ede3;
+
+        &:hover {
+          border-color: #8C6423;
         }
 
-        // Цвет текста label
-        .mdc-floating-label {
-          color: variables.$warm-cream;
-          font-family: variables.$font-family-primary;
+        &:focus-within {
+          outline: 2px solid #8C6423;
+          outline-offset: -1px;
+        }
+      }
+
+      // Цвет текста label
+      .mdc-floating-label {
+        color: variables.$warm-cream;
+        font-family: variables.$font-family-primary;
+      }
+
+      // Цвет текста label hover
+      .mdc-text-field--outlined:not(.mdc-text-field--disabled, .mdc-text-field--focused):hover .mdc-floating-label {
+        color: #7BC4A8;
+      }
+
+      .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-floating-label {
+        color: #7BC4A8;
+      }
+
+      .mdc-text-field--outlined {
+        background-color: #E8B87B;
+        border-radius: 4px;
+
+        // Рамка outline
+        .mdc-notched-outline__leading,
+        .mdc-notched-outline__notch,
+        .mdc-notched-outline__trailing {
+          border: none;
         }
 
-        // Цвет текста label hover
-        .mdc-text-field--outlined:not(.mdc-text-field--disabled, .mdc-text-field--focused):hover .mdc-floating-label {
-          color: #7BC4A8;
-        }
-
-        .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-floating-label {
-          color: #7BC4A8;
-        }
-
-        .mdc-text-field--outlined {
-          background-color: #2D4A3E;
-          border-radius: 4px;
-
-          // Рамка при hover
-          &:hover {
-            .mdc-notched-outline__leading,
-            .mdc-notched-outline__notch,
-            .mdc-notched-outline__trailing {
-              border-color: #7B9E90;
-            }
-          }
-
-          // Рамка outline
-          .mdc-notched-outline__leading,
-          .mdc-notched-outline__notch,
-          .mdc-notched-outline__trailing {
-            border-color: #3D594E;
-          }
-
-          // Рамка при фокусе
-          &.mdc-text-field--focused {
-            .mdc-notched-outline__leading,
-            .mdc-notched-outline__notch,
-            .mdc-notched-outline__trailing {
-              border-color: #A3D1BF;
-              border-width: 2px;
-            }
-          }
-
-          .mat-mdc-select-arrow {
-            svg {
-              fill: #7BC4A8;
-            }
+        .mat-mdc-select-arrow {
+          svg {
+            fill: #5C402A;
           }
         }
+      }
 
-        .mat-mdc-select {
-          color: #7BC4A8;
-        }
+      .mat-mdc-select {
+        color: #5C402A;
       }
     }
   }
+}
 
 
 .chat {
@@ -172,6 +247,8 @@
   }
 
   &__content {
+    display: grid;
+    grid-template-columns: 240px 1fr;
     width: 100%;
     height: 650px;
     border-bottom-left-radius: 20px;
@@ -180,6 +257,18 @@
     box-shadow: 0 16px 38px color.scale(variables.$black, $alpha: -55%);
     backdrop-filter: blur(10px);
     color: variables.$english-cream;
+    padding: rem(16);
+  }
+
+  &__sidebar {
+    padding:  rem(8) rem(8) 0;
+  }
+
+  &__user-info {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    align-items: center;
   }
 
   &__avatar {
@@ -217,14 +306,15 @@
         background-image: url("/assets/images/vector/online.svg");
       }
     }
-  }
 
-  &__user-info {
-    display: flex;
-    flex-direction: column;
+    &--away {
+      &::before {
+        background-image: url("/assets/images/vector/away.svg");
+      }
+    }
   }
 
   &__status {
-    width: 160px;
+    width: 140px;
   }
 }

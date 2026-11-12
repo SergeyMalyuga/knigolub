@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, signal} from '@angular/core';
 import {CdkDrag, CdkDragHandle} from '@angular/cdk/drag-drop';
 import {MatIconButton} from '@angular/material/button';
 import {MatIcon} from '@angular/material/icon';
@@ -11,6 +11,8 @@ import {selectChatUser} from '../../../store/user/selectors/user.selectors';
 import {MatFormField, MatLabel} from '@angular/material/input';
 import {MatOption, MatSelect} from '@angular/material/select';
 import {CHAT_STATUS_CONFIG} from './constants/const';
+import {ChatStatus} from './types/chat-status.type';
+import {NgClass} from '@angular/common';
 
 @Component({
   selector: 'app-chat',
@@ -25,6 +27,7 @@ import {CHAT_STATUS_CONFIG} from './constants/const';
     MatLabel,
     MatSelect,
     MatOption,
+    NgClass,
   ],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.scss',
@@ -34,11 +37,16 @@ export class ChatComponent {
   private store = inject(Store<AppState>);
   private chatService = inject(ChatService);
 
+  protected readonly CHAT_STATUS_CONFIG = CHAT_STATUS_CONFIG;
+
   public user = this.store.selectSignal(selectChatUser);
+  public chatStatus = signal<ChatStatus>(CHAT_STATUS_CONFIG.OFFLINE.value)
 
   public closeChat(): void {
     this.chatService.closeChat();
   }
 
-  protected readonly CHAT_STATUS_CONFIG = CHAT_STATUS_CONFIG;
+  public selectChatStatus(status: ChatStatus): void {
+    this.chatStatus.set(status);
+  }
 }
