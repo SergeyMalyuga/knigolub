@@ -53,7 +53,7 @@ export function errorHandler(
   }
 
   // 2. Обработка кастомных бизнес-ошибок
-  if (err instanceof NotFoundError || ForbiddenError || ValidationError) {
+  if (err instanceof NotFoundError || err instanceof ForbiddenError || err instanceof ValidationError) {
     const errorResponse: ErrorResponse = { message: err.message };
     return res.status(err.statusCode).json(errorResponse);
   }

@@ -10,9 +10,8 @@ import {AppState} from '../../../core/models/app.state';
 import {selectChatUser} from '../../../store/user/selectors/user.selectors';
 import {MatFormField, MatLabel} from '@angular/material/input';
 import {MatOption, MatSelect} from '@angular/material/select';
-import {CHAT_STATUS_CONFIG} from './constants/const';
-import {ChatStatus} from './types/chat-status.type';
 import {NgClass} from '@angular/common';
+import {CHAT_STATUS_CONFIG, ChatStatus} from '@knigolub/shared';
 
 @Component({
   selector: 'app-chat',
