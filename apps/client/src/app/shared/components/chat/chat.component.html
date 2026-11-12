@@ -9,7 +9,7 @@
     <div class="chat__sidebar">
       <div class="chat__user-info">
         <div class="chat__avatar"
-        [ngClass]="{
+             [ngClass]="{
         'chat__avatar': true,
         'chat__avatar--online': chatStatus() === CHAT_STATUS_CONFIG.ONLINE.value,
         'chat__avatar--away': chatStatus() === CHAT_STATUS_CONFIG.AWAY.value,
@@ -42,6 +42,14 @@
           </mat-select>
         </mat-form-field>
 
+      </div>
+      <div class="chat__members-wrapper">
+        <div class="chat__members-header" aria-live="polite" aria-atomic="true">
+          <h3 class="chat__members-title">Онлайн</h3>
+          <span class="chat__members-count">0</span>
+        </div>
+        <ul class="chat__members" aria-label="Онлайн участники">
+        </ul>
       </div>
     </div>
     <div class="chat__main"></div>
