@@ -46,8 +46,6 @@ export class ChatDragConstraintDirective implements OnInit {
     const clampedX = Math.max(minX, Math.min(maxX, pos.x));
     const clampedY = Math.max(minY, Math.min(maxY, pos.y));
 
-    console.log(clampedX, clampedY);
-
     if (pos.x !== clampedX || pos.y !== clampedY) {
       event.source.setFreeDragPosition({ x: clampedX, y: clampedY });
     }
