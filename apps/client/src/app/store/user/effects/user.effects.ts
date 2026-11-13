@@ -1,15 +1,16 @@
-import { inject, Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { UserService } from '../../../core/services/user.service';
+import {inject, Injectable} from '@angular/core';
+import {Actions, createEffect, ofType} from '@ngrx/effects';
+import {UserService} from '../../../core/services/user.service';
 import * as UserActions from '../actions/user.actions';
-import { catchError, concatMap, exhaustMap, map, of, switchMap, tap } from 'rxjs';
-import { HttpErrorResponse } from '@angular/common/http';
-import { AuthService } from '../../../core/services/auth.service';
-import { Router } from '@angular/router';
-import { AppRoute, DEFAULT_PAGE } from '../../../core/constants/const';
-import { loadFavoriteBooks } from '../../favorite/actions/favorite-book.actions';
-import { loadBooks } from '../../book/actions/book.actions';
-import { loadUserClubReview } from '../../club-review/actions/club-review.actions';
+import {catchError, concatMap, exhaustMap, map, of, switchMap, tap} from 'rxjs';
+import {HttpErrorResponse} from '@angular/common/http';
+import {AuthService} from '../../../core/services/auth.service';
+import {Router} from '@angular/router';
+import {AppRoute, DEFAULT_PAGE} from '../../../core/constants/const';
+import {loadFavoriteBooks} from '../../favorite/actions/favorite-book.actions';
+import {loadBooks} from '../../book/actions/book.actions';
+import {loadUserClubReview} from '../../club-review/actions/club-review.actions';
+import {normalizeError} from '../../../core/utils/error.utils';
 
 @Injectable({
   providedIn: 'root',
@@ -23,12 +24,12 @@ export class UserEffects {
   public registerUser$ = createEffect(() =>
     this.actions$.pipe(
       ofType(UserActions.registerUser),
-      exhaustMap(({ newUser }) =>
+      exhaustMap(({newUser}) =>
         this.userService.registerUser(newUser).pipe(
           tap((userDto) => this.authService.setToken(userDto.token)),
-          map((userDto) => UserActions.registerUserSuccess({ userDto })),
+          map((userDto) => UserActions.registerUserSuccess({userDto})),
           catchError((error: HttpErrorResponse) =>
-            of(UserActions.registerUserFailure({ error: error.error })),
+            of(UserActions.registerUserFailure({error: normalizeError(error.error)})),
           ),
         ),
       ),
@@ -38,12 +39,12 @@ export class UserEffects {
   public login$ = createEffect(() =>
     this.actions$.pipe(
       ofType(UserActions.login),
-      switchMap(({ credential }) =>
+      switchMap(({credential}) =>
         this.userService.login(credential).pipe(
           tap((userDto) => this.authService.setToken(userDto.token)),
-          map((userDto) => UserActions.loginSuccess({ userDto })),
+          map((userDto) => UserActions.loginSuccess({userDto})),
           catchError((error: HttpErrorResponse) =>
-            of(UserActions.loginFailure({ error: error.error })),
+            of(UserActions.loginFailure({error: normalizeError(error.error)})),
           ),
         ),
       ),
@@ -54,7 +55,7 @@ export class UserEffects {
     this.actions$.pipe(
       ofType(UserActions.loginSuccess),
       concatMap(() => [
-        loadBooks({ page: DEFAULT_PAGE }),
+        loadBooks({page: DEFAULT_PAGE}),
         loadFavoriteBooks(),
         loadUserClubReview(),
       ]),
@@ -68,9 +69,9 @@ export class UserEffects {
         const token = this.authService.getToken();
         if (token) {
           return this.userService.getCurrentUser().pipe(
-            map((user) => UserActions.checkAuthSuccess({ user })),
+            map((user) => UserActions.checkAuthSuccess({user})),
             catchError((error: HttpErrorResponse) =>
-              of(UserActions.checkAuthFailure({ error: error.error })),
+              of(UserActions.checkAuthFailure({error: normalizeError(error.error)})),
             ),
           );
         }
@@ -95,19 +96,19 @@ export class UserEffects {
           this.router.navigate([AppRoute.LOGIN]);
         }),
       ),
-    { dispatch: false },
+    {dispatch: false},
   );
 
   public uploadUserAvatar$ = createEffect(() =>
     this.actions$.pipe(
       ofType(UserActions.uploadUserAvatar),
-      switchMap(({ file }) => {
+      switchMap(({file}) => {
         const formData = new FormData();
         formData.append('avatarUrl', file);
         return this.userService.updateAvatar(formData).pipe(
-          map((response) => UserActions.uploadUserAvatarSuccess({ response })),
+          map((response) => UserActions.uploadUserAvatarSuccess({response})),
           catchError((error: HttpErrorResponse) =>
-            of(UserActions.uploadUserAvatarFailure({ error: error.error })),
+            of(UserActions.uploadUserAvatarFailure({error: normalizeError(error.error)})),
           ),
         );
       }),
@@ -117,14 +118,23 @@ export class UserEffects {
   public updateUser$ = createEffect(() =>
     this.actions$.pipe(
       ofType(UserActions.updateUser),
-      switchMap(({ updateUserDto }) =>
+      switchMap(({updateUserDto}) =>
         this.userService.updateUser(updateUserDto).pipe(
-          map((user) => UserActions.updateUserSuccess({ user })),
+          map((user) => UserActions.updateUserSuccess({user})),
           catchError((error: HttpErrorResponse) =>
-            of(UserActions.updateUserFailure({ error: error.error })),
+            of(UserActions.updateUserFailure({error: normalizeError(error.error)})),
           ),
         ),
       ),
     ),
   );
+
+  public updateUserChatStatus$ = createEffect(() =>
+    this.actions$.pipe(ofType(UserActions.updateUserChatStatus),
+      exhaustMap(({chatStatus}) =>
+        this.userService.updateChatStatus(chatStatus)
+          .pipe(
+            map(response => UserActions.updateUserChatStatusSuccess({response})),
+            catchError((error: HttpErrorResponse) =>
+              of(UserActions.updateUserChatStatusFailure({error: normalizeError(error.error)})))))));
 }
