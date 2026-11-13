@@ -16,4 +16,5 @@ export * from "./models/avatar-response.model.js";
 export * from "./schemas/user.schema.js";
 export * from "./models/club-review.model.js";
 export * from "./types/chat-status.type.js";
+export * from "./types/chat-status-response.type.js";
 export * from "./utils/user.utils.js";
