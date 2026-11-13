@@ -28,7 +28,7 @@
                         }"
                         appearance="outline">
           <mat-label class="visually-hidden">Статус</mat-label>
-          <mat-select [value]="CHAT_STATUS_CONFIG.OFFLINE.value"
+          <mat-select [value]="chatStatus()"
                       (selectionChange)="selectChatStatus($event.value)">
             <mat-option value="{{CHAT_STATUS_CONFIG.OFFLINE.value}}">
               {{ CHAT_STATUS_CONFIG.OFFLINE.label }}

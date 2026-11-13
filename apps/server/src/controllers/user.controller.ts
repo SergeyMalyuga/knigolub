@@ -1,14 +1,9 @@
 import type {NextFunction, Request, Response} from "express";
-import {
-    type ErrorResponse,
-    type UpdateUser,
-    updateUserSchema,
-} from "@knigolub/shared";
+import {type ErrorResponse, type UpdateUser, updateUserSchema,} from "@knigolub/shared";
 import {UserService} from "../services/user.service";
 import {AuthError} from "../errors/auth.error";
 import {NotFoundError} from "../errors/not-found.error";
 import {updateChatStatus} from "../schemas/user.schema";
-import {ValidationError} from "../errors/validation.error";
 import type {AuthRequest} from "../types/auth-request.type";
 
 export class UserController {
@@ -192,7 +187,7 @@ export class UserController {
             const parsed = updateChatStatus.safeParse(req.body);
 
             if (!parsed.success) {
-                throw new ValidationError("Неверные параметры обновления статуса чата");
+               return next(parsed.error);
             }
 
             const {chatStatus} = parsed.data;
