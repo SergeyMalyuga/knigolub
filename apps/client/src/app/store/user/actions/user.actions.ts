@@ -1,13 +1,13 @@
-import { createAction, props } from '@ngrx/store';
+import {createAction, props} from '@ngrx/store';
 import {
-  AvatarResponse,
+  AvatarResponse, ChatStatus, ChatStatusResponse,
   Credential,
   ErrorResponse,
   NewUser,
   User,
   UserDto,
 } from '@knigolub/shared';
-import { updateUserDto } from '../../../core/models/update-user.dto';
+import {updateUserDto} from '../../../core/models/update-user.dto';
 
 export const registerUser = createAction(
   '[Auth Component] Register User',
@@ -67,3 +67,13 @@ export const updateUserFailure = createAction(
   '[User Effects] Update User Failure',
   props<{ error: ErrorResponse }>(),
 );
+
+export const updateUserChatStatus = createAction(
+  '[Chat Component] Update User ChatStatus', props<{ chatStatus: ChatStatus }>());
+export const updateUserChatStatusSuccess = createAction(
+  '[User Effects] Update User ChatStatus Success', props<{ response: ChatStatusResponse }>());
+export const updateUserChatStatusFailure = createAction(
+  '[User Effects] Update User ChatStatus Failure', props<{ error: ErrorResponse }>());
+
+export const resetUserUpdateStatus = createAction(
+  '[User] Reset User Update Status');
