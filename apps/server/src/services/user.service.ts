@@ -1,11 +1,11 @@
 import {
-  type AvatarResponse,
-  type Credential,
-  type NewUser,
-  type UpdateUser,
-  type User,
-  type UserDto,
-  UserErrorField,
+    type AvatarResponse, type ChatStatusResponse,
+    type Credential,
+    type NewUser,
+    type UpdateUser,
+    type User,
+    type UserDto,
+    UserErrorField,
 } from "@knigolub/shared";
 import type {User as PrismaUser} from "../../generated/prisma/client";
 import {prisma} from "../../lib/prisma";
@@ -199,8 +199,8 @@ export class UserService {
    * @param input.chatStatus - Статус для обновления.
    * @returns ID пользователя и обновлённый статус.
    */
-  public async updateChatStatus(input: UpdateChatStatus) {
-      return await prisma.user.update({
+  public async updateChatStatus(input: UpdateChatStatus): Promise<ChatStatusResponse> {
+      const user = await prisma.user.update({
           where: {id: input.userId},
           data: {chatStatus: input.chatStatus},
           select: {
@@ -208,6 +208,11 @@ export class UserService {
             chatStatus: true,
           }
         });
+
+      return {
+          userId: user.id,
+          chatStatus: input.chatStatus,
+      }
     }
 }
 
