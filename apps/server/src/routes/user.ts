@@ -29,7 +29,7 @@ router.patch("/profile", async (req, res, next) =>
 );
 
 router.patch("/me/chat-status", requireAuth,
-    authHandler(async (req, res, next) =>
+    authHandler((req, res, next) =>
         userController.updateChatStatus(req, res, next)));
 
 export default router;
