@@ -13,6 +13,7 @@ export enum APIRoute {
   USER_REGISTER = 'users/register',
   USER_LOGIN = 'users/login',
   USER_AVATAR = 'users/avatar',
+  USER_CHAT_STATUS = 'users/me/chat-status',
   PROFILE = 'users/profile',
   FAVORITES_TOGGLE = 'favorites/toggle',
   FAVORITES = 'favorites',

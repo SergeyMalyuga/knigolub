@@ -192,7 +192,7 @@ export class UserController {
             const parsed = updateChatStatus.safeParse(req.body);
 
             if (!parsed.success) {
-                throw new ValidationError("Неверные параметры обновления статуса чата   ");
+                throw new ValidationError("Неверные параметры обновления статуса чата");
             }
 
             const {chatStatus} = parsed.data;

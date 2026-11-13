@@ -10,4 +10,3 @@ export const CHAT_STATUS_CONFIG = {
   AWAY:  { value: 'away',  label: 'Отошёл'  },
 } as const;
 
-export const CHAT_STATUS = typeof CHAT_STATUS_CONFIG;
