@@ -30,11 +30,11 @@
         transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 
         &:hover {
-          box-shadow: 0 0 15px 3px #f5ede3, 0 0 15px 5px #3C2D1E;
+          box-shadow: 0 0 15px 3px variables.$old-lace, 0 0 15px 5px variables.$deep-earth;
         }
 
         &:focus-within {
-          box-shadow: 0 0 15px 3px #f5ede3, 0 0 15px 5px #3C2D1E;
+          box-shadow: 0 0 15px 3px variables.$old-lace, 0 0 15px 5px variables.$deep-earth;
         }
       }
 
@@ -257,12 +257,12 @@
     box-shadow: 0 16px 38px color.scale(variables.$black, $alpha: -55%);
     backdrop-filter: blur(10px);
     color: variables.$english-cream;
-    padding: rem(16);
+    padding: rem(18);
   }
 
   &__sidebar {
-    padding:  rem(8) rem(8) 0;
-    border-right: 1px solid rgb(245 237 227 / 15%);
+    padding-right: rem(16);
+    border-right: 1px solid color.scale(variables.$old-lace, $alpha: -85%);
   }
 
   &__user-info {
@@ -322,5 +322,90 @@
   &__members-header {
     display: flex;
     justify-content: space-between;
+  }
+
+  &__members-count {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 24px;
+      background-image: url("/assets/images/vector/users.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    padding-left: rem(16);
+  }
+
+  &__messages {
+    flex-grow: 1;
+  }
+
+  &__message {
+    &-form {
+      border: 1px solid variables.$wheat;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+
+      &:hover {
+        border-color: variables.$caramel;
+        box-shadow: 0 0 15px 3px variables.$old-lace, 0 0 15px 5px variables.$deep-earth;
+      }
+
+      &:focus-within {
+        outline: 2px solid variables.$walnut-brown;
+        outline-offset: -1px;
+        box-shadow: 0 0 15px 3px variables.$old-lace, 0 0 15px 5px variables.$deep-earth;
+      }
+    }
+
+    &-wrapper {
+      display: flex;
+      justify-content: space-between;
+      background-color: variables.$linen;
+      padding: rem(8) rem(12);
+
+    }
+
+    &-input {
+      width: 100%;
+      border: none;
+      background-color: transparent;
+      font-family: variables.$font-family-primary;
+      font-size: rem(14);
+      color: variables.$coffee-bean;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    &-button {
+      padding: 0;
+      background-color: transparent;
+      border: none;
+      color: #e4c6a1;
+      cursor: pointer;
+      transition: color 0.5s ease;
+
+      &:hover {
+        color: variables.$desert-sand;
+      }
+
+      &:active {
+        color: variables.$warm-camel;
+      }
+    }
   }
 }
