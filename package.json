@@ -27,6 +27,7 @@
     "stylelint-config-standard-scss": "^17.0.0"
   },
   "dependencies": {
+    "@nicematic/emoji-picker": "^2.3.8",
     "zod": "^4.6.7"
   }
 }
