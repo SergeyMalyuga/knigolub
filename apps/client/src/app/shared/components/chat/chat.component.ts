@@ -16,6 +16,7 @@ import {resetUserUpdateStatus, updateUserChatStatus} from '../../../store/user/a
 import {filter} from 'rxjs';
 import {UpdateUserStatus} from '../../../core/constants/const';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
+import {EmojiComponent} from '../emoji-picker/emoji.component';
 
 @Component({
   selector: 'app-chat',
@@ -31,6 +32,7 @@ import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
     MatSelect,
     MatOption,
     NgClass,
+    EmojiComponent,
   ],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.scss',

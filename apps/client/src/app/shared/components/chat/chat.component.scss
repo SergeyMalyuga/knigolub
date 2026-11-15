@@ -353,6 +353,14 @@
 
   &__message {
     &-form {
+      position: relative;
+    }
+
+    &-wrapper {
+      display: flex;
+      justify-content: space-between;
+      background-color: variables.$linen;
+      padding: rem(8) rem(12);
       border: 1px solid variables.$wheat;
       border-radius: 15px;
       overflow: hidden;
@@ -368,13 +376,6 @@
         outline-offset: -1px;
         box-shadow: 0 0 15px 3px variables.$old-lace, 0 0 15px 5px variables.$deep-earth;
       }
-    }
-
-    &-wrapper {
-      display: flex;
-      justify-content: space-between;
-      background-color: variables.$linen;
-      padding: rem(8) rem(12);
 
     }
 
