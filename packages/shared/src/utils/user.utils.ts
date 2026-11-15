@@ -1,5 +1,5 @@
-import type {ChatStatus} from "../types/chat-status.type";
-import {CHAT_STATUS_CONFIG} from "../constants/const";
+import type {ChatStatus} from "../types/chat-status.type.js";
+import {CHAT_STATUS_CONFIG} from "../constants/const.js";
 
 export function isChatStatus(value: string): value is ChatStatus {
     return Object.values(CHAT_STATUS_CONFIG).some(status =>
