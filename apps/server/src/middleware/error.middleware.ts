@@ -4,7 +4,7 @@ import { type ErrorResponse, UserErrorField } from "@knigolub/shared";
 import { NotFoundError } from "../errors/not-found.error";
 import { ForbiddenError } from "../errors/forbiddent.error";
 import { ValidationError } from "../errors/validation.error";
-import {ZodError} from "zod";
+import { ZodError } from "zod";
 
 export function errorHandler(
   err: any,
@@ -54,14 +54,19 @@ export function errorHandler(
   }
 
   // 2. Обработка кастомных бизнес-ошибок
-  if (err instanceof NotFoundError || err instanceof ForbiddenError || err instanceof ValidationError) {
+  if (
+    err instanceof NotFoundError ||
+    err instanceof ForbiddenError ||
+    err instanceof ValidationError
+  ) {
     const errorResponse: ErrorResponse = { message: err.message };
     return res.status(err.statusCode).json(errorResponse);
   }
 
   if (err instanceof ZodError) {
     const errorResponse: ErrorResponse = {
-      message: err.message, };
+      message: err.message,
+    };
     return res.status(400).json(errorResponse);
   }
 

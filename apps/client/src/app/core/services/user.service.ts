@@ -1,7 +1,15 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {AvatarResponse, ChatStatus, ChatStatusResponse, Credential, NewUser, User, UserDto} from '@knigolub/shared';
+import {
+  AvatarResponse,
+  ChatStatus,
+  ChatStatusResponse,
+  Credential,
+  NewUser,
+  User,
+  UserDto,
+} from '@knigolub/shared';
 import { APIRoute, BASE_URL } from '../constants/const';
 import { updateUserDto } from '../models/update-user.dto';
 
@@ -32,6 +40,8 @@ export class UserService {
   }
 
   public updateChatStatus(status: ChatStatus): Observable<ChatStatusResponse> {
-    return this.http.patch<ChatStatusResponse>(`${BASE_URL}/${APIRoute.USER_CHAT_STATUS}`, {chatStatus: status});
+    return this.http.patch<ChatStatusResponse>(`${BASE_URL}/${APIRoute.USER_CHAT_STATUS}`, {
+      chatStatus: status,
+    });
   }
 }

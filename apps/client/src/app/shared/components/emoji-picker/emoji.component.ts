@@ -1,11 +1,9 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Output, signal} from '@angular/core';
-import {Emoji, EmojiPickerComponent} from '@nicematic/emoji-picker';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output, signal } from '@angular/core';
+import { Emoji, EmojiPickerComponent } from '@nicematic/emoji-picker';
 
 @Component({
   selector: 'app-emoji-picker',
-  imports: [
-    EmojiPickerComponent
-  ],
+  imports: [EmojiPickerComponent],
   templateUrl: './emoji.component.html',
   styleUrl: './emoji.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

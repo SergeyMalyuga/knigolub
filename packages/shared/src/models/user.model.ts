@@ -1,4 +1,4 @@
-import {ChatStatus} from "../types/chat-status.type";
+import { ChatStatus } from "../types/chat-status.type";
 
 export interface User {
   id: string;

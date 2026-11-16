@@ -1,8 +1,8 @@
-import {Author} from "./author.model.js";
+import { Author } from "./author.model.js";
 
 export interface Message {
-    id: string;
-    text: string;
-    createdAt: Date;
-    author: Author
+  id: string;
+  text: string;
+  createdAt: Date;
+  author: Author;
 }

@@ -1,19 +1,22 @@
-<button class="button"
-        type="button"
-        (click)="toggleMenu()"
-        aria-haspopup="dialog"
-        aria-controls="emoji-picker"
-        (mouseenter)="isHover.set(true)"
-        (mouseleave)="isHover.set(false)"
-        [attr.aria-expanded]="isOpen()"
-        [attr.aria-label]="isOpen() ? 'Закрыть эмодзи меню' :'Открыть эмодзи меню'"></button>
+<button
+  class="button"
+  type="button"
+  (click)="toggleMenu()"
+  aria-haspopup="dialog"
+  aria-controls="emoji-picker"
+  (mouseenter)="isHover.set(true)"
+  (mouseleave)="isHover.set(false)"
+  [attr.aria-expanded]="isOpen()"
+  [attr.aria-label]="isOpen() ? 'Закрыть эмодзи меню' : 'Открыть эмодзи меню'"
+></button>
 
 @if (isOpen()) {
-  <nicematic-picker class="emoji" id="emoji-picker"
-                    (emojiSelect)="onEmojiSelect($event)"
-                    (pickerClose)="closeMenu()"
-                    [locale]="'ru'" [showSearch]="false"/>
+  <nicematic-picker
+    class="emoji"
+    id="emoji-picker"
+    (emojiSelect)="onEmojiSelect($event)"
+    (pickerClose)="closeMenu()"
+    [locale]="'ru'"
+    [showSearch]="false"
+  />
 }
-
-
-

@@ -1,6 +1,6 @@
-import {UserState} from '../../core/models/user.state';
-import {AuthStatus, DEFAULT_USER, UpdateUserStatus} from '../../core/constants/const';
-import {createReducer, on} from '@ngrx/store';
+import { UserState } from '../../core/models/user.state';
+import { AuthStatus, DEFAULT_USER, UpdateUserStatus } from '../../core/constants/const';
+import { createReducer, on } from '@ngrx/store';
 import {
   checkAuth,
   checkAuthFailure,
@@ -40,14 +40,14 @@ export const userReducer = createReducer(
     isLoading: true,
     error: null,
   })),
-  on(registerUserSuccess, (state, {userDto}) => ({
+  on(registerUserSuccess, (state, { userDto }) => ({
     ...state,
     authStatus: AuthStatus.AUTH,
     user: userDto.user,
     error: null,
     isLoading: false,
   })),
-  on(registerUserFailure, (state, {error}) => ({
+  on(registerUserFailure, (state, { error }) => ({
     ...state,
     authStatus: AuthStatus.UN_AUTH,
     error,
@@ -59,14 +59,14 @@ export const userReducer = createReducer(
     isLoading: true,
     error: null,
   })),
-  on(loginSuccess, (state, {userDto}) => ({
+  on(loginSuccess, (state, { userDto }) => ({
     ...state,
     authStatus: AuthStatus.AUTH,
     user: userDto.user,
     isLoading: false,
     error: null,
   })),
-  on(loginFailure, (state, {error}) => ({
+  on(loginFailure, (state, { error }) => ({
     ...state,
     isLoading: false,
     error,
@@ -78,14 +78,14 @@ export const userReducer = createReducer(
     isLoading: true,
     error: null,
   })),
-  on(checkAuthSuccess, (state, {user}) => ({
+  on(checkAuthSuccess, (state, { user }) => ({
     ...state,
     authStatus: AuthStatus.AUTH,
     user,
     isLoading: false,
     error: null,
   })),
-  on(checkAuthFailure, (state, {error}) => ({
+  on(checkAuthFailure, (state, { error }) => ({
     ...state,
     isLoading: false,
     authStatus: AuthStatus.UN_AUTH,
@@ -108,13 +108,13 @@ export const userReducer = createReducer(
     isLoading: true,
     error: null,
   })),
-  on(uploadUserAvatarSuccess, (state, {response}) => ({
+  on(uploadUserAvatarSuccess, (state, { response }) => ({
     ...state,
-    user: state.user ? {...state.user, avatarUrl: response.avatarUrl} : state.user,
+    user: state.user ? { ...state.user, avatarUrl: response.avatarUrl } : state.user,
     isLoading: false,
     error: null,
   })),
-  on(uploadUserAvatarFailure, (state, {error}) => ({
+  on(uploadUserAvatarFailure, (state, { error }) => ({
     ...state,
     isLoading: false,
     error,
@@ -126,14 +126,14 @@ export const userReducer = createReducer(
     error: null,
     updateStatus: UpdateUserStatus.LOADING,
   })),
-  on(updateUserSuccess, (state, {user}) => ({
+  on(updateUserSuccess, (state, { user }) => ({
     ...state,
     user,
     isLoading: false,
     error: null,
     updateStatus: UpdateUserStatus.SUCCESS,
   })),
-  on(updateUserFailure, (state, {error}) => ({
+  on(updateUserFailure, (state, { error }) => ({
     ...state,
     isLoading: false,
     error,
@@ -141,9 +141,11 @@ export const userReducer = createReducer(
   })),
 
   on(updateUserChatStatus, (state) => ({
-    ...state, updateStatus: UpdateUserStatus.LOADING, error: null
+    ...state,
+    updateStatus: UpdateUserStatus.LOADING,
+    error: null,
   })),
-  on(updateUserChatStatusSuccess, (state, {response}) => {
+  on(updateUserChatStatusSuccess, (state, { response }) => {
     if (!state.user) {
       return state;
     }
@@ -157,11 +159,14 @@ export const userReducer = createReducer(
       },
     };
   }),
-  on(updateUserChatStatusFailure, (state, {error}) => ({
-    ...state, error, updateStatus: UpdateUserStatus.ERROR,
+  on(updateUserChatStatusFailure, (state, { error }) => ({
+    ...state,
+    error,
+    updateStatus: UpdateUserStatus.ERROR,
   })),
 
   on(resetUserUpdateStatus, (state) => ({
-    ...state, updateStatus: UpdateUserStatus.IDLE
-  }))
+    ...state,
+    updateStatus: UpdateUserStatus.IDLE,
+  })),
 );

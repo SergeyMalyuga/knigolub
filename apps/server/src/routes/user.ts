@@ -1,8 +1,8 @@
 import { Router } from "express";
 import { UserController } from "../controllers/user.controller";
 import { uploadAvatar } from "../config/multer.config";
-import {requireAuth} from "../middleware/require-auth.middleware";
-import {authHandler} from "../utils/auth-handler.utils";
+import { requireAuth } from "../middleware/require-auth.middleware";
+import { authHandler } from "../utils/auth-handler.utils";
 
 const router = Router();
 const userController = new UserController();
@@ -28,8 +28,12 @@ router.patch("/profile", async (req, res, next) =>
   userController.updateUser(req, res, next),
 );
 
-router.patch("/me/chat-status", requireAuth,
-    authHandler((req, res, next) =>
-        userController.updateChatStatus(req, res, next)));
+router.patch(
+  "/me/chat-status",
+  requireAuth,
+  authHandler((req, res, next) =>
+    userController.updateChatStatus(req, res, next),
+  ),
+);
 
 export default router;

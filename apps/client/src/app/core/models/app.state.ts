@@ -2,7 +2,7 @@ import { BookState } from './book.state';
 import { UserState } from './user.state';
 import { FavoriteBookState } from './favorite-book.state';
 import { ClubReviewState } from './club-review.state';
-import {MessageState} from './message.state';
+import { MessageState } from './message.state';
 
 export interface AppState {
   book: BookState;

@@ -1,4 +1,4 @@
-import {CHAT_STATUS_CONFIG, ReviewCard} from '@knigolub/shared';
+import { CHAT_STATUS_CONFIG, ReviewCard } from '@knigolub/shared';
 import { DEFAULT_AVATAR_URL } from '../../../../core/constants/const';
 
 export const REVIEW_CARDS_MOCK: ReviewCard[] = [
@@ -18,7 +18,7 @@ export const REVIEW_CARDS_MOCK: ReviewCard[] = [
       avatarUrl: DEFAULT_AVATAR_URL,
       registrationAt: new Date(),
       reviews: 34,
-      chatStatus: CHAT_STATUS_CONFIG.OFFLINE.value
+      chatStatus: CHAT_STATUS_CONFIG.OFFLINE.value,
     },
   },
   {
@@ -36,7 +36,7 @@ export const REVIEW_CARDS_MOCK: ReviewCard[] = [
       avatarUrl: DEFAULT_AVATAR_URL,
       registrationAt: new Date(),
       reviews: 71,
-      chatStatus: CHAT_STATUS_CONFIG.OFFLINE.value
+      chatStatus: CHAT_STATUS_CONFIG.OFFLINE.value,
     },
   },
   {
@@ -54,7 +54,7 @@ export const REVIEW_CARDS_MOCK: ReviewCard[] = [
       avatarUrl: DEFAULT_AVATAR_URL,
       registrationAt: new Date(),
       reviews: 52,
-      chatStatus: CHAT_STATUS_CONFIG.OFFLINE.value
+      chatStatus: CHAT_STATUS_CONFIG.OFFLINE.value,
     },
   },
 ];

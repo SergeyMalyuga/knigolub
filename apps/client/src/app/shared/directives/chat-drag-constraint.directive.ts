@@ -1,7 +1,7 @@
-import {DestroyRef, Directive, DOCUMENT, inject, Input, OnInit, PLATFORM_ID} from '@angular/core';
-import {CdkDrag, CdkDragEnd} from '@angular/cdk/drag-drop';
-import {isPlatformBrowser} from '@angular/common';
-import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
+import { DestroyRef, Directive, DOCUMENT, inject, Input, OnInit, PLATFORM_ID } from '@angular/core';
+import { CdkDrag, CdkDragEnd } from '@angular/cdk/drag-drop';
+import { isPlatformBrowser } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Directive({
   selector: '[appChatDragConstraint]',
@@ -23,10 +23,11 @@ export class ChatDragConstraintDirective implements OnInit {
     this.isBrowser = isPlatformBrowser(this.platformId);
 
     if (this.isBrowser) {
-      this.dragRef.ended.pipe(takeUntilDestroyed(this.destroyRef))
+      this.dragRef.ended
+        .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe((event: CdkDragEnd) => {
-        this.clampPosition(event);
-      });
+          this.clampPosition(event);
+        });
     }
   }
 

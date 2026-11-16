@@ -1,8 +1,8 @@
-import {Directive, ElementRef, inject} from '@angular/core';
-import {Emoji} from '@nicematic/emoji-picker';
+import { Directive, ElementRef, inject } from '@angular/core';
+import { Emoji } from '@nicematic/emoji-picker';
 
 @Directive({
-  selector: '[appInsertEmoji]'
+  selector: '[appInsertEmoji]',
 })
 export class InsertEmojiDirective {
   private elementRef = inject<ElementRef<HTMLInputElement>>(ElementRef);
@@ -17,6 +17,6 @@ export class InsertEmojiDirective {
 
     target.setRangeText(emoji.char, start, end, 'end');
 
-    target.dispatchEvent(new Event('input', {bubbles: true}));
+    target.dispatchEvent(new Event('input', { bubbles: true }));
   }
 }

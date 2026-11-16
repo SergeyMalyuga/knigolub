@@ -1,4 +1,4 @@
 export interface CreateMessageInput {
-    userId: string;
-    text: string;
+  userId: string;
+  text: string;
 }
