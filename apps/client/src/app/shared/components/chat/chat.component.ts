@@ -23,7 +23,7 @@ import {NgClass} from '@angular/common';
 import {CHAT_STATUS_CONFIG, ChatStatus} from '@knigolub/shared';
 import {resetUserUpdateStatus, updateUserChatStatus} from '../../../store/user/actions/user.actions';
 import {filter} from 'rxjs';
-import {MESSAGE_ERRORS_MESSAGES, UpdateUserStatus} from '../../../core/constants/const';
+import {MESSAGE_ERRORS_MESSAGES, OPERATION_STATUS, UpdateUserStatus} from '../../../core/constants/const';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {EmojiComponent} from '../emoji-picker/emoji.component';
 import {InsertEmojiDirective} from '../../directives/insert-emoji.directive';
@@ -32,6 +32,8 @@ import {MessageCreateDto} from '../../../core/types/message-create.dto';
 import {form, FormField, minLength, required, validate} from '@angular/forms/signals';
 import {messageValidator} from '../../validators/message.validator';
 import {FormsModule} from '@angular/forms';
+import {createMessage, resetMessageStatus} from '../../../store/message/actions/message.actions';
+import {selectMessageStatus} from '../../../store/message/selectors/message.selectors';
 
 @Component({
   selector: 'app-chat',
@@ -61,7 +63,7 @@ export class ChatComponent implements OnInit {
   private chatService = inject(ChatService);
   private destroyRef = inject(DestroyRef);
   private emojiDirective = viewChild.required(InsertEmojiDirective);
-  private messageModel = signal<MessageCreateDto>({message: ''});
+  private messageModel = signal<MessageCreateDto>({text: ''});
 
   protected readonly CHAT_STATUS_CONFIG = CHAT_STATUS_CONFIG;
 
@@ -69,9 +71,9 @@ export class ChatComponent implements OnInit {
   public chatStatus = computed<ChatStatus>(() => this.user().chatStatus)
 
   public messageForm = form(this.messageModel, (fieldPath) => {
-    required(fieldPath.message, {message: MESSAGE_ERRORS_MESSAGES.message.required});
-    minLength(fieldPath.message, 1, {message: MESSAGE_ERRORS_MESSAGES.message.minLength});
-    validate(fieldPath.message, (ctx) => messageValidator(ctx.value()));
+    required(fieldPath.text, {message: MESSAGE_ERRORS_MESSAGES.message.required});
+    minLength(fieldPath.text, 1, {message: MESSAGE_ERRORS_MESSAGES.message.minLength});
+    validate(fieldPath.text, (ctx) => messageValidator(ctx.value()));
   })
 
   ngOnInit(): void {
@@ -80,6 +82,14 @@ export class ChatComponent implements OnInit {
       filter(status => status === UpdateUserStatus.SUCCESS || status === UpdateUserStatus.ERROR))
       .subscribe(() => this.store.dispatch(resetUserUpdateStatus())
       );
+
+    this.store.select(selectMessageStatus).pipe(
+      takeUntilDestroyed(this.destroyRef),
+      filter(status => status === OPERATION_STATUS.SUCCESS || status === OPERATION_STATUS.ERROR))
+      .subscribe(() => {
+        this.messageForm().reset({text: ''});
+        this.store.dispatch(resetMessageStatus());
+      })
   }
 
   public closeChat(): void {
@@ -96,8 +106,8 @@ export class ChatComponent implements OnInit {
 
   public onSubmit() {
     if (this.messageForm().valid()) {
-      const {message} = this.messageForm().value();
-      console.log(message.trim());
+      const {text} = this.messageForm().value();
+      this.store.dispatch(createMessage({text}));
     }
   }
 }

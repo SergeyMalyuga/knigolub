@@ -59,7 +59,7 @@
           <label for="chat-message" class="visually-hidden">Текст сообщения</label>
           <app-emoji-picker (emojiSelected)="onEmojiSelected($event)"/>
           <input id="chat-message"
-                 [formField]="messageForm.message"
+                 [formField]="messageForm.text"
                  class="chat__message-input"
                  type="text" autocomplete="off"
                  appInsertEmoji/>
