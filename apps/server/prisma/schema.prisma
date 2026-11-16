@@ -59,6 +59,7 @@ model User {
   favorites   Favorite[]
   clubReviews ClubReview[]
   bookReviews BookReview[]
+  messages    Message[]
 
   @@map("users")
 }
@@ -101,4 +102,17 @@ model BookReview {
 
   @@index([bookId])
   @@map("book_reviews")
+}
+
+model Message {
+  id        String   @id @default(uuid())
+  text      String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  userId    String   @map("user_id")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("messages")
 }
