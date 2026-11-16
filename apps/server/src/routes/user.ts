@@ -2,7 +2,7 @@ import { Router } from "express";
 import { UserController } from "../controllers/user.controller";
 import { uploadAvatar } from "../config/multer.config";
 import {requireAuth} from "../middleware/require-auth.middleware";
-import {authHandler} from "../utils/auth-hadler.utils";
+import {authHandler} from "../utils/auth-handler.utils";
 
 const router = Router();
 const userController = new UserController();
