@@ -166,6 +166,13 @@ export const REVIEW_ERRORS_MESSAGES = {
   },
 };
 
+export const MESSAGE_ERRORS_MESSAGES = {
+  message: {
+    required: 'Заполните это поле',
+    minLength: 'Мин. 1 символ'
+  }
+} as const;
+
 export const REVIEW_ERRORS_TYPES = {
   REQUIRED: 'required',
 } as const;
