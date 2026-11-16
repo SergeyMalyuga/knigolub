@@ -359,6 +359,7 @@
     &-wrapper {
       display: flex;
       justify-content: space-between;
+      gap: 8px;
       background-color: variables.$linen;
       padding: rem(8) rem(12);
       border: 1px solid variables.$wheat;
@@ -406,6 +407,11 @@
 
       &:active {
         color: variables.$warm-camel;
+      }
+
+      &:disabled {
+        opacity: 0.6;
+        pointer-events: none;
       }
     }
   }
