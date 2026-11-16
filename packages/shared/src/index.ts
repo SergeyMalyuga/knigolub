@@ -18,3 +18,5 @@ export * from "./models/club-review.model.js";
 export * from "./types/chat-status.type.js";
 export * from "./types/chat-status-response.type.js";
 export * from "./utils/user.utils.js";
+export * from "./models/message.model.js";
+export * from "./models/author.model.js";
