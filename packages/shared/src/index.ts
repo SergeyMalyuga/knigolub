@@ -20,3 +20,5 @@ export * from "./types/chat-status-response.type.js";
 export * from "./utils/user.utils.js";
 export * from "./models/message.model.js";
 export * from "./models/author.model.js";
+export * from "./types/client-to-server-events.type.js";
+export * from "./types/server-to-client-events.type.js";
