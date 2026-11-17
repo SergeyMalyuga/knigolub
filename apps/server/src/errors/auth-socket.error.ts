@@ -1,9 +1,9 @@
 export class AuthSocketError extends Error {
-    public statusCode: number;
+  public statusCode: number;
 
-    constructor(message: string) {
-        super(message);
-        this.name = "SocketAuthError";
-        this.statusCode = 401;
-    }
+  constructor(message: string) {
+    super(message);
+    this.name = "SocketAuthError";
+    this.statusCode = 401;
+  }
 }

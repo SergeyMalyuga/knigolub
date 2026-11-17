@@ -2,7 +2,7 @@ import type { NextFunction, Request, Response } from "express";
 import { Prisma } from "../../generated/prisma";
 import { type ErrorResponse, UserErrorField } from "@knigolub/shared";
 import { NotFoundError } from "../errors/not-found.error";
-import { ForbiddenError } from "../errors/forbiddent.error";
+import { ForbiddenError } from "../errors/forbidden.error";
 import { ValidationError } from "../errors/validation.error";
 import { ZodError } from "zod";
 

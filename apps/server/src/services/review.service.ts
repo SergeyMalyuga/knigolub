@@ -5,7 +5,7 @@ import type { GetReviewsOptions } from "../types/get-reviews-options.type";
 import type { CreateClubReviewInput } from "../types/create-club-review-input.type";
 import { NotFoundError } from "../errors/not-found.error";
 import type { UpdateClubReview } from "../types/update-club-review.type";
-import { ForbiddenError } from "../errors/forbiddent.error";
+import { ForbiddenError } from "../errors/forbidden.error";
 
 export class ReviewService {
   /**

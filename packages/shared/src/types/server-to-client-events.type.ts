@@ -1,5 +1,5 @@
-import {SOCKET_SERVER_EVENTS} from '../constants/const.js';
-import {Message} from '@knigolub/shared';
+import { SOCKET_SERVER_EVENTS } from "../constants/const.js";
+import { Message } from "@knigolub/shared";
 
 export interface ServerToClientEvents {
   [SOCKET_SERVER_EVENTS.NEW_MESSAGE]: (message: Message) => void;

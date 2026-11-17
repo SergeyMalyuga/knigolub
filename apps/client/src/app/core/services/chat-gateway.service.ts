@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
-import {io, Socket} from 'socket.io-client';
-import {ClientToServerEvents, ServerToClientEvents} from '@knigolub/shared';
+import { Injectable } from '@angular/core';
+import { io, Socket } from 'socket.io-client';
+import { ClientToServerEvents, ServerToClientEvents } from '@knigolub/shared';
 
 @Injectable({
   providedIn: 'root',
