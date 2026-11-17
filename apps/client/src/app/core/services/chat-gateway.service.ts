@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
 import { ClientToServerEvents, ServerToClientEvents } from '@knigolub/shared';
+import {AUTH_TOKEN_KEY_NAME} from '../constants/const';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +19,7 @@ export class ChatGatewayService {
       return;
     }
 
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem(AUTH_TOKEN_KEY_NAME);
 
     this.socket = io('http://localhost:3000', {
       extraHeaders: {
