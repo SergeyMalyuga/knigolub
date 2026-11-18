@@ -6,12 +6,11 @@ import userRouter from "./routes/user";
 import favoriteRouter from "./routes/favorite";
 import clubReviewRouter from "./routes/club-review";
 import messageRouter from "./routes/message.routes";
-import { optionalAuth } from "./middleware/optional-auth.middleware";
-import { errorHandler } from "./middleware/error.middleware";
+import {optionalAuth} from "./middleware/optional-auth.middleware";
+import {errorHandler} from "./middleware/error.middleware";
 import path from "node:path";
-import { Server } from "socket.io";
 import * as http from "node:http";
-import { websocketAuth } from "./middleware/websocket-auth";
+import {chatGateway} from "./services/chat-gateway.service";
 
 dotenv.config();
 
@@ -20,14 +19,7 @@ const port = process.env.PORT || 3000;
 const app = express();
 const server = http.createServer(app);
 
-const io = new Server(server, {
-  cors: {
-    origin: "http://localhost:4200",
-    credentials: true,
-  },
-});
-
-io.use(websocketAuth);
+chatGateway.init(server);
 
 app.use(express.json());
 app.use(cors());
@@ -43,14 +35,8 @@ app.use("/users", userRouter);
 app.use("/favorites", favoriteRouter);
 app.use("/club-reviews", clubReviewRouter);
 app.use("/messages", messageRouter);
-app.use(errorHandler);
 
-io.on("connection", (socket) => {
-  console.log("Socket connection connected");
-  socket.on("disconnect", (socket) => {
-    console.log("Socket disconnected");
-  });
-});
+app.use(errorHandler);
 
 server.listen(port, () => {
   console.log(`🚀 Сервер запущен на порту ${port}`);
