@@ -5,9 +5,7 @@ import * as FavoriteActions from '../actions/favorite-book.actions';
 import { catchError, map, of, switchMap } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class FavoriteBookEffects {
   private actions$ = inject(Actions);
   private favoriteBookService = inject(FavoriteBookService);

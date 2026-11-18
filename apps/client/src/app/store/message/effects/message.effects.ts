@@ -6,9 +6,7 @@ import { catchError, exhaustMap, map, of } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { normalizeError } from '../../../core/utils/error.utils';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class MessageEffects {
   private actions$ = inject(Actions);
   private messageService = inject(MessageService);

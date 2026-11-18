@@ -5,9 +5,7 @@ import { catchError, map, of, switchMap } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { BookService } from '../../../core/services/book.service';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class BookEffects {
   private actions$ = inject(Actions);
   private bookService = inject(BookService);

@@ -6,9 +6,7 @@ import { catchError, exhaustMap, map, of, switchMap } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { normalizeError } from '../../../core/utils/error.utils';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class ClubReviewEffects {
   private actions$ = inject(Actions);
   private reviewService = inject(ReviewService);

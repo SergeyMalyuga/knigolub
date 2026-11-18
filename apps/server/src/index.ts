@@ -6,11 +6,11 @@ import userRouter from "./routes/user";
 import favoriteRouter from "./routes/favorite";
 import clubReviewRouter from "./routes/club-review";
 import messageRouter from "./routes/message.routes";
-import {optionalAuth} from "./middleware/optional-auth.middleware";
-import {errorHandler} from "./middleware/error.middleware";
+import { optionalAuth } from "./middleware/optional-auth.middleware";
+import { errorHandler } from "./middleware/error.middleware";
 import path from "node:path";
 import * as http from "node:http";
-import {chatGateway} from "./services/chat-gateway.service";
+import { chatGateway } from "./services/chat-gateway.service";
 
 dotenv.config();
 

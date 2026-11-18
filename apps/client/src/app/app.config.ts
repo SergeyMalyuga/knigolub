@@ -13,7 +13,7 @@ import { FavoriteBookEffects } from './store/favorite/effects/favorite-book.effe
 import { MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
 import { ClubReviewEffects } from './store/club-review/effects/club-review.effects';
 import { MessageEffects } from './store/message/effects/message.effects';
-import {MessageSocketEffects} from './store/message-socket/effects/message-socket.effects';
+import { MessageSocketEffects } from './store/message-socket/effects/message-socket.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -33,7 +33,7 @@ export const appConfig: ApplicationConfig = {
       FavoriteBookEffects,
       ClubReviewEffects,
       MessageEffects,
-      MessageSocketEffects
+      MessageSocketEffects,
     ),
     {
       provide: HTTP_INTERCEPTORS,

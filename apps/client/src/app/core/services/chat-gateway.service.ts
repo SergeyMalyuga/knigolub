@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
 import { ClientToServerEvents, ServerToClientEvents } from '@knigolub/shared';
-import {AUTH_TOKEN_KEY_NAME} from '../constants/const';
+import { AUTH_TOKEN_KEY_NAME } from '../constants/const';
 
 @Injectable({
   providedIn: 'root',
