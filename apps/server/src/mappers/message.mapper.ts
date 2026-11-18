@@ -7,6 +7,7 @@ export function mapPrismaToMessage(message: MessageWithUser): Message {
     text: message.text,
     createdAt: message.createdAt,
     author: {
+      id: message.user.id,
       name: message.user.username,
       avatarUrl: message.user.avatarUrl,
     },
