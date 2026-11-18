@@ -7,6 +7,7 @@ export type MessageWithUser = Prisma.MessageGetPayload<{
     createdAt: true;
     user: {
       select: {
+        id: true;
         username: true;
         avatarUrl: true;
       };
