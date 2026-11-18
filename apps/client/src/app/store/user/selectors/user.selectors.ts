@@ -45,3 +45,7 @@ export const selectChatUser = createSelector(selectUserState, (state) => ({
   avatarUrl: state.user?.avatarUrl,
   chatStatus: state.user?.chatStatus ?? CHAT_STATUS_CONFIG.OFFLINE.value,
 }));
+
+export const selectUserId = createSelector(
+  selectUserState,
+  state => state.user?.id)
