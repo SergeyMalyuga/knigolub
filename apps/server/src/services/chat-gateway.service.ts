@@ -1,9 +1,10 @@
 import {Server} from "socket.io";
 import type {Server as HttpServer} from 'node:http';
 import {websocketAuth} from "../middleware/websocket-auth";
+import type {ClientToServerEvents, ServerToClientEvents} from "@knigolub/shared";
 
 export class ChatGatewayService {
-    private io: Server | null = null;
+    private io: Server<ClientToServerEvents, ServerToClientEvents> | null = null;
 
     public init(server: HttpServer) {
         if (this.io) {
@@ -11,7 +12,7 @@ export class ChatGatewayService {
             return;
         }
 
-        this.io = new Server(server, {
+        this.io = new Server<ClientToServerEvents, ServerToClientEvents>(server, {
             cors: {
                 origin: 'http://localhost:4200',
                 credentials: true

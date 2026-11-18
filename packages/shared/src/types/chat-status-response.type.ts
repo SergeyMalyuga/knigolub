@@ -1,4 +1,4 @@
-import { ChatStatus } from "./chat-status.type";
+import type { ChatStatus } from "./chat-status.type";
 
 export interface ChatStatusResponse {
   userId: string;
