@@ -24,6 +24,7 @@ export class MessageService {
         createdAt: true,
         user: {
           select: {
+            id: true,
             username: true,
             avatarUrl: true,
           },
