@@ -11,12 +11,21 @@ export class MessageService {
   private http = inject(HttpClient);
 
   /**
-   * Создаёт сообщение.
+   * Создаёт новое сообщение (POST /messages).
    *
    * @param text - Текст сообщения.
    * @returns Сообщение с данными автора.
    */
   public createMessage(text: string): Observable<Message> {
     return this.http.post<Message>(`${BASE_URL}/${APIRoute.MESSAGES}`, { text });
+  }
+
+  /**
+   * Получает список сообщений с сервера (GET /messages).
+   *
+   * @returns Список сообщений.
+   */
+  public getMessages(): Observable<Message[]> {
+    return this.http.get<Message[]>(`${BASE_URL}/messages`);
   }
 }
