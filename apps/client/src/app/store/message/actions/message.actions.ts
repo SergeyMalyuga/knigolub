@@ -14,4 +14,14 @@ export const createMessageFailure = createAction(
   props<{ error: ErrorResponse }>(),
 );
 
+export const loadMessages = createAction('[Chat Component] Load Messages');
+export const loadMessagesSuccess = createAction(
+  '[Message Effects] Load Messages Success',
+  props<{ messages: Message[] }>(),
+);
+export const loadMessagesFailure = createAction(
+  '[Message Effects] Load Messages Failure',
+  props<{ error: ErrorResponse }>(),
+);
+
 export const resetMessageStatus = createAction('[Message] Reset Message Status');
