@@ -12,6 +12,7 @@ import { loadBooks } from '../../book/actions/book.actions';
 import { loadUserClubReview } from '../../club-review/actions/club-review.actions';
 import { normalizeError } from '../../../core/utils/error.utils';
 import { ChatGatewayService } from '../../../core/services/chat-gateway.service';
+import {loadMessages} from '../../message/actions/message.actions';
 
 @Injectable()
 export class UserEffects {
@@ -64,6 +65,7 @@ export class UserEffects {
         loadBooks({ page: DEFAULT_PAGE }),
         loadFavoriteBooks(),
         loadUserClubReview(),
+        loadMessages()
       ]),
     ),
   );
@@ -90,7 +92,7 @@ export class UserEffects {
   public loadDataOnAuthSuccess$ = createEffect(() =>
     this.actions$.pipe(
       ofType(UserActions.checkAuthSuccess),
-      concatMap(() => [loadFavoriteBooks(), loadUserClubReview()]),
+      concatMap(() => [loadFavoriteBooks(), loadUserClubReview(), loadMessages()]),
     ),
   );
 
