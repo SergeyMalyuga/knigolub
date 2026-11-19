@@ -59,7 +59,13 @@
       </div>
     </div>
     <div class="chat__main">
-      <ul class="chat__messages"></ul>
+      <ul class="chat__messages">
+        @for (message of messages(); track message.id) {
+          <li>
+            <app-message-card [message]="message"/>
+          </li>
+        }
+      </ul>
       <form class="chat__message-form" (ngSubmit)="onSubmit()">
         <div class="chat__message-wrapper">
           <label for="chat-message" class="visually-hidden">Текст сообщения</label>

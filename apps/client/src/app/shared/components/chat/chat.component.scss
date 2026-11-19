@@ -89,13 +89,11 @@
       }
 
       // Цвет текста label hover
-      .mdc-text-field--outlined:not(.mdc-text-field--disabled, .mdc-text-field--focused):hover
-        .mdc-floating-label {
+      .mdc-text-field--outlined:not(.mdc-text-field--disabled, .mdc-text-field--focused):hover .mdc-floating-label {
         color: #7bc4a8;
       }
 
-      .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused
-        .mdc-floating-label {
+      .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-floating-label {
         color: #7bc4a8;
       }
 
@@ -146,13 +144,11 @@
       }
 
       // Цвет текста label hover
-      .mdc-text-field--outlined:not(.mdc-text-field--disabled, .mdc-text-field--focused):hover
-        .mdc-floating-label {
+      .mdc-text-field--outlined:not(.mdc-text-field--disabled, .mdc-text-field--focused):hover .mdc-floating-label {
         color: #7bc4a8;
       }
 
-      .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused
-        .mdc-floating-label {
+      .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-floating-label {
         color: #7bc4a8;
       }
 
@@ -203,13 +199,11 @@
       }
 
       // Цвет текста label hover
-      .mdc-text-field--outlined:not(.mdc-text-field--disabled, .mdc-text-field--focused):hover
-        .mdc-floating-label {
+      .mdc-text-field--outlined:not(.mdc-text-field--disabled, .mdc-text-field--focused):hover .mdc-floating-label {
         color: #7bc4a8;
       }
 
-      .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused
-        .mdc-floating-label {
+      .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-floating-label {
         color: #7bc4a8;
       }
 
@@ -354,11 +348,14 @@
   &__main {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     padding-left: rem(16);
   }
 
   &__messages {
     flex-grow: 1;
+    max-height: 545px; /* или height: 400px */
+    overflow-y: auto;
   }
 
   &__message {
