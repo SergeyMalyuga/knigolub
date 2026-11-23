@@ -1,7 +1,7 @@
-import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { AppState } from '../../../core/models/app.state';
-import { UserEdit } from '../../../core/models/user-edit.model';
-import { CHAT_STATUS_CONFIG } from '@knigolub/shared';
+import {createFeatureSelector, createSelector} from '@ngrx/store';
+import {AppState} from '../../../core/models/app.state';
+import {UserEdit} from '../../../core/models/user-edit.model';
+import {CHAT_STATUS_CONFIG} from '@knigolub/shared';
 
 const selectUserState = createFeatureSelector<AppState['user']>('user');
 
@@ -40,10 +40,12 @@ export const selectUserPersonalInfo = createSelector(selectUserState, (state): U
   };
 });
 
-export const selectChatUser = createSelector(selectUserState, (state) => ({
-  username: state.user?.username,
-  avatarUrl: state.user?.avatarUrl,
-  chatStatus: state.user?.chatStatus ?? CHAT_STATUS_CONFIG.OFFLINE.value,
-}));
+export const selectChatUser = createSelector(
+  selectUserState, (state) => ({
+    id: state.user?.id,
+    username: state.user?.username,
+    avatarUrl: state.user?.avatarUrl,
+    chatStatus: state.user?.chatStatus ?? CHAT_STATUS_CONFIG.OFFLINE.value,
+  }));
 
 export const selectUserId = createSelector(selectUserState, (state) => state.user?.id);
