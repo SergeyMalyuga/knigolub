@@ -3,6 +3,7 @@ import type {CreateMessageInput} from "../types/create-message-input.type";
 import {mapPrismaToMessage} from "../mappers/message.mapper";
 import type {Message} from "@knigolub/shared";
 import {MESSAGES_LIMIT} from "../constants/const";
+import {getAbsoluteAvatarUrl} from "../utils/url.utils";
 
 export class MessageService {
     /**
@@ -33,7 +34,9 @@ export class MessageService {
             },
         });
 
-        return mapPrismaToMessage(prismaMessage);
+        const message =  mapPrismaToMessage(prismaMessage);
+        message.author.avatarUrl = getAbsoluteAvatarUrl(message.author.avatarUrl);
+         return message;
     }
 
     /**
@@ -60,6 +63,8 @@ export class MessageService {
                 },
             },
         });
-        return prismaMessages.reverse().map(message => mapPrismaToMessage(message));
+        return prismaMessages.reverse().map(message => {
+            message.user.avatarUrl = getAbsoluteAvatarUrl(message.user.avatarUrl);
+            return mapPrismaToMessage(message)});
     }
 }
