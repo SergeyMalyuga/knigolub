@@ -59,10 +59,15 @@
       </div>
     </div>
     <div class="chat__main">
-      <ul class="chat__messages">
-        @for (message of messages(); track message.id) {
-          <li>
-            <app-message-card [message]="message"/>
+      <ul class="chat__messages" appChatScrollBottom>
+        @for (message of messages(); track message.id;) {
+          <li [ngClass]="{
+          'chat__messages-item': true,
+          'chat__messages-item--consecutive': hasNextFromSameAuthor($index, messages()),
+          }">
+            <app-message-card [message]="message"
+                              [shouldShowHeader]="shouldShowHeader($index, messages())"
+                              [isOwner]="message.author.id === user().id"/>
           </li>
         }
       </ul>

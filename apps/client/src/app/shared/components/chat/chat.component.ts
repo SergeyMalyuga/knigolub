@@ -23,7 +23,7 @@ import {
 import {MatFormField, MatLabel} from '@angular/material/input';
 import {MatOption, MatSelect} from '@angular/material/select';
 import {NgClass} from '@angular/common';
-import {CHAT_STATUS_CONFIG, ChatStatus} from '@knigolub/shared';
+import {CHAT_STATUS_CONFIG, ChatStatus, Message} from '@knigolub/shared';
 import {
   resetUserUpdateStatus,
   updateUserChatStatus,
@@ -45,6 +45,7 @@ import {FormsModule} from '@angular/forms';
 import {selectMessages, selectMessageStatus} from '../../../store/message/selectors/message.selectors';
 import {createMessage, resetMessageStatus} from '../../../store/message/actions/message.actions';
 import {MessageCardComponent} from '../message-card/message-card.component';
+import {ChatScrollBottomDirective} from '../../directives/chat-scroll-bottom.directive';
 
 @Component({
   selector: 'app-chat',
@@ -65,6 +66,7 @@ import {MessageCardComponent} from '../message-card/message-card.component';
     FormField,
     FormsModule,
     MessageCardComponent,
+    ChatScrollBottomDirective,
   ],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.scss',
@@ -124,6 +126,24 @@ export class ChatComponent implements OnInit {
 
   public onEmojiSelected(emoji: Emoji) {
     this.emojiDirective().insert(emoji);
+  }
+
+  public shouldShowHeader(index: number, messages: Message[]) {
+    if (index === 0) return true;
+
+    const prevMessage = messages[index - 1];
+    const currentMessage = messages[index];
+
+    return prevMessage.author.id !== currentMessage.author.id;
+  }
+
+  public hasNextFromSameAuthor(index: number, messages: Message[]) {
+    if (index + 1 >= messages.length) return false;
+
+    const currentMsg = messages[index];
+    const nextMsg = messages[index + 1];
+
+    return currentMsg.author.id === nextMsg.author.id;
   }
 
   public onSubmit() {
