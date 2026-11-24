@@ -201,3 +201,6 @@ export const NOTIFICATION_MESSAGE = {
 export const DIALOG_RESULT = {
   SUCCESS: 'success',
 } as const;
+
+export const SCROLL_DEBOUNCE_MS = 100;
+export const NEAR_BOTTOM_THRESHOLD = 100;
