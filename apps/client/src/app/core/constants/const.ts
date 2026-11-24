@@ -204,3 +204,10 @@ export const DIALOG_RESULT = {
 
 export const SCROLL_DEBOUNCE_MS = 100;
 export const NEAR_BOTTOM_THRESHOLD = 100;
+
+  export const ICONS = {
+    DOWN: {
+      name: 'down-arrow',
+      url: 'assets/images/vector/down-arrow.svg',
+    }
+  } as const;
