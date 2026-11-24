@@ -59,18 +59,25 @@
       </div>
     </div>
     <div class="chat__main">
-      <ul class="chat__messages" appChatScrollBottom>
-        @for (message of messages(); track message.id;) {
-          <li [ngClass]="{
+      <div class="chat__messages-wrapper">
+        <ul class="chat__messages" appChatScrollBottom>
+          @for (message of messages(); track message.id;) {
+            <li [ngClass]="{
           'chat__messages-item': true,
           'chat__messages-item--consecutive': hasNextFromSameAuthor($index, messages()),
           }">
-            <app-message-card [message]="message"
-                              [shouldShowHeader]="shouldShowHeader($index, messages())"
-                              [isOwner]="message.author.id === user().id"/>
-          </li>
+              <app-message-card [message]="message"
+                                [shouldShowHeader]="shouldShowHeader($index, messages())"
+                                [isOwner]="message.author.id === user().id"/>
+            </li>
+          }
+        </ul>
+        @if (showScrollButton()) {
+          <button class="chat__button-scroll" type="button" (click)="scrollDown()" matIconButton>
+            <mat-icon [svgIcon]="ICONS.DOWN.name"></mat-icon>
+          </button>
         }
-      </ul>
+      </div>
       <form class="chat__message-form" (ngSubmit)="onSubmit()">
         <div class="chat__message-wrapper">
           <label for="chat-message" class="visually-hidden">Текст сообщения</label>

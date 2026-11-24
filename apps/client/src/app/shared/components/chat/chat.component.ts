@@ -30,6 +30,7 @@ import {
 } from '../../../store/user/actions/user.actions';
 import {filter} from 'rxjs';
 import {
+  ICONS,
   MESSAGE_ERRORS_MESSAGES,
   OPERATION_STATUS,
   UpdateUserStatus,
@@ -73,13 +74,15 @@ import {ChatScrollBottomDirective} from '../../directives/chat-scroll-bottom.dir
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChatComponent implements OnInit {
-  private store = inject(Store<AppState>);
-  private chatService = inject(ChatService);
-  private destroyRef = inject(DestroyRef);
-  private emojiDirective = viewChild.required(InsertEmojiDirective);
-  private messageModel = signal<MessageCreateDto>({text: ''});
+  private readonly store = inject(Store<AppState>);
+  private readonly chatService = inject(ChatService);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly emojiDirective = viewChild.required(InsertEmojiDirective);
+  private readonly chatScrollDirective = viewChild.required(ChatScrollBottomDirective);
+  private readonly messageModel = signal<MessageCreateDto>({text: ''});
 
   protected readonly CHAT_STATUS_CONFIG = CHAT_STATUS_CONFIG;
+  protected readonly showScrollButton = computed(() => !this.chatScrollDirective().isNearBottom());
 
   public user = this.store.selectSignal(selectChatUser);
   public chatStatus = computed<ChatStatus>(() => this.user().chatStatus);
@@ -146,10 +149,16 @@ export class ChatComponent implements OnInit {
     return currentMsg.author.id === nextMsg.author.id;
   }
 
+  public scrollDown(): void {
+    this.chatScrollDirective().scrollBottom();
+  }
+
   public onSubmit() {
     if (this.messageForm().valid()) {
       const {text} = this.messageForm().value();
       this.store.dispatch(createMessage({text}));
     }
   }
+
+  protected readonly ICONS = ICONS;
 }

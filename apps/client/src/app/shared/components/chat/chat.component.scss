@@ -18,6 +18,16 @@
     );
   }
 
+  .chat__messages-wrapper {
+    @include mat.icon-button-overrides(
+      (
+        state-layer-color: #7a2e2e,
+        hover-state-layer-opacity: 25%,
+        pressed-state-layer-opacity: 45%,
+      )
+    );
+  }
+
   .chat__status {
     ::ng-deep {
       .mat-mdc-select {
@@ -67,14 +77,14 @@
   .chat__status--offline {
     ::ng-deep {
       .mat-mdc-text-field-wrapper {
-        border: 1px solid #b85a5a;
+        border: 1px solid variables.$terracotta-mid;
 
         &:hover {
-          border-color: #8f3b3b;
+          border-color: variables.$firebrick;
         }
 
         &:focus-within {
-          outline: 2px solid #4a2525;
+          outline: 2px solid variables.$dark-maroon;
           outline-offset: -1px;
         }
       }
@@ -87,15 +97,15 @@
 
       // Цвет текста label hover
       .mdc-text-field--outlined:not(.mdc-text-field--disabled, .mdc-text-field--focused):hover .mdc-floating-label {
-        color: #7bc4a8;
+        color: variables.$mint-green;
       }
 
       .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-floating-label {
-        color: #7bc4a8;
+        color: variables.$mint-green;
       }
 
       .mdc-text-field--outlined {
-        background-color: #d97b7b;
+        background-color: variables.$salmon;
         border-radius: 4px;
 
         // Рамка outline
@@ -107,13 +117,13 @@
 
         .mat-mdc-select-arrow {
           svg {
-            fill: #4a2525;
+            fill: variables.$dark-maroon;
           }
         }
       }
 
       .mat-mdc-select {
-        color: #4a2525;
+        color: variables.$dark-maroon;
       }
     }
   }
@@ -122,14 +132,14 @@
   .chat__status--online {
     ::ng-deep {
       .mat-mdc-text-field-wrapper {
-        border: 1px solid #3d594e;
+        border: 1px solid variables.$dark-slate-green;
 
         &:hover {
-          border-color: #7b9e90;
+          border-color: variables.$sage-green;
         }
 
         &:focus-within {
-          outline: 2px solid #7b9e90;
+          outline: 2px solid variables.$sage-green;
           outline-offset: -1px;
         }
       }
@@ -142,15 +152,15 @@
 
       // Цвет текста label hover
       .mdc-text-field--outlined:not(.mdc-text-field--disabled, .mdc-text-field--focused):hover .mdc-floating-label {
-        color: #7bc4a8;
+        color: variables.$mint-green;
       }
 
       .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-floating-label {
-        color: #7bc4a8;
+        color: variables.$mint-green;
       }
 
       .mdc-text-field--outlined {
-        background-color: #2d4a3e;
+        background-color: variables.$dark-forest-green;
         border-radius: 4px;
 
         // Рамка outline
@@ -162,13 +172,13 @@
 
         .mat-mdc-select-arrow {
           svg {
-            fill: #7bc4a8;
+            fill: variables.$mint-green;
           }
         }
       }
 
       .mat-mdc-select {
-        color: #7bc4a8;
+        color: variables.$mint-green;
       }
     }
   }
@@ -177,14 +187,14 @@
   .chat__status--away {
     ::ng-deep {
       .mat-mdc-text-field-wrapper {
-        border: 1px solid #f5ede3;
+        border: 1px solid variables.$old-lace;
 
         &:hover {
-          border-color: #8c6423;
+          border-color: variables.$dark-goldenrod;
         }
 
         &:focus-within {
-          outline: 2px solid #8c6423;
+          outline: 2px solid variables.$dark-goldenrod;
           outline-offset: -1px;
         }
       }
@@ -197,15 +207,15 @@
 
       // Цвет текста label hover
       .mdc-text-field--outlined:not(.mdc-text-field--disabled, .mdc-text-field--focused):hover .mdc-floating-label {
-        color: #7bc4a8;
+        color: variables.$mint-green;
       }
 
       .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-floating-label {
-        color: #7bc4a8;
+        color: variables.$mint-green;
       }
 
       .mdc-text-field--outlined {
-        background-color: #e8b87b;
+        background-color: variables.$apricot;
         border-radius: 4px;
 
         // Рамка outline
@@ -217,13 +227,13 @@
 
         .mat-mdc-select-arrow {
           svg {
-            fill: #5c402a;
+            fill: variables.$dark-walnut;
           }
         }
       }
 
       .mat-mdc-select {
-        color: #5c402a;
+        color: variables.$dark-walnut;
       }
     }
   }
@@ -259,7 +269,7 @@
     box-shadow: 0 16px 38px color.scale(variables.$black, $alpha: -55%);
     backdrop-filter: blur(10px);
     color: variables.$english-cream;
-    padding: rem(18);
+    padding: rem(18) 0 rem(18) rem(18);
   }
 
   &__sidebar {
@@ -364,11 +374,16 @@
         margin-bottom: rem(6);
       }
     }
+
+    &-wrapper {
+      position: relative;
+    }
   }
 
   &__message {
     &-form {
       position: relative;
+      padding-right: rem(18);
     }
 
     &-wrapper {
@@ -430,6 +445,15 @@
         opacity: 0.6;
         pointer-events: none;
       }
+    }
+  }
+
+  &__button {
+    &-scroll {
+      background-color: color.scale(variables.$dark-espresso, $alpha: -15%);
+      position: absolute;
+      bottom: 4px;
+      right: 20px;
     }
   }
 }
