@@ -19,4 +19,7 @@ export const SOCKET_CLIENT_EVENTS = {
 export const SOCKET_SERVER_EVENTS = {
   NEW_MESSAGE: "server:new_message",
   ERROR: "server:error",
+  PRESENCE_SNAPSHOT: "server:presence_snapshot",
+  PRESENCE_ONLINE: "server:presence_online",
+  PRESENCE_OFFLINE: "server:presence_offline",
 } as const;
