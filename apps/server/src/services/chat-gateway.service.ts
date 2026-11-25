@@ -1,47 +1,58 @@
-import { Server } from "socket.io";
-import type { Server as HttpServer } from "node:http";
-import { websocketAuth } from "../middleware/websocket-auth";
-import type {
-  ClientToServerEvents,
-  ServerToClientEvents,
+import {Server} from "socket.io";
+import type {Server as HttpServer} from "node:http";
+import {websocketAuth} from "../middleware/websocket-auth";
+import {
+    type ClientToServerEvents,
+    type ServerToClientEvents, SOCKET_SERVER_EVENTS,
 } from "@knigolub/shared";
+import {presenceService} from "./presence.service";
+import {UserService} from "./user.service";
 
 export class ChatGatewayService {
-  private io: Server<ClientToServerEvents, ServerToClientEvents> | null = null;
+    private io: Server<ClientToServerEvents, ServerToClientEvents> | null = null;
+    private userService = new UserService();
 
-  public init(server: HttpServer) {
-    if (this.io) {
-      console.warn("Socket.IO уже инициализирован!");
-      return;
+    public init(server: HttpServer) {
+        if (this.io) {
+            console.warn("Socket.IO уже инициализирован!");
+            return;
+        }
+
+        this.io = new Server<ClientToServerEvents, ServerToClientEvents>(server, {
+            cors: {
+                origin: "http://localhost:4200",
+                credentials: true,
+            },
+        });
+
+        this.io.use(websocketAuth);
+
+        this.setupListeners();
     }
 
-    this.io = new Server<ClientToServerEvents, ServerToClientEvents>(server, {
-      cors: {
-        origin: "http://localhost:4200",
-        credentials: true,
-      },
-    });
+    private setupListeners(): void {
+        this.io!.on("connection", async (socket) => {
+            console.log(`🔌 Подключен: ${socket.data.user.email} (${socket.id})`);
+            const userId = socket.data.user.id as string;
 
-    this.io.use(websocketAuth);
+            presenceService.addConnection(userId, socket.id);
 
-    this.setupListeners();
-  }
+            const snapshot = await this.userService.getOnlineUsers(userId);
+            socket.emit(SOCKET_SERVER_EVENTS.PRESENCE_SNAPSHOT, snapshot);
 
-  private setupListeners(): void {
-    this.io!.on("connection", (socket) => {
-      console.log(`🔌 Подключен: ${socket.data.user.email} (${socket.id})`);
-      socket.on("disconnect", () => {
-        console.log(`🔌 Отключен: ${socket.data.user.email}`);
-      });
-    });
-  }
-
-  public getIO() {
-    if (!this.io) {
-      throw new Error("Socket.IO не инициализирован. Вызовите init() сначала.");
+            socket.on("disconnect", () => {
+                console.log(`🔌 Отключен: ${socket.data.user.email}`);
+                presenceService.removeConnection(userId, socket.id);
+            });
+        });
     }
-    return this.io;
-  }
+
+    public getIO() {
+        if (!this.io) {
+            throw new Error("Socket.IO не инициализирован. Вызовите init() сначала.");
+        }
+        return this.io;
+    }
 }
 
 export const chatGateway = new ChatGatewayService();
