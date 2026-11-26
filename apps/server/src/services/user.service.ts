@@ -1,5 +1,5 @@
 import {
-    type AvatarResponse,
+    type AvatarResponse, CHAT_STATUS_CONFIG,
     type ChatStatusResponse,
     type Credential,
     type NewUser,
@@ -240,6 +240,9 @@ export class UserService {
                 id: {
                     in: ids,
                 },
+                chatStatus: {
+                    in: [CHAT_STATUS_CONFIG.ONLINE.value, CHAT_STATUS_CONFIG.AWAY.value]
+                }
             },
             select: {
                 id: true,
@@ -253,7 +256,11 @@ export class UserService {
 
     public async getOnlineUserById(userId: string): Promise<OnlineUser | null> {
         const prismaUser = await prisma.user.findUnique({
-            where: {id: userId},
+            where: {id: userId,
+                chatStatus: {
+                    in: [CHAT_STATUS_CONFIG.ONLINE.value, CHAT_STATUS_CONFIG.AWAY.value]
+                }
+            },
             select: {
                 id: true,
                 username: true,
