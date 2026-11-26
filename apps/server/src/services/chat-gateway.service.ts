@@ -1,12 +1,11 @@
 import {Server} from "socket.io";
 import type {Server as HttpServer} from "node:http";
 import {websocketAuth} from "../middleware/websocket-auth";
-import {
-    type ClientToServerEvents,
-    type ServerToClientEvents, SOCKET_SERVER_EVENTS,
-} from "@knigolub/shared";
+import {type ClientToServerEvents, type ServerToClientEvents, SOCKET_SERVER_EVENTS,} from "@knigolub/shared";
 import {presenceService} from "./presence.service";
 import {UserService} from "./user.service";
+import {catchError, filter, from, mergeMap, of} from "rxjs";
+import {PRESENCE_TYPE} from "../constants/const";
 
 export class ChatGatewayService {
     private io: Server<ClientToServerEvents, ServerToClientEvents> | null = null;
@@ -26,7 +25,7 @@ export class ChatGatewayService {
         });
 
         this.io.use(websocketAuth);
-
+        this.subscribePresenceChanged();
         this.setupListeners();
     }
 
@@ -40,10 +39,8 @@ export class ChatGatewayService {
             const snapshot = await this.userService.getOnlineUsers(userId);
             socket.emit(SOCKET_SERVER_EVENTS.PRESENCE_SNAPSHOT, snapshot);
 
-            socket.on("disconnect", () => {
-                console.log(`🔌 Отключен: ${socket.data.user.email}`);
-                presenceService.removeConnection(userId, socket.id);
-            });
+            socket.on("disconnect", () =>
+                presenceService.removeConnection(userId, socket.id));
         });
     }
 
@@ -52,6 +49,21 @@ export class ChatGatewayService {
             throw new Error("Socket.IO не инициализирован. Вызовите init() сначала.");
         }
         return this.io;
+    }
+
+    public subscribePresenceChanged() {
+        presenceService.presenceChanged$.pipe(
+            filter(event => event.type === PRESENCE_TYPE.ONLINE),
+            mergeMap((event) =>
+                from(this.userService.getOnlineUserById(event.userId))
+                    .pipe(catchError(() => of(null)))),
+            filter(user => user !== null))
+            .subscribe(user => this.io?.emit(SOCKET_SERVER_EVENTS.PRESENCE_ONLINE, user));
+
+        presenceService.presenceChanged$.pipe(
+            filter(event => event.type === PRESENCE_TYPE.OFFLINE))
+            .subscribe(({userId}) =>
+                    this.io?.emit(SOCKET_SERVER_EVENTS.PRESENCE_OFFLINE, userId));
     }
 }
 
