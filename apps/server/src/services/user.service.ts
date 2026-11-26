@@ -2,7 +2,8 @@ import {
     type AvatarResponse,
     type ChatStatusResponse,
     type Credential,
-    type NewUser, type OnlineUser,
+    type NewUser,
+    type OnlineUser,
     type UpdateUser,
     type User,
     type UserDto,
@@ -20,7 +21,6 @@ import {getAbsoluteAvatarUrl} from "../utils/url.utils";
 import {deleteFileSafely} from "../utils/file.utils";
 import type {UpdateChatStatus} from "../types/update-chat-status.type";
 import {presenceService} from "./presence.service";
-import {id} from "zod/locales";
 import {mapPrismaToOnlineUser} from "../mappers/online-user.mapper";
 
 export class UserService {
@@ -118,6 +118,7 @@ export class UserService {
         if (!prismaUser) {
             throw new NotFoundError(`Пользователь с id "${id}" не найден`);
         }
+
         const baseUrl = process.env.BASE_URL || "http://localhost:3000";
         const absoluteUrl = `${baseUrl}${prismaUser.avatarUrl}`;
         const user = {...mapPrismaUserToUser(prismaUser), avatarUrl: absoluteUrl};
@@ -248,5 +249,22 @@ export class UserService {
         });
 
         return prismaUsers.map(user => mapPrismaToOnlineUser(user));
+    }
+
+    public async getOnlineUserById(userId: string): Promise<OnlineUser | null> {
+        const prismaUser = await prisma.user.findUnique({
+            where: {id: userId},
+            select: {
+                id: true,
+                username: true,
+                avatarUrl: true,
+            }
+        })
+
+        if (!prismaUser) {
+            return null;
+        }
+
+        return mapPrismaToOnlineUser(prismaUser);
     }
 }
