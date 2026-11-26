@@ -55,6 +55,11 @@ export class PresenceService {
     public getOnlineSince(userId: string): Date | undefined {
         return this.records.get(userId)?.onlineSince;
     }
+
+
+    public hasConnections(userId: string) {
+        return this.records.has(userId);
+    }
 }
 
 export const presenceService = new PresenceService();
