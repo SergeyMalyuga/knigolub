@@ -1,14 +1,12 @@
 import type {NextFunction, Request, Response} from "express";
-import {
-    type ErrorResponse,
-    type UpdateUser,
-    updateUserSchema,
-} from "@knigolub/shared";
+import {type ErrorResponse, SOCKET_SERVER_EVENTS, type UpdateUser, updateUserSchema,} from "@knigolub/shared";
 import {UserService} from "../services/user.service";
 import {AuthError} from "../errors/auth.error";
 import {NotFoundError} from "../errors/not-found.error";
 import {updateChatStatus} from "../schemas/user.schema";
 import type {AuthRequest} from "../types/auth-request.type";
+import {chatGateway} from "../services/chat-gateway.service";
+import {presenceService} from "../services/presence.service";
 
 export class UserController {
     private userService = new UserService();
@@ -190,6 +188,7 @@ export class UserController {
         next: NextFunction,
     ) {
         const userId = req.user.id;
+        const io = chatGateway.getIO();
 
         try {
             const parsed = updateChatStatus.safeParse(req.body);
@@ -203,6 +202,15 @@ export class UserController {
                 userId,
                 chatStatus,
             });
+
+            if (presenceService.hasConnections(userId)) {
+                    const user = await this.userService.getOnlineUserById(userId)
+                    if (user) {
+                        io.emit(SOCKET_SERVER_EVENTS.PRESENCE_ONLINE, user)
+                    } else {
+                    io.emit(SOCKET_SERVER_EVENTS.PRESENCE_OFFLINE, userId)
+                }
+            }
 
             return res.status(200).json(updateStatus);
         } catch (error: any) {
