@@ -1,15 +1,15 @@
 import type {PresenceRecord} from "../types/presence-record.type";
 import {Subject} from "rxjs";
 import type {PresenceChangeEvent} from "../types/presence-change-event.type";
-import {PRESENCE_STATUS} from "../constants/const";
+import {PRESENCE_TYPE} from "../constants/const";
 
 export class PresenceService {
     private records = new Map<string, PresenceRecord>;
-    private changesSubject = new Subject<PresenceChangeEvent>();
+    private presenceChangedSubject = new Subject<PresenceChangeEvent>();
 
     private static readonly OFFLINE_GRACE_MS = 5000;
 
-    public changes$ = this.changesSubject.asObservable();
+    public presenceChanged$ = this.presenceChangedSubject.asObservable();
 
     public addConnection(userId: string, socketId: string): boolean {
         const record = this.records.get(userId);
@@ -28,7 +28,7 @@ export class PresenceService {
             onlineSince: new Date(),
         });
 
-        this.changesSubject.next({type: PRESENCE_STATUS.ONLINE, userId});
+        this.presenceChangedSubject.next({type: PRESENCE_TYPE.ONLINE, userId});
         return true;
     }
 
@@ -43,7 +43,7 @@ export class PresenceService {
 
         record.graceTimer = setTimeout(() => {
             this.records.delete(userId);
-            this.changesSubject.next({type: PRESENCE_STATUS.OFFLINE, userId});
+            this.presenceChangedSubject.next({type: PRESENCE_TYPE.OFFLINE, userId});
             record.graceTimer = null;
         }, PresenceService.OFFLINE_GRACE_MS);
     }
