@@ -1,8 +1,15 @@
-import {afterRenderEffect, DestroyRef, Directive, ElementRef, inject, signal} from '@angular/core';
-import {Store} from '@ngrx/store';
-import {AppState} from '../../core/models/app.state';
-import {selectMessages} from '../../store/message/selectors/message.selectors';
-import {NEAR_BOTTOM_THRESHOLD, SCROLL_DEBOUNCE_MS} from '../../core/constants/const';
+import {
+  afterRenderEffect,
+  DestroyRef,
+  Directive,
+  ElementRef,
+  inject,
+  signal,
+} from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../core/models/app.state';
+import { selectMessages } from '../../store/message/selectors/message.selectors';
+import { NEAR_BOTTOM_THRESHOLD, SCROLL_DEBOUNCE_MS } from '../../core/constants/const';
 
 @Directive({
   selector: '[appChatScrollBottom]',
@@ -30,17 +37,19 @@ export class ChatScrollBottomDirective {
     });
 
     afterRenderEffect(() => {
-        this.messages();
+      this.messages();
 
-        if (this.isNearBottom()) {
-          target.scrollTo({top: target.scrollHeight, behavior: this.isFirstRender ? 'auto' : 'smooth'});
-        }
-
-        if (this.isFirstRender) {
-          this.isFirstRender = false;
-        }
+      if (this.isNearBottom()) {
+        target.scrollTo({
+          top: target.scrollHeight,
+          behavior: this.isFirstRender ? 'auto' : 'smooth',
+        });
       }
-    )
+
+      if (this.isFirstRender) {
+        this.isFirstRender = false;
+      }
+    });
   }
 
   private onScroll = (): void => {
@@ -55,10 +64,10 @@ export class ChatScrollBottomDirective {
       this.isNearBottom.set(distanceToBottom < NEAR_BOTTOM_THRESHOLD);
       this.scrollTimeout = null;
     }, SCROLL_DEBOUNCE_MS);
-  }
+  };
 
   public scrollBottom(): void {
     const target = this.elementRef.nativeElement;
-    target.scrollTo({top: target.scrollHeight, behavior: 'smooth'});
+    target.scrollTo({ top: target.scrollHeight, behavior: 'smooth' });
   }
 }

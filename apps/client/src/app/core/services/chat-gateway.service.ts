@@ -1,8 +1,13 @@
-import {Injectable} from '@angular/core';
-import {io, Socket} from 'socket.io-client';
-import {ClientToServerEvents, OnlineUser, ServerToClientEvents, SOCKET_SERVER_EVENTS} from '@knigolub/shared';
-import {AUTH_TOKEN_KEY_NAME} from '../constants/const';
-import {Subject, ReplaySubject} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { io, Socket } from 'socket.io-client';
+import {
+  ClientToServerEvents,
+  OnlineUser,
+  ServerToClientEvents,
+  SOCKET_SERVER_EVENTS,
+} from '@knigolub/shared';
+import { AUTH_TOKEN_KEY_NAME } from '../constants/const';
+import { Subject, ReplaySubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -42,11 +47,14 @@ export class ChatGatewayService {
     this.socket.on('connect_error', (err) => console.error('Ошибка подключения:', err));
 
     this.socket.on(SOCKET_SERVER_EVENTS.PRESENCE_SNAPSHOT, (onlineUsers) =>
-      this.snapshotSubject.next(onlineUsers));
+      this.snapshotSubject.next(onlineUsers),
+    );
     this.socket.on(SOCKET_SERVER_EVENTS.PRESENCE_ONLINE, (onlineUser) =>
-      this.userOnlineSubject.next(onlineUser));
+      this.userOnlineSubject.next(onlineUser),
+    );
     this.socket.on(SOCKET_SERVER_EVENTS.PRESENCE_OFFLINE, (userId) =>
-      this.userOfflineSubject.next(userId));
+      this.userOfflineSubject.next(userId),
+    );
   }
 
   public disconnect(): void {

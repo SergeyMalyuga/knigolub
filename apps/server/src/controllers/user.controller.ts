@@ -1,241 +1,250 @@
-import type {NextFunction, Request, Response} from "express";
-import {type ErrorResponse, SOCKET_SERVER_EVENTS, type UpdateUser, updateUserSchema,} from "@knigolub/shared";
-import {UserService} from "../services/user.service";
-import {AuthError} from "../errors/auth.error";
-import {NotFoundError} from "../errors/not-found.error";
-import {updateChatStatus} from "../schemas/user.schema";
-import type {AuthRequest} from "../types/auth-request.type";
-import {chatGateway} from "../services/chat-gateway.service";
-import {presenceService} from "../services/presence.service";
+import type { NextFunction, Request, Response } from "express";
+import {
+  type ErrorResponse,
+  SOCKET_SERVER_EVENTS,
+  type UpdateUser,
+  updateUserSchema,
+} from "@knigolub/shared";
+import { UserService } from "../services/user.service";
+import { AuthError } from "../errors/auth.error";
+import { NotFoundError } from "../errors/not-found.error";
+import { updateChatStatus } from "../schemas/user.schema";
+import type { AuthRequest } from "../types/auth-request.type";
+import { chatGateway } from "../services/chat-gateway.service";
+import { presenceService } from "../services/presence.service";
 
 export class UserController {
-    private userService = new UserService();
+  private userService = new UserService();
 
-    /**
-     * Регистрирует нового пользователя в системе.
-     *
-     * @param req - Express Request объект.
-     * @param req.body - Данные для регистрации (username, email, password).
-     * @param res - Express Response объект.
-     * @param next - Express NextFunction для передачи ошибок в глобальный обработчик.
-     * @returns HTTP 200 с объектом UserDto (данные пользователя и JWT-токен).
-     */
-    public async register(req: Request, res: Response, next: NextFunction) {
-        const {username, email, password} = req.body;
+  /**
+   * Регистрирует нового пользователя в системе.
+   *
+   * @param req - Express Request объект.
+   * @param req.body - Данные для регистрации (username, email, password).
+   * @param res - Express Response объект.
+   * @param next - Express NextFunction для передачи ошибок в глобальный обработчик.
+   * @returns HTTP 200 с объектом UserDto (данные пользователя и JWT-токен).
+   */
+  public async register(req: Request, res: Response, next: NextFunction) {
+    const { username, email, password } = req.body;
 
-        try {
-            const userDto = await this.userService.registerUser({
-                username,
-                email,
-                password,
-            });
-            return res.status(200).json(userDto);
-        } catch (error: any) {
-            next(error);
-        }
+    try {
+      const userDto = await this.userService.registerUser({
+        username,
+        email,
+        password,
+      });
+      return res.status(200).json(userDto);
+    } catch (error: any) {
+      next(error);
+    }
+  }
+
+  /**
+   * Аутентифицирует пользователя по email и паролю, выдавая JWT-токен.
+   *
+   * @param req - Express Request объект.
+   * @param req.body - Учетные данные пользователя (email, password).
+   * @param res - Express Response объект.
+   * @returns HTTP 200 с объектом UserDto при успехе, или HTTP 401 с описанием ошибки при неверных данных.
+   */
+  public async login(req: Request, res: Response) {
+    const { email, password } = req.body;
+
+    try {
+      const userDto = await this.userService.loginUser({ email, password });
+      return res.status(200).json(userDto);
+    } catch (error: any) {
+      if (error instanceof AuthError) {
+        const errorResponse: ErrorResponse = {
+          message: error.message,
+          field: error.field,
+        };
+        return res.status(error.statusCode).json(errorResponse);
+      }
+    }
+  }
+
+  /**
+   * Получает данные профиля текущего авторизованного пользователя.
+   *
+   * @param req - Express Request объект (должен содержать req.user, добавленный middleware аутентификации).
+   * @param res - Express Response объект.
+   * @returns HTTP 200 с объектом User, либо HTTP 401 (не авторизован), 404 (пользователь не найден) или 500 (ошибка сервера).
+   */
+  public async getCurrentUser(req: Request, res: Response) {
+    const id = req.user?.id;
+
+    if (!id) {
+      const errorResponse: ErrorResponse = {
+        message: "Требуется авторизация",
+      };
+      return res.status(401).json(errorResponse);
     }
 
-    /**
-     * Аутентифицирует пользователя по email и паролю, выдавая JWT-токен.
-     *
-     * @param req - Express Request объект.
-     * @param req.body - Учетные данные пользователя (email, password).
-     * @param res - Express Response объект.
-     * @returns HTTP 200 с объектом UserDto при успехе, или HTTP 401 с описанием ошибки при неверных данных.
-     */
-    public async login(req: Request, res: Response) {
-        const {email, password} = req.body;
+    try {
+      const user = await this.userService.getUserById(id);
+      return res.status(200).json(user);
+    } catch (error: any) {
+      if (error instanceof NotFoundError) {
+        const errorResponse: ErrorResponse = {
+          message: error.message,
+        };
+        return res.status(error.statusCode).json(errorResponse);
+      }
 
-        try {
-            const userDto = await this.userService.loginUser({email, password});
-            return res.status(200).json(userDto);
-        } catch (error: any) {
-            if (error instanceof AuthError) {
-                const errorResponse: ErrorResponse = {
-                    message: error.message,
-                    field: error.field,
-                };
-                return res.status(error.statusCode).json(errorResponse);
-            }
-        }
+      console.error("Ошибка при получении пользователя:", error);
+
+      const errorResponse: ErrorResponse = {
+        message: "Внутренняя ошибка сервера",
+      };
+
+      return res.status(500).json(errorResponse);
     }
+  }
 
-    /**
-     * Получает данные профиля текущего авторизованного пользователя.
-     *
-     * @param req - Express Request объект (должен содержать req.user, добавленный middleware аутентификации).
-     * @param res - Express Response объект.
-     * @returns HTTP 200 с объектом User, либо HTTP 401 (не авторизован), 404 (пользователь не найден) или 500 (ошибка сервера).
-     */
-    public async getCurrentUser(req: Request, res: Response) {
-        const id = req.user?.id;
+  /**
+   * Загружает и обновляет аватар пользователя.
+   * Ожидает запрос типа multipart/form-data с файлом в поле 'avatar' (обрабатывается multer).
+   *
+   * @param req - Express Request объект (содержит req.file от multer и req.user.id).
+   * @param res - Express Response объект.
+   * @param next - Express NextFunction для передачи ошибок.
+   * @returns HTTP 200 с объектом AvatarResponse, либо HTTP 400 (файл не предоставлен) или 401 (не авторизован).
+   */
+  public async uploadAvatar(req: Request, res: Response, next: NextFunction) {
+    try {
+      const userId = req.user?.id;
 
-        if (!id) {
-            const errorResponse: ErrorResponse = {
-                message: "Требуется авторизация",
-            };
-            return res.status(401).json(errorResponse);
-        }
+      if (!userId) {
+        const error: ErrorResponse = { message: "Не авторизован" };
+        return res.status(401).json(error);
+      }
 
-        try {
-            const user = await this.userService.getUserById(id);
-            return res.status(200).json(user);
-        } catch (error: any) {
-            if (error instanceof NotFoundError) {
-                const errorResponse: ErrorResponse = {
-                    message: error.message,
-                };
-                return res.status(error.statusCode).json(errorResponse);
-            }
+      // Multer уже сохранил файл, информация о нём в req.file
+      if (!req.file) {
+        const error: ErrorResponse = { message: "Файл не был загружен" };
+        return res.status(400).json(error);
+      }
 
-            console.error("Ошибка при получении пользователя:", error);
+      // Формируем путь к файлу (относительный, для хранения в БД)
+      const avatarUrl = `/uploads/avatars/${req.file.filename}`;
 
-            const errorResponse: ErrorResponse = {
-                message: "Внутренняя ошибка сервера",
-            };
+      // Обновляем запись в БД
+      const response = await this.userService.updateAvatar(userId, avatarUrl);
 
-            return res.status(500).json(errorResponse);
-        }
+      res.status(200).json(response);
+    } catch (error) {
+      next(error);
     }
+  }
 
-    /**
-     * Загружает и обновляет аватар пользователя.
-     * Ожидает запрос типа multipart/form-data с файлом в поле 'avatar' (обрабатывается multer).
-     *
-     * @param req - Express Request объект (содержит req.file от multer и req.user.id).
-     * @param res - Express Response объект.
-     * @param next - Express NextFunction для передачи ошибок.
-     * @returns HTTP 200 с объектом AvatarResponse, либо HTTP 400 (файл не предоставлен) или 401 (не авторизован).
-     */
-    public async uploadAvatar(req: Request, res: Response, next: NextFunction) {
-        try {
-            const userId = req.user?.id;
+  /**
+   * Обновляет данные профиля текущего пользователя.
+   * Выполняет валидацию входящих данных через updateUserSchema перед передачей в сервис.
+   *
+   * @param req - Express Request объект.
+   * @param req.body - Данные для обновления (валидируются схемой updateUserSchema).
+   * @param res - Express Response объект.
+   * @param next - Express NextFunction для передачи ошибок.
+   * @returns HTTP 200 с обновленным объектом User, либо HTTP 400 (ошибка валидации) или 401 (не авторизован).
+   */
+  public async updateUser(req: Request, res: Response, next: NextFunction) {
+    try {
+      const userId = req.user?.id;
 
-            if (!userId) {
-                const error: ErrorResponse = {message: "Не авторизован"};
-                return res.status(401).json(error);
-            }
+      if (!userId) {
+        const error: ErrorResponse = { message: "Не авторизован" };
+        return res.status(401).json(error);
+      }
 
-            // Multer уже сохранил файл, информация о нём в req.file
-            if (!req.file) {
-                const error: ErrorResponse = {message: "Файл не был загружен"};
-                return res.status(400).json(error);
-            }
+      const validationResult = updateUserSchema.safeParse(req.body);
 
-            // Формируем путь к файлу (относительный, для хранения в БД)
-            const avatarUrl = `/uploads/avatars/${req.file.filename}`;
+      if (!validationResult.success) {
+        const error: ErrorResponse = { message: "Неверный формат данных" };
+        return res.status(400).json(error);
+      }
 
-            // Обновляем запись в БД
-            const response = await this.userService.updateAvatar(userId, avatarUrl);
+      const dto: UpdateUser = validationResult.data;
 
-            res.status(200).json(response);
-        } catch (error) {
-            next(error);
-        }
+      const updateUser = await this.userService.updateUser(userId, dto);
+
+      res.status(200).json(updateUser);
+    } catch (error: any) {
+      next(error);
     }
+  }
 
-    /**
-     * Обновляет данные профиля текущего пользователя.
-     * Выполняет валидацию входящих данных через updateUserSchema перед передачей в сервис.
-     *
-     * @param req - Express Request объект.
-     * @param req.body - Данные для обновления (валидируются схемой updateUserSchema).
-     * @param res - Express Response объект.
-     * @param next - Express NextFunction для передачи ошибок.
-     * @returns HTTP 200 с обновленным объектом User, либо HTTP 400 (ошибка валидации) или 401 (не авторизован).
-     */
-    public async updateUser(req: Request, res: Response, next: NextFunction) {
-        try {
-            const userId = req.user?.id;
+  /**
+   * Обновляет статус пользователя в чате.
+   * Выполняет валидацию входящих данных через updateChatStatusSchema перед передачей в сервис.
+   *
+   * Маршрут: PATC /users/me/chat-status
+   *
+   * @param req - Express Request объект (с расширенным типом AuthRequest).
+   * @param req.body - Данные для обновления (валидируются схемой updateChatStatusSchema).
+   * @param res - Express Response объект.
+   * @param next - Express NextFunction для передачи ошибок в глобальный обработчик.
+   * @returns HTTP 200 с обновленным объектом статуса, либо HTTP 400 (ошибка валидации) или 401 (не авторизован).
+   */
+  public async updateChatStatus(
+    req: AuthRequest,
+    res: Response,
+    next: NextFunction,
+  ) {
+    const userId = req.user.id;
+    const io = chatGateway.getIO();
 
-            if (!userId) {
-                const error: ErrorResponse = {message: "Не авторизован"};
-                return res.status(401).json(error);
-            }
+    try {
+      const parsed = updateChatStatus.safeParse(req.body);
 
-            const validationResult = updateUserSchema.safeParse(req.body);
+      if (!parsed.success) {
+        return next(parsed.error);
+      }
 
-            if (!validationResult.success) {
-                const error: ErrorResponse = {message: "Неверный формат данных"};
-                return res.status(400).json(error);
-            }
+      const { chatStatus } = parsed.data;
+      const updateStatus = await this.userService.updateChatStatus({
+        userId,
+        chatStatus,
+      });
 
-            const dto: UpdateUser = validationResult.data;
-
-            const updateUser = await this.userService.updateUser(userId, dto);
-
-            res.status(200).json(updateUser);
-        } catch (error: any) {
-            next(error);
+      if (presenceService.hasConnections(userId)) {
+        const user = await this.userService.getOnlineUserById(userId);
+        if (user) {
+          io.emit(SOCKET_SERVER_EVENTS.PRESENCE_ONLINE, user);
+        } else {
+          io.emit(SOCKET_SERVER_EVENTS.PRESENCE_OFFLINE, userId);
         }
+      }
+
+      return res.status(200).json(updateStatus);
+    } catch (error: any) {
+      next(error);
     }
+  }
 
-    /**
-     * Обновляет статус пользователя в чате.
-     * Выполняет валидацию входящих данных через updateChatStatusSchema перед передачей в сервис.
-     *
-     * Маршрут: PATC /users/me/chat-status
-     *
-     * @param req - Express Request объект (с расширенным типом AuthRequest).
-     * @param req.body - Данные для обновления (валидируются схемой updateChatStatusSchema).
-     * @param res - Express Response объект.
-     * @param next - Express NextFunction для передачи ошибок в глобальный обработчик.
-     * @returns HTTP 200 с обновленным объектом статуса, либо HTTP 400 (ошибка валидации) или 401 (не авторизован).
-     */
-    public async updateChatStatus(
-        req: AuthRequest,
-        res: Response,
-        next: NextFunction,
-    ) {
-        const userId = req.user.id;
-        const io = chatGateway.getIO();
+  /**
+   * Получает пользователей онлайн.
+   *
+   * Маршрут: GET /users/online
+   *
+   * @param req - Express request объект.
+   * @param res - Express response объект.
+   * @param next - Express next функция для передачи ошибок в глобальный обработчик.
+   * @returns JSON со списком пользователей онлайн.
+   */
+  public async getOnlineUsers(
+    req: AuthRequest,
+    res: Response,
+    next: NextFunction,
+  ) {
+    const userId = req.user.id;
 
-        try {
-            const parsed = updateChatStatus.safeParse(req.body);
-
-            if (!parsed.success) {
-                return next(parsed.error);
-            }
-
-            const {chatStatus} = parsed.data;
-            const updateStatus = await this.userService.updateChatStatus({
-                userId,
-                chatStatus,
-            });
-
-            if (presenceService.hasConnections(userId)) {
-                    const user = await this.userService.getOnlineUserById(userId)
-                    if (user) {
-                        io.emit(SOCKET_SERVER_EVENTS.PRESENCE_ONLINE, user)
-                    } else {
-                    io.emit(SOCKET_SERVER_EVENTS.PRESENCE_OFFLINE, userId)
-                }
-            }
-
-            return res.status(200).json(updateStatus);
-        } catch (error: any) {
-            next(error);
-        }
+    try {
+      const users = await this.userService.getOnlineUsers(userId);
+      return res.status(200).json(users);
+    } catch (error: any) {
+      next(error);
     }
-
-    /**
-     * Получает пользователей онлайн.
-     *
-     * Маршрут: GET /users/online
-     *
-     * @param req - Express request объект.
-     * @param res - Express response объект.
-     * @param next - Express next функция для передачи ошибок в глобальный обработчик.
-     * @returns JSON со списком пользователей онлайн.
-     */
-    public async getOnlineUsers(req: AuthRequest, res: Response, next: NextFunction) {
-        const userId = req.user.id;
-
-        try {
-            const users = await this.userService.getOnlineUsers(userId);
-            return res.status(200).json(users);
-        } catch (error: any) {
-            next(error);
-        }
-    }
+  }
 }

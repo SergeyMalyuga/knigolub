@@ -1,65 +1,64 @@
-import type {PresenceRecord} from "../types/presence-record.type";
-import {Subject} from "rxjs";
-import type {PresenceChangeEvent} from "../types/presence-change-event.type";
-import {PRESENCE_TYPE} from "../constants/const";
+import type { PresenceRecord } from "../types/presence-record.type";
+import { Subject } from "rxjs";
+import type { PresenceChangeEvent } from "../types/presence-change-event.type";
+import { PRESENCE_TYPE } from "../constants/const";
 
 export class PresenceService {
-    private records = new Map<string, PresenceRecord>;
-    private presenceChangedSubject = new Subject<PresenceChangeEvent>();
+  private records = new Map<string, PresenceRecord>();
+  private presenceChangedSubject = new Subject<PresenceChangeEvent>();
 
-    private static readonly OFFLINE_GRACE_MS = 5000;
+  private static readonly OFFLINE_GRACE_MS = 5000;
 
-    public presenceChanged$ = this.presenceChangedSubject.asObservable();
+  public presenceChanged$ = this.presenceChangedSubject.asObservable();
 
-    public addConnection(userId: string, socketId: string): boolean {
-        const record = this.records.get(userId);
+  public addConnection(userId: string, socketId: string): boolean {
+    const record = this.records.get(userId);
 
-        if (record) {
-            if (record.graceTimer) {
-                clearTimeout(record.graceTimer);
-                record.graceTimer = null;
-            }
-            record.sockets.add(socketId);
-            return false
-        }
-
-        this.records.set(userId, {
-            sockets: new Set([socketId]),
-            onlineSince: new Date(),
-        });
-
-        this.presenceChangedSubject.next({type: PRESENCE_TYPE.ONLINE, userId});
-        return true;
+    if (record) {
+      if (record.graceTimer) {
+        clearTimeout(record.graceTimer);
+        record.graceTimer = null;
+      }
+      record.sockets.add(socketId);
+      return false;
     }
 
-    public removeConnection(userId: string, socketId: string): void {
-        const record = this.records.get(userId);
+    this.records.set(userId, {
+      sockets: new Set([socketId]),
+      onlineSince: new Date(),
+    });
 
-        if (!record) return;
+    this.presenceChangedSubject.next({ type: PRESENCE_TYPE.ONLINE, userId });
+    return true;
+  }
 
-        record.sockets.delete(socketId);
+  public removeConnection(userId: string, socketId: string): void {
+    const record = this.records.get(userId);
 
-        if (record.sockets.size > 0) return;
+    if (!record) return;
 
-        record.graceTimer = setTimeout(() => {
-            this.records.delete(userId);
-            this.presenceChangedSubject.next({type: PRESENCE_TYPE.OFFLINE, userId});
-            record.graceTimer = null;
-        }, PresenceService.OFFLINE_GRACE_MS);
-    }
+    record.sockets.delete(socketId);
 
-    public getOnlineUsersIds(): string[] {
-        return [...this.records.keys()];
-    }
+    if (record.sockets.size > 0) return;
 
-    public getOnlineSince(userId: string): Date | undefined {
-        return this.records.get(userId)?.onlineSince;
-    }
+    record.graceTimer = setTimeout(() => {
+      this.records.delete(userId);
+      this.presenceChangedSubject.next({ type: PRESENCE_TYPE.OFFLINE, userId });
+      record.graceTimer = null;
+    }, PresenceService.OFFLINE_GRACE_MS);
+  }
 
+  public getOnlineUsersIds(): string[] {
+    return [...this.records.keys()];
+  }
 
-    public hasConnections(userId: string) {
-        return this.records.has(userId);
-    }
+  public getOnlineSince(userId: string): Date | undefined {
+    return this.records.get(userId)?.onlineSince;
+  }
+
+  public hasConnections(userId: string) {
+    return this.records.has(userId);
+  }
 }
 
 export const presenceService = new PresenceService();

@@ -15,11 +15,11 @@ router.post(
 );
 
 router.get(
-    "/",
-    requireAuth,
-    authHandler((req, res, next) =>
-        messageController.getMessages(req, res, next),
-    ),
+  "/",
+  requireAuth,
+  authHandler((req, res, next) =>
+    messageController.getMessages(req, res, next),
+  ),
 );
 
 export default router;

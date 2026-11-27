@@ -1,9 +1,9 @@
-import {BookState} from './book.state';
-import {UserState} from './user.state';
-import {FavoriteBookState} from './favorite-book.state';
-import {ClubReviewState} from './club-review.state';
-import {MessageState} from './message.state';
-import {UserOnlineState} from './user-online.state';
+import { BookState } from './book.state';
+import { UserState } from './user.state';
+import { FavoriteBookState } from './favorite-book.state';
+import { ClubReviewState } from './club-review.state';
+import { MessageState } from './message.state';
+import { OnlineUserState } from './online-user.state';
 
 export interface AppState {
   book: BookState;
@@ -11,5 +11,5 @@ export interface AppState {
   favoriteBook: FavoriteBookState;
   clubReview: ClubReviewState;
   message: MessageState;
-  onlineUsers: UserOnlineState;
+  onlineUsers: OnlineUserState;
 }

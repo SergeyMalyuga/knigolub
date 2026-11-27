@@ -36,7 +36,6 @@
 
     &--my {
       align-self: end;
-
     }
   }
 
@@ -47,13 +46,13 @@
       display: flex;
       flex-direction: column;
       background-color: variables.$linen;
-      color: #3C2D1E;
+      color: #3c2d1e;
       padding: rem(8);
       border-radius: 0 12px 12px;
       margin-left: rem(16);
 
       &--my {
-        background: linear-gradient(135deg, #D97B7B 0%, #E4C6A1 100%);
+        background: linear-gradient(135deg, #d97b7b 0%, #e4c6a1 100%);
         align-self: end;
         border-radius: 12px 12px 0;
         margin-left: 0;
@@ -74,7 +73,7 @@
   &__time {
     font-size: rem(11);
     align-self: flex-end;
-    color: #3C2D1E;
+    color: #3c2d1e;
     opacity: 0.7;
     line-height: 100%;
   }

@@ -52,30 +52,33 @@
       </div>
       <div class="chat__members-header" aria-live="polite" aria-atomic="true">
         <h3 class="chat__members-title">Онлайн</h3>
-        <span class="chat__members-count">{{usersOnlineTotal()}}</span>
+        <span class="chat__members-count">{{ usersOnlineTotal() }}</span>
       </div>
       @if (usersOnlineTotal() > 0) {
-        <ul class="chat__members"
-            aria-label="Онлайн участники">
+        <ul class="chat__members" aria-label="Онлайн участники">
           @for (user of usersOnline(); track user.id) {
             <li app-online-user [onlineUser]="user"></li>
           }
         </ul>
       } @else {
-          <p class="chat__members-empty">Сейчас в чате кроме вас никого нет</p>
+        <p class="chat__members-empty">Сейчас в чате кроме вас никого нет</p>
       }
     </div>
     <div class="chat__main">
       <div class="chat__messages-wrapper">
         <ul class="chat__messages" appChatScrollBottom>
-          @for (message of messages(); track message.id;) {
-            <li [ngClass]="{
-          'chat__messages-item': true,
-          'chat__messages-item--consecutive': hasNextFromSameAuthor($index, messages()),
-          }">
-              <app-message-card [message]="message"
-                                [shouldShowHeader]="shouldShowHeader($index, messages())"
-                                [isOwner]="message.author.id === user().id"/>
+          @for (message of messages(); track message.id) {
+            <li
+              [ngClass]="{
+                'chat__messages-item': true,
+                'chat__messages-item--consecutive': hasNextFromSameAuthor($index, messages()),
+              }"
+            >
+              <app-message-card
+                [message]="message"
+                [shouldShowHeader]="shouldShowHeader($index, messages())"
+                [isOwner]="message.author.id === user().id"
+              />
             </li>
           }
         </ul>

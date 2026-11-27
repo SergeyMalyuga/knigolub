@@ -37,17 +37,20 @@
 
       .mat-mdc-text-field-wrapper {
         padding: 0 rem(10);
-        transition: border-color 0.3s ease-in-out,
-        box-shadow 0.3s ease-in-out;
+        transition:
+          border-color 0.3s ease-in-out,
+          box-shadow 0.3s ease-in-out;
 
         &:hover {
-          box-shadow: 0 0 15px 3px variables.$old-lace,
-          0 0 15px 5px variables.$deep-earth;
+          box-shadow:
+            0 0 15px 3px variables.$old-lace,
+            0 0 15px 5px variables.$deep-earth;
         }
 
         &:focus-within {
-          box-shadow: 0 0 15px 3px variables.$old-lace,
-          0 0 15px 5px variables.$deep-earth;
+          box-shadow:
+            0 0 15px 3px variables.$old-lace,
+            0 0 15px 5px variables.$deep-earth;
         }
       }
 
@@ -96,11 +99,13 @@
       }
 
       // Цвет текста label hover
-      .mdc-text-field--outlined:not(.mdc-text-field--disabled, .mdc-text-field--focused):hover .mdc-floating-label {
+      .mdc-text-field--outlined:not(.mdc-text-field--disabled, .mdc-text-field--focused):hover
+        .mdc-floating-label {
         color: variables.$mint-green;
       }
 
-      .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-floating-label {
+      .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused
+        .mdc-floating-label {
         color: variables.$mint-green;
       }
 
@@ -151,11 +156,13 @@
       }
 
       // Цвет текста label hover
-      .mdc-text-field--outlined:not(.mdc-text-field--disabled, .mdc-text-field--focused):hover .mdc-floating-label {
+      .mdc-text-field--outlined:not(.mdc-text-field--disabled, .mdc-text-field--focused):hover
+        .mdc-floating-label {
         color: variables.$mint-green;
       }
 
-      .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-floating-label {
+      .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused
+        .mdc-floating-label {
         color: variables.$mint-green;
       }
 
@@ -206,11 +213,13 @@
       }
 
       // Цвет текста label hover
-      .mdc-text-field--outlined:not(.mdc-text-field--disabled, .mdc-text-field--focused):hover .mdc-floating-label {
+      .mdc-text-field--outlined:not(.mdc-text-field--disabled, .mdc-text-field--focused):hover
+        .mdc-floating-label {
         color: variables.$mint-green;
       }
 
-      .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-floating-label {
+      .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused
+        .mdc-floating-label {
         color: variables.$mint-green;
       }
 
@@ -424,20 +433,23 @@
       border: 1px solid variables.$wheat;
       border-radius: 15px;
       overflow: hidden;
-      transition: border-color 0.3s ease-in-out,
-      box-shadow 0.3s ease-in-out;
+      transition:
+        border-color 0.3s ease-in-out,
+        box-shadow 0.3s ease-in-out;
 
       &:hover {
         border-color: variables.$caramel;
-        box-shadow: 0 0 15px 3px variables.$old-lace,
-        0 0 15px 5px variables.$deep-earth;
+        box-shadow:
+          0 0 15px 3px variables.$old-lace,
+          0 0 15px 5px variables.$deep-earth;
       }
 
       &:focus-within {
         outline: 2px solid variables.$walnut-brown;
         outline-offset: -1px;
-        box-shadow: 0 0 15px 3px variables.$old-lace,
-        0 0 15px 5px variables.$deep-earth;
+        box-shadow:
+          0 0 15px 3px variables.$old-lace,
+          0 0 15px 5px variables.$deep-earth;
       }
     }
 

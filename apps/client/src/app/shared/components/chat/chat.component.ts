@@ -8,47 +8,53 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
-import {CdkDrag, CdkDragHandle} from '@angular/cdk/drag-drop';
-import {MatIconButton} from '@angular/material/button';
-import {MatIcon} from '@angular/material/icon';
-import {ChatService} from '../../../core/services/chat.service';
-import {ChatDragConstraintDirective} from '../../directives/chat-drag-constraint.directive';
-import {CloseOnEscapeDirective} from '../../directives/close-on-escape.directive';
-import {Store} from '@ngrx/store';
-import {AppState} from '../../../core/models/app.state';
+import { CdkDrag, CdkDragHandle } from '@angular/cdk/drag-drop';
+import { MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { ChatService } from '../../../core/services/chat.service';
+import { ChatDragConstraintDirective } from '../../directives/chat-drag-constraint.directive';
+import { CloseOnEscapeDirective } from '../../directives/close-on-escape.directive';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../core/models/app.state';
 import {
   selectChatUser,
   selectUpdateUserStatus,
 } from '../../../store/user/selectors/user.selectors';
-import {MatFormField, MatLabel} from '@angular/material/input';
-import {MatOption, MatSelect} from '@angular/material/select';
-import {NgClass} from '@angular/common';
-import {CHAT_STATUS_CONFIG, ChatStatus, Message} from '@knigolub/shared';
+import { MatFormField, MatLabel } from '@angular/material/input';
+import { MatOption, MatSelect } from '@angular/material/select';
+import { NgClass } from '@angular/common';
+import { CHAT_STATUS_CONFIG, ChatStatus, Message } from '@knigolub/shared';
 import {
   resetUserUpdateStatus,
   updateUserChatStatus,
 } from '../../../store/user/actions/user.actions';
-import {filter} from 'rxjs';
+import { filter } from 'rxjs';
 import {
   ICONS,
   MESSAGE_ERRORS_MESSAGES,
   OPERATION_STATUS,
   UpdateUserStatus,
 } from '../../../core/constants/const';
-import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
-import {EmojiComponent} from '../emoji-picker/emoji.component';
-import {InsertEmojiDirective} from '../../directives/insert-emoji.directive';
-import {Emoji} from '@nicematic/emoji-picker';
-import {MessageCreateDto} from '../../../core/types/message-create.dto';
-import {form, FormField, minLength, required, validate} from '@angular/forms/signals';
-import {messageValidator} from '../../validators/message.validator';
-import {FormsModule} from '@angular/forms';
-import {selectMessages, selectMessageStatus} from '../../../store/message/selectors/message.selectors';
-import {createMessage, resetMessageStatus} from '../../../store/message/actions/message.actions';
-import {MessageCardComponent} from '../message-card/message-card.component';
-import {ChatScrollBottomDirective} from '../../directives/chat-scroll-bottom.directive';
-import {selectUsersOnline, selectUsersOnlineTotal} from '../../../store/online-user/selectors/online-user.selectors';
-import {OnlineUserComponent} from '../online-user/online-user.component';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { EmojiComponent } from '../emoji-picker/emoji.component';
+import { InsertEmojiDirective } from '../../directives/insert-emoji.directive';
+import { Emoji } from '@nicematic/emoji-picker';
+import { MessageCreateDto } from '../../../core/types/message-create.dto';
+import { form, FormField, minLength, required, validate } from '@angular/forms/signals';
+import { messageValidator } from '../../validators/message.validator';
+import { FormsModule } from '@angular/forms';
+import {
+  selectMessages,
+  selectMessageStatus,
+} from '../../../store/message/selectors/message.selectors';
+import { createMessage, resetMessageStatus } from '../../../store/message/actions/message.actions';
+import { MessageCardComponent } from '../message-card/message-card.component';
+import { ChatScrollBottomDirective } from '../../directives/chat-scroll-bottom.directive';
+import {
+  selectUsersOnline,
+  selectUsersOnlineTotal,
+} from '../../../store/online-user/selectors/online-user.selectors';
+import { OnlineUserComponent } from '../online-user/online-user.component';
 
 @Component({
   selector: 'app-chat',
@@ -82,7 +88,7 @@ export class ChatComponent implements OnInit {
   private readonly destroyRef = inject(DestroyRef);
   private readonly emojiDirective = viewChild.required(InsertEmojiDirective);
   private readonly chatScrollDirective = viewChild.required(ChatScrollBottomDirective);
-  private readonly messageModel = signal<MessageCreateDto>({text: ''});
+  private readonly messageModel = signal<MessageCreateDto>({ text: '' });
 
   protected readonly CHAT_STATUS_CONFIG = CHAT_STATUS_CONFIG;
   protected readonly showScrollButton = computed(() => !this.chatScrollDirective().isNearBottom());
@@ -94,8 +100,8 @@ export class ChatComponent implements OnInit {
   public usersOnline = this.store.selectSignal(selectUsersOnline);
 
   public messageForm = form(this.messageModel, (fieldPath) => {
-    required(fieldPath.text, {message: MESSAGE_ERRORS_MESSAGES.message.required});
-    minLength(fieldPath.text, 1, {message: MESSAGE_ERRORS_MESSAGES.message.minLength});
+    required(fieldPath.text, { message: MESSAGE_ERRORS_MESSAGES.message.required });
+    minLength(fieldPath.text, 1, { message: MESSAGE_ERRORS_MESSAGES.message.minLength });
     validate(fieldPath.text, (ctx) => messageValidator(ctx.value()));
   });
 
@@ -119,7 +125,7 @@ export class ChatComponent implements OnInit {
         ),
       )
       .subscribe(() => {
-        this.messageForm().reset({text: ''});
+        this.messageForm().reset({ text: '' });
         this.store.dispatch(resetMessageStatus());
       });
   }
@@ -129,7 +135,7 @@ export class ChatComponent implements OnInit {
   }
 
   public selectChatStatus(status: ChatStatus): void {
-    this.store.dispatch(updateUserChatStatus({chatStatus: status}));
+    this.store.dispatch(updateUserChatStatus({ chatStatus: status }));
   }
 
   public onEmojiSelected(emoji: Emoji) {
@@ -160,8 +166,8 @@ export class ChatComponent implements OnInit {
 
   public onSubmit() {
     if (this.messageForm().valid()) {
-      const {text} = this.messageForm().value();
-      this.store.dispatch(createMessage({text}));
+      const { text } = this.messageForm().value();
+      this.store.dispatch(createMessage({ text }));
     }
   }
 

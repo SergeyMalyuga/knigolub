@@ -1,21 +1,30 @@
 <article class="message-card">
-  <div [ngClass]=" {
-  'message-card__content': true,
-  'message-card__content--my': isOwner,
-  }">
+  <div
+    [ngClass]="{
+      'message-card__content': true,
+      'message-card__content--my': isOwner,
+    }"
+  >
     @if (!isOwner && shouldShowHeader) {
       <div class="message-card__image-wrapper">
         <div class="message-card__image">
-          <img src="{{message.author.avatarUrl}}" width="32" height="32" alt="Аватарка {{message.author.name}}"/>
+          <img
+            src="{{ message.author.avatarUrl }}"
+            width="32"
+            height="32"
+            alt="Аватарка {{ message.author.name }}"
+          />
         </div>
-        <span class="message-card__author">{{message.author.name}}</span>
+        <span class="message-card__author">{{ message.author.name }}</span>
       </div>
     }
-    <div [ngClass]=" {
-    'message-card__text-wrapper': true,
-    'message-card__text-wrapper--rounded': !shouldShowHeader,
-    'message-card__text-wrapper--my': isOwner
-    }">
+    <div
+      [ngClass]="{
+        'message-card__text-wrapper': true,
+        'message-card__text-wrapper--rounded': !shouldShowHeader,
+        'message-card__text-wrapper--my': isOwner,
+      }"
+    >
       <p class="message-card__text">{{ message.text }}</p>
       <span class="message-card__time">{{ message.createdAt | date: 'HH:mm' }}</span>
     </div>

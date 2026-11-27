@@ -1,20 +1,20 @@
-import {ApplicationConfig, provideBrowserGlobalErrorListeners} from '@angular/core';
-import {provideRouter, withInMemoryScrolling} from '@angular/router';
+import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { provideRouter, withInMemoryScrolling } from '@angular/router';
 
-import {routes} from './app.routes';
-import {HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
-import {provideEffects} from '@ngrx/effects';
-import {provideStore} from '@ngrx/store';
-import {appReducer} from './store/app/app.reducer';
-import {BookEffects} from './store/book/effects/book.effects';
-import {UserEffects} from './store/user/effects/user.effects';
-import {AuthInterceptor} from './core/interceptors/auth.interceptor';
-import {FavoriteBookEffects} from './store/favorite/effects/favorite-book.effects';
-import {MAT_DATE_LOCALE, provideNativeDateAdapter} from '@angular/material/core';
-import {ClubReviewEffects} from './store/club-review/effects/club-review.effects';
-import {MessageEffects} from './store/message/effects/message.effects';
-import {MessageSocketEffects} from './store/message-socket/effects/message-socket.effects';
-import {UserOnlineSocketEffects} from './store/user-online-socket/user-online-socket.effects';
+import { routes } from './app.routes';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideEffects } from '@ngrx/effects';
+import { provideStore } from '@ngrx/store';
+import { appReducer } from './store/app/app.reducer';
+import { BookEffects } from './store/book/effects/book.effects';
+import { UserEffects } from './store/user/effects/user.effects';
+import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+import { FavoriteBookEffects } from './store/favorite/effects/favorite-book.effects';
+import { MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
+import { ClubReviewEffects } from './store/club-review/effects/club-review.effects';
+import { MessageEffects } from './store/message/effects/message.effects';
+import { MessageSocketEffects } from './store/message-socket/effects/message-socket.effects';
+import { OnlineUserSocketEffects } from './store/user-online-socket/online-user-socket.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -35,7 +35,7 @@ export const appConfig: ApplicationConfig = {
       ClubReviewEffects,
       MessageEffects,
       MessageSocketEffects,
-      UserOnlineSocketEffects
+      OnlineUserSocketEffects,
     ),
     {
       provide: HTTP_INTERCEPTORS,
@@ -43,6 +43,6 @@ export const appConfig: ApplicationConfig = {
       multi: true,
     },
     provideNativeDateAdapter(),
-    {provide: MAT_DATE_LOCALE, useValue: 'ru-RU'},
+    { provide: MAT_DATE_LOCALE, useValue: 'ru-RU' },
   ],
 };

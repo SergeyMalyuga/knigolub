@@ -6,13 +6,16 @@ import { createReducer, on } from '@ngrx/store';
 import {
   createMessage,
   createMessageFailure,
-  createMessageSuccess, loadMessages, loadMessagesFailure, loadMessagesSuccess,
+  createMessageSuccess,
+  loadMessages,
+  loadMessagesFailure,
+  loadMessagesSuccess,
   resetMessageStatus,
 } from './actions/message.actions';
-import {logout} from '../user/actions/user.actions';
+import { logout } from '../user/actions/user.actions';
 
 export const messageAdapter = createEntityAdapter<Message>({
-  sortComparer:  (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+  sortComparer: (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime(),
 });
 const initialState: MessageState = messageAdapter.getInitialState({
   activeOperation: ACTIVE_OPERATION.IDLE,
@@ -43,20 +46,25 @@ export const messageReducer = createReducer(
     error,
   })),
 
-  on(loadMessages, state => ({
+  on(loadMessages, (state) => ({
     ...state,
     activeOperation: ACTIVE_OPERATION.LOAD,
     status: OPERATION_STATUS.LOADING,
     error: null,
   })),
-  on(loadMessagesSuccess, (state, {messages}) =>
-  messageAdapter.addMany(messages, {
-    ...state,
-    activeOperation: ACTIVE_OPERATION.IDLE,
-    status: OPERATION_STATUS.IDLE,
-    error: null})),
+  on(loadMessagesSuccess, (state, { messages }) =>
+    messageAdapter.addMany(messages, {
+      ...state,
+      activeOperation: ACTIVE_OPERATION.IDLE,
+      status: OPERATION_STATUS.IDLE,
+      error: null,
+    }),
+  ),
   on(loadMessagesFailure, (state, { error }) => ({
-    ...state, error, activeOperation: ACTIVE_OPERATION.IDLE, status: OPERATION_STATUS.ERROR,
+    ...state,
+    error,
+    activeOperation: ACTIVE_OPERATION.IDLE,
+    status: OPERATION_STATUS.ERROR,
   })),
 
   on(logout, () => ({ ...initialState })),
