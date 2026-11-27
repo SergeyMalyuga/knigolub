@@ -404,6 +404,8 @@
     width: 100%;
     max-height: 545px;
     overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: variables.$camel transparent;
 
     &-item {
       margin-bottom: rem(16);
