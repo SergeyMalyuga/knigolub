@@ -50,13 +50,20 @@
           </mat-select>
         </mat-form-field>
       </div>
-      <div class="chat__members-wrapper">
-        <div class="chat__members-header" aria-live="polite" aria-atomic="true">
-          <h3 class="chat__members-title">Онлайн</h3>
-          <span class="chat__members-count">{{usersOnlineTotal()}}</span>
-        </div>
-        <ul class="chat__members" aria-label="Онлайн участники"></ul>
+      <div class="chat__members-header" aria-live="polite" aria-atomic="true">
+        <h3 class="chat__members-title">Онлайн</h3>
+        <span class="chat__members-count">{{usersOnlineTotal()}}</span>
       </div>
+      @if (usersOnlineTotal() > 0) {
+        <ul class="chat__members"
+            aria-label="Онлайн участники">
+          @for (user of usersOnline(); track user.id) {
+            <li app-online-user [onlineUser]="user"></li>
+          }
+        </ul>
+      } @else {
+          <p class="chat__members-empty">Сейчас в чате кроме вас никого нет</p>
+      }
     </div>
     <div class="chat__main">
       <div class="chat__messages-wrapper">

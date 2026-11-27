@@ -253,7 +253,7 @@
     border-bottom: 1px solid color.scale(variables.$deep-earth, $alpha: -50%);
     color: variables.$warm-cream;
     backdrop-filter: blur(10px);
-    padding: rem(10) rem(15);
+    padding: rem(10) rem(15) rem(10) rem(25);
     font-family: variables.$font-family-accent;
     letter-spacing: 0.1em;
   }
@@ -273,6 +273,8 @@
   }
 
   &__sidebar {
+    display: flex;
+    flex-direction: column;
     padding-right: rem(16);
     border-right: 1px solid color.scale(variables.$old-lace, $alpha: -85%);
   }
@@ -330,9 +332,36 @@
     width: 140px;
   }
 
+  &__members {
+    max-height: 345px;
+    flex-grow: 1;
+    overflow-y: auto;
+
+    &-empty {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+  }
+
   &__members-header {
+    position: relative;
     display: flex;
     justify-content: space-between;
+    margin-bottom: rem(24);
+
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 100%;
+      display: block;
+      border-bottom: 1px solid color.scale(variables.$old-lace, $alpha: -85%);
+    }
   }
 
   &__members-count {
