@@ -47,6 +47,7 @@ import {selectMessages, selectMessageStatus} from '../../../store/message/select
 import {createMessage, resetMessageStatus} from '../../../store/message/actions/message.actions';
 import {MessageCardComponent} from '../message-card/message-card.component';
 import {ChatScrollBottomDirective} from '../../directives/chat-scroll-bottom.directive';
+import {selectUsersOnlineTotal} from '../../../store/online-user/selectors/user-online.selectors';
 
 @Component({
   selector: 'app-chat',
@@ -87,6 +88,7 @@ export class ChatComponent implements OnInit {
   public user = this.store.selectSignal(selectChatUser);
   public chatStatus = computed<ChatStatus>(() => this.user().chatStatus);
   public messages = this.store.selectSignal(selectMessages);
+  public usersOnlineTotal = this.store.selectSignal(selectUsersOnlineTotal);
 
   public messageForm = form(this.messageModel, (fieldPath) => {
     required(fieldPath.text, {message: MESSAGE_ERRORS_MESSAGES.message.required});

@@ -4,15 +4,15 @@ import {UserOnlineState} from '../../core/models/user-online.state';
 import {createReducer, on} from '@ngrx/store';
 import {loadOnlineUsers, userWentOffline, userWentOnline} from './actions/user-online.actions';
 
-export const onlineUserAdapter = createEntityAdapter<OnlineUser>();
+export const userOnlineAdapter = createEntityAdapter<OnlineUser>();
 
-const initialState: UserOnlineState = onlineUserAdapter.getInitialState();
+const initialState: UserOnlineState = userOnlineAdapter.getInitialState();
 
 export const userOnlineReducer = createReducer(
   initialState,
   on(loadOnlineUsers, (state, {onlineUsers}) =>
-    onlineUserAdapter.setAll(onlineUsers, state)),
+    userOnlineAdapter.setAll(onlineUsers, state)),
   on(userWentOnline, (state, {user}) =>
-    onlineUserAdapter.setOne(user, state)),
+    userOnlineAdapter.setOne(user, state)),
   on(userWentOffline, (state, {userId}) =>
-    onlineUserAdapter.removeOne(userId, state)));
+    userOnlineAdapter.removeOne(userId, state)));
