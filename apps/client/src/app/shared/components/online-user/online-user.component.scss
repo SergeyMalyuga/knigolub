@@ -1,0 +1,39 @@
+@use '../../../../styles/functions' as *;
+
+:host(.online-user) {
+  display: flex;
+  gap: 12px;
+}
+
+.online-user {
+  &__image {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    img {
+      display: block;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  &__name {
+    line-height: 100%;
+  }
+
+  &__time {
+    line-height: 100%;
+      font-size: rem(14);
+      opacity: 0.6;
+  }
+}
+
